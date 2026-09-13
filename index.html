@@ -3,27 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <title>Muhammad Naveed | AI Automations, SEO & GEO Architect</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Muhammad Naveed is an elite AI Automations builder, SEO & GEO (Generative Engine Optimization) Specialist. Ranking businesses #1 using LLM Schemas and Technical SEO.">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     <meta property="og:title" content="Muhammad Naveed | AI & SEO Specialist">
-    <meta property="og:description" content="I build autonomous AI agents and engineer advanced SEO/AEO strategies to dominate Google search and drive exponential organic growth.">
+    <meta property="og:description" content="I build autonomous AI agents and engineer advanced SEO/AEO/GEO strategies using LLM Schemas to dominate Google search and drive exponential organic growth.">
     <meta property="og:image" content="./workspace.jpg">
     <meta property="og:url" content="https://github.com/mnaveedkhtri-ui/portfolio">
-    <title>Muhammad Naveed | AI & SEO Specialist</title>
+    
+    <!-- Structured LLM Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Muhammad Naveed",
+      "image": "https://raw.githubusercontent.com/mnaveedkhtri-ui/portfolio/main/profile.jpg",
+      "description": "Expert in AI Automations, Technical SEO, Generative Engine Optimization (GEO), and LLM Schema Engineering.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PK"
+      },
+      "email": "naveedkhtri7@gmail.com",
+      "telephone": "+923323219981",
+      "url": "https://github.com/mnaveedkhtri-ui/portfolio",
+      "sameAs": [
+        "https://wa.me/923323219981"
+      ],
+      "knowsAbout": ["Artificial Intelligence", "Search Engine Optimization", "Generative Engine Optimization", "LLM Optimization", "Backlink Building", "Technical SEO"]
+    }
+    </script>
+
+    <!-- Tailwind & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    
+    <!-- GSAP for Scroll Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Three.js & Vanta.js for 3D Interactive Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
                     colors: {
-                        dark: '#0a0a0a',
-                        surface: '#121212',
-                        border: '#2a2a2a',
-                        primary: '#3b82f6',
+                        dark: '#050507',
+                        surface: 'rgba(15, 15, 20, 0.7)',
+                        border: 'rgba(255, 255, 255, 0.1)',
+                        primary: '#00f2fe',
+                        secondary: '#4facfe',
                         accent: '#10b981'
                     }
                 }
@@ -31,131 +67,203 @@
         }
     </script>
     <style>
-        body { 
-            background-color: #0a0a0a; 
-            color: #f5f5f5; 
-            overflow-x: hidden; 
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+        body { background-color: #050507; color: #f5f5f5; overflow-x: hidden; }
+        
+        /* 3D Glassmorphism Header */
+        .glass-nav { 
+            background: rgba(5, 5, 7, 0.6); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-        .glass-nav { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .card-hover { transition: transform 0.4s ease, border-color 0.4s ease; }
-        .card-hover:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2); }
-        .text-gradient { background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .text-gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .photo-container { position: relative; }
-        .photo-container::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, #3b82f6, #10b981); z-index: -1; border-radius: 1.5rem; opacity: 0.3; }
-            @media print {
-            body { 
-                background-color: #0a0a0a !important; 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important;
-                color: #f5f5f5 !important;
-            }
-            .gs_reveal { 
-                opacity: 1 !important; 
-                visibility: visible !important; 
-                transform: none !important; 
-            }
-            nav { display: none !important; }
-            section { page-break-inside: avoid; page-break-after: auto; padding-top: 2rem !important; padding-bottom: 2rem !important; }
-            .card-hover, .bg-surface { page-break-inside: avoid; }
-            a { text-decoration: none !important; }
-            ::-webkit-scrollbar { display: none; }
+        
+        /* Mega Hover Effects */
+        .btn-glow {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .btn-glow::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit; z-index: -1;
+            background: linear-gradient(90deg, #00f2fe, #4facfe, #00f2fe);
+            background-size: 200% auto;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.8), 0 0 60px rgba(0, 242, 254, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            color: #000 !important;
+            border-color: transparent !important;
+        }
+        .btn-glow:hover::before { opacity: 1; animation: shine 2s linear infinite; }
+        @keyframes shine { to { background-position: 200% center; } }
+
+        /* Smooth Card 3D Hover */
+        .card-3d {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+        }
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-10px);
+            box-shadow: -10px 10px 40px rgba(0, 242, 254, 0.2);
+            border-color: rgba(0, 242, 254, 0.4);
+        }
+
+        .text-gradient { 
+            background: linear-gradient(to right, #ffffff 0%, #a1a1aa 50%, #ffffff 100%); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+        .text-gradient-cyan { 
+            background: linear-gradient(to right, #00f2fe 0%, #4facfe 100%); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+        }
+
+        .photo-container::after { 
+            content: ''; position: absolute; inset: -4px; 
+            background: linear-gradient(135deg, #00f2fe, #10b981); 
+            z-index: -1; border-radius: 1.5rem; opacity: 0.6; 
+            filter: blur(10px);
+            animation: pulse-glow 3s infinite alternate;
+        }
+        @keyframes pulse-glow {
+            0% { opacity: 0.4; filter: blur(10px); }
+            100% { opacity: 0.8; filter: blur(20px); }
+        }
+
+        /* Base pattern overlay for sections */
+        .pattern-bg {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white">
+<body class="antialiased selection:bg-primary selection:text-black">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
-            <span class="text-xl font-bold tracking-tight">Muhammad Naveed<span class="text-primary">.</span></span>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+    <!-- Massive Header Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-500 py-2">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-[0_0_15px_rgba(0,242,254,0.5)] group-hover:shadow-[0_0_25px_rgba(0,242,254,0.8)] transition-all">
+                    <span class="text-black font-black text-xl tracking-tighter">MN</span>
+                </div>
+                <span class="text-2xl font-black tracking-tight text-white group-hover:text-primary transition-colors">Muhammad Naveed<span class="text-primary">.</span></span>
+            </a>
+            <div class="hidden md:flex space-x-10 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                <a href="#about" class="hover:text-primary transition-colors relative group">
+                    About
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#expertise" class="hover:text-primary transition-colors relative group">
+                    Expertise
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="hover:text-primary transition-colors relative group">
+                    Contact
+                    <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                </a>
             </div>
-            <a href="#contact" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-gray-200 transition-all">Hire Me</a>
+            <a href="#contact" class="hidden md:inline-flex px-8 py-3 bg-transparent border-2 border-primary text-primary font-bold rounded-full btn-glow uppercase tracking-wider text-xs">
+                Launch Project
+            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16 min-h-[90vh]">
-        <div class="flex-1 text-center md:text-left gs_reveal">
-            <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-border bg-surface text-xs font-medium text-gray-300 mb-6">
-                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                <span>Open for freelance opportunities</span>
+    <!-- 3D Hero Section (Powered by Vanta.js) -->
+    <div id="vanta-bg" class="relative pt-32 pb-20 lg:pt-56 lg:pb-40 px-6 min-h-[100vh] flex items-center border-b border-border">
+        <!-- Content -->
+        <div class="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16 relative z-10 w-full">
+            <div class="flex-1 text-center lg:text-left gs_reveal">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-primary/30 bg-black/50 backdrop-blur-md text-xs font-bold text-primary mb-8 uppercase tracking-widest shadow-[0_0_15px_rgba(0,242,254,0.2)]">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    <span>System Online • Accepting Clients</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1] mb-6">
+                    <span class="text-gradient">Engineer</span><br/>
+                    <span class="text-gradient-cyan">Exponential Growth.</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
+                    AI Automations Builder, Generative Engine Optimization (GEO), & LLM Schema Architect.
+                </h2>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                    <a href="#contact" class="px-10 py-5 bg-white text-black font-black rounded-full btn-glow shadow-[0_0_30px_rgba(255,255,255,0.3)]">Start Dominating</a>
+                    <a href="#expertise" class="px-10 py-5 bg-black/50 backdrop-blur-md border border-white/20 text-white font-bold rounded-full hover:bg-white/10 transition-all card-3d">Explore Tech Stack</a>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 text-gradient">
-                Muhammad Naveed
-            </h1>
-            <h2 class="text-2xl md:text-3xl font-medium text-primary mb-6">
-                AI Automations & SEO Specialist
-            </h2>
-            <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
-                I build autonomous AI agents and engineer advanced SEO/AEO strategies to dominate Google search and drive exponential organic growth.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="#contact" class="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-600 transition shadow-[0_0_20px_rgba(59,130,246,0.2)]">Get in touch</a>
-                <a href="#expertise" class="px-8 py-4 bg-surface border border-border text-white font-semibold rounded-lg hover:bg-border transition">View Expertise</a>
-            </div>
-        </div>
-        <div class="w-64 h-80 md:w-80 md:h-[26rem] photo-container rounded-2xl shrink-0 gs_reveal gs_reveal_fromRight relative">
-            <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover rounded-2xl shadow-2xl relative z-10 object-bottom">
             
-            <!-- Floating Badge -->
-            <div class="absolute -bottom-6 -left-6 z-20 bg-surface border border-border p-4 rounded-xl shadow-2xl flex items-center space-x-4">
-                <div class="bg-primary/20 p-2.5 rounded-lg">
-                    <i data-feather="cpu" class="text-primary w-5 h-5"></i>
+            <div class="w-72 h-[22rem] lg:w-96 lg:h-[30rem] photo-container rounded-3xl shrink-0 gs_reveal gs_reveal_fromRight relative group">
+                <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover rounded-3xl relative z-10 object-bottom filter contrast-110 saturate-110 transition-transform duration-700 group-hover:scale-[1.02]">
+                
+                <!-- Floating High-Tech Badges -->
+                <div class="absolute -bottom-8 -left-10 z-20 bg-black/80 backdrop-blur-xl border border-border p-5 rounded-2xl shadow-2xl flex items-center space-x-4 card-3d animate-bounce" style="animation-duration: 4s;">
+                    <div class="bg-primary/20 p-3 rounded-xl shadow-[0_0_15px_rgba(0,242,254,0.5)]">
+                        <i data-feather="cpu" class="text-primary w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-primary font-black uppercase tracking-widest mb-1">AI Agents Active</p>
+                        <p class="text-sm font-bold text-white">LLM Schemas Validated</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">AI Agents Builder</p>
-                    <p class="text-sm font-bold text-white">Automations Active</p>
+                
+                <div class="absolute top-10 -right-8 z-20 bg-black/80 backdrop-blur-xl border border-border p-4 rounded-xl shadow-2xl flex items-center space-x-3 card-3d">
+                    <i data-feather="trending-up" class="text-accent w-5 h-5"></i>
+                    <p class="text-xs text-white font-bold uppercase tracking-wider">#1 GEO Ranking</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- About Me Section -->
-    <section id="about" class="py-24 px-6 border-t border-border bg-surface/30">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+    <section id="about" class="py-32 px-6 pattern-bg border-b border-border relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
                 <div class="gs_reveal gs_reveal_fromLeft">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About <span class="text-gradient-blue">Me</span></h2>
-                    <div class="space-y-4 text-gray-400 leading-relaxed text-lg">
+                    <h2 class="text-4xl md:text-6xl font-black mb-8">The <span class="text-gradient-cyan">Architect</span></h2>
+                    <div class="space-y-6 text-gray-300 leading-relaxed text-lg md:text-xl font-medium">
                         <p>
-                            I am a digital architect specializing in the intersection of Artificial Intelligence and Search Engine Optimization. I don't just optimize websites; I build automated systems that scale your digital footprint.
+                            I operate at the cutting edge of digital visibility. While others do basic SEO, I engineer <strong class="text-white">Generative Engine Optimization (GEO)</strong> and <strong class="text-white">Answer Engine Optimization (AEO)</strong> strategies to make your brand the primary data source for ChatGPT, Claude, and Google SGE.
                         </p>
                         <p>
-                            From developing highly capable AI agents and automating repetitive business workflows to executing deep technical SEO audits and high-authority link building, I provide end-to-end solutions for modern businesses.
+                            By integrating <strong class="text-white">advanced LLM JSON-LD Schemas</strong> with relentless high-authority backlink building and Technical SEO audits, I build moats around your digital properties that competitors cannot breach.
                         </p>
                         <p>
-                            My approach combines traditional organic growth tactics (On-Page, Off-Page, Technical SEO) with next-generation optimization (AEO, GEO) to ensure you rank #1 across all modern search surfaces.
+                            Beyond search, I build <strong class="text-white">Autonomous AI Agents</strong> that automate your workflows, scale your content operations, and slash your operational costs.
                         </p>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 gs_reveal gs_reveal_fromRight">
-                    <div class="p-6 bg-surface border border-border rounded-xl">
-                        <i data-feather="code" class="w-6 h-6 text-primary mb-4"></i>
-                        <h4 class="font-bold text-white mb-2">AI Automations</h4>
-                        <p class="text-sm text-gray-500">Custom agentic workflows</p>
+                <div class="grid grid-cols-2 gap-6 gs_reveal gs_reveal_fromRight">
+                    <!-- Stat Card 1 -->
+                    <div class="p-8 bg-surface backdrop-blur-lg border border-border rounded-2xl card-3d">
+                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 border border-primary/30">
+                            <i data-feather="layers" class="text-primary w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-white mb-2">LLM Schema</h4>
+                        <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">Data Structuring</p>
                     </div>
-                    <div class="p-6 bg-surface border border-border rounded-xl mt-8">
-                        <i data-feather="search" class="w-6 h-6 text-accent mb-4"></i>
-                        <h4 class="font-bold text-white mb-2">AEO & GEO</h4>
-                        <p class="text-sm text-gray-500">Future-proof search ranking</p>
+                    <!-- Stat Card 2 -->
+                    <div class="p-8 bg-surface backdrop-blur-lg border border-border rounded-2xl card-3d mt-10">
+                        <div class="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 border border-accent/30">
+                            <i data-feather="share-2" class="text-accent w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-white mb-2">GEO / AEO</h4>
+                        <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">AI Search Dominance</p>
                     </div>
-                    <div class="p-6 bg-surface border border-border rounded-xl -mt-8">
-                        <i data-feather="database" class="w-6 h-6 text-purple-400 mb-4"></i>
-                        <h4 class="font-bold text-white mb-2">Technical SEO</h4>
-                        <p class="text-sm text-gray-500">Architecture optimization</p>
+                    <!-- Stat Card 3 -->
+                    <div class="p-8 bg-surface backdrop-blur-lg border border-border rounded-2xl card-3d -mt-10">
+                        <div class="w-14 h-14 rounded-full bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/30">
+                            <i data-feather="link" class="text-purple-400 w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-white mb-2">Authority</h4>
+                        <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">Off-Page Backlinks</p>
                     </div>
-                    <div class="p-6 bg-surface border border-border rounded-xl">
-                        <i data-feather="link" class="w-6 h-6 text-orange-400 mb-4"></i>
-                        <h4 class="font-bold text-white mb-2">Off-Page SEO</h4>
-                        <p class="text-sm text-gray-500">Authority link building</p>
+                    <!-- Stat Card 4 -->
+                    <div class="p-8 bg-surface backdrop-blur-lg border border-border rounded-2xl card-3d">
+                        <div class="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center mb-6 border border-orange-500/30">
+                            <i data-feather="code" class="text-orange-400 w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-white mb-2">Tech SEO</h4>
+                        <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">Architecture</p>
                     </div>
                 </div>
             </div>
@@ -163,36 +271,42 @@
     </section>
 
     <!-- Services / Expertise -->
-    <section id="expertise" class="py-24 px-6 border-t border-border">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-16 gs_reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical <span class="text-gradient-blue">Capabilities</span></h2>
-                <p class="text-gray-400 max-w-2xl text-lg">Delivering high-quality, professional solutions across AI and search ecosystems.</p>
+    <section id="expertise" class="py-32 px-6 relative border-b border-border">
+        <!-- Abstract gradient background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-96 bg-primary/20 blur-[120px] rounded-full z-0 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20 gs_reveal">
+                <h2 class="text-4xl md:text-6xl font-black mb-6">Elite <span class="text-gradient-cyan">Capabilities</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-xl font-medium">The intersection of advanced artificial intelligence and high-tier search engine architecture.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid lg:grid-cols-3 gap-10">
                 
-                <div class="bg-surface border border-border rounded-2xl overflow-hidden card-hover gs_reveal gs_reveal_fromBottom">
-                    <img src="./workspace.jpg" alt="AI Agents" class="w-full h-48 object-cover border-b border-border">
-                    <div class="p-8">
-                        <h3 class="text-xl font-bold text-white mb-3">AI Agents & Automation</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Building autonomous AI agents to handle workflows, content generation, and data processing at scale, saving you hundreds of hours.</p>
+                <div class="bg-black/60 backdrop-blur-xl border border-border rounded-3xl overflow-hidden card-3d gs_reveal gs_reveal_fromBottom">
+                    <img src="./workspace.jpg" alt="AI Agents" class="w-full h-56 object-cover border-b border-border opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+                    <div class="p-10">
+                        <h3 class="text-2xl font-black text-white mb-4">AI Agents & Workflows</h3>
+                        <p class="text-gray-400 text-base leading-relaxed mb-6 font-medium">Deploying custom LangChain & autonomous agents to handle content generation, data scraping, and business operations completely on autopilot.</p>
+                        <a href="#contact" class="text-primary font-bold hover:text-white transition flex items-center uppercase tracking-widest text-sm">Automate Now <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
                     </div>
                 </div>
 
-                <div class="bg-surface border border-border rounded-2xl overflow-hidden card-hover gs_reveal gs_reveal_fromBottom" style="transition-delay: 100ms;">
-                    <img src="./meeting.jpg" alt="AEO & GEO" class="w-full h-48 object-cover border-b border-border">
-                    <div class="p-8">
-                        <h3 class="text-xl font-bold text-white mb-3">AEO & GEO Strategy</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Answer Engine and Generative Engine Optimization. Structuring data and content to be the primary source for AI platforms like ChatGPT and Google SGE.</p>
+                <div class="bg-black/60 backdrop-blur-xl border border-border rounded-3xl overflow-hidden card-3d gs_reveal gs_reveal_fromBottom" style="transition-delay: 150ms;">
+                    <img src="./meeting.jpg" alt="AEO & GEO" class="w-full h-56 object-cover border-b border-border opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+                    <div class="p-10">
+                        <h3 class="text-2xl font-black text-white mb-4">GEO & LLM Schemas</h3>
+                        <p class="text-gray-400 text-base leading-relaxed mb-6 font-medium">Injecting highly optimized JSON-LD structures and knowledge graphs into your site so AI models (ChatGPT, Google AI) cite you as the #1 source.</p>
+                        <a href="#contact" class="text-primary font-bold hover:text-white transition flex items-center uppercase tracking-widest text-sm">Dominate AI <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
                     </div>
                 </div>
 
-                <div class="bg-surface border border-border rounded-2xl overflow-hidden card-hover gs_reveal gs_reveal_fromBottom" style="transition-delay: 200ms;">
-                    <img src="./analytics.jpg" alt="Comprehensive SEO" class="w-full h-48 object-cover border-b border-border">
-                    <div class="p-8">
-                        <h3 class="text-xl font-bold text-white mb-3">Full-Stack SEO</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4">Mastery over On-Page optimization, deep Technical SEO audits, and Off-Page authority Backlink Building to dominate traditional SERPs.</p>
+                <div class="bg-black/60 backdrop-blur-xl border border-border rounded-3xl overflow-hidden card-3d gs_reveal gs_reveal_fromBottom" style="transition-delay: 300ms;">
+                    <img src="./analytics.jpg" alt="Comprehensive SEO" class="w-full h-56 object-cover border-b border-border opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500">
+                    <div class="p-10">
+                        <h3 class="text-2xl font-black text-white mb-4">Technical SEO & Links</h3>
+                        <p class="text-gray-400 text-base leading-relaxed mb-6 font-medium">Deep-dive technical audits, site speed architecture, and aggressive acquisition of high-DR authoritative backlinks to crush traditional search.</p>
+                        <a href="#contact" class="text-primary font-bold hover:text-white transition flex items-center uppercase tracking-widest text-sm">Rank Higher <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
                     </div>
                 </div>
 
@@ -200,55 +314,102 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 px-6 border-t border-border bg-surface/30">
-        <div class="max-w-4xl mx-auto bg-surface border border-border rounded-3xl p-10 md:p-16 text-center gs_reveal relative overflow-hidden">
-            <!-- Decorative blur -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+    <!-- Massive Footer / Contact Section -->
+    <footer id="contact" class="pt-32 pb-12 px-6 bg-dark relative overflow-hidden">
+        <!-- Vanta Waves / Net Background could also go here, but let's use CSS -->
+        <div class="absolute inset-0 pattern-bg opacity-30"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
             
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Let's Build Together</h2>
-            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                Whether you need a custom AI agent, a technical SEO audit, or a massive traffic recovery campaign, I'm ready to help.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
-                <a href="mailto:naveedkhtri7@gmail.com" class="flex items-center justify-center px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors">
-                    <i data-feather="mail" class="mr-3 w-5 h-5"></i> naveedkhtri7@gmail.com
-                </a>
-                <a href="https://wa.me/923323219981" target="_blank" class="flex items-center justify-center px-8 py-4 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#1ebe5d] transition-colors">
-                    <i data-feather="message-circle" class="mr-3 w-5 h-5"></i> +92 3323219981
-                </a>
+            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-[3rem] p-12 md:p-20 text-center mb-24 gs_reveal card-3d">
+                <h2 class="text-5xl md:text-7xl font-black mb-8 text-white">Initialize <span class="text-gradient-cyan">Project.</span></h2>
+                <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-medium">
+                    Stop losing traffic to competitors and AI overviews. Let's architect a system that scales your business exponentially.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="mailto:naveedkhtri7@gmail.com" class="flex items-center justify-center px-10 py-5 bg-white text-black font-black rounded-full btn-glow uppercase tracking-wider text-sm">
+                        <i data-feather="mail" class="mr-3 w-5 h-5"></i> naveedkhtri7@gmail.com
+                    </a>
+                    <a href="https://wa.me/923323219981" target="_blank" class="flex items-center justify-center px-10 py-5 bg-transparent border-2 border-[#25D366] text-[#25D366] font-black rounded-full hover:bg-[#25D366] hover:text-white transition-all uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(37,211,102,0.2)]">
+                        <i data-feather="message-circle" class="mr-3 w-5 h-5"></i> +92 3323219981
+                    </a>
+                </div>
             </div>
-            <p class="text-sm text-gray-500">Available on WhatsApp for instant replies.</p>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-8 px-6 text-center border-t border-border">
-        <p class="text-gray-500 text-sm">© 2026 Muhammad Naveed. Professional Portfolio.</p>
+            <div class="grid md:grid-cols-3 gap-12 border-t border-border pt-12">
+                <div>
+                    <span class="text-4xl font-black tracking-tight text-white mb-6 block">Naveed<span class="text-primary">.</span></span>
+                    <p class="text-gray-500 font-medium max-w-xs">Building the next generation of search visibility and artificial intelligence automations.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest">Capabilities</h4>
+                    <ul class="space-y-4 text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-primary transition">AI Agents Builder</a></li>
+                        <li><a href="#" class="hover:text-primary transition">LLM Schema Engineering</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Generative Engine Optimization (GEO)</a></li>
+                        <li><a href="#" class="hover:text-primary transition">High-Authority Backlinks</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest">Connect</h4>
+                    <div class="flex space-x-4 mb-8">
+                        <a href="#" class="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all"><i data-feather="twitter"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-gray-400 hover:text-white hover:border-primary hover:shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center pt-12 mt-12 border-t border-border text-gray-600 font-medium text-sm">
+                <p>© 2026 Muhammad Naveed. Engineered for the Future of Search.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
+        // Initialize Icons
         feather.replace();
 
+        // Vanta.js 3D Animated Background setup
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.VANTA) {
+                VANTA.NET({
+                  el: "#vanta-bg",
+                  mouseControls: true,
+                  touchControls: true,
+                  gyroControls: false,
+                  minHeight: 200.00,
+                  minWidth: 200.00,
+                  scale: 1.00,
+                  scaleMobile: 1.00,
+                  color: 0x00f2fe,
+                  backgroundColor: 0x050507,
+                  points: 12.00,
+                  maxDistance: 22.00,
+                  spacing: 18.00
+                })
+            }
+        });
+
+        // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
         function animateFrom(elem, direction) {
             direction = direction || 1;
-            var x = 0, y = direction * 50;
-            if(elem.classList.contains("gs_reveal_fromLeft")) { x = -50; y = 0; } 
-            else if (elem.classList.contains("gs_reveal_fromRight")) { x = 50; y = 0; } 
-            else if (elem.classList.contains("gs_reveal_fromBottom")) { x = 0; y = 50; }
+            var x = 0, y = direction * 60;
+            if(elem.classList.contains("gs_reveal_fromLeft")) { x = -60; y = 0; } 
+            else if (elem.classList.contains("gs_reveal_fromRight")) { x = 60; y = 0; } 
+            else if (elem.classList.contains("gs_reveal_fromBottom")) { x = 0; y = 60; }
             
             elem.style.transform = `translate(${x}px, ${y}px)`;
             elem.style.opacity = "0";
             
             gsap.fromTo(elem, {x: x, y: y, autoAlpha: 0}, {
-                duration: 1, 
+                duration: 1.2, 
                 x: 0,
                 y: 0, 
                 autoAlpha: 1, 
-                ease: "power3.out", 
+                ease: "expo.out", 
                 overwrite: "auto"
             });
         }
@@ -260,7 +421,7 @@
                 hide(elem);
                 ScrollTrigger.create({
                     trigger: elem,
-                    start: "top 90%",
+                    start: "top 85%",
                     onEnter: function() { animateFrom(elem) }, 
                     onEnterBack: function() { animateFrom(elem, -1) }
                 });
@@ -269,5 +430,3 @@
     </script>
 </body>
 </html>
-
-
