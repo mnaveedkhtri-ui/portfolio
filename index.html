@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveed Khatri | AEO & SEO Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        background: '#050505',
+                        surface: '#121212',
+                        surfaceBorder: '#2A2A2A',
+                        primary: '#3B82F6',
+                        accent: '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #FAFAFA; }
+        .glass {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .image-container::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            z-index: -1;
+            border-radius: 1.1rem;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+        .image-container:hover::before { opacity: 1; }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-surfaceBorder transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <span class="text-xl font-bold tracking-tight">Naveed<span class="text-primary">.</span></span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#services" class="hover:text-white transition">Services</a>
+                <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </div>
+            <a href="#contact" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-lg hover:bg-gray-200 transition">Let's Talk</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16">
+        <div class="flex-1 text-center md:text-left">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-surfaceBorder bg-surface text-xs font-medium text-gray-300 mb-6">
+                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                <span>Available for new projects</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6">
+                Dominate AI Search.<br/>
+                <span class="text-gradient">Rank Higher.</span>
+            </h1>
+            <p class="text-lg text-gray-400 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                I am an AEO (Answer Engine Optimization) & Link Building Consultant. I help businesses recover lost traffic and rank #1 on Google AI Overviews.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="#pricing" class="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-600 transition shadow-[0_0_20px_rgba(59,130,246,0.3)]">View Packages</a>
+                <a href="#services" class="px-8 py-4 bg-surface border border-surfaceBorder text-white font-semibold rounded-lg hover:bg-surfaceBorder transition">My Expertise</a>
+            </div>
+        </div>
+        <div class="w-64 h-64 md:w-80 md:h-80 relative image-container rounded-2xl shrink-0">
+            <img src="./profile.jpg" alt="Naveed Khatri" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl z-10 relative object-top">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-surface/50 border-t border-surfaceBorder">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Professional <span class="text-gradient">Services</span></h2>
+            <p class="text-gray-400 mb-16 max-w-2xl">Modern SEO requires technical precision. Here is how I future-proof your digital presence.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-surface border border-surfaceBorder hover:border-primary transition group">
+                    <i data-feather="search" class="w-8 h-8 text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">AEO Optimization</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Restructuring content with Executive Summaries, NLP formatting, and JSON-LD FAQ Schemas to dominate Google SGE & ChatGPT.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-surface border border-surfaceBorder hover:border-accent transition group">
+                    <i data-feather="link" class="w-8 h-8 text-accent mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">Authority Link Building</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Acquiring high-quality, relevant, and authoritative backlinks that signal extreme trust and authority to search engines.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-surface border border-surfaceBorder hover:border-blue-400 transition group">
+                    <i data-feather="trending-up" class="w-8 h-8 text-blue-400 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3">Traffic Recovery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Diagnosing algorithmic penalties and restructuring your architecture to recover lost organic traffic rapidly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">Transparent <span class="text-gradient">Pricing</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Basic -->
+                <div class="p-8 rounded-2xl bg-surface border border-surfaceBorder">
+                    <h3 class="text-lg font-medium text-gray-400 mb-2">Test Drive</h3>
+                    <div class="text-4xl font-bold mb-6">$20<span class="text-sm text-gray-500 font-normal">/order</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> 1 Article Optimized</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> Executive Summary Injection</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> Index Optimization</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center rounded-lg border border-surfaceBorder hover:bg-white hover:text-black transition font-medium">Select Plan</a>
+                </div>
+
+                <!-- Standard -->
+                <div class="p-8 rounded-2xl bg-gradient-to-b from-surface to-[#0a1526] border border-primary relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</div>
+                    <h3 class="text-lg font-medium text-blue-400 mb-2">Growth AEO</h3>
+                    <div class="text-4xl font-bold mb-6">$55<span class="text-sm text-gray-500 font-normal">/order</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-200">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-primary mr-3"></i> 3 Articles Optimized</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-primary mr-3"></i> FAQ Schema (JSON-LD)</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-primary mr-3"></i> Question-Based H2/H3s</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center rounded-lg bg-primary text-white hover:bg-blue-600 transition font-medium shadow-lg">Select Plan</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="p-8 rounded-2xl bg-surface border border-surfaceBorder">
+                    <h3 class="text-lg font-medium text-gray-400 mb-2">Complete Overhaul</h3>
+                    <div class="text-4xl font-bold mb-6">$150<span class="text-sm text-gray-500 font-normal">/order</span></div>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-300">
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> 10 Articles Optimized</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> Site SEO Audit</li>
+                        <li class="flex items-center"><i data-feather="check" class="w-4 h-4 text-accent mr-3"></i> Priority Delivery</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center rounded-lg border border-surfaceBorder hover:bg-white hover:text-black transition font-medium">Select Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="border-t border-surfaceBorder py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="text-2xl font-bold tracking-tight">Naveed<span class="text-primary">.</span></span>
+            <p class="text-gray-500 text-sm">© 2026 Naveed Khatri. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="mail" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
+
