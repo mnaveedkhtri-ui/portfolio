@@ -46,6 +46,24 @@
         .text-gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .photo-container { position: relative; }
         .photo-container::after { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, #3b82f6, #10b981); z-index: -1; border-radius: 1.5rem; opacity: 0.3; }
+            @media print {
+            body { 
+                background-color: #0a0a0a !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+                color: #f5f5f5 !important;
+            }
+            .gs_reveal { 
+                opacity: 1 !important; 
+                visibility: visible !important; 
+                transform: none !important; 
+            }
+            nav { display: none !important; }
+            section { page-break-inside: avoid; page-break-after: auto; padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .card-hover, .bg-surface { page-break-inside: avoid; }
+            a { text-decoration: none !important; }
+            ::-webkit-scrollbar { display: none; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-primary selection:text-white">
@@ -251,4 +269,5 @@
     </script>
 </body>
 </html>
+
 
