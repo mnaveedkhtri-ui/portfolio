@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanober Restaurant - Digital Menu</title>
+    <style>
+        :root {
+            --primary: #78182b;
+            --gold: #d4af37;
+            --light: #fdfbf7;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #eee;
+        }
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .category {
+            font-size: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .menu-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--primary);
+        }
+        .item-details h3 {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #222;
+        }
+        .item-details p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+        }
+        .item-price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 16px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        .order-btn-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+        }
+        .order-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            width: 100%;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        .spacer {
+            height: 80px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Sanober Restaurant</h1>
+        <p>Hala Naka, Hyderabad</p>
+    </div>
+
+    <div class="container">
+        <p style="text-align: center; color: #666; font-size: 14px;"><i>Welcome to our interactive digital menu.</i></p>
+
+        <div class="category">Exclusive Deals</div>
+        
+        <div class="menu-item">
+            <div class="item-details">
+                <h3>Sanober Deal (3 Persons)</h3>
+                <p>Chicken Karahi (Half), Singaporean Rice (Half), Reshmi Kabab (Half), 4 Plain Naan + 1 Puri Paratha</p>
+            </div>
+            <div class="item-price">Rs. 1899</div>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-details">
+                <h3>Only Rs. 1049/= Deal</h3>
+                <p>Chicken Zinger Burger, 350ml Cold Drink, Chicken Chatni Roll</p>
+            </div>
+            <div class="item-price">Rs. 1049</div>
+        </div>
+
+        <div class="category">BBQ Platters</div>
+
+        <div class="menu-item">
+            <div class="item-details">
+                <h3>Special B.B.Q Platter</h3>
+                <p>Chicken Tikka, Malai Boti, Green Boti, Beef Bihari, Reshmi Kabab + 3 Naan (For 3-4 Persons)</p>
+            </div>
+            <div class="item-price">Rs. 3299</div>
+        </div>
+
+        <div class="category">Fast Food</div>
+
+        <div class="menu-item">
+            <div class="item-details">
+                <h3>Zinger Burger</h3>
+                <p>Crispy fried chicken breast with special sauce</p>
+            </div>
+            <div class="item-price">Rs. 499</div>
+        </div>
+        
+        <div class="menu-item">
+            <div class="item-details">
+                <h3>Al-Baik Broast</h3>
+                <p>Special authentic broast</p>
+            </div>
+            <div class="item-price">Rs. 899</div>
+        </div>
+
+        <div class="spacer"></div>
+    </div>
+
+    <div class="order-btn-container">
+        <a href="https://wa.me/923161155449?text=Hi!%20I%20saw%20your%20Digital%20Menu.%20I%20want%20to%20order:" class="order-btn">
+            Order on WhatsApp
+        </a>
+    </div>
+
+</body>
+</html>
