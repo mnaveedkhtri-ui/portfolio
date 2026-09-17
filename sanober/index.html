@@ -89,8 +89,43 @@
         .toast { position: fixed; top: 100px; right: -300px; background: var(--gold); color: var(--bg); padding: 15px 25px; border-radius: 10px; font-weight: 600; transition: right 0.4s; z-index: 2000; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .toast.show { right: 30px; }
 
-        @media (max-width: 768px) {
-            .hero-title { font-size: 3.5rem; }
+                @media (max-width: 768px) {
+            /* General */
+            body { overflow-x: hidden; width: 100vw; }
+            .section { padding: 50px 5%; }
+            .section-title { font-size: 2.5rem; }
+            
+            /* Navbar */
+            nav { padding: 15px 5%; }
+            .logo { font-size: 1.5rem; }
+            
+            /* Hero */
+            .hero-title { font-size: 2.8rem; line-height: 1.2; }
+            .hero-subtitle { font-size: 0.9rem; letter-spacing: 2px; }
+            .scroll-indicator { bottom: 20px; }
+            
+            /* Tabs */
+            .tabs { padding: 15px 5%; gap: 10px; top: 60px; -webkit-overflow-scrolling: touch; }
+            .tab { padding: 10px 20px; font-size: 0.9rem; }
+            
+            /* Menu Grid */
+            .menu-pages { padding: 20px 5% 100px; }
+            .page { grid-template-columns: 1fr; gap: 20px; }
+            .card-img { height: 180px; }
+            .card-title { font-size: 1.4rem; }
+            
+            /* Reviews */
+            .reviews-grid { grid-template-columns: 1fr; gap: 20px; }
+            .review-card { padding: 25px 20px; }
+            
+            /* Cart FAB */
+            .cart-fab { bottom: 20px; right: 5%; width: 90%; justify-content: center; padding: 15px 20px; font-size: 1.1rem; border-radius: 15px; }
+            .cart-fab:hover { transform: translateY(-2px); }
+            
+            /* Toast */
+            .toast { top: 20px; left: 50%; transform: translateX(-50%); right: auto; opacity: 0; pointer-events: none; }
+            .toast.show { opacity: 1; top: 80px; transform: translateX(-50%); }
+        }
             .about-grid { grid-template-columns: 1fr; }
             .cart-fab { bottom: 20px; right: 50%; transform: translateX(50%); width: 90%; justify-content: center; padding: 15px 20px; font-size: 1.1rem; }
             .cart-fab:hover { transform: translateX(50%) translateY(-5px); }
@@ -301,4 +336,5 @@
     </script>
 </body>
 </html>
+
 
