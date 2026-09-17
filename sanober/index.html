@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
             --bg: #0a0a0a; --surface: #141414; --gold: #c29958; --text: #f5f5f5;
@@ -29,21 +30,35 @@
         .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; animation: float 2s infinite ease-in-out; }
         @keyframes float { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 15px); } }
         
+        /* New Sections Layout */
+        .section { padding: 100px 5%; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--gold); margin-bottom: 20px; }
+        
+        /* About Us Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text p { font-size: 1.1rem; line-height: 1.9; color: #bbb; margin-bottom: 20px; }
+        .about-features { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .feature-box { background: rgba(255,255,255,0.02); padding: 25px; border-radius: 15px; border-left: 4px solid var(--gold); display: flex; flex-direction: column; gap: 10px; transition: 0.4s; }
+        .feature-box:hover { background: rgba(194, 153, 88, 0.1); transform: translateX(10px); }
+        .feature-box i { color: var(--gold); font-size: 2rem; }
+        .feature-box h4 { font-size: 1.2rem; color: var(--text); }
+        .feature-box p { color: #888; font-size: 0.95rem; }
+
         /* Tabs */
-        .tabs { position: sticky; top: 78px; z-index: 100; display: flex; gap: 15px; overflow-x: auto; padding: 20px 5%; background: linear-gradient(to bottom, var(--bg) 80%, transparent); scrollbar-width: none; }
+        .tabs { position: sticky; top: 78px; z-index: 100; display: flex; gap: 15px; overflow-x: auto; padding: 20px 5%; background: linear-gradient(to bottom, var(--bg) 80%, transparent); scrollbar-width: none; border-top: 1px solid rgba(255,255,255,0.05); }
         .tabs::-webkit-scrollbar { display: none; }
         .tab { background: var(--surface); color: #888; padding: 12px 30px; border-radius: 30px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); white-space: nowrap; transition: 0.4s; font-weight: 500; }
         .tab:hover { border-color: var(--gold); color: var(--gold); }
         .tab.active { background: var(--gold); color: var(--bg); border-color: var(--gold); box-shadow: 0 0 20px rgba(194, 153, 88, 0.3); transform: scale(1.05); }
         
         /* Grid */
-        .menu-pages { padding: 40px 5% 150px; min-height: 80vh; }
+        .menu-pages { padding: 40px 5% 100px; min-height: 60vh; }
         .page { display: none; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; opacity: 1; }
         .page.active { display: grid; }
         
         /* VIP Cards */
         .card { background: var(--surface); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.5s; position: relative; transform-style: preserve-3d; }
-        .card:hover { transform: translateY(-10px) rotateX(2deg) rotateY(2deg); border-color: rgba(194,153,88,0.3); box-shadow: -10px 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(194,153,88,0.1); z-index: 10; }
+        .card:hover { transform: translateY(-10px); border-color: rgba(194,153,88,0.3); box-shadow: -10px 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(194,153,88,0.1); z-index: 10; }
         .card-img { height: 220px; background-size: cover; background-position: center; position: relative; }
         .price-badge { position: absolute; top: 15px; right: 15px; background: var(--gold); color: var(--bg); padding: 8px 18px; border-radius: 20px; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .card-body { padding: 25px; }
@@ -52,6 +67,19 @@
         .btn-select { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--gold); color: var(--gold); border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 8px; }
         .btn-select:hover, .btn-select.added { background: var(--gold); color: var(--bg); box-shadow: 0 5px 15px rgba(194,153,88,0.3); }
         
+        /* Reviews Section */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .review-card { background: var(--surface); padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(194,153,88,0.1); position: relative; transition: 0.4s; }
+        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .review-card::before { content: '"'; position: absolute; top: 10px; left: 20px; font-size: 5rem; color: rgba(194,153,88,0.1); font-family: 'Cormorant Garamond', serif; }
+        .stars { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; }
+        .review-text { font-style: italic; line-height: 1.7; color: #ccc; margin-bottom: 20px; position: relative; z-index: 1; }
+        .reviewer { font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+
+        /* Footer */
+        footer { background: #050505; padding: 60px 5%; text-align: center; border-top: 1px solid rgba(194,153,88,0.2); }
+        footer p { color: #888; margin-bottom: 10px; line-height: 1.6; }
+
         /* Floating Cart */
         .cart-fab { position: fixed; bottom: 40px; right: 40px; background: linear-gradient(135deg, #d4af37, #aa8222); color: var(--bg); padding: 18px 40px; border-radius: 40px; font-size: 1.2rem; font-weight: 600; cursor: pointer; box-shadow: 0 10px 30px rgba(212,175,55,0.3), inset 0 2px 0 rgba(255,255,255,0.4); z-index: 1000; display: flex; align-items: center; gap: 15px; transition: 0.3s; border:none; }
         .cart-fab:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(212,175,55,0.5); }
@@ -63,6 +91,7 @@
 
         @media (max-width: 768px) {
             .hero-title { font-size: 3.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
             .cart-fab { bottom: 20px; right: 50%; transform: translateX(50%); width: 90%; justify-content: center; padding: 15px 20px; font-size: 1.1rem; }
             .cart-fab:hover { transform: translateX(50%) translateY(-5px); }
         }
@@ -82,22 +111,53 @@
             <span class="hero-subtitle gs-reveal">A Symphony of Flavors</span>
             <h2 class="hero-title gs-reveal">The Art of <br>Fine Dining</h2>
         </div>
-        <div class="scroll-indicator gs-reveal">
-            <span>EXPLORE MENU</span>
-            <i class="fas fa-chevron-down"></i>
+        <a href="#menu-section" style="color: inherit; text-decoration: none;">
+            <div class="scroll-indicator gs-reveal">
+                <span>EXPLORE MENU</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </a>
+    </div>
+
+    <!-- NEW ABOUT SECTION -->
+    <div class="section about-section" id="about-section">
+        <div class="about-grid">
+            <div class="about-text gs-scroll">
+                <h3 class="section-title">Our Heritage</h3>
+                <p>Welcome to <strong>Sanober</strong>, where every dish tells a story. Born from a passion for authentic flavors and modern culinary artistry, we bring you a dining experience that transcends the ordinary.</p>
+                <p>From our sizzling charcoal BBQ to our signature aromatic handis, every ingredient is handpicked by our master chefs to ensure absolute perfection. Taste the rich tradition, feel the unmatched luxury.</p>
+            </div>
+            <div class="about-features">
+                <div class="feature-box gs-scroll">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Premium Ingredients</h4>
+                    <p>Farm-to-table daily, 100% Halal certified meats.</p>
+                </div>
+                <div class="feature-box gs-scroll">
+                    <i class="fas fa-fire"></i>
+                    <h4>Charcoal Grilled</h4>
+                    <p>Authentic smoky flavors perfected over open flames.</p>
+                </div>
+                <div class="feature-box gs-scroll">
+                    <i class="fas fa-motorcycle"></i>
+                    <h4>Lightning Fast Delivery</h4>
+                    <p>Piping hot and fresh, straight to your doorstep.</p>
+                </div>
+            </div>
         </div>
     </div>
     
-    <div class="tabs">
-        <div class="tab active" onclick="switchTab('deals')">Deals</div>
+    <!-- TABS -->
+    <div class="tabs" id="menu-section">
+        <div class="tab active" onclick="switchTab('deals')">Exclusive Deals</div>
         <div class="tab" onclick="switchTab('bbq')">Premium BBQ</div>
         <div class="tab" onclick="switchTab('fastfood')">Fast Food & Starters</div>
         <div class="tab" onclick="switchTab('karahi')">Karahi & Chinese</div>
     </div>
     
+    <!-- MENU GRIDS -->
     <div class="menu-pages">
         <div class="page active" id="deals">
-            <!-- FIXED IMAGES: Using highly reliable Unsplash IDs -->
             <div class="card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&fit=crop&w=600&q=80')"><div class="price-badge">Rs 1899</div></div><div class="card-body"><h3 class="card-title">Sanober Deal</h3><p class="card-desc">Half Karahi, Half Rice, Reshmi Kabab, 4 Naan.</p><button class="btn-select" onclick="addToCart(this, 'Sanober Deal', '1899')">Select</button></div></div>
             <div class="card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80')"><div class="price-badge">Rs 1999</div></div><div class="card-body"><h3 class="card-title">Deal 04 Premium</h3><p class="card-desc">Chicken Cheese Burger, Pulao, Dhaka Chicken.</p><button class="btn-select" onclick="addToCart(this, 'Deal 04 Premium', '1999')">Select</button></div></div>
             <div class="card"><div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80')"><div class="price-badge">Rs 1049</div></div><div class="card-body"><h3 class="card-title">Zinger Deal</h3><p class="card-desc">Zinger Burger, Cold Drink, Chatni Roll.</p><button class="btn-select" onclick="addToCart(this, 'Zinger Deal', '1049')">Select</button></div></div>
@@ -127,13 +187,48 @@
         </div>
     </div>
     
-    <button class="cart-fab" onclick="checkout()">
-        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
-        Place Order
-        <div class="cart-count" id="cartCount">0</div>
-    </button>
+    <!-- NEW REVIEWS SECTION -->
+    <div class="section reviews-section" style="background: rgba(255,255,255,0.02);">
+        <h3 class="section-title" style="text-align: center;">What Our Guests Say</h3>
+        <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 1.1rem;">Real feedback from food lovers in Hyderabad.</p>
+        
+        <div class="reviews-grid">
+            <div class="review-card gs-scroll">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"Absolutely the best Mutton Karahi I have had in Hyderabad. The atmosphere is premium, the taste is out of this world, and ordering online is a breeze!"</p>
+                <div class="reviewer">- Ali Raza, Food Vlogger</div>
+            </div>
+            <div class="review-card gs-scroll" style="transform: translateY(-20px);">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"The Sanober Special BBQ Platter is a masterpiece. The meat was tender, juicy, and perfectly spiced. Their WhatsApp ordering system is so smooth."</p>
+                <div class="reviewer">- Sarah Ahmed</div>
+            </div>
+            <div class="review-card gs-scroll">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <p class="review-text">"Five-star experience from start to finish. Fast delivery and the premium packaging kept the food piping hot. A truly luxury restaurant standard."</p>
+                <div class="reviewer">- Dr. Fahad Shaikh</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo" style="margin-bottom: 20px;">Sanober</div>
+        <p>Hala Naka, Hyderabad, Pakistan</p>
+        <p>Serving Authentic Flavors Since 2018</p>
+        <p style="margin-top: 15px; color: var(--gold); font-weight: 600;">WhatsApp Orders: +92 316 1155449</p>
+        <div style="margin-top: 25px; color: var(--gold);">
+            <i class="fab fa-facebook fa-lg" style="margin: 0 10px; cursor:pointer;"></i>
+            <i class="fab fa-instagram fa-lg" style="margin: 0 10px; cursor:pointer;"></i>
+            <i class="fab fa-tiktok fa-lg" style="margin: 0 10px; cursor:pointer;"></i>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: #444;">© 2026 Sanober Restaurant. All Rights Reserved.</p>
+    </footer>
 
     <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
         let cart = [];
         
         function switchTab(id) {
@@ -177,10 +272,24 @@
             window.open("https://wa.me/923161155449?text=" + msg, "_blank");
         }
         
-        // Initial animation
+        // Initial animations
         gsap.from(".logo, .location-badge", { y: -50, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out" });
         gsap.from(".hero-content .gs-reveal", { y: 50, opacity: 0, duration: 1.5, stagger: 0.3, ease: "power4.out", delay: 0.2 });
-        gsap.fromTo('#deals .card', { y: 50, opacity: 0, rotationX: 15 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.7)", delay: 0.5 });
+        gsap.from(".scroll-indicator", { opacity: 0, duration: 1, delay: 1.5 });
+        
+        // Scroll Animations for New Sections
+        gsap.utils.toArray('.gs-scroll').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
         
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
