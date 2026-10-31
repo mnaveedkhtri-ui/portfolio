@@ -187,6 +187,89 @@
       cursor: pointer;
     }
 
+    /* Mobile Navigation Drawer */
+    .mobile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2500;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 290px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 2501;
+      box-shadow: 5px 0 30px rgba(0,0,0,0.15);
+      transition: left 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 25px 20px;
+    }
+
+    .mobile-drawer.open {
+      left: 0;
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .mobile-drawer-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mobile-nav-list a {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+      transition: var(--transition);
+    }
+
+    .mobile-nav-list a:hover {
+      color: var(--accent-gold);
+      padding-left: 5px;
+    }
+
     /* Hero Section */
     .hero {
       position: relative;
@@ -1059,6 +1142,10 @@
       .modal-img {
         height: 280px;
       }
+      .announcement-bar {
+        font-size: 9.5px;
+        padding: 7px 10px;
+      }
     }
   </style>
 </head>
@@ -1097,6 +1184,27 @@
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Slide-Out Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMobileNav()"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <h3>SAYA LUXE</h3>
+      <button class="close-drawer-btn" onclick="toggleMobileNav()">&times;</button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="#all" onclick="filterCategory('all', event); toggleMobileNav();">✨ New Arrivals 2026</a></li>
+      <li><a href="#pret" onclick="filterCategory('pret', event); toggleMobileNav();">👗 Ready To Wear (Pret)</a></li>
+      <li><a href="#unstitched" onclick="filterCategory('unstitched', event); toggleMobileNav();">🧵 Unstitched 3-Piece</a></li>
+      <li><a href="#festive" onclick="filterCategory('festive', event); toggleMobileNav();">👑 Festive Velvet Edit</a></li>
+      <li><a href="#sale" onclick="filterCategory('sale', event); toggleMobileNav();" style="color: var(--red-sale);">🔥 Winter Sale (Flat 30% Off)</a></li>
+      <li><a href="https://wa.me/923323219981?text=Hi%20SAYA%20LUXE,%20I%20need%20help%20with%20sizing%20and%20COD%20order." target="_blank" style="color: var(--whatsapp-green);"><i class="fa-brands fa-whatsapp"></i> Chat with Stylist</a></li>
+    </ul>
+    <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 11px; color: #888;">
+      Fast Cash On Delivery Across Pakistan.<br>
+      Engineered by Muhammad Naveed.
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -1543,6 +1651,11 @@
       document.getElementById('cartOverlay').classList.toggle('open');
     }
 
+    function toggleMobileNav() {
+      document.getElementById('mobileDrawer').classList.toggle('open');
+      document.getElementById('mobileDrawerOverlay').classList.toggle('open');
+    }
+
     function proceedCheckout() {
       alert("Opening Cash on Delivery (COD) Checkout - In production, this completes the Trax/TCS courier booking with zero friction!");
     }
@@ -1571,10 +1684,6 @@
         addToCart(currentModalProduct.id);
         closeModal();
       }
-    }
-
-    function toggleMobileNav() {
-      alert("Mobile Menu: Displays full category tree, WhatsApp assistance, and size guide.");
     }
 
     // Init
