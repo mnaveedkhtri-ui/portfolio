@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Subject 04: The Escape Experiment | 3D Action-Adventure Visual Novel</title>
+  <title>Subject 04: The Escape Experiment | 2.5D Action Visual Novel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@500;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  <!-- Three.js 3D Engine -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -54,36 +52,71 @@
     /* Red Alarm Pulse */
     @keyframes redAlarmFlash {
       0%, 100% { opacity: 0; }
-      50% { opacity: 0.35; }
+      50% { opacity: 0.38; }
     }
     .alarm-flash {
       animation: redAlarmFlash 1.1s ease-in-out infinite;
     }
 
     /* Holographic AI Shimmer */
-    @keyframes holoScan {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 0% 100%; }
-    }
     .holo-glow {
-      filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 35px rgba(14, 165, 233, 0.4));
+      filter: drop-shadow(0 0 18px rgba(6, 182, 212, 0.85)) drop-shadow(0 0 40px rgba(14, 165, 233, 0.45));
     }
 
     /* Screen Shake */
     @keyframes screenShake {
       0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-4px, 3px) rotate(-0.5deg); }
-      40% { transform: translate(4px, -3px) rotate(0.5deg); }
-      60% { transform: translate(-3px, -2px) rotate(-0.3deg); }
-      80% { transform: translate(3px, 2px) rotate(0.3deg); }
+      20% { transform: translate(-5px, 4px) rotate(-0.5deg); }
+      40% { transform: translate(5px, -4px) rotate(0.5deg); }
+      60% { transform: translate(-4px, -3px) rotate(-0.3deg); }
+      80% { transform: translate(4px, 3px) rotate(0.3deg); }
     }
     .shake { animation: screenShake 0.45s ease-in-out; }
 
-    /* Custom Scrollbar for Docs */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0b1120; }
-    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    /* Suspension Rig Physics Animations */
+    @keyframes harnessBounceAnim {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-38px) scaleY(1.06); }
+      50% { transform: translateY(28px) scaleY(0.94); }
+      75% { transform: translateY(-16px); }
+    }
+    .harness-bouncing {
+      animation: harnessBounceAnim 1.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+    }
+
+    @keyframes pendulumSwingAnim {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-18deg) translateX(-25px); }
+      75% { transform: rotate(18deg) translateX(25px); }
+    }
+    .pendulum-swinging {
+      transform-origin: top center;
+      animation: pendulumSwingAnim 1.8s ease-in-out infinite;
+    }
+
+    /* Dust footstep particle */
+    @keyframes dustFade {
+      0% { opacity: 0.7; transform: scale(0.4) translateY(0); }
+      100% { opacity: 0; transform: scale(1.6) translateY(-12px); }
+    }
+    .footstep-dust {
+      position: absolute;
+      width: 14px;
+      height: 6px;
+      background: rgba(148, 163, 184, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: dustFade 0.45s ease-out forwards;
+    }
+
+    /* Station Pulsing Rings */
+    @keyframes stationRingPulse {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    .station-pulse-ring {
+      animation: stationRingPulse 1.8s ease-out infinite;
+    }
   </style>
 </head>
 <body class="relative w-screen h-screen overflow-hidden bg-slate-950 text-slate-100">
@@ -91,9 +124,132 @@
   <!-- ================= MASTER GAME STAGE ================= -->
   <div id="game-stage" class="relative w-full h-full overflow-hidden select-none">
 
-    <!-- 3D WebGL Canvas Layer -->
-    <div id="canvas-container" class="absolute inset-0 z-0">
-      <canvas id="webgl-canvas" class="w-full h-full block"></canvas>
+    <!-- 2.5D World Viewport (High-Resolution Sci-Fi Lab Chamber) -->
+    <div id="world-viewport" class="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 scale-[1.01]" style="background-image: url('assets/bg_facility_lab.jpg');">
+      
+      <!-- Vignette and Sci-Fi Ambient Overlays -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/70 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-transparent to-slate-950/70 pointer-events-none"></div>
+      
+      <!-- Subtle Scanline Grid -->
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] pointer-events-none opacity-40"></div>
+
+      <!-- ================= 2.5D INTERACTIVE OBJECTS ON THE LAB FLOOR ================= -->
+      
+      <!-- Station 1: Research Filing Cabinet (Left side, in depth) -->
+      <div id="prop-cabinet" class="absolute left-[12%] bottom-[24%] z-10 flex flex-col items-center">
+        <!-- Floating Station Prompt (E) -->
+        <div id="prompt-cabinet" class="hidden -top-16 mb-2">
+          <button onclick="clickCabinet()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-950/90 border border-amber-500/80 text-amber-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(245,158,11,0.6)] hover:scale-105 active:scale-95 transition-all">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span>[ E ] Search Cabinet</span>
+          </button>
+        </div>
+        <!-- Floor Beacon -->
+        <div class="relative flex items-center justify-center">
+          <div class="w-16 h-8 rounded-full bg-amber-500/30 blur-[4px]"></div>
+          <div class="absolute w-12 h-6 rounded-full border border-amber-400 station-pulse-ring"></div>
+          <i class="fa-solid fa-folder-open text-amber-400 text-lg absolute -top-4 filter drop-shadow-[0_0_10px_rgba(245,158,11,0.8)] animate-bounce"></i>
+        </div>
+      </div>
+
+      <!-- Station 2: Mainframe Decryption Terminal (Center-Left) -->
+      <div id="prop-terminal" class="absolute left-[36%] bottom-[25%] z-10 flex flex-col items-center">
+        <!-- Floating Prompt (E) -->
+        <div id="prompt-terminal" class="hidden -top-16 mb-2">
+          <button onclick="clickTerminal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-cyan-950/90 border border-cyan-500/80 text-cyan-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 active:scale-95 transition-all">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>[ E ] Access Terminal</span>
+          </button>
+        </div>
+        <!-- Floor Beacon -->
+        <div class="relative flex items-center justify-center">
+          <div class="w-16 h-8 rounded-full bg-cyan-500/30 blur-[4px]"></div>
+          <div class="absolute w-12 h-6 rounded-full border border-cyan-400 station-pulse-ring"></div>
+          <i class="fa-solid fa-terminal text-cyan-400 text-lg absolute -top-4 filter drop-shadow-[0_0_10px_rgba(6,182,212,0.8)] animate-pulse"></i>
+        </div>
+      </div>
+
+      <!-- Station 3: Sleeping Guard Outpost (Center-Right) -->
+      <div id="prop-guard" class="absolute left-[60%] bottom-[25%] z-10 flex flex-col items-center">
+        <!-- Floating Prompt (E) -->
+        <div id="prompt-guard" class="hidden -top-16 mb-2">
+          <button onclick="clickGuardWindow()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-950/90 border border-purple-500/80 text-purple-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(168,85,247,0.6)] hover:scale-105 active:scale-95 transition-all">
+            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+            <span>[ E ] Inspect Guard</span>
+          </button>
+        </div>
+        <!-- Floor Beacon -->
+        <div class="relative flex items-center justify-center">
+          <div class="w-16 h-8 rounded-full bg-purple-500/30 blur-[4px]"></div>
+          <div class="absolute w-12 h-6 rounded-full border border-purple-400 station-pulse-ring"></div>
+          <i class="fa-solid fa-user-shield text-purple-400 text-lg absolute -top-4 filter drop-shadow-[0_0_10px_rgba(168,85,247,0.8)] animate-pulse"></i>
+        </div>
+      </div>
+
+      <!-- Station 4: Reinforced Hydraulic Blast Door 07 (Right side) -->
+      <div id="prop-door" class="absolute right-[8%] bottom-[12%] z-15 flex flex-col items-center">
+        <!-- Floating Prompt (E) -->
+        <div id="prompt-door" class="hidden mb-3">
+          <button onclick="clickDoor()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-950/90 border-2 border-rose-500 text-rose-300 font-code font-bold text-xs uppercase shadow-[0_0_30px_rgba(239,68,68,0.8)] hover:scale-105 active:scale-95 transition-all">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            <span>[ E ] Unlock Blast Door</span>
+          </button>
+        </div>
+
+        <!-- 2.5D Physical Blast Door Frame & Sliding Panels -->
+        <div id="blast-door-frame" class="w-44 h-72 rounded-2xl border-4 border-slate-700 bg-slate-950/90 shadow-[0_15px_50px_rgba(0,0,0,0.9)] flex flex-col items-center justify-center relative overflow-hidden">
+          <!-- Corridor Background behind door panels -->
+          <div class="absolute inset-0 bg-gradient-to-r from-red-950 via-slate-900 to-black flex items-center justify-center">
+            <span class="text-[10px] font-code text-red-500 font-bold uppercase tracking-widest animate-pulse">SECTOR 08 TRANSIT CORRIDOR</span>
+          </div>
+
+          <!-- Left Sliding Hydraulic Steel Panel -->
+          <div id="door-panel-left" class="absolute top-0 bottom-0 left-0 w-1/2 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 border-r-2 border-slate-600 transition-transform duration-1000 shadow-xl flex items-center justify-end pr-1">
+            <div class="w-1.5 h-16 bg-slate-600 rounded-full"></div>
+          </div>
+
+          <!-- Right Sliding Hydraulic Steel Panel -->
+          <div id="door-panel-right" class="absolute top-0 bottom-0 right-0 w-1/2 bg-gradient-to-l from-slate-900 via-slate-800 to-slate-700 border-l-2 border-slate-600 transition-transform duration-1000 shadow-xl flex items-center justify-start pl-1">
+            <div class="w-1.5 h-16 bg-slate-600 rounded-full"></div>
+          </div>
+
+          <!-- Door Status Light Center Overlay -->
+          <div id="door-led-wrap" class="relative z-10 text-center pointer-events-none">
+            <div id="door-status-led" class="w-5 h-5 rounded-full bg-rose-500 mx-auto mb-2 shadow-[0_0_20px_rgba(244,63,94,1)] animate-pulse"></div>
+            <span class="text-[10px] font-code font-bold text-slate-200 block tracking-wider">BLAST DOOR 07</span>
+            <span id="door-status-text" class="text-[9px] font-code text-rose-400 font-bold uppercase tracking-widest">SECURE / LOCKED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= 2.5D CONTROLLABLE HIGH-RES ANIME HERO SPRITE ================= -->
+      <div id="player-avatar" class="absolute left-[20%] bottom-[16%] z-20 w-36 h-64 pointer-events-none flex flex-col items-center justify-end transform-gpu will-change-transform">
+        <!-- Dynamic Ground Contact Shadow (Pulsing with steps) -->
+        <div id="char-shadow" class="w-24 h-6 rounded-full bg-black/75 blur-[4px] mb-[-6px] transition-all duration-75"></div>
+        
+        <!-- High-Resolution Character Anime Sprite Graphic -->
+        <img id="avatar-sprite" src="assets/sprite_maya.png" alt="Hero" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)] transition-all duration-75 origin-bottom" />
+      </div>
+
+      <!-- Particle Container for Footstep Dust Puffs -->
+      <div id="particles-container" class="absolute inset-0 pointer-events-none z-15 overflow-hidden"></div>
+
+      <!-- Holographic A.R.I.A. Avatar Layer (Appears on intercom speech) -->
+      <div id="aria-container" class="hidden absolute right-[8%] top-[12%] z-25 w-72 h-96 pointer-events-none transition-all duration-700 opacity-0">
+        <img id="aria-img" src="assets/sprite_aria.png" alt="A.R.I.A." class="w-full h-full object-contain holo-glow" />
+      </div>
+
+      <!-- Suspension Harness Rig (Active in Phase 4 Observation Chamber) -->
+      <div id="suspension-rig" class="hidden absolute left-[45%] top-[8%] z-25 w-56 h-96 flex flex-col items-center pointer-events-none transition-all duration-700">
+        <!-- Mechanical Ceiling Track & Cable -->
+        <div class="w-3 h-32 bg-gradient-to-b from-slate-600 to-slate-400 shadow-2xl rounded-b-sm border-x border-slate-500"></div>
+        <!-- Suspended Hero Sprite Box -->
+        <div id="suspended-char-box" class="relative w-44 h-72 -mt-2 origin-top">
+          <img id="suspended-char-img" src="assets/sprite_maya.png" alt="Suspended Hero" class="w-full h-full object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.95)]" />
+        </div>
+      </div>
+
     </div>
 
     <!-- Alarm Overlay Layer -->
@@ -104,7 +260,7 @@
     <div id="eyelid-bottom" class="pointer-events-none absolute bottom-0 left-0 right-0 h-0 bg-black z-40 transition-all duration-700"></div>
 
     <!-- ================= TOP HUD HEADER ================= -->
-    <header class="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-3 bg-gradient-to-b from-black/90 via-black/50 to-transparent backdrop-blur-[2px]">
+    <header class="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-3 bg-gradient-to-b from-black/95 via-black/60 to-transparent backdrop-blur-[2px]">
       <div class="flex items-center gap-3">
         <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-red-950/80 border border-red-500/50 text-red-400 font-sci text-xs font-bold shadow-[0_0_12px_rgba(239,68,68,0.4)]">
           04
@@ -137,41 +293,6 @@
       </div>
     </header>
 
-    <!-- ================= 3D INTERACTIVE STATION PROMPT OVERLAYS ================= -->
-    <div id="prompts-layer" class="pointer-events-none absolute inset-0 z-20 overflow-hidden">
-      <!-- Prompt 1: Research Cabinet -->
-      <div id="prompt-cabinet" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
-        <button onclick="clickCabinet()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-950/90 border border-amber-500/70 text-amber-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95 transition-all">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-          <span>[ E ] Search Cabinet</span>
-        </button>
-      </div>
-
-      <!-- Prompt 2: Terminal -->
-      <div id="prompt-terminal" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
-        <button onclick="clickTerminal()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-950/90 border border-cyan-500/70 text-cyan-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:scale-105 active:scale-95 transition-all">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-          <span>[ E ] Access Terminal</span>
-        </button>
-      </div>
-
-      <!-- Prompt 3: Sleeping Guard -->
-      <div id="prompt-guard" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
-        <button onclick="clickGuardWindow()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-950/90 border border-purple-500/70 text-purple-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:scale-105 active:scale-95 transition-all">
-          <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
-          <span>[ E ] Inspect Guard</span>
-        </button>
-      </div>
-
-      <!-- Prompt 4: Blast Door -->
-      <div id="prompt-door" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
-        <button onclick="clickDoor()" class="group flex items-center gap-2 px-3.5 py-2 rounded-xl bg-rose-950/90 border-2 border-rose-500 text-rose-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(239,68,68,0.7)] hover:scale-105 active:scale-95 transition-all">
-          <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-          <span>[ E ] Unlock Blast Door</span>
-        </button>
-      </div>
-    </div>
-
     <!-- Live Countdown Timer HUD -->
     <div id="hud-timer-wrap" class="hidden absolute top-16 right-6 z-30 font-code p-3.5 rounded-2xl bg-black/90 border border-rose-500/60 backdrop-blur-md text-right shadow-[0_0_30px_rgba(239,68,68,0.3)]">
       <div class="text-[10px] text-rose-400 font-bold uppercase tracking-widest flex items-center justify-end gap-1.5">
@@ -184,8 +305,8 @@
     <!-- Control Mode Badge (Shows Real-Time Controls) -->
     <div id="control-badge-wrap" class="absolute top-16 left-6 z-30 font-code">
       <div id="control-hint-badge" class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-cyan-400 font-bold text-xs uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-2">
-        <i class="fa-solid fa-gamepad text-cyan-400"></i>
-        <span>3D CONTROLLABLE: WASD / Arrows to Walk</span>
+        <i class="fa-solid fa-person-walking text-cyan-400"></i>
+        <span>CONTROLLABLE: WASD / Arrows to Walk | E: Interact</span>
       </div>
     </div>
 
@@ -197,11 +318,6 @@
         <button onmousedown="handleVirtualMove('down')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&darr;</button>
         <button onmousedown="handleVirtualMove('right')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&rarr;</button>
       </div>
-    </div>
-
-    <!-- Holographic A.R.I.A. Avatar Layer (Appears on intercom speech) -->
-    <div id="aria-container" class="hidden absolute right-[8%] top-[12%] z-25 w-72 h-96 pointer-events-none transition-all duration-700 opacity-0">
-      <img id="aria-img" src="assets/sprite_aria.png" alt="A.R.I.A." class="w-full h-full object-contain holo-glow" />
     </div>
 
     <!-- ================= VISUAL NOVEL BOTTOM DIALOGUE BAR ================= -->
@@ -448,13 +564,13 @@
         <div class="flex-1 overflow-y-auto pr-2 space-y-4 text-xs font-sans text-slate-300 leading-relaxed">
           <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
             <h4 class="font-bold text-white text-sm mb-1 text-cyan-400">Game Architecture</h4>
-            <p>Adult psychological sci-fi visual novel & 3D real-time controllable exploration built on Ren'Py 8.x for Windows PC / Steam, with full WebGL 3D browser prototype integration.</p>
+            <p>Adult psychological sci-fi visual novel & 2.5D real-time controllable exploration built on Ren'Py 8.x for Windows PC / Steam, with full interactive web prototype integration.</p>
           </div>
           <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
             <h4 class="font-bold text-white text-sm mb-1 text-amber-400">Chapter 1 Scope & Milestones</h4>
             <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
               <li><strong>Scene 1:</strong> First-person awakening in Interrogation Chamber 07, restraint struggle.</li>
-              <li><strong>Scene 2:</strong> 3D controllable movement with WASD, searching filing cabinet, reading terminal, inspecting sleeping guard.</li>
+              <li><strong>Scene 2:</strong> 2.5D controllable movement with WASD, searching filing cabinet, reading terminal, inspecting sleeping guard.</li>
               <li><strong>Scene 3:</strong> 60-Second lockdown timer, entering keypad code 4927, blast doors sliding open, corridor breach.</li>
               <li><strong>Scene 4:</strong> Observation Chamber suspension harness sequence with real pendulum physics, violent bouncing, and momentum scissor kicking.</li>
               <li><strong>Scene 5:</strong> Civilian clothing incineration and high-tech facility uniform equipment sequence.</li>
@@ -482,7 +598,7 @@
 
   </div>
 
-  <!-- ================= JAVASCRIPT GAME LOGIC & THREE.JS 3D ENGINE ================= -->
+  <!-- ================= JAVASCRIPT GAME LOGIC & 2.5D CONTROLLER ================= -->
   <script>
     // --- State Variables ---
     let hero = 'maya'; // 'maya' or 'chloe'
@@ -495,6 +611,13 @@
     let dialogueHistory = [];
     let keysPressed = {};
     let isMoving = false;
+
+    // --- 2.5D Player Physics Coordinates (Percentages of Viewport) ---
+    let playerX = 22; // 8% to 82%
+    let playerY = 16; // 12% (front, scale 1.08) to 28% (back wall, scale 0.72)
+    let playerFacing = 1; // 1 = right, -1 = left
+    let walkStep = 0;
+    let lastStepAudioTime = 0;
 
     // --- Audio Synthesis via Web Audio API ---
     function initAudio() {
@@ -522,13 +645,23 @@
       } catch (e) {}
     }
 
-    let lastStepSoundTime = 0;
     function playFootstep() {
       const now = performance.now();
-      if (now - lastStepSoundTime > 260) {
-        lastStepSoundTime = now;
-        playBeep(90 + Math.random() * 30, 'square', 0.06, 0.04);
+      if (now - lastStepAudioTime > 260) {
+        lastStepAudioTime = now;
+        playBeep(90 + Math.random() * 35, 'square', 0.05, 0.04);
+        spawnFootstepDust();
       }
+    }
+
+    function spawnFootstepDust() {
+      const container = document.getElementById('particles-container');
+      const dust = document.createElement('div');
+      dust.className = 'footstep-dust';
+      dust.style.left = `calc(${playerX}% + 60px)`;
+      dust.style.bottom = `${playerY}% - 4px`;
+      container.appendChild(dust);
+      setTimeout(() => dust.remove(), 450);
     }
 
     function toggleAudio() {
@@ -560,521 +693,15 @@
     }
     function closeLogModal() { document.getElementById('log-modal').classList.add('hidden'); }
 
-    // ================= THREE.JS 3D ENGINE SETUP =================
-    let scene, camera, renderer;
-    let playerGroup, bodyGroup;
-    let leftShoulder, rightShoulder, leftElbow, rightElbow;
-    let leftHip, rightHip, leftKnee, rightKnee;
-    let leftDoorMesh, rightDoorMesh;
-    let stationPoints = {};
-    let ceilingHarnessGroup, cableMesh;
-    let redAlarmLight;
-    let walkCycle = 0;
-    let targetYaw = 0;
-
-    function init3D() {
-      const container = document.getElementById('canvas-container');
-      const canvas = document.getElementById('webgl-canvas');
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-
-      // 1. Scene
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x020617);
-      scene.fog = new THREE.FogExp2(0x020617, 0.035);
-
-      // 2. Camera (Isometric / Third-Person View)
-      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-      camera.position.set(0, 10.5, 15);
-      camera.lookAt(0, 1.2, 0);
-
-      // 3. Renderer
-      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-      // 4. Lighting
-      const ambient = new THREE.AmbientLight(0x334155, 1.2);
-      scene.add(ambient);
-
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
-      dirLight.position.set(5, 14, 8);
-      dirLight.castShadow = true;
-      dirLight.shadow.mapSize.width = 1024;
-      dirLight.shadow.mapSize.height = 1024;
-      scene.add(dirLight);
-
-      redAlarmLight = new THREE.PointLight(0xef4444, 0, 25);
-      redAlarmLight.position.set(0, 8, 0);
-      scene.add(redAlarmLight);
-
-      // Cyan terminal glow
-      const cyanGlow = new THREE.PointLight(0x06b6d4, 2, 8);
-      cyanGlow.position.set(-4, 2.5, -2.5);
-      scene.add(cyanGlow);
-
-      // 5. Environment Mesh (Room, Floor, Walls)
-      build3DEnvironment();
-
-      // 6. Interactive 3D Stations
-      build3DStations();
-
-      // 7. Player 3D Articulated Rig
-      build3DPlayer();
-
-      // Handle Resize
-      window.addEventListener('resize', onWindowResize);
-    }
-
-    function onWindowResize() {
-      const container = document.getElementById('canvas-container');
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
-    }
-
-    // Build Sci-Fi Room
-    function build3DEnvironment() {
-      // Floor with grid tiles
-      const floorGeo = new THREE.PlaneGeometry(32, 18);
-      const floorMat = new THREE.MeshStandardMaterial({
-        color: 0x0f172a,
-        roughness: 0.2,
-        metalness: 0.8
-      });
-      const floor = new THREE.Mesh(floorGeo, floorMat);
-      floor.rotation.x = -Math.PI / 2;
-      floor.receiveShadow = true;
-      scene.add(floor);
-
-      // Floor Grid Lines
-      const grid = new THREE.GridHelper(32, 32, 0x06b6d4, 0x1e293b);
-      grid.position.y = 0.01;
-      scene.add(grid);
-
-      // Back Wall
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x090d16, roughness: 0.5, metalness: 0.6 });
-      const backWallGeo = new THREE.BoxGeometry(32, 8, 0.6);
-      const backWall = new THREE.Mesh(backWallGeo, wallMat);
-      backWall.position.set(0, 4, -6);
-      backWall.receiveShadow = true;
-      scene.add(backWall);
-
-      // Neon Wall Stripe
-      const stripeGeo = new THREE.BoxGeometry(32, 0.15, 0.05);
-      const stripeMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
-      const stripe = new THREE.Mesh(stripeGeo, stripeMat);
-      stripe.position.set(0, 5, -5.68);
-      scene.add(stripe);
-    }
-
-    // Build 3D Stations in Room
-    function build3DStations() {
-      // Station 1: Research Cabinet (-10, 0, -2)
-      const cabGroup = new THREE.Group();
-      cabGroup.position.set(-10, 0, -2);
-      const cabMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
-      const cabMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 3.5, 1.2), cabMat);
-      cabMesh.position.y = 1.75;
-      cabMesh.castShadow = true;
-      cabGroup.add(cabMesh);
-
-      // Amber Holo Beacon above cabinet
-      const amberBeacon = new THREE.Mesh(
-        new THREE.OctahedronGeometry(0.35),
-        new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true })
-      );
-      amberBeacon.position.y = 4.2;
-      amberBeacon.name = 'amberBeacon';
-      cabGroup.add(amberBeacon);
-      scene.add(cabGroup);
-      stationPoints.cabinet = { pos: new THREE.Vector3(-10, 0, -2), promptEl: 'prompt-cabinet' };
-
-      // Station 2: Mainframe Terminal (-4, 0, -3)
-      const termGroup = new THREE.Group();
-      termGroup.position.set(-4, 0, -3);
-      const deskMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.2 });
-      const desk = new THREE.Mesh(new THREE.BoxGeometry(3, 1.6, 1.4), deskMat);
-      desk.position.y = 0.8;
-      desk.castShadow = true;
-      termGroup.add(desk);
-
-      // Curved Screen
-      const screenMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
-      const scrn = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.2, 0.2), screenMat);
-      scrn.position.set(0, 2.2, 0.2);
-      termGroup.add(scrn);
-      scene.add(termGroup);
-      stationPoints.terminal = { pos: new THREE.Vector3(-4, 0, -3), promptEl: 'prompt-terminal' };
-
-      // Station 3: Sleeping Guard Outpost (3, 0, -3)
-      const guardGroup = new THREE.Group();
-      guardGroup.position.set(3, 0, -3);
-      const barDesk = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.8, 1.5), deskMat);
-      barDesk.position.y = 0.9;
-      guardGroup.add(barDesk);
-
-      // 3D Sleeping Guard Figure
-      const guardTorsoMat = new THREE.MeshStandardMaterial({ color: 0x3b0764 });
-      const guardHeadMat = new THREE.MeshStandardMaterial({ color: 0x1e1b4b, metalness: 0.8 });
-      const gTorso = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.4, 0.8), guardTorsoMat);
-      gTorso.position.set(0, 1.6, -0.2);
-      gTorso.rotation.x = 0.45; // Slumped forward sleeping
-      guardGroup.add(gTorso);
-
-      const gHead = new THREE.Mesh(new THREE.SphereGeometry(0.45, 12, 12), guardHeadMat);
-      gHead.position.set(0, 2.3, 0.1);
-      guardGroup.add(gHead);
-      scene.add(guardGroup);
-      stationPoints.guard = { pos: new THREE.Vector3(3, 0, -3), promptEl: 'prompt-guard' };
-
-      // Station 4: Reinforced Blast Door (11, 0, 0)
-      const doorGroup = new THREE.Group();
-      doorGroup.position.set(11, 0, 0);
-
-      // Frame
-      const frameMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.9, roughness: 0.3 });
-      const frameL = new THREE.Mesh(new THREE.BoxGeometry(0.8, 6, 2), frameMat);
-      frameL.position.set(-2.4, 3, 0);
-      doorGroup.add(frameL);
-      const frameR = new THREE.Mesh(new THREE.BoxGeometry(0.8, 6, 2), frameMat);
-      frameR.position.set(2.4, 3, 0);
-      doorGroup.add(frameR);
-      const frameTop = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.8, 2), frameMat);
-      frameTop.position.set(0, 5.6, 0);
-      doorGroup.add(frameTop);
-
-      // Hydraulic Sliding Panels
-      const panelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.2 });
-      leftDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 5.2, 0.4), panelMat);
-      leftDoorMesh.position.set(-1, 2.6, 0);
-      doorGroup.add(leftDoorMesh);
-
-      rightDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 5.2, 0.4), panelMat);
-      rightDoorMesh.position.set(1, 2.6, 0);
-      doorGroup.add(rightDoorMesh);
-
-      // Door LED status light
-      const led = new THREE.Mesh(new THREE.SphereGeometry(0.2, 8, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
-      led.position.set(0, 5.2, 1.05);
-      led.name = 'doorLed';
-      doorGroup.add(led);
-
-      scene.add(doorGroup);
-      stationPoints.door = { pos: new THREE.Vector3(10, 0, 0), promptEl: 'prompt-door' };
-
-      // Suspension Chamber Rig (At Center, hidden initially)
-      ceilingHarnessGroup = new THREE.Group();
-      ceilingHarnessGroup.position.set(0, 0, 0);
-      ceilingHarnessGroup.visible = false;
-
-      // Cable from ceiling
-      const cableGeo = new THREE.CylinderGeometry(0.04, 0.04, 4.5);
-      const cableMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9 });
-      cableMesh = new THREE.Mesh(cableGeo, cableMat);
-      cableMesh.position.y = 5.5;
-      ceilingHarnessGroup.add(cableMesh);
-
-      // Examination table nearby
-      const tableGeo = new THREE.BoxGeometry(3.5, 1.2, 2.0);
-      const tableMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8 });
-      const table = new THREE.Mesh(tableGeo, tableMat);
-      table.position.set(3.5, 0.6, 0.5);
-      ceilingHarnessGroup.add(table);
-      scene.add(ceilingHarnessGroup);
-    }
-
-    // ================= 3D ARTICULATED HUMANOID CHARACTER BUILDER =================
-    function build3DPlayer() {
-      if (playerGroup) scene.remove(playerGroup);
-
-      playerGroup = new THREE.Group();
-      playerGroup.position.set(-8, 0, 1.5);
-
-      bodyGroup = new THREE.Group();
-      playerGroup.add(bodyGroup);
-
-      const isMaya = hero === 'maya';
-      const skinColor = 0xffdfc4;
-      const skinMat = new THREE.MeshStandardMaterial({ color: skinColor, roughness: 0.6 });
-
-      // Outfits
-      const topColor = isMaya ? 0xd9383a : 0x06b6d4; // Red combat tank vs Cyan STEM jacket
-      const pantsColor = isMaya ? 0x18181b : 0x0f172a;
-      const hairColor = isMaya ? 0x271e1b : 0xd4a373; // Dark brunette vs Blonde
-
-      const topMat = new THREE.MeshStandardMaterial({ color: topColor, roughness: 0.4 });
-      const pantsMat = new THREE.MeshStandardMaterial({ color: pantsColor, roughness: 0.5 });
-      const hairMat = new THREE.MeshStandardMaterial({ color: hairColor, roughness: 0.6 });
-      const bootMat = new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.3 });
-
-      // 1. Torso
-      const chestMesh = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.1, 0.5), topMat);
-      chestMesh.position.y = 1.65;
-      chestMesh.castShadow = true;
-      bodyGroup.add(chestMesh);
-
-      // 2. Head & Hair
-      const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), skinMat);
-      headMesh.position.y = 2.45;
-      headMesh.castShadow = true;
-      bodyGroup.add(headMesh);
-
-      // Hair Mesh
-      const hairGeo = new THREE.BoxGeometry(0.8, 0.45, 0.75);
-      const hair = new THREE.Mesh(hairGeo, hairMat);
-      hair.position.set(0, 2.6, -0.05);
-      bodyGroup.add(hair);
-
-      if (isMaya) {
-        // Ponytail
-        const ponytail = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.2, 0.9), hairMat);
-        ponytail.position.set(0, 2.3, -0.45);
-        ponytail.rotation.x = 0.4;
-        bodyGroup.add(ponytail);
-      }
-
-      // 3. Left Arm (Shoulder Pivot)
-      leftShoulder = new THREE.Group();
-      leftShoulder.position.set(-0.58, 2.05, 0);
-      const lArmMesh = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.65, 0.24), topMat);
-      lArmMesh.position.y = -0.32;
-      leftShoulder.add(lArmMesh);
-
-      leftElbow = new THREE.Group();
-      leftElbow.position.set(0, -0.65, 0);
-      const lForearm = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.55, 0.22), skinMat);
-      lForearm.position.y = -0.27;
-      leftElbow.add(lForearm);
-      leftShoulder.add(leftElbow);
-      bodyGroup.add(leftShoulder);
-
-      // 4. Right Arm (Shoulder Pivot)
-      rightShoulder = new THREE.Group();
-      rightShoulder.position.set(0.58, 2.05, 0);
-      const rArmMesh = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.65, 0.24), topMat);
-      rArmMesh.position.y = -0.32;
-      rightShoulder.add(rArmMesh);
-
-      rightElbow = new THREE.Group();
-      rightElbow.position.set(0, -0.65, 0);
-      const rForearm = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.55, 0.22), skinMat);
-      rForearm.position.y = -0.27;
-      rightElbow.add(rForearm);
-      rightShoulder.add(rightElbow);
-      bodyGroup.add(rightShoulder);
-
-      // 5. Left Leg (Hip Pivot)
-      leftHip = new THREE.Group();
-      leftHip.position.set(-0.25, 1.1, 0);
-      const lThigh = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.32), pantsMat);
-      lThigh.position.y = -0.32;
-      leftHip.add(lThigh);
-
-      leftKnee = new THREE.Group();
-      leftKnee.position.set(0, -0.65, 0);
-      const lCalf = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.55, 0.28), bootMat);
-      lCalf.position.y = -0.27;
-      leftKnee.add(lCalf);
-      leftHip.add(leftKnee);
-      bodyGroup.add(leftHip);
-
-      // 6. Right Leg (Hip Pivot)
-      rightHip = new THREE.Group();
-      rightHip.position.set(0.25, 1.1, 0);
-      const rThigh = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.32), pantsMat);
-      rThigh.position.y = -0.32;
-      rightHip.add(rThigh);
-
-      rightKnee = new THREE.Group();
-      rightKnee.position.set(0, -0.65, 0);
-      const rCalf = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.55, 0.28), bootMat);
-      rCalf.position.y = -0.27;
-      rightKnee.add(rCalf);
-      rightHip.add(rightKnee);
-      bodyGroup.add(rightHip);
-
-      // Shadow under character
-      const shadowGeo = new THREE.PlaneGeometry(1.6, 1.6);
-      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.45 });
-      const charShadow = new THREE.Mesh(shadowGeo, shadowMat);
-      charShadow.rotation.x = -Math.PI / 2;
-      charShadow.position.y = 0.02;
-      playerGroup.add(charShadow);
-
-      scene.add(playerGroup);
-    }
-
-    // ================= 3D ANIMATION & RENDER LOOP =================
-    let lastTime = 0;
-    let suspensionAction = null;
-    let suspensionTime = 0;
-
-    function animate3D(timestamp) {
-      requestAnimationFrame(animate3D);
-
-      const delta = Math.min((timestamp - lastTime) / 1000, 0.1);
-      lastTime = timestamp;
-
-      // Rotate decorative beacon
-      const beacon = scene.getObjectByName('amberBeacon');
-      if (beacon) beacon.rotation.y += delta * 1.5;
-
-      // Pulse red alarm if active
-      if (countdownVal <= 20 && currentPhase === 'movement') {
-        redAlarmLight.intensity = Math.abs(Math.sin(timestamp * 0.006)) * 2.5;
-      }
-
-      // --- MOVEMENT PHASE: 3D CHARACTER RUN / WALK CYCLE ---
-      if (currentPhase === 'movement') {
-        let vx = 0;
-        let vz = 0;
-        const speed = hero === 'maya' ? 7.2 : 6.4; // Maya has athletic sprint
-
-        if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) vx -= 1;
-        if (keysPressed['KeyD'] || keysPressed['ArrowRight']) vx += 1;
-        if (keysPressed['KeyW'] || keysPressed['ArrowUp']) vz -= 1;
-        if (keysPressed['KeyS'] || keysPressed['ArrowDown']) vz += 1;
-
-        if (vx !== 0 || vz !== 0) {
-          isMoving = true;
-          // Normalize diagonal movement
-          const len = Math.hypot(vx, vz);
-          vx = (vx / len) * speed * delta;
-          vz = (vz / len) * speed * delta;
-
-          // Apply position with boundary constraints
-          playerGroup.position.x = Math.max(-13, Math.min(12.5, playerGroup.position.x + vx));
-          playerGroup.position.z = Math.max(-4.5, Math.min(4.5, playerGroup.position.z + vz));
-
-          // Calculate Facing Direction Angle
-          targetYaw = Math.atan2(vx, vz);
-          playerGroup.rotation.y = THREE.MathUtils.lerp(playerGroup.rotation.y, targetYaw, 0.22);
-
-          // Animated Walk Cycle Kinematics (Hands and Legs Swing!)
-          walkCycle += delta * (speed * 1.6);
-
-          // Arms Swing in Opposition to Legs
-          leftShoulder.rotation.x = Math.sin(walkCycle) * 0.75;
-          rightShoulder.rotation.x = -Math.sin(walkCycle) * 0.75;
-          leftElbow.rotation.x = Math.max(0, Math.sin(walkCycle) * 0.45) + 0.25;
-          rightElbow.rotation.x = Math.max(0, -Math.sin(walkCycle) * 0.45) + 0.25;
-
-          // Legs Stride & Knees Bend
-          leftHip.rotation.x = -Math.sin(walkCycle) * 0.85;
-          rightHip.rotation.x = Math.sin(walkCycle) * 0.85;
-          leftKnee.rotation.x = Math.max(0, Math.sin(walkCycle - Math.PI / 4) * 0.9);
-          rightKnee.rotation.x = Math.max(0, -Math.sin(walkCycle - Math.PI / 4) * 0.9);
-
-          // Body Bobs up and down with stride
-          bodyGroup.position.y = Math.abs(Math.sin(walkCycle)) * 0.16;
-          bodyGroup.rotation.z = Math.sin(walkCycle) * 0.05;
-
-          playFootstep();
-        } else {
-          isMoving = false;
-          // Smoothly return limbs to idle pose
-          leftShoulder.rotation.x = THREE.MathUtils.lerp(leftShoulder.rotation.x, 0, 0.15);
-          rightShoulder.rotation.x = THREE.MathUtils.lerp(rightShoulder.rotation.x, 0, 0.15);
-          leftElbow.rotation.x = THREE.MathUtils.lerp(leftElbow.rotation.x, 0.1, 0.15);
-          rightElbow.rotation.x = THREE.MathUtils.lerp(rightElbow.rotation.x, 0.1, 0.15);
-          leftHip.rotation.x = THREE.MathUtils.lerp(leftHip.rotation.x, 0, 0.15);
-          rightHip.rotation.x = THREE.MathUtils.lerp(rightHip.rotation.x, 0, 0.15);
-          leftKnee.rotation.x = THREE.MathUtils.lerp(leftKnee.rotation.x, 0, 0.15);
-          rightKnee.rotation.x = THREE.MathUtils.lerp(rightKnee.rotation.x, 0, 0.15);
-
-          // Idle breathing
-          bodyGroup.position.y = Math.sin(timestamp * 0.003) * 0.04;
-          bodyGroup.scale.y = 1 + Math.sin(timestamp * 0.003) * 0.015;
-        }
-
-        // Camera smoothly follows player in X plane
-        camera.position.x = THREE.MathUtils.lerp(camera.position.x, playerGroup.position.x * 0.6, 0.08);
-        camera.lookAt(playerGroup.position.x * 0.6, 1.4, 0);
-
-        // Check 3D Station Proximity
-        check3DProximity();
-
-        // Check if player walked through opened blast door
-        if (playerGroup.position.x >= 10.5 && leftDoorMesh.position.x <= -2.5) {
-          triggerSedativeBlackout(true);
-        }
-      }
-
-      // --- PHASE 4: SUSPENSION RIG PENDULUM INTERACTION ---
-      if (currentPhase === 'suspension' && suspensionAction) {
-        suspensionTime += delta;
-        if (suspensionAction === 'bounce') {
-          // Spring bounce up & down
-          playerGroup.position.y = 3.2 + Math.sin(suspensionTime * 14) * Math.exp(-suspensionTime * 0.9) * 0.9;
-          leftShoulder.rotation.x = Math.sin(suspensionTime * 14) * 0.4;
-          rightShoulder.rotation.x = -Math.sin(suspensionTime * 14) * 0.4;
-        } else if (suspensionAction === 'swing') {
-          // Real Pendulum swing angle
-          const swingAngle = Math.sin(suspensionTime * 5.5) * Math.exp(-suspensionTime * 0.4) * 0.65;
-          playerGroup.rotation.z = swingAngle;
-          playerGroup.position.x = Math.sin(swingAngle) * 3.5;
-          playerGroup.position.y = 3.5 - Math.cos(swingAngle) * 0.4;
-
-          // Leg kicks forward to hit scissors table
-          leftHip.rotation.x = -0.8;
-          leftKnee.rotation.x = 1.1;
-        }
-      }
-
-      // Update 2D Floating Station Badges over 3D coordinates
-      updatePromptPositions();
-
-      renderer.render(scene, camera);
-    }
-
-    // Convert 3D world coordinates to 2D screen positions for floating buttons
-    function updatePromptPositions() {
-      const container = document.getElementById('canvas-container');
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-
-      for (const key in stationPoints) {
-        const item = stationPoints[key];
-        const el = document.getElementById(item.promptEl);
-        if (!el || el.classList.contains('hidden')) continue;
-
-        const p3d = item.pos.clone();
-        p3d.y += 2.8; // Float above object
-        p3d.project(camera);
-
-        const x = (p3d.x * 0.5 + 0.5) * w;
-        const y = (-p3d.y * 0.5 + 0.5) * h;
-
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
-      }
-    }
-
-    function check3DProximity() {
-      const p = playerGroup.position;
-      for (const key in stationPoints) {
-        const item = stationPoints[key];
-        const dist = p.distanceTo(item.pos);
-        const el = document.getElementById(item.promptEl);
-        if (el) {
-          el.classList.toggle('hidden', dist > 3.2);
-        }
-      }
-    }
-
-    // ================= HERO SELECTION & AWAKENING =================
+    // ================= HERO SELECTION =================
     function selectHero(chosen) {
       initAudio();
       hero = chosen;
       playBeep(440, 'triangle', 0.2);
 
       document.getElementById('character-select-screen').classList.add('hidden');
-      build3DPlayer(); // Rebuild 3D model with hero skin/outfit/hair
+      const spriteImg = document.getElementById('avatar-sprite');
+      spriteImg.src = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
 
       startAwakeningSequence();
     }
@@ -1157,7 +784,7 @@
       if (typeTimer) completeTypingNow();
     }
 
-    // ================= FREE 3D MOVEMENT MODE =================
+    // ================= 2.5D FREE MOVEMENT GAME ENGINE =================
     function startFreeMovementMode() {
       initAudio();
       document.getElementById('game-stage').classList.add('shake');
@@ -1175,13 +802,14 @@
       nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
-      const moveHelp = '"*SNAP!* Restraints broken! Use WASD or ARROW KEYS to physically walk around the 3D room! Approach the Research Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock the Blast Door!"';
+      const moveHelp = '"*SNAP!* Restraints broken! Use WASD or ARROW KEYS to physically walk across the lab! Approach the Research Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock Blast Door 07!"';
       typeWriterEffect(textEl, moveHelp, 16);
 
       document.getElementById('hud-timer-wrap').classList.remove('hidden');
       document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-person-walking text-cyan-400"></i> CONTROLLABLE: WASD/Arrows to Walk | E: Interact';
 
       startLockdownCountdown();
+      requestAnimationFrame(gameLoop);
     }
 
     function startLockdownCountdown() {
@@ -1202,6 +830,84 @@
           triggerSedativeBlackout(false); // Timeout
         }
       }, 1000);
+    }
+
+    // ================= REAL-TIME 60 FPS GAME LOOP =================
+    function gameLoop(timestamp) {
+      if (currentPhase !== 'movement') return;
+
+      let dx = 0;
+      let dy = 0;
+      const speed = hero === 'maya' ? 0.38 : 0.34; // Maya has athletic sprint
+
+      if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) { dx -= speed; playerFacing = -1; }
+      if (keysPressed['KeyD'] || keysPressed['ArrowRight']) { dx += speed; playerFacing = 1; }
+      if (keysPressed['KeyW'] || keysPressed['ArrowUp']) { dy += speed * 0.55; }
+      if (keysPressed['KeyS'] || keysPressed['ArrowDown']) { dy -= speed * 0.55; }
+
+      const avatarBox = document.getElementById('player-avatar');
+      const spriteImg = document.getElementById('avatar-sprite');
+      const shadowEl = document.getElementById('char-shadow');
+
+      if (dx !== 0 || dy !== 0) {
+        playerX = Math.max(8, Math.min(84, playerX + dx));
+        playerY = Math.max(12, Math.min(27, playerY + dy));
+        isMoving = true;
+
+        walkStep += 0.22;
+        // Natural Walk Bobbing & Stride Tilt
+        const bobY = Math.abs(Math.sin(walkStep)) * 9;
+        const tilt = Math.sin(walkStep) * 4;
+
+        // Dynamic 2.5D Depth Perspective Scale
+        // When Y is 12% (front), scale is 1.05. When Y is 27% (back), scale is 0.76!
+        const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
+
+        avatarBox.style.left = `${playerX}%`;
+        avatarBox.style.bottom = `${playerY}%`;
+
+        // Apply scale, bobbing, tilt, and directional flip
+        spriteImg.style.transform = `scale(${depthScale}) scaleX(${playerFacing}) translateY(-${bobY}px) rotate(${tilt * playerFacing}deg)`;
+
+        // Shadow squashing
+        const shadowScale = (1.0 - (bobY / 40)) * depthScale;
+        shadowEl.style.transform = `scale(${shadowScale})`;
+
+        playFootstep();
+      } else {
+        isMoving = false;
+        // Idle breathing stance
+        const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
+        const breathY = Math.sin(timestamp * 0.003) * 3;
+
+        avatarBox.style.left = `${playerX}%`;
+        avatarBox.style.bottom = `${playerY}%`;
+        spriteImg.style.transform = `scale(${depthScale}) scaleX(${playerFacing}) translateY(-${breathY}px)`;
+        shadowEl.style.transform = `scale(${depthScale})`;
+      }
+
+      // Check Proximity to 4 Interactive Stations
+      checkProximity();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    function checkProximity() {
+      // 1. Cabinet at x ~12%, y ~24%
+      const nearCabinet = Math.abs(playerX - 14) < 7 && Math.abs(playerY - 22) < 8;
+      document.getElementById('prompt-cabinet').classList.toggle('hidden', !nearCabinet);
+
+      // 2. Terminal at x ~36%, y ~25%
+      const nearTerminal = Math.abs(playerX - 36) < 7 && Math.abs(playerY - 23) < 8;
+      document.getElementById('prompt-terminal').classList.toggle('hidden', !nearTerminal);
+
+      // 3. Guard at x ~60%, y ~25%
+      const nearGuard = Math.abs(playerX - 60) < 7 && Math.abs(playerY - 23) < 8;
+      document.getElementById('prompt-guard').classList.toggle('hidden', !nearGuard);
+
+      // 4. Blast Door at x ~80%, y ~16%
+      const nearDoor = Math.abs(playerX - 78) < 8 && Math.abs(playerY - 16) < 9;
+      document.getElementById('prompt-door').classList.toggle('hidden', !nearDoor);
     }
 
     // Keyboard Event Listener for WASD Movement & E Key
@@ -1255,11 +961,12 @@
 
     function handleVirtualMove(dir) {
       if (currentPhase !== 'movement') return;
-      if (dir === 'left') playerGroup.position.x = Math.max(-13, playerGroup.position.x - 1.2);
-      if (dir === 'right') playerGroup.position.x = Math.min(12.5, playerGroup.position.x + 1.2);
-      if (dir === 'up') playerGroup.position.z = Math.max(-4.5, playerGroup.position.z - 0.8);
-      if (dir === 'down') playerGroup.position.z = Math.min(4.5, playerGroup.position.z + 0.8);
+      if (dir === 'left') { playerX = Math.max(8, playerX - 3.5); playerFacing = -1; }
+      if (dir === 'right') { playerX = Math.min(84, playerX + 3.5); playerFacing = 1; }
+      if (dir === 'up') { playerY = Math.min(27, playerY + 2.5); }
+      if (dir === 'down') { playerY = Math.max(12, playerY - 2.5); }
       playFootstep();
+      checkProximity();
     }
 
     // ================= INTERACTIVE STATION HANDLERS =================
@@ -1351,39 +1058,34 @@
       }
     }
 
-    // ================= PHYSICAL 3D BLAST DOOR OPENING & WALKTHROUGH =================
+    // ================= PHYSICAL BLAST DOOR OPENING & WALKTHROUGH =================
     function openBlastDoorPhysically() {
       playBeep(140, 'sine', 1.8, 0.3); // Heavy hydraulic hiss
 
-      // Slide 3D door slabs apart
-      const startLeft = leftDoorMesh.position.x;
-      const startRight = rightDoorMesh.position.x;
-      const targetLeft = -3.2;
-      const targetRight = 3.2;
+      // Slide door panels open
+      document.getElementById('door-panel-left').style.transform = 'translateX(-100%)';
+      document.getElementById('door-panel-right').style.transform = 'translateX(100%)';
 
-      let doorProgress = 0;
-      const doorInterval = setInterval(() => {
-        doorProgress += 0.05;
-        leftDoorMesh.position.x = THREE.MathUtils.lerp(startLeft, targetLeft, doorProgress);
-        rightDoorMesh.position.x = THREE.MathUtils.lerp(startRight, targetRight, doorProgress);
-
-        if (doorProgress >= 1) {
-          clearInterval(doorInterval);
-        }
-      }, 30);
-
-      // Change Door LED to Emerald
-      const led = scene.getObjectByName('doorLed');
-      if (led) led.material.color.setHex(0x10b981);
+      document.getElementById('door-status-led').className = 'w-5 h-5 rounded-full bg-emerald-400 mx-auto mb-2 shadow-[0_0_25px_rgba(52,211,153,1)]';
+      document.getElementById('door-status-text').textContent = 'UNLOCKED / OPEN';
+      document.getElementById('door-status-text').className = 'text-[9px] font-code text-emerald-400 font-bold uppercase tracking-widest';
 
       const textEl = document.getElementById('vn-text');
       const doorOpenSpeech = hero === 'maya'
-        ? '"*HISSS!* The hydraulic blast door unsealed and slid open in 3D space! Walk right through the doorway to breach the corridor!"'
+        ? '"*HISSS!* The hydraulic blast door unsealed and slid open! Walk right through the doorway to breach the corridor!"'
         : '"*CLANG-HISSS!* Pneumatic pressure equalized! Walk your character through the open gateway before the containment shutters engage!"';
       typeWriterEffect(textEl, doorOpenSpeech, 16);
+
+      // Listen for player walking past 76% to trigger corridor breach
+      const checkWalkthrough = setInterval(() => {
+        if (playerX >= 76) {
+          clearInterval(checkWalkthrough);
+          triggerSedativeBlackout(true);
+        }
+      }, 100);
     }
 
-    // ================= BLACKOUT & TRANSITION TO 3D SUSPENSION HARNESS =================
+    // ================= BLACKOUT & TRANSITION TO OBSERVATION CHAMBER =================
     function triggerSedativeBlackout(escaped) {
       if (countdownTimer) clearInterval(countdownTimer);
       currentPhase = 'suspension';
@@ -1417,29 +1119,23 @@
         playBeep(120, 'sine', 2.5, 0.3); // Stretch hum
 
         setTimeout(() => {
-          // Switch 3D Scene to Observation Suspension Mode
+          // Switch to Observation Suspension Chamber
+          document.getElementById('world-viewport').style.backgroundImage = "url('assets/bg_observation_chamber.jpg')";
           document.getElementById('alarm-overlay').classList.remove('alarm-flash');
           document.getElementById('alarm-overlay').style.opacity = '0';
           document.getElementById('hud-timer-wrap').classList.add('hidden');
-          document.getElementById('prompt-door').classList.add('hidden');
 
-          // Activate 3D ceiling harness and hoist player character 3 feet into air
-          ceilingHarnessGroup.visible = true;
-          playerGroup.position.set(0, 3.2, 0);
-          playerGroup.rotation.set(0, 0, 0);
+          // Hide lab props, show suspension harness
+          document.getElementById('prop-cabinet').classList.add('hidden');
+          document.getElementById('prop-terminal').classList.add('hidden');
+          document.getElementById('prop-guard').classList.add('hidden');
+          document.getElementById('prop-door').classList.add('hidden');
+          document.getElementById('player-avatar').classList.add('hidden');
 
-          // Padded harness band around waist
-          const harnessBand = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.55, 0.55, 0.3, 16),
-            new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.9 })
-          );
-          harnessBand.position.y = 1.6;
-          playerGroup.add(harnessBand);
+          document.getElementById('suspension-rig').classList.remove('hidden');
+          document.getElementById('suspended-char-img').src = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
 
-          camera.position.set(0, 4.5, 8.5);
-          camera.lookAt(0, 3.2, 0);
-
-          document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-arrows-up-down text-rose-400"></i> SUSPENSION RIG: Real 3D Pendulum Physics Active';
+          document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-arrows-up-down text-rose-400"></i> SUSPENSION RIG: Real Pendulum Physics Active';
 
           // Open eyelids into Observation Chamber
           top.style.height = '0%';
@@ -1450,7 +1146,7 @@
       }, 3800);
     }
 
-    // ================= SUSPENSION HARNESS SCENE WITH REAL 3D PENDULUM INTERACTION =================
+    // ================= SUSPENSION HARNESS SCENE WITH REAL PENDULUM INTERACTION =================
     function renderSuspensionDialogue() {
       const nameplate = document.getElementById('nameplate');
       const textEl = document.getElementById('vn-text');
@@ -1460,7 +1156,7 @@
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
       const suspSpeech = hero === 'maya'
-        ? '"Ghh... my head... I am hanging three feet in the air! This heavy mechanical testing harness is digging into my ribs... and they stripped off my clothes?! Choose your 3D action:"'
+        ? '"Ghh... my head... I am hanging three feet in the air! This heavy mechanical testing harness is digging into my ribs... and they stripped off my clothes?! Choose your action:"'
         : '"E-eek! I am dangling three feet off the ground from an overhead ceiling track! The padded straps are pulling so high... and my clothes are gone! What do I do?!"';
 
       typeWriterEffect(textEl, suspSpeech, 18);
@@ -1486,15 +1182,14 @@
       initAudio();
       const textEl = document.getElementById('vn-text');
       const choicesBox = document.getElementById('vn-choices-container');
+      const suspBox = document.getElementById('suspended-char-box');
 
       choicesBox.innerHTML = '';
-      suspensionAction = action;
-      suspensionTime = 0;
 
       if (action === 'still') {
         playBeep(450, 'sine', 0.2);
         const txt = hero === 'maya'
-          ? '"I force my breathing to steady. Scanning the overhead 3D track... there is an 8-degree camera blind spot directly behind the structural pillar. I memorize the coordinates."'
+          ? '"I force my breathing to steady. Scanning the overhead track... there is an 8-degree camera blind spot directly behind the structural pillar. I memorize the coordinates."'
           : '"I hold completely still. Calculating the angle of the ceiling pulley track, the camera has an 8-degree blind spot near the examination table. Good to know..."';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4000);
@@ -1502,11 +1197,15 @@
         playBeep(1200, 'sine', 0.2, 0.3);
         playBeep(900, 'sine', 0.3, 0.3);
 
+        suspBox.classList.add('harness-bouncing');
         document.getElementById('game-stage').classList.add('shake');
-        setTimeout(() => document.getElementById('game-stage').classList.remove('shake'), 2200);
+        setTimeout(() => {
+          suspBox.classList.remove('harness-bouncing');
+          document.getElementById('game-stage').classList.remove('shake');
+        }, 2200);
 
         const txt = hero === 'maya'
-          ? '"*GROAN!* I kick and bounce with all my athletic weight in 3D space! The suspension straps screech against the overhead pulley! An audible warning chime beeps from the ceiling sensors—I almost overloaded the motor!"'
+          ? '"*GROAN!* I kick and bounce with all my athletic weight! The suspension straps screech against the overhead pulley! An audible warning chime beeps from the ceiling sensors—I almost overloaded the motor!"'
           : '"*CREAK!* I struggle desperately, bouncing in mid-air! The harness pulls tighter and the tension monitors squeal an alarm before stabilizing!"';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4500);
@@ -1514,15 +1213,18 @@
         playBeep(320, 'triangle', 0.4, 0.2);
         setTimeout(() => playBeep(2400, 'sine', 0.15, 0.25), 900); // Clang
 
+        suspBox.classList.add('pendulum-swinging');
+        setTimeout(() => suspBox.classList.remove('pendulum-swinging'), 3600);
+
         const txt = hero === 'maya'
-          ? '"*SWOOSH!* I kick my legs in rhythm, building 3D pendulum swing momentum! At maximum apex, the tip of my foot clips the metal table—*CLANG!* The surgical scissors slide closer to the edge!"'
-          : '"*SWING!* Using physics and momentum, I sway side to side in 3D! My foot strikes the table corner—*CLATTER!* The metal tray shifts, knocking the cutting tool closer for later!"';
+          ? '"*SWOOSH!* I kick my legs in rhythm, building swinging momentum! At maximum apex, the tip of my foot clips the metal table—*CLANG!* The surgical scissors slide closer to the edge!"'
+          : '"*SWING!* Using physics and momentum, I sway side to side! My foot strikes the table corner—*CLATTER!* The metal tray shifts, knocking the cutting tool closer for later!"';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4800);
       }
     }
 
-    // ================= 3D ATTIRE SEQUENCE & OUTRO =================
+    // ================= NEW ATTIRE CHANGE & OUTRO =================
     function triggerAttireSequence() {
       const nameplate = document.getElementById('nameplate');
       const textEl = document.getElementById('vn-text');
@@ -1540,24 +1242,11 @@
       setTimeout(() => {
         playBeep(180, 'sine', 1.8, 0.2); // Lowering sound
 
-        // Mechanically lower 3D player to ground
-        let lowerP = 0;
-        const lowerInterval = setInterval(() => {
-          lowerP += 0.03;
-          playerGroup.position.y = THREE.MathUtils.lerp(3.2, 0, lowerP);
-          cableMesh.scale.y = THREE.MathUtils.lerp(1, 1.8, lowerP);
-          if (lowerP >= 1) clearInterval(lowerInterval);
-        }, 30);
+        // Lower harness down to platform
+        document.getElementById('suspension-rig').style.transform = 'translateY(110px)';
+        document.getElementById('suspension-rig').style.transition = 'transform 2.5s ease-in-out';
 
         setTimeout(() => {
-          // Dynamic Attire Swap: Swap player materials to white & cyan facility uniform!
-          const uniformMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.3 });
-          bodyGroup.traverse(child => {
-            if (child.isMesh && child.material !== skinMat) {
-              child.material = uniformMat;
-            }
-          });
-
           const heroPlate = document.getElementById('nameplate');
           heroPlate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
           heroPlate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
@@ -1578,15 +1267,9 @@
             endBtn.onclick = () => location.reload();
             choicesBox.appendChild(endBtn);
           }, 6000);
-        }, 2200);
+        }, 2500);
       }, 4500);
     }
-
-    // Initialize 3D Engine on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      init3D();
-      requestAnimationFrame(animate3D);
-    });
   </script>
 </body>
 </html>
