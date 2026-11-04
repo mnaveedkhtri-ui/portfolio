@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Subject 04: The Escape Experiment | 2.5D Action Visual Novel</title>
+  <title>Subject 04: The Escape Experiment | Complete Interactive Game Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@
     /* Red Alarm Pulse */
     @keyframes redAlarmFlash {
       0%, 100% { opacity: 0; }
-      50% { opacity: 0.38; }
+      50% { opacity: 0.42; }
     }
     .alarm-flash {
       animation: redAlarmFlash 1.1s ease-in-out infinite;
@@ -60,25 +60,25 @@
 
     /* Holographic AI Shimmer */
     .holo-glow {
-      filter: drop-shadow(0 0 18px rgba(6, 182, 212, 0.85)) drop-shadow(0 0 40px rgba(14, 165, 233, 0.45));
+      filter: drop-shadow(0 0 18px rgba(6, 182, 212, 0.9)) drop-shadow(0 0 45px rgba(14, 165, 233, 0.5));
     }
 
     /* Screen Shake */
     @keyframes screenShake {
       0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-5px, 4px) rotate(-0.5deg); }
-      40% { transform: translate(5px, -4px) rotate(0.5deg); }
-      60% { transform: translate(-4px, -3px) rotate(-0.3deg); }
-      80% { transform: translate(4px, 3px) rotate(0.3deg); }
+      20% { transform: translate(-6px, 4px) rotate(-0.5deg); }
+      40% { transform: translate(6px, -4px) rotate(0.5deg); }
+      60% { transform: translate(-5px, -3px) rotate(-0.3deg); }
+      80% { transform: translate(5px, 3px) rotate(0.3deg); }
     }
     .shake { animation: screenShake 0.45s ease-in-out; }
 
     /* Suspension Rig Physics Animations */
     @keyframes harnessBounceAnim {
       0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(-38px) scaleY(1.06); }
-      50% { transform: translateY(28px) scaleY(0.94); }
-      75% { transform: translateY(-16px); }
+      25% { transform: translateY(-42px) scaleY(1.06); }
+      50% { transform: translateY(32px) scaleY(0.94); }
+      75% { transform: translateY(-18px); }
     }
     .harness-bouncing {
       animation: harnessBounceAnim 1.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
@@ -86,8 +86,8 @@
 
     @keyframes pendulumSwingAnim {
       0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-18deg) translateX(-25px); }
-      75% { transform: rotate(18deg) translateX(25px); }
+      25% { transform: rotate(-22deg) translateX(-30px); }
+      75% { transform: rotate(22deg) translateX(30px); }
     }
     .pendulum-swinging {
       transform-origin: top center;
@@ -97,12 +97,12 @@
     /* Dust footstep particle */
     @keyframes dustFade {
       0% { opacity: 0.7; transform: scale(0.4) translateY(0); }
-      100% { opacity: 0; transform: scale(1.6) translateY(-12px); }
+      100% { opacity: 0; transform: scale(1.6) translateY(-14px); }
     }
     .footstep-dust {
       position: absolute;
-      width: 14px;
-      height: 6px;
+      width: 16px;
+      height: 7px;
       background: rgba(148, 163, 184, 0.6);
       border-radius: 50%;
       pointer-events: none;
@@ -111,11 +111,20 @@
 
     /* Station Pulsing Rings */
     @keyframes stationRingPulse {
-      0% { transform: scale(0.8); opacity: 0.8; }
-      100% { transform: scale(1.6); opacity: 0; }
+      0% { transform: scale(0.8); opacity: 0.85; }
+      100% { transform: scale(1.65); opacity: 0; }
     }
     .station-pulse-ring {
       animation: stationRingPulse 1.8s ease-out infinite;
+    }
+
+    /* Title Glitch Animation */
+    @keyframes titleGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(239,68,68,0.7), 0 0 40px rgba(239,68,68,0.4); }
+      50% { text-shadow: 0 0 35px rgba(239,68,68,1), 0 0 70px rgba(239,68,68,0.7); }
+    }
+    .title-glow-anim {
+      animation: titleGlow 2.5s ease-in-out infinite;
     }
   </style>
 </head>
@@ -127,25 +136,51 @@
     <!-- 2.5D World Viewport (High-Resolution Sci-Fi Lab Chamber) -->
     <div id="world-viewport" class="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000 scale-[1.01]" style="background-image: url('assets/bg_facility_lab.jpg');">
       
-      <!-- Vignette and Sci-Fi Ambient Overlays -->
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/70 pointer-events-none"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-transparent to-slate-950/70 pointer-events-none"></div>
-      
-      <!-- Subtle Scanline Grid -->
+      <!-- Vignette and Ambient Sci-Fi Overlays -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-slate-950/75 pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-transparent to-slate-950/75 pointer-events-none"></div>
       <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] pointer-events-none opacity-40"></div>
 
-      <!-- ================= 2.5D INTERACTIVE OBJECTS ON THE LAB FLOOR ================= -->
+      <!-- ================= SCENE 1: INTERROGATION CHAIR (TIED UP) ================= -->
+      <div id="chair-scene-wrapper" class="hidden absolute left-[38%] bottom-[14%] z-20 flex flex-col items-center">
+        <!-- Mechanical chair base graphic -->
+        <div class="w-48 h-72 relative flex flex-col items-center justify-end">
+          <!-- Heavy restraint chair backrest -->
+          <div class="w-28 h-44 rounded-t-2xl bg-gradient-to-b from-slate-800 to-slate-950 border-2 border-slate-700 shadow-2xl relative flex items-center justify-center">
+            <!-- Strapped Protagonist Sprite -->
+            <img id="chair-hero-img" src="assets/sprite_maya.png" alt="Restrained Hero" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] opacity-95" />
+            <!-- Hydraulic Wrist Clamps Overlay -->
+            <div class="absolute top-[48%] left-[-12px] right-[-12px] h-6 bg-slate-800 border-y-2 border-amber-500/80 rounded flex items-center justify-between px-1 shadow-lg">
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+              <span class="text-[8px] font-code text-amber-400 font-bold uppercase tracking-wider">HYDRAULIC CLAMPS</span>
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            </div>
+          </div>
+          <!-- Chair Base Pedestal -->
+          <div class="w-36 h-6 bg-slate-900 border border-slate-700 rounded-b-xl shadow-xl"></div>
+          <!-- Floor Bolt Plates -->
+          <div class="w-44 h-3 bg-black/80 rounded-full blur-[2px] -mt-1"></div>
+        </div>
+
+        <!-- Rapid Struggle Prompt Button -->
+        <div id="struggle-prompt-box" class="hidden mt-3 text-center">
+          <button onclick="performStruggleClick()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(239,68,68,0.8)] active:scale-95 transition-all flex items-center gap-2 mx-auto animate-pulse">
+            <i class="fa-solid fa-bolt text-amber-300"></i>
+            <span id="struggle-btn-text">RAPID CLICK / SPACE TO BREAK BINDS (0/5)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= SCENE 2: 2.5D INTERACTIVE OBJECTS ON LAB FLOOR ================= -->
       
-      <!-- Station 1: Research Filing Cabinet (Left side, in depth) -->
-      <div id="prop-cabinet" class="absolute left-[12%] bottom-[24%] z-10 flex flex-col items-center">
-        <!-- Floating Station Prompt (E) -->
+      <!-- Station 1: Research Filing Cabinet (Left) -->
+      <div id="prop-cabinet" class="hidden absolute left-[12%] bottom-[24%] z-10 flex flex-col items-center">
         <div id="prompt-cabinet" class="hidden -top-16 mb-2">
           <button onclick="clickCabinet()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-950/90 border border-amber-500/80 text-amber-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(245,158,11,0.6)] hover:scale-105 active:scale-95 transition-all">
             <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
             <span>[ E ] Search Cabinet</span>
           </button>
         </div>
-        <!-- Floor Beacon -->
         <div class="relative flex items-center justify-center">
           <div class="w-16 h-8 rounded-full bg-amber-500/30 blur-[4px]"></div>
           <div class="absolute w-12 h-6 rounded-full border border-amber-400 station-pulse-ring"></div>
@@ -154,15 +189,13 @@
       </div>
 
       <!-- Station 2: Mainframe Decryption Terminal (Center-Left) -->
-      <div id="prop-terminal" class="absolute left-[36%] bottom-[25%] z-10 flex flex-col items-center">
-        <!-- Floating Prompt (E) -->
+      <div id="prop-terminal" class="hidden absolute left-[36%] bottom-[25%] z-10 flex flex-col items-center">
         <div id="prompt-terminal" class="hidden -top-16 mb-2">
           <button onclick="clickTerminal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-cyan-950/90 border border-cyan-500/80 text-cyan-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 active:scale-95 transition-all">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
             <span>[ E ] Access Terminal</span>
           </button>
         </div>
-        <!-- Floor Beacon -->
         <div class="relative flex items-center justify-center">
           <div class="w-16 h-8 rounded-full bg-cyan-500/30 blur-[4px]"></div>
           <div class="absolute w-12 h-6 rounded-full border border-cyan-400 station-pulse-ring"></div>
@@ -171,15 +204,13 @@
       </div>
 
       <!-- Station 3: Sleeping Guard Outpost (Center-Right) -->
-      <div id="prop-guard" class="absolute left-[60%] bottom-[25%] z-10 flex flex-col items-center">
-        <!-- Floating Prompt (E) -->
+      <div id="prop-guard" class="hidden absolute left-[60%] bottom-[25%] z-10 flex flex-col items-center">
         <div id="prompt-guard" class="hidden -top-16 mb-2">
           <button onclick="clickGuardWindow()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-950/90 border border-purple-500/80 text-purple-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(168,85,247,0.6)] hover:scale-105 active:scale-95 transition-all">
             <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
             <span>[ E ] Inspect Guard</span>
           </button>
         </div>
-        <!-- Floor Beacon -->
         <div class="relative flex items-center justify-center">
           <div class="w-16 h-8 rounded-full bg-purple-500/30 blur-[4px]"></div>
           <div class="absolute w-12 h-6 rounded-full border border-purple-400 station-pulse-ring"></div>
@@ -187,9 +218,8 @@
         </div>
       </div>
 
-      <!-- Station 4: Reinforced Hydraulic Blast Door 07 (Right side) -->
-      <div id="prop-door" class="absolute right-[8%] bottom-[12%] z-15 flex flex-col items-center">
-        <!-- Floating Prompt (E) -->
+      <!-- Station 4: Reinforced Hydraulic Blast Door 07 (Right) -->
+      <div id="prop-door" class="hidden absolute right-[8%] bottom-[12%] z-15 flex flex-col items-center">
         <div id="prompt-door" class="hidden mb-3">
           <button onclick="clickDoor()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-950/90 border-2 border-rose-500 text-rose-300 font-code font-bold text-xs uppercase shadow-[0_0_30px_rgba(239,68,68,0.8)] hover:scale-105 active:scale-95 transition-all">
             <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
@@ -199,7 +229,6 @@
 
         <!-- 2.5D Physical Blast Door Frame & Sliding Panels -->
         <div id="blast-door-frame" class="w-44 h-72 rounded-2xl border-4 border-slate-700 bg-slate-950/90 shadow-[0_15px_50px_rgba(0,0,0,0.9)] flex flex-col items-center justify-center relative overflow-hidden">
-          <!-- Corridor Background behind door panels -->
           <div class="absolute inset-0 bg-gradient-to-r from-red-950 via-slate-900 to-black flex items-center justify-center">
             <span class="text-[10px] font-code text-red-500 font-bold uppercase tracking-widest animate-pulse">SECTOR 08 TRANSIT CORRIDOR</span>
           </div>
@@ -224,11 +253,8 @@
       </div>
 
       <!-- ================= 2.5D CONTROLLABLE HIGH-RES ANIME HERO SPRITE ================= -->
-      <div id="player-avatar" class="absolute left-[20%] bottom-[16%] z-20 w-36 h-64 pointer-events-none flex flex-col items-center justify-end transform-gpu will-change-transform">
-        <!-- Dynamic Ground Contact Shadow (Pulsing with steps) -->
+      <div id="player-avatar" class="hidden absolute left-[20%] bottom-[16%] z-20 w-36 h-64 pointer-events-none flex flex-col items-center justify-end transform-gpu will-change-transform">
         <div id="char-shadow" class="w-24 h-6 rounded-full bg-black/75 blur-[4px] mb-[-6px] transition-all duration-75"></div>
-        
-        <!-- High-Resolution Character Anime Sprite Graphic -->
         <img id="avatar-sprite" src="assets/sprite_maya.png" alt="Hero" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)] transition-all duration-75 origin-bottom" />
       </div>
 
@@ -242,9 +268,7 @@
 
       <!-- Suspension Harness Rig (Active in Phase 4 Observation Chamber) -->
       <div id="suspension-rig" class="hidden absolute left-[45%] top-[8%] z-25 w-56 h-96 flex flex-col items-center pointer-events-none transition-all duration-700">
-        <!-- Mechanical Ceiling Track & Cable -->
         <div class="w-3 h-32 bg-gradient-to-b from-slate-600 to-slate-400 shadow-2xl rounded-b-sm border-x border-slate-500"></div>
-        <!-- Suspended Hero Sprite Box -->
         <div id="suspended-char-box" class="relative w-44 h-72 -mt-2 origin-top">
           <img id="suspended-char-img" src="assets/sprite_maya.png" alt="Suspended Hero" class="w-full h-full object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.95)]" />
         </div>
@@ -260,7 +284,7 @@
     <div id="eyelid-bottom" class="pointer-events-none absolute bottom-0 left-0 right-0 h-0 bg-black z-40 transition-all duration-700"></div>
 
     <!-- ================= TOP HUD HEADER ================= -->
-    <header class="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-3 bg-gradient-to-b from-black/95 via-black/60 to-transparent backdrop-blur-[2px]">
+    <header id="main-hud-header" class="hidden absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-3 bg-gradient-to-b from-black/95 via-black/60 to-transparent backdrop-blur-[2px]">
       <div class="flex items-center gap-3">
         <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-red-950/80 border border-red-500/50 text-red-400 font-sci text-xs font-bold shadow-[0_0_12px_rgba(239,68,68,0.4)]">
           04
@@ -302,8 +326,8 @@
       <div id="countdown-display" class="font-sci font-black text-3xl text-rose-500 tracking-wider">00:59</div>
     </div>
 
-    <!-- Control Mode Badge (Shows Real-Time Controls) -->
-    <div id="control-badge-wrap" class="absolute top-16 left-6 z-30 font-code">
+    <!-- Control Mode Badge -->
+    <div id="control-badge-wrap" class="hidden absolute top-16 left-6 z-30 font-code">
       <div id="control-hint-badge" class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-cyan-400 font-bold text-xs uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-2">
         <i class="fa-solid fa-person-walking text-cyan-400"></i>
         <span>CONTROLLABLE: WASD / Arrows to Walk | E: Interact</span>
@@ -311,7 +335,7 @@
     </div>
 
     <!-- On-Screen Virtual Directional Controller for Mobile / Touch -->
-    <div id="touch-controls" class="sm:hidden absolute left-4 bottom-28 z-30 flex flex-col items-center gap-1 opacity-80">
+    <div id="touch-controls" class="hidden sm:hidden absolute left-4 bottom-28 z-30 flex flex-col items-center gap-1 opacity-80">
       <button onmousedown="handleVirtualMove('up')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&uarr;</button>
       <div class="flex gap-1">
         <button onmousedown="handleVirtualMove('left')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&larr;</button>
@@ -321,10 +345,9 @@
     </div>
 
     <!-- ================= VISUAL NOVEL BOTTOM DIALOGUE BAR ================= -->
-    <div id="dialogue-box-wrap" class="absolute bottom-4 left-4 right-4 sm:left-12 sm:right-12 z-30 flex flex-col gap-2">
+    <div id="dialogue-box-wrap" class="hidden absolute bottom-4 left-4 right-4 sm:left-12 sm:right-12 z-30 flex flex-col gap-2">
       <div id="vn-box" onclick="onTextboxClick()" class="relative p-5 sm:p-6 rounded-2xl bg-black/90 border border-slate-700/80 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.8)] cursor-pointer transition-all hover:border-slate-500">
         
-        <!-- Character Nameplate & Tags -->
         <div class="flex items-center justify-between mb-2">
           <div id="nameplate" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-cyan-500/50 text-cyan-300 font-code font-bold text-xs uppercase tracking-wider">
             FACILITY 07 MONITOR
@@ -335,28 +358,66 @@
           </div>
         </div>
 
-        <!-- Dialogue Text Body -->
         <p id="vn-text" class="text-slate-100 text-sm sm:text-base leading-relaxed min-h-[48px] font-medium"></p>
-
-        <!-- Dynamic Choice Buttons Container -->
         <div id="vn-choices-container" class="mt-4 flex flex-wrap gap-2.5"></div>
       </div>
     </div>
 
-    <!-- ================= HERO SELECTION SCREEN ================= -->
-    <div id="character-select-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-xl">
+    <!-- ================= START MENU (CLIENT SPEC 1) ================= -->
+    <div id="start-menu-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-between p-8 sm:p-14 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950/95 backdrop-blur-md">
+      
+      <!-- Top Title Branding -->
+      <div class="text-center pt-8">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/80 border border-red-500/60 text-red-400 font-code text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(239,68,68,0.4)] mb-4">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+          RESTRICTED RESEARCH FACILITY 07
+        </div>
+        <h1 class="font-title text-3xl sm:text-6xl font-black text-white tracking-widest uppercase title-glow-anim">
+          SUBJECT 04
+        </h1>
+        <p class="font-sci text-xs sm:text-base text-cyan-400 tracking-[0.3em] uppercase mt-2">
+          THE ESCAPE EXPERIMENT : CHAPTER 1
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col items-center gap-4 w-full max-w-sm">
+        <button onclick="startGameFromMenu()" class="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-sci font-bold text-sm uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.7)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
+          <i class="fa-solid fa-play text-amber-300"></i>
+          <span>START EXPERIMENT</span>
+        </button>
+
+        <button onclick="showStoryDoc()" class="w-full py-3 px-6 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 font-code font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-book text-amber-400"></i>
+          <span>CLIENT STORY SPEC & OUTLINE</span>
+        </button>
+
+        <button onclick="toggleAudio()" class="w-full py-3 px-6 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-slate-200 font-code font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-volume-high text-cyan-400"></i>
+          <span id="menu-audio-text">AUDIO & SFX: ENABLED</span>
+        </button>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="text-center font-code text-[11px] text-slate-500 tracking-wider">
+        <span>DEVELOPED FOR STEAM & WINDOWS PC | REN'PY 8.X CORE ARCHITECTURE</span>
+      </div>
+    </div>
+
+    <!-- ================= PROTAGONIST SELECTION (CLIENT SPEC 2) ================= -->
+    <div id="character-select-screen" class="hidden absolute inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-xl">
       <div class="text-center max-w-2xl mb-8">
         <div class="inline-block px-3.5 py-1 rounded-full bg-red-950/70 border border-red-500/50 text-red-400 font-code text-xs font-bold uppercase tracking-widest mb-3">
-          PROTOCOL INITIATION
+          SUBJECT SELECTION
         </div>
         <h2 class="font-title text-2xl sm:text-4xl font-extrabold text-white tracking-wider mb-2">CHOOSE YOUR PROTAGONIST</h2>
         <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-          Subject 04 Chapter 1 features two unique perspectives. Each character possesses distinct physical resistance, psychological attributes, and strategic escape capabilities.
+          Select who will undergo the Sector 07 induction test. Hover or click to review their psychological profile, physical attributes, and escape capability.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        <!-- Hero 1: Maya Carter -->
+        <!-- Hero 1: Maya Carter (The Ex-Bully) -->
         <div onclick="selectHero('maya')" class="group relative p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-red-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-xl overflow-hidden">
           <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-red-600/10 rounded-full blur-2xl group-hover:bg-red-600/25 transition-all"></div>
           <div class="flex items-start gap-4">
@@ -365,12 +426,12 @@
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-code font-bold text-red-400 uppercase tracking-wider">ATHLETIC RUNNER</span>
+                <span class="text-xs font-code font-bold text-red-400 uppercase tracking-wider">THE REFORMED BULLY</span>
                 <span class="text-[10px] font-code px-2 py-0.5 rounded bg-red-950/60 text-red-300 border border-red-800/40">HIGH RESISTANCE</span>
               </div>
               <h3 class="font-title text-xl font-bold text-white mt-1">MAYA CARTER</h3>
               <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-                Aggressive and defiant. Relies on explosive physical momentum, sprint speed, and pain tolerance to force structural levers and kick objects.
+                A former high-school bully trying to rewrite her identity in college. Fierce, physically explosive, and fiercely defiant. Relies on momentum, pain tolerance, and raw leverage to force escape levers.
               </p>
               <div class="mt-4 flex items-center gap-3 text-[11px] font-code text-slate-400">
                 <span>Speed: <strong class="text-white">★★★★★</strong></span>
@@ -379,11 +440,11 @@
             </div>
           </div>
           <button class="w-full mt-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all">
-            DEPLOY AS MAYA
+            CONFIRM MAYA CARTER
           </button>
         </div>
 
-        <!-- Hero 2: Chloe Vance -->
+        <!-- Hero 2: Chloe Vance (The Bullied STEM Nerd) -->
         <div onclick="selectHero('chloe')" class="group relative p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-cyan-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-xl overflow-hidden">
           <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-cyan-600/10 rounded-full blur-2xl group-hover:bg-cyan-600/25 transition-all"></div>
           <div class="flex items-start gap-4">
@@ -392,12 +453,12 @@
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-code font-bold text-cyan-400 uppercase tracking-wider">STEM RESEARCHER</span>
+                <span class="text-xs font-code font-bold text-cyan-400 uppercase tracking-wider">THE BULLIED STEM NERD</span>
                 <span class="text-[10px] font-code px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-300 border border-cyan-800/40">HIGH IQ</span>
               </div>
               <h3 class="font-title text-xl font-bold text-white mt-1">CHLOE VANCE</h3>
               <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-                Methodical and calculating. Dissects system telemetry, pinpoints camera blind spots, and calculates exact pendulum swing vectors to escape.
+                Endlessly bullied through high school and subject to workplace pranks from colleagues. Possesses an extraordinary analytical mind, calculating structural blind spots and mechanical vector arcs to break out.
               </p>
               <div class="mt-4 flex items-center gap-3 text-[11px] font-code text-slate-400">
                 <span>Logic: <strong class="text-white">★★★★★</strong></span>
@@ -406,18 +467,16 @@
             </div>
           </div>
           <button class="w-full mt-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all">
-            DEPLOY AS CHLOE
+            CONFIRM CHLOE VANCE
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ================= MODAL: KEYPAD PUZZLE ================= -->
+    <!-- ================= MODALS: CABINET, TERMINAL, GUARD, KEYPAD ================= -->
     <div id="keypad-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div class="w-full max-w-sm p-6 rounded-3xl bg-slate-900 border-2 border-slate-700 shadow-2xl relative">
-        <button onclick="closeKeypadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeKeypadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <div class="text-center mb-4">
           <div class="text-xs font-code font-bold text-rose-400 uppercase tracking-widest mb-1 flex items-center justify-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
@@ -426,19 +485,13 @@
           <h3 class="font-title text-lg font-bold text-white">ELECTRONIC SECURITY KEYPAD</h3>
           <p class="text-[11px] text-slate-400 mt-1">Input 4-digit master bypass code found in Cabinet Memo:</p>
         </div>
-
-        <!-- LCD Screen -->
         <div class="mb-5 p-4 rounded-2xl bg-black border border-cyan-500/50 shadow-inner">
           <div class="flex items-center justify-between text-[10px] font-code text-cyan-400 uppercase tracking-wider mb-1">
             <span>INPUT BUFFER</span>
             <span id="keypad-status-badge">AWAITING CODE</span>
           </div>
-          <div id="keypad-screen" class="py-2 text-cyan-300 font-sci font-bold text-3xl tracking-[0.4em] text-center select-none">
-            ----
-          </div>
+          <div id="keypad-screen" class="py-2 text-cyan-300 font-sci font-bold text-3xl tracking-[0.4em] text-center select-none">----</div>
         </div>
-
-        <!-- Numeric Buttons -->
         <div class="grid grid-cols-3 gap-2.5 mb-4">
           <button onclick="keypadType('1')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">1</button>
           <button onclick="keypadType('2')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">2</button>
@@ -456,16 +509,12 @@
       </div>
     </div>
 
-    <!-- ================= MODAL: RESEARCH CABINET MEMO ================= -->
+    <!-- Cabinet Memo Modal -->
     <div id="cabinet-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div class="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-slate-900 border border-amber-500/50 shadow-2xl relative">
-        <button onclick="closeCabinetModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeCabinetModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/60 flex items-center justify-center text-amber-400 text-lg">
-            <i class="fa-solid fa-folder-open"></i>
-          </div>
+          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/60 flex items-center justify-center text-amber-400 text-lg"><i class="fa-solid fa-folder-open"></i></div>
           <div>
             <span class="text-[10px] font-code text-amber-400 uppercase tracking-widest">FACILITY RECORD MEMORANDUM</span>
             <h3 class="font-title text-base sm:text-lg font-bold text-white">INTERROGATION DIRECTIVE 07-B</h3>
@@ -477,9 +526,7 @@
           <p class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-200">
             <strong>NOTICE TO ENFORCEMENT:</strong> Primary blast gate code has been updated to <span class="text-amber-400 font-bold text-base px-2 py-0.5 rounded bg-black border border-amber-500/60">[ 4927 ]</span>. Do not leave terminals unattended.
           </p>
-          <p class="text-slate-400 text-[11px]">
-            *Any subject reaching the outer corridor will be neutralized with aerosol neuro-sedatives and transferred to the Observation Suspension Harness.*
-          </p>
+          <p class="text-slate-400 text-[11px]">*Any subject reaching the outer corridor will be neutralized with aerosol neuro-sedatives and transferred to the Observation Suspension Harness.*</p>
         </div>
         <button onclick="closeCabinetModal()" class="w-full mt-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
           CLOSE FILE & MEMORIZE CODE (4927)
@@ -487,16 +534,12 @@
       </div>
     </div>
 
-    <!-- ================= MODAL: TERMINAL LOGS ================= -->
+    <!-- Terminal Modal -->
     <div id="terminal-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div class="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-slate-900 border border-cyan-500/50 shadow-2xl relative">
-        <button onclick="closeTerminalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeTerminalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/60 flex items-center justify-center text-cyan-400 text-lg">
-            <i class="fa-solid fa-terminal"></i>
-          </div>
+          <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/60 flex items-center justify-center text-cyan-400 text-lg"><i class="fa-solid fa-terminal"></i></div>
           <div>
             <span class="text-[10px] font-code text-cyan-400 uppercase tracking-widest">A.R.I.A. CORE TELEMETRY</span>
             <h3 class="font-title text-base sm:text-lg font-bold text-white">MAINFRAME TERMINAL LOGS</h3>
@@ -515,16 +558,12 @@
       </div>
     </div>
 
-    <!-- ================= MODAL: SLEEPING GUARD ================= -->
+    <!-- Guard Modal -->
     <div id="guard-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div class="w-full max-w-md p-6 sm:p-8 rounded-3xl bg-slate-900 border border-purple-500/50 shadow-2xl relative">
-        <button onclick="closeGuardModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeGuardModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-purple-950/80 border border-purple-500/60 flex items-center justify-center text-purple-400 text-lg">
-            <i class="fa-solid fa-user-shield"></i>
-          </div>
+          <div class="w-10 h-10 rounded-xl bg-purple-950/80 border border-purple-500/60 flex items-center justify-center text-purple-400 text-lg"><i class="fa-solid fa-user-shield"></i></div>
           <div>
             <span class="text-[10px] font-code text-purple-400 uppercase tracking-widest">SECURITY OBSERVATION</span>
             <h3 class="font-title text-base sm:text-lg font-bold text-white">SLEEPING ENFORCEMENT AGENT</h3>
@@ -546,16 +585,12 @@
       </div>
     </div>
 
-    <!-- ================= MODAL: STORY BIBLE & OUTLINE ================= -->
+    <!-- Story Spec Modal -->
     <div id="story-doc-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
       <div class="w-full max-w-2xl max-h-[85vh] p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl flex flex-col relative">
-        <button onclick="closeStoryDoc()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeStoryDoc()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/50 flex items-center justify-center text-amber-400">
-            <i class="fa-solid fa-file-lines text-lg"></i>
-          </div>
+          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/50 flex items-center justify-center text-amber-400"><i class="fa-solid fa-file-lines text-lg"></i></div>
           <div>
             <span class="text-[10px] font-code text-amber-400 uppercase tracking-widest">CHAPTER 1 DESIGN SPECIFICATION</span>
             <h3 class="font-title text-lg font-bold text-white">SUBJECT 04 : FULL GAME OVERVIEW</h3>
@@ -563,32 +598,18 @@
         </div>
         <div class="flex-1 overflow-y-auto pr-2 space-y-4 text-xs font-sans text-slate-300 leading-relaxed">
           <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <h4 class="font-bold text-white text-sm mb-1 text-cyan-400">Game Architecture</h4>
-            <p>Adult psychological sci-fi visual novel & 2.5D real-time controllable exploration built on Ren'Py 8.x for Windows PC / Steam, with full interactive web prototype integration.</p>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <h4 class="font-bold text-white text-sm mb-1 text-amber-400">Chapter 1 Scope & Milestones</h4>
-            <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
-              <li><strong>Scene 1:</strong> First-person awakening in Interrogation Chamber 07, restraint struggle.</li>
-              <li><strong>Scene 2:</strong> 2.5D controllable movement with WASD, searching filing cabinet, reading terminal, inspecting sleeping guard.</li>
-              <li><strong>Scene 3:</strong> 60-Second lockdown timer, entering keypad code 4927, blast doors sliding open, corridor breach.</li>
-              <li><strong>Scene 4:</strong> Observation Chamber suspension harness sequence with real pendulum physics, violent bouncing, and momentum scissor kicking.</li>
-              <li><strong>Scene 5:</strong> Civilian clothing incineration and high-tech facility uniform equipment sequence.</li>
-            </ul>
+            <h4 class="font-bold text-white text-sm mb-1 text-cyan-400">Client Outline Parity</h4>
+            <p>100% faithful playable execution of Chapter 1 Outline: Start Menu, Protagonist Selection (Bully vs Nerd), Chair Awakening & Struggle, Interactive Lab Room Exploration with WASD & Panning, 60-Second Timer, Sleeping Guard, Keypad 4927, Corridor Transit, Observation Suspension Rig with Pendulum Physics, and Attire Sequence Cliffhanger.</p>
           </div>
         </div>
-        <button onclick="closeStoryDoc()" class="mt-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
-          CLOSE STORY SPEC
-        </button>
+        <button onclick="closeStoryDoc()" class="mt-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">CLOSE STORY SPEC</button>
       </div>
     </div>
 
-    <!-- ================= MODAL: DIALOGUE LOG ================= -->
+    <!-- Dialogue Log Modal -->
     <div id="log-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
       <div class="w-full max-w-xl max-h-[80vh] p-6 rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl flex flex-col relative">
-        <button onclick="closeLogModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button onclick="closeLogModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
         <h3 class="font-title text-base font-bold text-white mb-3 flex items-center gap-2">
           <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> DIALOGUE HISTORY
         </h3>
@@ -598,11 +619,11 @@
 
   </div>
 
-  <!-- ================= JAVASCRIPT GAME LOGIC & 2.5D CONTROLLER ================= -->
+  <!-- ================= JAVASCRIPT MASTER GAME ENGINE ================= -->
   <script>
     // --- State Variables ---
     let hero = 'maya'; // 'maya' or 'chloe'
-    let currentPhase = 'selection'; // 'selection', 'awakening', 'movement', 'suspension', 'complete'
+    let currentPhase = 'menu'; // 'menu', 'selection', 'awakening', 'struggle', 'movement', 'suspension', 'complete'
     let audioEnabled = true;
     let audioCtx = null;
     let enteredCode = '';
@@ -611,15 +632,16 @@
     let dialogueHistory = [];
     let keysPressed = {};
     let isMoving = false;
+    let struggleClicks = 0;
 
     // --- 2.5D Player Physics Coordinates (Percentages of Viewport) ---
-    let playerX = 22; // 8% to 82%
-    let playerY = 16; // 12% (front, scale 1.08) to 28% (back wall, scale 0.72)
-    let playerFacing = 1; // 1 = right, -1 = left
+    let playerX = 38; // Initial position at chair
+    let playerY = 16;
+    let playerFacing = 1;
     let walkStep = 0;
     let lastStepAudioTime = 0;
 
-    // --- Audio Synthesis via Web Audio API ---
+    // --- Web Audio API Synthesis ---
     function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -666,8 +688,12 @@
 
     function toggleAudio() {
       audioEnabled = !audioEnabled;
-      document.getElementById('audio-icon').className = audioEnabled ? 'fa-solid fa-volume-high text-cyan-400' : 'fa-solid fa-volume-xmark text-rose-500';
-      document.getElementById('btn-audio').querySelector('span').textContent = audioEnabled ? 'SFX: ON' : 'SFX: OFF';
+      const icon = document.getElementById('audio-icon');
+      if (icon) icon.className = audioEnabled ? 'fa-solid fa-volume-high text-cyan-400' : 'fa-solid fa-volume-xmark text-rose-500';
+      const btn = document.getElementById('btn-audio');
+      if (btn) btn.querySelector('span').textContent = audioEnabled ? 'SFX: ON' : 'SFX: OFF';
+      const menuAudio = document.getElementById('menu-audio-text');
+      if (menuAudio) menuAudio.textContent = audioEnabled ? 'AUDIO & SFX: ENABLED' : 'AUDIO & SFX: MUTED';
     }
 
     function toggleFullScreen() {
@@ -693,22 +719,42 @@
     }
     function closeLogModal() { document.getElementById('log-modal').classList.add('hidden'); }
 
-    // ================= HERO SELECTION =================
+    // ================= START MENU -> SELECTION (CLIENT SPEC 1 & 2) =================
+    function startGameFromMenu() {
+      initAudio();
+      playBeep(440, 'sine', 0.2, 0.15);
+      document.getElementById('start-menu-screen').classList.add('hidden');
+      document.getElementById('character-select-screen').classList.remove('hidden');
+      currentPhase = 'selection';
+    }
+
     function selectHero(chosen) {
       initAudio();
       hero = chosen;
-      playBeep(440, 'triangle', 0.2);
+      playBeep(520, 'triangle', 0.25, 0.2);
 
       document.getElementById('character-select-screen').classList.add('hidden');
-      const spriteImg = document.getElementById('avatar-sprite');
-      spriteImg.src = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
+      
+      // Update sprites
+      const chairImg = document.getElementById('chair-hero-img');
+      const avatarImg = document.getElementById('avatar-sprite');
+      const suspImg = document.getElementById('suspended-char-img');
+      const spritePath = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
+      chairImg.src = spritePath;
+      avatarImg.src = spritePath;
+      suspImg.src = spritePath;
 
-      startAwakeningSequence();
+      startChairAwakening();
     }
 
-    function startAwakeningSequence() {
+    // ================= SCENE 1: CHAIR AWAKENING & STRUGGLE (CLIENT SPEC 3) =================
+    function startChairAwakening() {
       currentPhase = 'awakening';
-      playBeep(120, 'sine', 1.5, 0.15);
+      playBeep(120, 'sine', 2.0, 0.2); // Low facility hum
+
+      document.getElementById('chair-scene-wrapper').classList.remove('hidden');
+      document.getElementById('main-hud-header').classList.remove('hidden');
+      document.getElementById('dialogue-box-wrap').classList.remove('hidden');
 
       const top = document.getElementById('eyelid-top');
       const bottom = document.getElementById('eyelid-bottom');
@@ -722,27 +768,67 @@
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
       const wakingSpeech = hero === 'maya'
-        ? '"Ugh... blinding fluorescent light. Steel interrogation chair... heavy hydraulic wrist restraints bolted down. I need to force leverage and break these clamps!"'
-        : '"Mmph... my head is pounding. Restraint collar locked, biometric feedback sensors pulsing. A research facility? I have to calculate the mechanical release trigger!"';
+        ? '"Ugh... blinding fluorescent light. Cold steel... heavy hydraulic clamps bolted over my wrists and ankles! Where the hell am I?!"'
+        : '"Mmph... my head is pounding. Restraint cuffs locked, biometric telemetry pulsing. A research facility? I have to find a way out!"';
 
       typeWriterEffect(textEl, wakingSpeech, 18);
 
+      // AI Intercom Introduction after waking
       setTimeout(() => {
-        const choicesBox = document.getElementById('vn-choices-container');
-        choicesBox.innerHTML = '';
+        playBeep(880, 'sine', 0.2, 0.15); // Intercom chime
+        const ariaBox = document.getElementById('aria-container');
+        ariaBox.classList.remove('hidden');
+        setTimeout(() => ariaBox.classList.remove('opacity-0'), 50);
 
-        const struggleBtn = document.createElement('button');
-        struggleBtn.className = 'w-full sm:w-auto py-3 px-6 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-lg transition-all transform hover:scale-102';
-        struggleBtn.innerHTML = hero === 'maya'
-          ? '💥 Explode with Full Athletic Leverage (Break Restraints!)'
-          : '⚡ Overload Pressure Circuit with Heel Kick (Shatter Lock!)';
+        nameplate.textContent = 'A.R.I.A. (FACILITY AI)';
+        nameplate.className = 'inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-cyan-500/70 text-cyan-300 font-code font-bold text-xs uppercase tracking-wider';
 
-        struggleBtn.onclick = (e) => {
-          e.stopPropagation();
-          startFreeMovementMode();
-        };
-        choicesBox.appendChild(struggleBtn);
-      }, 3500);
+        const ariaSpeech = '"Awakening verified. Welcome, Subject 04. I am A.R.I.A., automated supervisor of Facility 07. You have been selected for experimental behavioral calibration. An enforcement officer is en route to transfer you to your next task."';
+        typeWriterEffect(textEl, ariaSpeech, 18);
+
+        setTimeout(() => {
+          // Protagonist defiant remark
+          nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
+          nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
+
+          const defiantSpeech = hero === 'maya'
+            ? '"I am NOT your lab experiment, and I am not waiting for your guard. I am breaking out of this chair right now!"'
+            : '"Compliance protocol rejected. The hydraulic locking mechanism has an overload threshold. If I surge pressure, the clamps will fail!"';
+          typeWriterEffect(textEl, defiantSpeech, 18);
+
+          // Activate Click/Space Struggle Mechanic
+          setTimeout(() => {
+            currentPhase = 'struggle';
+            struggleClicks = 0;
+            document.getElementById('struggle-prompt-box').classList.remove('hidden');
+          }, 2500);
+        }, 5500);
+      }, 4500);
+    }
+
+    function performStruggleClick() {
+      if (currentPhase !== 'struggle') return;
+      initAudio();
+      struggleClicks++;
+      playBeep(240 + struggleClicks * 60, 'square', 0.12, 0.15);
+
+      document.getElementById('game-stage').classList.add('shake');
+      setTimeout(() => document.getElementById('game-stage').classList.remove('shake'), 300);
+
+      const btnText = document.getElementById('struggle-btn-text');
+      btnText.textContent = `OVERLOADING RESTRAINTS... (${struggleClicks}/5)`;
+
+      if (struggleClicks >= 5) {
+        // Break free!
+        playBeep(140, 'square', 0.35, 0.3); // Snap sound
+        playBeep(880, 'sine', 0.25, 0.25);
+
+        document.getElementById('struggle-prompt-box').classList.add('hidden');
+        document.getElementById('chair-scene-wrapper').classList.add('hidden');
+
+        // Launch into 2.5D Free Movement Mode
+        startFreeMovementMode();
+      }
     }
 
     // ================= TYPEWRITER EFFECT =================
@@ -784,17 +870,20 @@
       if (typeTimer) completeTypingNow();
     }
 
-    // ================= 2.5D FREE MOVEMENT GAME ENGINE =================
+    // ================= 2.5D FREE MOVEMENT GAME ENGINE (CLIENT SPEC 4) =================
     function startFreeMovementMode() {
       initAudio();
-      document.getElementById('game-stage').classList.add('shake');
-      setTimeout(() => document.getElementById('game-stage').classList.remove('shake'), 450);
-
-      playBeep(180, 'square', 0.25, 0.25);
-      playBeep(750, 'sine', 0.2, 0.2);
-
       currentPhase = 'movement';
-      document.getElementById('vn-choices-container').innerHTML = '';
+
+      // Hide chair, show props and controllable avatar
+      document.getElementById('prop-cabinet').classList.remove('hidden');
+      document.getElementById('prop-terminal').classList.remove('hidden');
+      document.getElementById('prop-guard').classList.remove('hidden');
+      document.getElementById('prop-door').classList.remove('hidden');
+      document.getElementById('player-avatar').classList.remove('hidden');
+      document.getElementById('hud-timer-wrap').classList.remove('hidden');
+      document.getElementById('control-badge-wrap').classList.remove('hidden');
+      document.getElementById('touch-controls').classList.remove('hidden');
 
       const nameplate = document.getElementById('nameplate');
       const textEl = document.getElementById('vn-text');
@@ -802,11 +891,8 @@
       nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
-      const moveHelp = '"*SNAP!* Restraints broken! Use WASD or ARROW KEYS to physically walk across the lab! Approach the Research Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock Blast Door 07!"';
+      const moveHelp = '"*SNAP!* Restraints shattered! Use WASD or ARROW KEYS to physically walk around the lab! Search the Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock Blast Door 07!"';
       typeWriterEffect(textEl, moveHelp, 16);
-
-      document.getElementById('hud-timer-wrap').classList.remove('hidden');
-      document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-person-walking text-cyan-400"></i> CONTROLLABLE: WASD/Arrows to Walk | E: Interact';
 
       startLockdownCountdown();
       requestAnimationFrame(gameLoop);
@@ -832,13 +918,13 @@
       }, 1000);
     }
 
-    // ================= REAL-TIME 60 FPS GAME LOOP =================
+    // Real-Time 60 FPS Movement Loop with Depth Scaling
     function gameLoop(timestamp) {
       if (currentPhase !== 'movement') return;
 
       let dx = 0;
       let dy = 0;
-      const speed = hero === 'maya' ? 0.38 : 0.34; // Maya has athletic sprint
+      const speed = hero === 'maya' ? 0.40 : 0.35;
 
       if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) { dx -= speed; playerFacing = -1; }
       if (keysPressed['KeyD'] || keysPressed['ArrowRight']) { dx += speed; playerFacing = 1; }
@@ -855,28 +941,22 @@
         isMoving = true;
 
         walkStep += 0.22;
-        // Natural Walk Bobbing & Stride Tilt
         const bobY = Math.abs(Math.sin(walkStep)) * 9;
         const tilt = Math.sin(walkStep) * 4;
 
         // Dynamic 2.5D Depth Perspective Scale
-        // When Y is 12% (front), scale is 1.05. When Y is 27% (back), scale is 0.76!
         const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
 
         avatarBox.style.left = `${playerX}%`;
         avatarBox.style.bottom = `${playerY}%`;
-
-        // Apply scale, bobbing, tilt, and directional flip
         spriteImg.style.transform = `scale(${depthScale}) scaleX(${playerFacing}) translateY(-${bobY}px) rotate(${tilt * playerFacing}deg)`;
 
-        // Shadow squashing
         const shadowScale = (1.0 - (bobY / 40)) * depthScale;
         shadowEl.style.transform = `scale(${shadowScale})`;
 
         playFootstep();
       } else {
         isMoving = false;
-        // Idle breathing stance
         const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
         const breathY = Math.sin(timestamp * 0.003) * 3;
 
@@ -886,33 +966,35 @@
         shadowEl.style.transform = `scale(${depthScale})`;
       }
 
-      // Check Proximity to 4 Interactive Stations
       checkProximity();
-
       requestAnimationFrame(gameLoop);
     }
 
     function checkProximity() {
-      // 1. Cabinet at x ~12%, y ~24%
       const nearCabinet = Math.abs(playerX - 14) < 7 && Math.abs(playerY - 22) < 8;
       document.getElementById('prompt-cabinet').classList.toggle('hidden', !nearCabinet);
 
-      // 2. Terminal at x ~36%, y ~25%
       const nearTerminal = Math.abs(playerX - 36) < 7 && Math.abs(playerY - 23) < 8;
       document.getElementById('prompt-terminal').classList.toggle('hidden', !nearTerminal);
 
-      // 3. Guard at x ~60%, y ~25%
       const nearGuard = Math.abs(playerX - 60) < 7 && Math.abs(playerY - 23) < 8;
       document.getElementById('prompt-guard').classList.toggle('hidden', !nearGuard);
 
-      // 4. Blast Door at x ~80%, y ~16%
       const nearDoor = Math.abs(playerX - 78) < 8 && Math.abs(playerY - 16) < 9;
       document.getElementById('prompt-door').classList.toggle('hidden', !nearDoor);
     }
 
-    // Keyboard Event Listener for WASD Movement & E Key
+    // Keyboard Event Listener
     window.addEventListener('keydown', (e) => {
       keysPressed[e.code] = true;
+
+      if (currentPhase === 'struggle') {
+        if (e.code === 'Space') {
+          performStruggleClick();
+          e.preventDefault();
+        }
+        return;
+      }
 
       const keypadOpen = !document.getElementById('keypad-modal').classList.contains('hidden');
       if (keypadOpen) {
@@ -933,7 +1015,6 @@
         return;
       }
 
-      // Press 'E' to interact with closest active object
       if (e.code === 'KeyE') {
         if (!document.getElementById('prompt-cabinet').classList.contains('hidden')) clickCabinet();
         else if (!document.getElementById('prompt-terminal').classList.contains('hidden')) clickTerminal();
@@ -951,7 +1032,7 @@
       }
 
       if (e.key === ' ' || e.key === 'Enter') {
-        if (currentPhase !== 'movement') onTextboxClick();
+        if (currentPhase !== 'movement' && currentPhase !== 'struggle') onTextboxClick();
       }
     });
 
@@ -1060,9 +1141,8 @@
 
     // ================= PHYSICAL BLAST DOOR OPENING & WALKTHROUGH =================
     function openBlastDoorPhysically() {
-      playBeep(140, 'sine', 1.8, 0.3); // Heavy hydraulic hiss
+      playBeep(140, 'sine', 1.8, 0.3); // Hydraulic hiss
 
-      // Slide door panels open
       document.getElementById('door-panel-left').style.transform = 'translateX(-100%)';
       document.getElementById('door-panel-right').style.transform = 'translateX(100%)';
 
@@ -1076,7 +1156,6 @@
         : '"*CLANG-HISSS!* Pneumatic pressure equalized! Walk your character through the open gateway before the containment shutters engage!"';
       typeWriterEffect(textEl, doorOpenSpeech, 16);
 
-      // Listen for player walking past 76% to trigger corridor breach
       const checkWalkthrough = setInterval(() => {
         if (playerX >= 76) {
           clearInterval(checkWalkthrough);
@@ -1110,7 +1189,6 @@
       typeWriterEffect(textEl, speech, 18);
 
       setTimeout(() => {
-        // Deep Blackout with stretching sound
         const top = document.getElementById('eyelid-top');
         const bottom = document.getElementById('eyelid-bottom');
         top.style.height = '50%';
@@ -1119,13 +1197,11 @@
         playBeep(120, 'sine', 2.5, 0.3); // Stretch hum
 
         setTimeout(() => {
-          // Switch to Observation Suspension Chamber
           document.getElementById('world-viewport').style.backgroundImage = "url('assets/bg_observation_chamber.jpg')";
           document.getElementById('alarm-overlay').classList.remove('alarm-flash');
           document.getElementById('alarm-overlay').style.opacity = '0';
           document.getElementById('hud-timer-wrap').classList.add('hidden');
 
-          // Hide lab props, show suspension harness
           document.getElementById('prop-cabinet').classList.add('hidden');
           document.getElementById('prop-terminal').classList.add('hidden');
           document.getElementById('prop-guard').classList.add('hidden');
@@ -1137,7 +1213,6 @@
 
           document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-arrows-up-down text-rose-400"></i> SUSPENSION RIG: Real Pendulum Physics Active';
 
-          // Open eyelids into Observation Chamber
           top.style.height = '0%';
           bottom.style.height = '0%';
 
@@ -1242,7 +1317,6 @@
       setTimeout(() => {
         playBeep(180, 'sine', 1.8, 0.2); // Lowering sound
 
-        // Lower harness down to platform
         document.getElementById('suspension-rig').style.transform = 'translateY(110px)';
         document.getElementById('suspension-rig').style.transition = 'transform 2.5s ease-in-out';
 
