@@ -145,24 +145,18 @@
       <div id="chair-scene-wrapper" class="hidden absolute left-[38%] bottom-[14%] z-20 flex flex-col items-center">
         <!-- Mechanical chair base graphic -->
         <div class="w-48 h-72 relative flex flex-col items-center justify-end">
-          <!-- Heavy restraint chair backrest -->
           <div class="w-28 h-44 rounded-t-2xl bg-gradient-to-b from-slate-800 to-slate-950 border-2 border-slate-700 shadow-2xl relative flex items-center justify-center">
-            <!-- Strapped Protagonist Sprite -->
             <img id="chair-hero-img" src="assets/sprite_maya.png" alt="Restrained Hero" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] opacity-95" />
-            <!-- Hydraulic Wrist Clamps Overlay -->
             <div class="absolute top-[48%] left-[-12px] right-[-12px] h-6 bg-slate-800 border-y-2 border-amber-500/80 rounded flex items-center justify-between px-1 shadow-lg">
               <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
               <span class="text-[8px] font-code text-amber-400 font-bold uppercase tracking-wider">HYDRAULIC CLAMPS</span>
               <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
             </div>
           </div>
-          <!-- Chair Base Pedestal -->
           <div class="w-36 h-6 bg-slate-900 border border-slate-700 rounded-b-xl shadow-xl"></div>
-          <!-- Floor Bolt Plates -->
           <div class="w-44 h-3 bg-black/80 rounded-full blur-[2px] -mt-1"></div>
         </div>
 
-        <!-- Rapid Struggle Prompt Button -->
         <div id="struggle-prompt-box" class="hidden mt-3 text-center">
           <button onclick="performStruggleClick()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(239,68,68,0.8)] active:scale-95 transition-all flex items-center gap-2 mx-auto animate-pulse">
             <i class="fa-solid fa-bolt text-amber-300"></i>
@@ -227,23 +221,19 @@
           </button>
         </div>
 
-        <!-- 2.5D Physical Blast Door Frame & Sliding Panels -->
         <div id="blast-door-frame" class="w-44 h-72 rounded-2xl border-4 border-slate-700 bg-slate-950/90 shadow-[0_15px_50px_rgba(0,0,0,0.9)] flex flex-col items-center justify-center relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-r from-red-950 via-slate-900 to-black flex items-center justify-center">
             <span class="text-[10px] font-code text-red-500 font-bold uppercase tracking-widest animate-pulse">SECTOR 08 TRANSIT CORRIDOR</span>
           </div>
 
-          <!-- Left Sliding Hydraulic Steel Panel -->
           <div id="door-panel-left" class="absolute top-0 bottom-0 left-0 w-1/2 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 border-r-2 border-slate-600 transition-transform duration-1000 shadow-xl flex items-center justify-end pr-1">
             <div class="w-1.5 h-16 bg-slate-600 rounded-full"></div>
           </div>
 
-          <!-- Right Sliding Hydraulic Steel Panel -->
           <div id="door-panel-right" class="absolute top-0 bottom-0 right-0 w-1/2 bg-gradient-to-l from-slate-900 via-slate-800 to-slate-700 border-l-2 border-slate-600 transition-transform duration-1000 shadow-xl flex items-center justify-start pl-1">
             <div class="w-1.5 h-16 bg-slate-600 rounded-full"></div>
           </div>
 
-          <!-- Door Status Light Center Overlay -->
           <div id="door-led-wrap" class="relative z-10 text-center pointer-events-none">
             <div id="door-status-led" class="w-5 h-5 rounded-full bg-rose-500 mx-auto mb-2 shadow-[0_0_20px_rgba(244,63,94,1)] animate-pulse"></div>
             <span class="text-[10px] font-code font-bold text-slate-200 block tracking-wider">BLAST DOOR 07</span>
@@ -252,10 +242,12 @@
         </div>
       </div>
 
-      <!-- ================= 2.5D CONTROLLABLE HIGH-RES ANIME HERO SPRITE ================= -->
-      <div id="player-avatar" class="hidden absolute left-[20%] bottom-[16%] z-20 w-36 h-64 pointer-events-none flex flex-col items-center justify-end transform-gpu will-change-transform">
-        <div id="char-shadow" class="w-24 h-6 rounded-full bg-black/75 blur-[4px] mb-[-6px] transition-all duration-75"></div>
-        <img id="avatar-sprite" src="assets/sprite_maya.png" alt="Hero" class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.95)] transition-all duration-75 origin-bottom" />
+      <!-- ================= 2.5D CONTROLLABLE ARTICULATED SKELETAL HERO ================= -->
+      <div id="player-avatar" class="hidden absolute left-[20%] bottom-[16%] z-20 w-44 h-72 pointer-events-none flex flex-col items-center justify-end transform-gpu will-change-transform">
+        <div id="char-shadow" class="w-28 h-7 rounded-full bg-black/75 blur-[4px] mb-[-6px] transition-all duration-75"></div>
+        
+        <!-- Articulated Skeletal Canvas (Draws Moving Hands, Moving Legs, Moving Head & Ponytail!) -->
+        <canvas id="hero-canvas" width="220" height="340" class="origin-bottom filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] transition-all duration-75"></canvas>
       </div>
 
       <!-- Particle Container for Footstep Dust Puffs -->
@@ -365,8 +357,6 @@
 
     <!-- ================= START MENU (CLIENT SPEC 1) ================= -->
     <div id="start-menu-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-between p-8 sm:p-14 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950/95 backdrop-blur-md">
-      
-      <!-- Top Title Branding -->
       <div class="text-center pt-8">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/80 border border-red-500/60 text-red-400 font-code text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(239,68,68,0.4)] mb-4">
           <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
@@ -380,7 +370,6 @@
         </p>
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex flex-col items-center gap-4 w-full max-w-sm">
         <button onclick="startGameFromMenu()" class="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-sci font-bold text-sm uppercase tracking-widest shadow-[0_0_35px_rgba(239,68,68,0.7)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
           <i class="fa-solid fa-play text-amber-300"></i>
@@ -398,7 +387,6 @@
         </button>
       </div>
 
-      <!-- Footer Info -->
       <div class="text-center font-code text-[11px] text-slate-500 tracking-wider">
         <span>DEVELOPED FOR STEAM & WINDOWS PC | REN'PY 8.X CORE ARCHITECTURE</span>
       </div>
@@ -634,8 +622,8 @@
     let isMoving = false;
     let struggleClicks = 0;
 
-    // --- 2.5D Player Physics Coordinates (Percentages of Viewport) ---
-    let playerX = 38; // Initial position at chair
+    // --- 2.5D Player Coordinates ---
+    let playerX = 38;
     let playerY = 16;
     let playerFacing = 1;
     let walkStep = 0;
@@ -719,7 +707,7 @@
     }
     function closeLogModal() { document.getElementById('log-modal').classList.add('hidden'); }
 
-    // ================= START MENU -> SELECTION (CLIENT SPEC 1 & 2) =================
+    // ================= START MENU -> SELECTION =================
     function startGameFromMenu() {
       initAudio();
       playBeep(440, 'sine', 0.2, 0.15);
@@ -735,22 +723,19 @@
 
       document.getElementById('character-select-screen').classList.add('hidden');
       
-      // Update sprites
       const chairImg = document.getElementById('chair-hero-img');
-      const avatarImg = document.getElementById('avatar-sprite');
       const suspImg = document.getElementById('suspended-char-img');
       const spritePath = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
       chairImg.src = spritePath;
-      avatarImg.src = spritePath;
       suspImg.src = spritePath;
 
       startChairAwakening();
     }
 
-    // ================= SCENE 1: CHAIR AWAKENING & STRUGGLE (CLIENT SPEC 3) =================
+    // ================= SCENE 1: CHAIR AWAKENING & STRUGGLE =================
     function startChairAwakening() {
       currentPhase = 'awakening';
-      playBeep(120, 'sine', 2.0, 0.2); // Low facility hum
+      playBeep(120, 'sine', 2.0, 0.2);
 
       document.getElementById('chair-scene-wrapper').classList.remove('hidden');
       document.getElementById('main-hud-header').classList.remove('hidden');
@@ -773,9 +758,8 @@
 
       typeWriterEffect(textEl, wakingSpeech, 18);
 
-      // AI Intercom Introduction after waking
       setTimeout(() => {
-        playBeep(880, 'sine', 0.2, 0.15); // Intercom chime
+        playBeep(880, 'sine', 0.2, 0.15);
         const ariaBox = document.getElementById('aria-container');
         ariaBox.classList.remove('hidden');
         setTimeout(() => ariaBox.classList.remove('opacity-0'), 50);
@@ -787,7 +771,6 @@
         typeWriterEffect(textEl, ariaSpeech, 18);
 
         setTimeout(() => {
-          // Protagonist defiant remark
           nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
           nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
@@ -796,7 +779,6 @@
             : '"Compliance protocol rejected. The hydraulic locking mechanism has an overload threshold. If I surge pressure, the clamps will fail!"';
           typeWriterEffect(textEl, defiantSpeech, 18);
 
-          // Activate Click/Space Struggle Mechanic
           setTimeout(() => {
             currentPhase = 'struggle';
             struggleClicks = 0;
@@ -819,14 +801,12 @@
       btnText.textContent = `OVERLOADING RESTRAINTS... (${struggleClicks}/5)`;
 
       if (struggleClicks >= 5) {
-        // Break free!
-        playBeep(140, 'square', 0.35, 0.3); // Snap sound
+        playBeep(140, 'square', 0.35, 0.3);
         playBeep(880, 'sine', 0.25, 0.25);
 
         document.getElementById('struggle-prompt-box').classList.add('hidden');
         document.getElementById('chair-scene-wrapper').classList.add('hidden');
 
-        // Launch into 2.5D Free Movement Mode
         startFreeMovementMode();
       }
     }
@@ -870,12 +850,11 @@
       if (typeTimer) completeTypingNow();
     }
 
-    // ================= 2.5D FREE MOVEMENT GAME ENGINE (CLIENT SPEC 4) =================
+    // ================= 2.5D FREE MOVEMENT GAME ENGINE =================
     function startFreeMovementMode() {
       initAudio();
       currentPhase = 'movement';
 
-      // Hide chair, show props and controllable avatar
       document.getElementById('prop-cabinet').classList.remove('hidden');
       document.getElementById('prop-terminal').classList.remove('hidden');
       document.getElementById('prop-guard').classList.remove('hidden');
@@ -891,7 +870,7 @@
       nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
-      const moveHelp = '"*SNAP!* Restraints shattered! Use WASD or ARROW KEYS to physically walk around the lab! Search the Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock Blast Door 07!"';
+      const moveHelp = '"*SNAP!* Restraints shattered! Use WASD or ARROW KEYS to physically walk across the lab! Search the Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock Blast Door 07!"';
       typeWriterEffect(textEl, moveHelp, 16);
 
       startLockdownCountdown();
@@ -913,18 +892,231 @@
 
         if (countdownVal <= 0) {
           clearInterval(countdownTimer);
-          triggerSedativeBlackout(false); // Timeout
+          triggerSedativeBlackout(false);
         }
       }, 1000);
     }
 
-    // Real-Time 60 FPS Movement Loop with Depth Scaling
+    // ================= REAL-TIME SKELETAL CHARACTER CANVAS RENDERER =================
+    // This renders moving arms, swinging elbows, striding legs, bending knees, and swaying ponytail!
+    function drawArticulatedCharacter(ctx, isMoving, walkStep, heroType, facing, timestamp) {
+      ctx.clearRect(0, 0, 220, 340);
+      ctx.save();
+
+      // Center at bottom
+      ctx.translate(110, 310);
+      ctx.scale(facing, 1);
+
+      const isMaya = heroType === 'maya';
+      const skinColor = '#ffdfc4';
+      const skinShadow = '#e2bfa4';
+      const topColor = isMaya ? '#ef4444' : '#06b6d4'; // Red combat tank vs Cyan STEM jacket
+      const topDark = isMaya ? '#b91c1c' : '#0891b2';
+      const pantsColor = isMaya ? '#18181b' : '#0f172a';
+      const bootColor = '#09090b';
+      const hairColor = isMaya ? '#261b17' : '#d4a373'; // Dark brunette vs Blonde
+
+      // Kinematic Angles
+      let leftHipAngle = 0;
+      let rightHipAngle = 0;
+      let leftKneeAngle = 0;
+      let rightKneeAngle = 0;
+      let leftArmAngle = 0;
+      let rightArmAngle = 0;
+      let leftElbowAngle = 0.2;
+      let rightElbowAngle = 0.2;
+      let bodyBob = 0;
+      let bodyTilt = 0;
+      let ponytailSway = 0;
+
+      if (isMoving) {
+        const cycle = walkStep * 7;
+        leftHipAngle = Math.sin(cycle) * 0.65;
+        rightHipAngle = -Math.sin(cycle) * 0.65;
+        leftKneeAngle = Math.max(0, Math.sin(cycle - 0.4) * 0.85);
+        rightKneeAngle = Math.max(0, -Math.sin(cycle - 0.4) * 0.85);
+
+        // Arms swing in opposition to legs!
+        leftArmAngle = -Math.sin(cycle) * 0.65;
+        rightArmAngle = Math.sin(cycle) * 0.65;
+        leftElbowAngle = Math.max(0, -Math.sin(cycle) * 0.45) + 0.3;
+        rightElbowAngle = Math.max(0, Math.sin(cycle) * 0.45) + 0.3;
+
+        bodyBob = Math.abs(Math.sin(cycle)) * 8;
+        bodyTilt = Math.sin(cycle) * 0.06;
+        ponytailSway = -Math.sin(cycle) * 0.35;
+      } else {
+        // Idle breathing
+        const breath = Math.sin(timestamp * 0.003) * 2.5;
+        bodyBob = breath;
+        leftArmAngle = 0.05;
+        rightArmAngle = -0.05;
+        ponytailSway = Math.sin(timestamp * 0.002) * 0.08;
+      }
+
+      ctx.translate(0, -bodyBob);
+      ctx.rotate(bodyTilt);
+
+      // --- 1. LEFT LEG (BACK LEG) ---
+      ctx.save();
+      ctx.translate(-14, -135);
+      ctx.rotate(leftHipAngle);
+      // Left Thigh
+      ctx.fillStyle = pantsColor;
+      ctx.beginPath();
+      ctx.roundRect(-8, 0, 16, 52, 6);
+      ctx.fill();
+      // Left Knee & Calf
+      ctx.translate(0, 48);
+      ctx.rotate(leftKneeAngle);
+      ctx.beginPath();
+      ctx.roundRect(-7, 0, 14, 52, 5);
+      ctx.fill();
+      // Left Boot
+      ctx.fillStyle = bootColor;
+      ctx.beginPath();
+      ctx.roundRect(-8, 46, 20, 18, 4);
+      ctx.fill();
+      ctx.restore();
+
+      // --- 2. LEFT ARM (BACK ARM) ---
+      ctx.save();
+      ctx.translate(-26, -215);
+      ctx.rotate(leftArmAngle);
+      ctx.fillStyle = topDark;
+      ctx.beginPath();
+      ctx.roundRect(-7, 0, 14, 46, 5);
+      ctx.fill();
+      // Forearm & Hand
+      ctx.translate(0, 42);
+      ctx.rotate(leftElbowAngle);
+      ctx.fillStyle = skinColor;
+      ctx.beginPath();
+      ctx.roundRect(-6, 0, 12, 42, 4);
+      ctx.fill();
+      // Fist/Glove
+      ctx.fillStyle = bootColor;
+      ctx.beginPath();
+      ctx.arc(0, 42, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // --- 3. PELVIS & TORSO ---
+      ctx.fillStyle = pantsColor;
+      ctx.beginPath();
+      ctx.roundRect(-22, -148, 44, 24, 6);
+      ctx.fill();
+
+      // Tactical Belt with buckle
+      ctx.fillStyle = '#27272a';
+      ctx.fillRect(-22, -146, 44, 7);
+      ctx.fillStyle = '#eab308';
+      ctx.fillRect(-6, -147, 12, 9);
+
+      // Main Torso (Chest & Tank Top/Jacket)
+      ctx.fillStyle = topColor;
+      ctx.beginPath();
+      ctx.roundRect(-24, -225, 48, 80, 10);
+      ctx.fill();
+
+      // Collarbone / Chest Detail
+      ctx.fillStyle = skinColor;
+      ctx.beginPath();
+      ctx.arc(0, -225, 14, 0, Math.PI);
+      ctx.fill();
+
+      // --- 4. HEAD & FACE ---
+      ctx.fillStyle = skinColor;
+      ctx.beginPath();
+      ctx.arc(0, -252, 22, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Expressive Anime Eyes
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(4, -254, 7, 4);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(5, -255, 3, 2);
+
+      // Glasses for Chloe
+      if (!isMaya) {
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(2, -258, 12, 10);
+      }
+
+      // Hair
+      ctx.fillStyle = hairColor;
+      ctx.beginPath();
+      ctx.arc(0, -258, 25, Math.PI, Math.PI * 2);
+      ctx.fill();
+      // Side bangs
+      ctx.fillRect(-24, -258, 12, 32);
+      ctx.fillRect(8, -258, 16, 26);
+
+      // Dynamic Ponytail for Maya (Sways with motion!)
+      if (isMaya) {
+        ctx.save();
+        ctx.translate(-16, -266);
+        ctx.rotate(ponytailSway - 0.3);
+        ctx.beginPath();
+        ctx.ellipse(-14, 22, 12, 34, 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // --- 5. RIGHT LEG (FRONT LEG) ---
+      ctx.save();
+      ctx.translate(14, -135);
+      ctx.rotate(rightHipAngle);
+      ctx.fillStyle = pantsColor;
+      ctx.beginPath();
+      ctx.roundRect(-8, 0, 16, 52, 6);
+      ctx.fill();
+      // Right Knee & Calf
+      ctx.translate(0, 48);
+      ctx.rotate(rightKneeAngle);
+      ctx.beginPath();
+      ctx.roundRect(-7, 0, 14, 52, 5);
+      ctx.fill();
+      // Right Boot
+      ctx.fillStyle = bootColor;
+      ctx.beginPath();
+      ctx.roundRect(-8, 46, 20, 18, 4);
+      ctx.fill();
+      ctx.restore();
+
+      // --- 6. RIGHT ARM (FRONT ARM) ---
+      ctx.save();
+      ctx.translate(26, -215);
+      ctx.rotate(rightArmAngle);
+      ctx.fillStyle = topColor;
+      ctx.beginPath();
+      ctx.roundRect(-7, 0, 14, 46, 5);
+      ctx.fill();
+      // Forearm & Hand
+      ctx.translate(0, 42);
+      ctx.rotate(rightElbowAngle);
+      ctx.fillStyle = skinColor;
+      ctx.beginPath();
+      ctx.roundRect(-6, 0, 12, 42, 4);
+      ctx.fill();
+      // Glove / Hand
+      ctx.fillStyle = bootColor;
+      ctx.beginPath();
+      ctx.arc(0, 42, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    // ================= REAL-TIME 60 FPS GAME LOOP =================
     function gameLoop(timestamp) {
       if (currentPhase !== 'movement') return;
 
       let dx = 0;
       let dy = 0;
-      const speed = hero === 'maya' ? 0.40 : 0.35;
+      const speed = hero === 'maya' ? 0.42 : 0.36;
 
       if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) { dx -= speed; playerFacing = -1; }
       if (keysPressed['KeyD'] || keysPressed['ArrowRight']) { dx += speed; playerFacing = 1; }
@@ -932,39 +1124,36 @@
       if (keysPressed['KeyS'] || keysPressed['ArrowDown']) { dy -= speed * 0.55; }
 
       const avatarBox = document.getElementById('player-avatar');
-      const spriteImg = document.getElementById('avatar-sprite');
+      const canvasEl = document.getElementById('hero-canvas');
+      const ctx = canvasEl.getContext('2d');
       const shadowEl = document.getElementById('char-shadow');
 
       if (dx !== 0 || dy !== 0) {
         playerX = Math.max(8, Math.min(84, playerX + dx));
         playerY = Math.max(12, Math.min(27, playerY + dy));
         isMoving = true;
+        walkStep += 0.045;
 
-        walkStep += 0.22;
-        const bobY = Math.abs(Math.sin(walkStep)) * 9;
-        const tilt = Math.sin(walkStep) * 4;
-
-        // Dynamic 2.5D Depth Perspective Scale
         const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
 
         avatarBox.style.left = `${playerX}%`;
         avatarBox.style.bottom = `${playerY}%`;
-        spriteImg.style.transform = `scale(${depthScale}) scaleX(${playerFacing}) translateY(-${bobY}px) rotate(${tilt * playerFacing}deg)`;
-
-        const shadowScale = (1.0 - (bobY / 40)) * depthScale;
-        shadowEl.style.transform = `scale(${shadowScale})`;
+        canvasEl.style.transform = `scale(${depthScale})`;
+        shadowEl.style.transform = `scale(${depthScale})`;
 
         playFootstep();
       } else {
         isMoving = false;
         const depthScale = 1.05 - ((playerY - 12) / 15) * 0.29;
-        const breathY = Math.sin(timestamp * 0.003) * 3;
 
         avatarBox.style.left = `${playerX}%`;
         avatarBox.style.bottom = `${playerY}%`;
-        spriteImg.style.transform = `scale(${depthScale}) scaleX(${playerFacing}) translateY(-${breathY}px)`;
+        canvasEl.style.transform = `scale(${depthScale})`;
         shadowEl.style.transform = `scale(${depthScale})`;
       }
+
+      // Draw Articulated Character with moving limbs!
+      drawArticulatedCharacter(ctx, isMoving, walkStep, hero, playerFacing, timestamp);
 
       checkProximity();
       requestAnimationFrame(gameLoop);
@@ -1046,6 +1235,7 @@
       if (dir === 'right') { playerX = Math.min(84, playerX + 3.5); playerFacing = 1; }
       if (dir === 'up') { playerY = Math.min(27, playerY + 2.5); }
       if (dir === 'down') { playerY = Math.max(12, playerY - 2.5); }
+      walkStep += 0.08;
       playFootstep();
       checkProximity();
     }
@@ -1141,7 +1331,7 @@
 
     // ================= PHYSICAL BLAST DOOR OPENING & WALKTHROUGH =================
     function openBlastDoorPhysically() {
-      playBeep(140, 'sine', 1.8, 0.3); // Hydraulic hiss
+      playBeep(140, 'sine', 1.8, 0.3);
 
       document.getElementById('door-panel-left').style.transform = 'translateX(-100%)';
       document.getElementById('door-panel-right').style.transform = 'translateX(100%)';
@@ -1194,7 +1384,7 @@
         top.style.height = '50%';
         bottom.style.height = '50%';
 
-        playBeep(120, 'sine', 2.5, 0.3); // Stretch hum
+        playBeep(120, 'sine', 2.5, 0.3);
 
         setTimeout(() => {
           document.getElementById('world-viewport').style.backgroundImage = "url('assets/bg_observation_chamber.jpg')";
@@ -1286,7 +1476,7 @@
         setTimeout(() => triggerAttireSequence(), 4500);
       } else if (action === 'swing') {
         playBeep(320, 'triangle', 0.4, 0.2);
-        setTimeout(() => playBeep(2400, 'sine', 0.15, 0.25), 900); // Clang
+        setTimeout(() => playBeep(2400, 'sine', 0.15, 0.25), 900);
 
         suspBox.classList.add('pendulum-swinging');
         setTimeout(() => suspBox.classList.remove('pendulum-swinging'), 3600);
@@ -1315,7 +1505,7 @@
       typeWriterEffect(textEl, attireSpeech, 18);
 
       setTimeout(() => {
-        playBeep(180, 'sine', 1.8, 0.2); // Lowering sound
+        playBeep(180, 'sine', 1.8, 0.2);
 
         document.getElementById('suspension-rig').style.transform = 'translateY(110px)';
         document.getElementById('suspension-rig').style.transition = 'transform 2.5s ease-in-out';
