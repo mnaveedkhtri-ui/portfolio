@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Subject 04: The Escape Experiment | Playable Action-Adventure Visual Novel</title>
+  <title>Subject 04: The Escape Experiment | 3D Action-Adventure Visual Novel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@500;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <!-- Three.js 3D Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -51,427 +53,268 @@
 
     /* Red Alarm Pulse */
     @keyframes redAlarmFlash {
-      0%, 100% { background: rgba(239, 68, 68, 0.05); }
-      50% { background: rgba(239, 68, 68, 0.38); }
+      0%, 100% { opacity: 0; }
+      50% { opacity: 0.35; }
     }
-    .alarm-flash { animation: redAlarmFlash 1.2s infinite; }
+    .alarm-flash {
+      animation: redAlarmFlash 1.1s ease-in-out infinite;
+    }
 
-    /* Interactive Hologram Pulse */
-    @keyframes holoPulse {
-      0%, 100% { filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.6)) brightness(1); }
-      50% { filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.95)) brightness(1.2); }
+    /* Holographic AI Shimmer */
+    @keyframes holoScan {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 0% 100%; }
     }
-    .holo-glow { animation: holoPulse 3s ease-in-out infinite; }
+    .holo-glow {
+      filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 35px rgba(14, 165, 233, 0.4));
+    }
 
     /* Screen Shake */
     @keyframes screenShake {
-      0%, 100% { transform: translate(0, 0); }
-      15% { transform: translate(-8px, 6px); }
-      30% { transform: translate(8px, -6px); }
-      45% { transform: translate(-6px, -4px); }
-      60% { transform: translate(6px, 4px); }
-      75% { transform: translate(-3px, 2px); }
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      20% { transform: translate(-4px, 3px) rotate(-0.5deg); }
+      40% { transform: translate(4px, -3px) rotate(0.5deg); }
+      60% { transform: translate(-3px, -2px) rotate(-0.3deg); }
+      80% { transform: translate(3px, 2px) rotate(0.3deg); }
     }
     .shake { animation: screenShake 0.45s ease-in-out; }
 
-    /* Interact Prompt Float */
-    @keyframes promptFloat {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-6px) scale(1.05); }
-    }
-    .prompt-floating { animation: promptFloat 1.4s ease-in-out infinite; }
-
-    /* Character Walk Bobbing */
-    @keyframes charWalkBob {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    .char-walking { animation: charWalkBob 0.32s infinite ease-in-out; }
-
-    /* Suspension Pendulum Swing */
-    @keyframes pendulumSwing {
-      0%, 100% { transform: rotate(0deg) translateX(0px); }
-      25% { transform: rotate(-9deg) translateX(-50px); }
-      75% { transform: rotate(9deg) translateX(50px); }
-    }
-    .pendulum-swinging { animation: pendulumSwing 1.2s ease-in-out infinite; }
-
-    @keyframes harnessBouncePulse {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      25% { transform: translateY(28px) scale(0.97, 1.03); }
-      50% { transform: translateY(-16px) scale(1.03, 0.97); }
-      75% { transform: translateY(12px) scale(0.99, 1.01); }
-    }
-    .harness-bouncing { animation: harnessBouncePulse 0.7s ease-in-out 3; }
-
-    .crt-grid {
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-      background-size: 100% 2px, 3px 100%;
-    }
+    /* Custom Scrollbar for Docs */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0b1120; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
   </style>
 </head>
-<body class="w-screen h-screen flex flex-col bg-slate-950 overflow-hidden font-sans">
+<body class="relative w-screen h-screen overflow-hidden bg-slate-950 text-slate-100">
 
-  <!-- Master Game Stage -->
-  <main id="game-stage" class="relative w-full h-full flex flex-col justify-between overflow-hidden bg-black">
+  <!-- ================= MASTER GAME STAGE ================= -->
+  <div id="game-stage" class="relative w-full h-full overflow-hidden select-none">
 
-    <!-- Top Persistent System HUD -->
-    <header class="relative z-40 w-full px-4 sm:px-8 py-3 bg-gradient-to-b from-black/95 via-black/75 to-transparent flex items-center justify-between text-xs font-code select-none border-b border-slate-800/40">
+    <!-- 3D WebGL Canvas Layer -->
+    <div id="canvas-container" class="absolute inset-0 z-0">
+      <canvas id="webgl-canvas" class="w-full h-full block"></canvas>
+    </div>
+
+    <!-- Alarm Overlay Layer -->
+    <div id="alarm-overlay" class="pointer-events-none absolute inset-0 z-10 bg-red-600 opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Eyelids Transition (Awakening Sequence) -->
+    <div id="eyelid-top" class="pointer-events-none absolute top-0 left-0 right-0 h-0 bg-black z-40 transition-all duration-700"></div>
+    <div id="eyelid-bottom" class="pointer-events-none absolute bottom-0 left-0 right-0 h-0 bg-black z-40 transition-all duration-700"></div>
+
+    <!-- ================= TOP HUD HEADER ================= -->
+    <header class="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 py-3 bg-gradient-to-b from-black/90 via-black/50 to-transparent backdrop-blur-[2px]">
       <div class="flex items-center gap-3">
-        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-        <span class="font-sci text-white font-bold tracking-wider text-xs sm:text-sm">SUBJECT 04</span>
-        <span class="hidden sm:inline text-slate-600">//</span>
-        <span id="hud-status" class="hidden sm:inline px-2.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-[10px] text-cyan-300 font-bold uppercase tracking-wider">
-          CONTROLLABLE ACTION PROTOTYPE [WASD / ARROW KEYS]
-        </span>
+        <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-red-950/80 border border-red-500/50 text-red-400 font-sci text-xs font-bold shadow-[0_0_12px_rgba(239,68,68,0.4)]">
+          04
+        </div>
+        <div>
+          <h1 class="font-title text-xs sm:text-sm font-bold tracking-widest text-slate-100 uppercase">SUBJECT 04 : THE ESCAPE EXPERIMENT</h1>
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="facility-status-text" class="text-[10px] font-code text-slate-400 tracking-wider uppercase">SECTOR 07 : CHAMBER LOCKDOWN ACTIVE</span>
+          </div>
+        </div>
       </div>
 
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="openLogModal()" class="px-2.5 py-1 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs flex items-center gap-1.5 transition-colors">
-          <i class="fa-solid fa-clock-rotate-left text-slate-400"></i>
-          <span class="hidden md:inline">HISTORY</span>
-        </button>
-
-        <button onclick="showStoryDoc()" class="px-2.5 py-1 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs flex items-center gap-1.5 transition-colors">
-          <i class="fa-solid fa-file-lines text-amber-400"></i>
-          <span class="hidden md:inline">SPECS</span>
-        </button>
-
-        <button onclick="toggleAudio()" class="px-2.5 py-1 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs flex items-center gap-1.5 transition-colors">
+      <div class="flex items-center gap-2">
+        <button onclick="toggleAudio()" id="btn-audio" title="Toggle Sound SFX" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-code text-xs flex items-center gap-2 transition-all">
           <i id="audio-icon" class="fa-solid fa-volume-high text-cyan-400"></i>
-          <span id="audio-text" class="hidden sm:inline">AUDIO ON</span>
+          <span class="hidden sm:inline">SFX: ON</span>
         </button>
-
-        <button onclick="toggleFullScreen()" class="px-2.5 py-1 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs flex items-center gap-1.5 transition-colors">
-          <i class="fa-solid fa-expand text-slate-400"></i>
+        <button onclick="showStoryDoc()" title="Inspect Story Bible & Outline" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-code text-xs flex items-center gap-2 transition-all">
+          <i class="fa-solid fa-book text-amber-400"></i>
+          <span class="hidden sm:inline">STORY DOC</span>
+        </button>
+        <button onclick="openLogModal()" title="Review Dialogue Log" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-code text-xs flex items-center gap-2 transition-all">
+          <i class="fa-solid fa-clock-rotate-left text-slate-400"></i>
+          <span class="hidden sm:inline">LOG</span>
+        </button>
+        <button onclick="toggleFullScreen()" title="Toggle Fullscreen" class="p-2 rounded-lg bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-xs">
+          <i class="fa-solid fa-expand"></i>
         </button>
       </div>
     </header>
 
-    <!-- ================= SCREEN 1: TITLE SCREEN ================= -->
-    <section id="screen-title" class="absolute inset-0 z-30 flex flex-col items-center justify-center p-6 bg-cover bg-center select-none" style="background-image: url('assets/bg_facility_lab.jpg');">
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/70"></div>
+    <!-- ================= 3D INTERACTIVE STATION PROMPT OVERLAYS ================= -->
+    <div id="prompts-layer" class="pointer-events-none absolute inset-0 z-20 overflow-hidden">
+      <!-- Prompt 1: Research Cabinet -->
+      <div id="prompt-cabinet" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
+        <button onclick="clickCabinet()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-950/90 border border-amber-500/70 text-amber-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(245,158,11,0.5)] hover:scale-105 active:scale-95 transition-all">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span>[ E ] Search Cabinet</span>
+        </button>
+      </div>
 
-      <div class="relative z-10 max-w-2xl w-full text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/50 text-cyan-300 font-code text-xs font-semibold tracking-widest uppercase shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+      <!-- Prompt 2: Terminal -->
+      <div id="prompt-terminal" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
+        <button onclick="clickTerminal()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-950/90 border border-cyan-500/70 text-cyan-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(6,182,212,0.5)] hover:scale-105 active:scale-95 transition-all">
           <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-          2.5D Playable Action-Adventure Visual Novel
-        </div>
-
-        <div class="space-y-2">
-          <h1 class="font-title font-black text-4xl sm:text-6xl md:text-7xl tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
-            SUBJECT 04
-          </h1>
-          <p class="font-sci text-cyan-400 text-sm sm:text-base tracking-[0.3em] uppercase font-bold">
-            The Escape Experiment &bull; Full Action Chapter 1
-          </p>
-        </div>
-
-        <p class="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto font-sans leading-relaxed">
-          Control your character directly with WASD or Arrow Keys. Walk around the 3D research facility, inspect confidential filing cabinets, examine the sleeping guard, approach the heavy blast door, and enter the security code!
-        </p>
-
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
-          <button onclick="startCharacterSelection()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-sci font-bold text-sm tracking-wider uppercase shadow-[0_0_25px_rgba(6,182,212,0.5)] transform hover:scale-105 active:scale-95 transition-all">
-            <i class="fa-solid fa-gamepad mr-2"></i> Play Controllable Game
-          </button>
-          
-          <button onclick="showStoryDoc()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-code font-bold text-xs uppercase tracking-wider transition-colors">
-            <i class="fa-solid fa-file-code mr-2 text-amber-400"></i> Project Specs
-          </button>
-        </div>
-
-        <div class="pt-6 border-t border-slate-800/80 flex items-center justify-center gap-4 text-[11px] font-code text-slate-500">
-          <span>Direct Controls: <strong class="text-emerald-400">WASD / Arrow Keys + [E] Interact</strong></span>
-          <span>&bull;</span>
-          <span>Lead Systems Eng: <strong class="text-cyan-400">Muhammad Naveed</strong></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SCREEN 2: PROTAGONIST SELECTION ================= -->
-    <section id="screen-char-select" class="hidden absolute inset-0 z-30 flex flex-col items-center justify-center p-4 sm:p-8 bg-cover bg-center select-none" style="background-image: url('assets/bg_facility_lab.jpg');">
-      <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
-
-      <div class="relative z-10 max-w-4xl w-full text-center space-y-6">
-        <div>
-          <span class="text-xs font-code font-bold text-cyan-400 uppercase tracking-widest">// PHASE 01: SUBJECT INITIALIZATION</span>
-          <h2 class="font-title font-black text-2xl sm:text-4xl text-white mt-1">Select Controllable Character</h2>
-          <p class="text-xs sm:text-sm text-slate-400 font-sans mt-1">Choose who you want to physically steer and control through the facility.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto">
-          <!-- Maya Carter Card -->
-          <div onclick="selectHero('maya')" class="group relative p-5 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-red-500/80 cursor-pointer transition-all duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.3)] hover:-translate-y-1">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="w-16 h-20 rounded-xl overflow-hidden border border-red-500/50 bg-slate-800 flex-shrink-0">
-                <img src="assets/sprite_maya.png" alt="Maya" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              <div>
-                <span class="px-2 py-0.5 rounded bg-red-950/80 text-red-400 border border-red-500/40 text-[10px] font-code font-bold uppercase tracking-wider">Fast Movement Speed</span>
-                <h3 class="font-title font-bold text-xl text-white mt-1 group-hover:text-red-400 transition-colors">Maya Carter</h3>
-                <p class="text-[11px] font-code text-slate-400">Former Bully Seeking Redemption</p>
-              </div>
-            </div>
-            <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
-              Athletic, explosive sprint speed, and high physical leverage. Maya snaps chair buckles instantly and moves aggressively across the testing lab.
-            </p>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-800 text-xs font-code">
-              <span class="text-red-400 font-bold">Control Maya &rarr;</span>
-              <span class="text-slate-500 text-[10px]">Speed: High</span>
-            </div>
-          </div>
-
-          <!-- Chloe Vance Card -->
-          <div onclick="selectHero('chloe')" class="group relative p-5 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-cyan-500/80 cursor-pointer transition-all duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-1">
-            <div class="flex items-center gap-4 mb-4">
-              <div class="w-16 h-20 rounded-xl overflow-hidden border border-cyan-500/50 bg-slate-800 flex-shrink-0">
-                <img src="assets/sprite_chloe.png" alt="Chloe" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              <div>
-                <span class="px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-400 border border-cyan-500/40 text-[10px] font-code font-bold uppercase tracking-wider">Analytical Perception</span>
-                <h3 class="font-title font-bold text-xl text-white mt-1 group-hover:text-cyan-400 transition-colors">Chloe Vance</h3>
-                <p class="text-[11px] font-code text-slate-400">The Timid STEM Prodigy</p>
-              </div>
-            </div>
-            <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
-              Quiet, analytical, and sharp. Chloe slides buckle release pins with precision and discovers hidden terminal diagnostic codes.
-            </p>
-            <div class="flex items-center justify-between pt-3 border-t border-slate-800 text-xs font-code">
-              <span class="text-cyan-400 font-bold">Control Chloe &rarr;</span>
-              <span class="text-slate-500 text-[10px]">Logic: High</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SCREEN 3: 2.5D CONTROLLABLE GAMEPLAY ================= -->
-    <section id="screen-game" class="hidden absolute inset-0 z-20 flex flex-col justify-between overflow-hidden bg-black select-none">
-      
-      <!-- Blinking Eye Lids -->
-      <div id="eyelid-top" class="absolute top-0 left-0 right-0 bg-black z-40 pointer-events-none"></div>
-      <div id="eyelid-bottom" class="absolute bottom-0 left-0 right-0 bg-black z-40 pointer-events-none"></div>
-
-      <!-- Red Alert Flashing Overlay -->
-      <div id="alarm-overlay" class="absolute inset-0 pointer-events-none z-10 opacity-0 transition-opacity duration-300"></div>
-
-      <!-- 2.5D Interactive Laboratory World Stage -->
-      <div id="world-viewport" class="relative w-full h-full overflow-hidden bg-cover bg-center" style="background-image: url('assets/bg_facility_lab.jpg');">
-        
-        <!-- Floor Walkable Plane Overlay with grid depth -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none"></div>
-
-        <!-- ================= IN-GAME PHYSICAL STATIONS ================= -->
-        
-        <!-- Station 1: Research Filing Cabinet (Left) -->
-        <div id="prop-cabinet" class="absolute left-[8%] bottom-[22%] z-20 flex flex-col items-center pointer-events-auto cursor-pointer" onclick="clickCabinet()">
-          <div id="prompt-cabinet" class="hidden mb-2 px-3 py-1 rounded-xl bg-amber-500 text-slate-950 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(245,158,11,0.8)] prompt-floating flex items-center gap-1.5">
-            <span class="bg-black text-amber-400 px-1.5 py-0.5 rounded text-[10px]">E</span>
-            <span>Search Cabinet Memo</span>
-          </div>
-          <div class="w-20 h-32 rounded-xl border-2 border-dashed border-amber-400/50 bg-amber-500/10 flex items-center justify-center text-amber-300 text-2xl hover:bg-amber-500/20 transition-all">
-            <i class="fa-solid fa-file-invoice"></i>
-          </div>
-        </div>
-
-        <!-- Station 2: Security Mainframe Terminal (Center-Left) -->
-        <div id="prop-terminal" class="absolute left-[30%] bottom-[26%] z-20 flex flex-col items-center pointer-events-auto cursor-pointer" onclick="clickTerminal()">
-          <div id="prompt-terminal" class="hidden mb-2 px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(6,182,212,0.8)] prompt-floating flex items-center gap-1.5">
-            <span class="bg-black text-cyan-400 px-1.5 py-0.5 rounded text-[10px]">E</span>
-            <span>Access Terminal Log</span>
-          </div>
-          <div class="w-24 h-28 rounded-xl border-2 border-dashed border-cyan-400/50 bg-cyan-500/10 flex items-center justify-center text-cyan-300 text-2xl hover:bg-cyan-500/20 transition-all">
-            <i class="fa-solid fa-terminal"></i>
-          </div>
-        </div>
-
-        <!-- Station 3: Guard Checkpoint Glass Booth (Center-Right) -->
-        <div id="prop-guard" class="absolute left-[54%] bottom-[28%] z-20 flex flex-col items-center pointer-events-auto cursor-pointer" onclick="clickGuardWindow()">
-          <div id="prompt-guard" class="hidden mb-2 px-3 py-1 rounded-xl bg-purple-500 text-white font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(168,85,247,0.8)] prompt-floating flex items-center gap-1.5">
-            <span class="bg-black text-purple-300 px-1.5 py-0.5 rounded text-[10px]">E</span>
-            <span>Inspect Sleeping Guard</span>
-          </div>
-          <div class="w-28 h-28 rounded-xl border-2 border-dashed border-purple-400/50 bg-purple-500/10 flex items-center justify-center text-purple-300 text-2xl hover:bg-purple-500/20 transition-all">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-        </div>
-
-        <!-- Station 4: Heavy Pneumatic Blast Door & Keypad (Far-Right) -->
-        <div id="prop-door" class="absolute right-[6%] bottom-[16%] z-20 flex flex-col items-center pointer-events-auto cursor-pointer" onclick="clickDoor()">
-          <div id="prompt-door" class="hidden mb-2 px-3 py-1 rounded-xl bg-emerald-500 text-slate-950 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(16,185,129,0.8)] prompt-floating flex items-center gap-1.5">
-            <span class="bg-black text-emerald-300 px-1.5 py-0.5 rounded text-[10px]">E</span>
-            <span>Keypad Override [4927]</span>
-          </div>
-          <div id="blast-door-graphic" class="w-36 h-64 rounded-2xl border-4 border-slate-700 bg-slate-900/90 shadow-2xl flex flex-col items-center justify-center text-center p-2 relative overflow-hidden transition-all duration-700">
-            <!-- Door Sliding Panels -->
-            <div id="door-panel-left" class="absolute top-0 bottom-0 left-0 w-1/2 bg-slate-800 border-r border-slate-600 transition-transform duration-700"></div>
-            <div id="door-panel-right" class="absolute top-0 bottom-0 right-0 w-1/2 bg-slate-800 border-l border-slate-600 transition-transform duration-700"></div>
-            
-            <div class="relative z-10">
-              <div id="door-status-led" class="w-4 h-4 rounded-full bg-rose-500 mx-auto mb-2 shadow-[0_0_15px_rgba(244,63,94,0.9)] animate-pulse"></div>
-              <span class="text-[10px] font-code font-bold text-slate-300 block">BLAST DOOR 07</span>
-              <span id="door-status-text" class="text-[9px] font-code text-rose-400 font-bold uppercase">LOCKED</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ================= CONTROLLABLE PLAYER CHARACTER SPRITE ================= -->
-        <div id="player-avatar" class="absolute left-[20%] bottom-[14%] z-25 w-24 h-48 pointer-events-none transition-transform duration-75 flex flex-col items-center justify-end">
-          <!-- Shadow underneath -->
-          <div class="w-16 h-4 rounded-full bg-black/70 blur-[3px] mb-[-4px]"></div>
-          <!-- Anime Sprite Graphic -->
-          <img id="avatar-sprite" src="assets/sprite_maya.png" alt="Hero" class="w-full h-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]" />
-        </div>
-
-        <!-- Holographic A.R.I.A. Avatar Layer (Appears on intercom speech) -->
-        <div id="aria-container" class="hidden absolute right-[10%] top-[12%] z-25 w-72 h-96 pointer-events-none transition-all duration-700 opacity-0">
-          <img id="aria-img" src="assets/sprite_aria.png" alt="A.R.I.A." class="w-full h-full object-contain holo-glow" />
-        </div>
-
-        <!-- Suspension Harness Rig (Active in Phase 4) -->
-        <div id="suspension-rig" class="hidden absolute left-[45%] top-[10%] z-25 w-48 h-80 flex flex-col items-center pointer-events-none">
-          <!-- Ceiling Cable -->
-          <div class="w-1.5 h-28 bg-slate-400 shadow-md"></div>
-          <!-- Suspended Hero Sprite -->
-          <div id="suspended-char-box" class="relative w-36 h-56 -mt-2">
-            <img id="suspended-char-img" src="assets/sprite_maya.png" alt="Suspended Hero" class="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]" />
-          </div>
-        </div>
-
+          <span>[ E ] Access Terminal</span>
+        </button>
       </div>
 
-      <!-- Live Countdown Timer HUD -->
-      <div id="hud-timer-wrap" class="hidden absolute top-16 right-6 z-30 font-code p-3.5 rounded-2xl bg-black/90 border border-rose-500/60 backdrop-blur-md text-right shadow-[0_0_30px_rgba(239,68,68,0.3)]">
-        <div class="text-[10px] text-rose-400 font-bold uppercase tracking-widest flex items-center justify-end gap-1.5">
+      <!-- Prompt 3: Sleeping Guard -->
+      <div id="prompt-guard" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
+        <button onclick="clickGuardWindow()" class="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-950/90 border border-purple-500/70 text-purple-300 font-code font-bold text-xs uppercase shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:scale-105 active:scale-95 transition-all">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+          <span>[ E ] Inspect Guard</span>
+        </button>
+      </div>
+
+      <!-- Prompt 4: Blast Door -->
+      <div id="prompt-door" class="hidden absolute pointer-events-auto transform -translate-x-1/2 -translate-y-full transition-all duration-200">
+        <button onclick="clickDoor()" class="group flex items-center gap-2 px-3.5 py-2 rounded-xl bg-rose-950/90 border-2 border-rose-500 text-rose-300 font-code font-bold text-xs uppercase shadow-[0_0_25px_rgba(239,68,68,0.7)] hover:scale-105 active:scale-95 transition-all">
           <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-          ENFORCEMENT BREACH ETA
-        </div>
-        <div id="countdown-display" class="font-sci font-black text-3xl text-rose-500 tracking-wider">00:59</div>
-      </div>
-
-      <!-- On-Screen Virtual Directional Controller for Mobile / Touch -->
-      <div id="touch-controls" class="sm:hidden absolute left-4 bottom-24 z-30 flex flex-col items-center gap-1 opacity-70">
-        <button onmousedown="handleVirtualMove('up')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&uarr;</button>
-        <div class="flex gap-1">
-          <button onmousedown="handleVirtualMove('left')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&larr;</button>
-          <button onmousedown="handleVirtualMove('down')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&darr;</button>
-          <button onmousedown="handleVirtualMove('right')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&rarr;</button>
-        </div>
-      </div>
-
-      <!-- Bottom Visual Novel Dialogue & Notification Box -->
-      <div class="relative z-30 p-3 sm:p-5 w-full max-w-5xl mx-auto">
-        <div id="vn-textbox-area" onclick="onTextboxClick()" class="p-4 sm:p-5 rounded-2xl bg-slate-950/92 border-2 border-slate-700/80 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.9)] cursor-pointer hover:border-cyan-500/50 transition-all select-none">
-          
-          <div class="flex items-center justify-between mb-2">
-            <div id="nameplate" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-cyan-950 border border-cyan-500/50 text-cyan-300 font-code font-bold text-xs uppercase tracking-wider shadow-sm">
-              A.R.I.A. (AI INTERCOM)
-            </div>
-            <div class="text-[10px] font-code text-slate-400 flex items-center gap-2">
-              <span id="control-hint-badge" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">WASD: Walk | E: Interact</span>
-              <span class="hidden sm:inline text-slate-500">[CLICK / SPACEBAR TO ADVANCE]</span>
-              <i class="fa-solid fa-caret-down text-cyan-400 arrow-next text-sm"></i>
-            </div>
-          </div>
-
-          <div class="min-h-[50px]">
-            <p id="vn-text" class="text-sm sm:text-base text-slate-100 leading-relaxed font-sans font-normal">
-              Subject telemetry recognized. Heart rate accelerating. Initializing containment sequence.
-            </p>
-          </div>
-
-          <div id="vn-choices-container" class="mt-3 flex flex-wrap gap-2.5 pt-2 border-t border-slate-800/80">
-            <!-- Choice buttons injected dynamically -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modals: Cabinet, Terminal, Guard, Keypad -->
-    <!-- Modal 1: Filing Cabinet Note -->
-    <div id="cabinet-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div class="p-6 rounded-2xl bg-slate-900 border-2 border-amber-500/60 max-w-md w-full space-y-4 font-code text-center shadow-[0_0_40px_rgba(245,158,11,0.3)]">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-          <span class="text-xs text-amber-400 font-bold flex items-center gap-1.5">
-            <i class="fa-solid fa-file-invoice"></i> RESEARCH FACILITY LOG #07-D
-          </span>
-          <button onclick="closeCabinetModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
-        </div>
-        <div class="p-4 rounded-xl bg-black/70 border border-slate-800 text-left text-xs text-slate-300 space-y-3 font-mono">
-          <div class="flex items-center justify-between text-slate-500 text-[10px]">
-            <span>FACILITY PROTOCOL // RESTRICTED</span>
-            <span>CHAMBER 07</span>
-          </div>
-          <p class="leading-relaxed">
-            "Blast Door 07 override passcode for emergency containment trials: 
-            <span class="inline-block mx-1 font-bold text-emerald-400 text-base bg-emerald-950 px-2.5 py-0.5 rounded border border-emerald-500 tracking-widest">4927</span>"
-          </p>
-          <p class="text-[11px] text-rose-400 border-t border-slate-800 pt-2">
-            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Warning: Upon breach, aerosol sedative will flood the corridor.
-          </p>
-        </div>
-        <button onclick="closeCabinetModal()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider">
-          Got The Code (4927) &rarr; Walk to Blast Door
+          <span>[ E ] Unlock Blast Door</span>
         </button>
       </div>
     </div>
 
-    <!-- Modal 2: Mainframe Computer Terminal -->
-    <div id="terminal-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div class="p-6 rounded-2xl bg-slate-950 border-2 border-cyan-500/60 max-w-lg w-full space-y-4 font-code text-left shadow-[0_0_40px_rgba(6,182,212,0.3)] crt-grid">
-        <div class="flex items-center justify-between border-b border-cyan-900 pb-2">
-          <span class="text-xs text-cyan-400 font-bold"><i class="fa-solid fa-terminal mr-2"></i>FACILITY 07 TERMINAL // ROOT TELEMETRY</span>
-          <button onclick="closeTerminalModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
-        </div>
-        <div class="p-4 rounded-xl bg-black/80 border border-cyan-950 text-xs text-cyan-300 font-mono space-y-2">
-          <p class="text-slate-400">// SUBJECT TELEMETRY DIAGNOSTIC:</p>
-          <p id="terminal-subject-info">Subject 04: Restraints bypassed. Stress metrics: 142 BPM.</p>
-          <p class="text-amber-400">// SEDATIVE PROTOCOL: ACTIVE</p>
-          <p class="text-[11px] text-slate-300">Grade-4 Neuro-Sedative canisters armed in ceiling ventilation. Automated lockdown overrides all exits upon unauthorized hallway transit.</p>
-        </div>
-        <button onclick="closeTerminalModal()" class="w-full py-2.5 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-slate-950 font-bold text-xs uppercase tracking-wider">
-          Close Terminal Diagnostic
-        </button>
+    <!-- Live Countdown Timer HUD -->
+    <div id="hud-timer-wrap" class="hidden absolute top-16 right-6 z-30 font-code p-3.5 rounded-2xl bg-black/90 border border-rose-500/60 backdrop-blur-md text-right shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+      <div class="text-[10px] text-rose-400 font-bold uppercase tracking-widest flex items-center justify-end gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+        ENFORCEMENT BREACH ETA
+      </div>
+      <div id="countdown-display" class="font-sci font-black text-3xl text-rose-500 tracking-wider">00:59</div>
+    </div>
+
+    <!-- Control Mode Badge (Shows Real-Time Controls) -->
+    <div id="control-badge-wrap" class="absolute top-16 left-6 z-30 font-code">
+      <div id="control-hint-badge" class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-cyan-400 font-bold text-xs uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-2">
+        <i class="fa-solid fa-gamepad text-cyan-400"></i>
+        <span>3D CONTROLLABLE: WASD / Arrows to Walk</span>
       </div>
     </div>
 
-    <!-- Modal 3: Sleeping Guard View -->
-    <div id="guard-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div class="p-6 rounded-2xl bg-slate-900 border-2 border-purple-500/60 max-w-lg w-full space-y-4 font-code text-center shadow-[0_0_40px_rgba(168,85,247,0.3)]">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-          <span class="text-xs text-purple-400 font-bold"><i class="fa-solid fa-shield-halved mr-2"></i>OUTPOST CHECKPOINT // ARMORED ENFORCEMENT</span>
-          <button onclick="closeGuardModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
-        </div>
-        <div class="relative w-full h-52 rounded-xl overflow-hidden border border-purple-500/40 bg-slate-950">
-          <img src="assets/bg_guard_station.jpg" alt="Sleeping Guard" class="w-full h-full object-cover" />
-          <div class="absolute bottom-2 left-2 right-2 p-2 bg-black/85 rounded-lg text-left text-[11px] text-purple-200">
-            <span class="font-bold text-amber-400">Enforcement Officer:</span> Slumped forward asleep on control console. A green keycard rests inches from his gauntlet.
+    <!-- On-Screen Virtual Directional Controller for Mobile / Touch -->
+    <div id="touch-controls" class="sm:hidden absolute left-4 bottom-28 z-30 flex flex-col items-center gap-1 opacity-80">
+      <button onmousedown="handleVirtualMove('up')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&uarr;</button>
+      <div class="flex gap-1">
+        <button onmousedown="handleVirtualMove('left')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&larr;</button>
+        <button onmousedown="handleVirtualMove('down')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&darr;</button>
+        <button onmousedown="handleVirtualMove('right')" class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold text-lg active:bg-cyan-600">&rarr;</button>
+      </div>
+    </div>
+
+    <!-- Holographic A.R.I.A. Avatar Layer (Appears on intercom speech) -->
+    <div id="aria-container" class="hidden absolute right-[8%] top-[12%] z-25 w-72 h-96 pointer-events-none transition-all duration-700 opacity-0">
+      <img id="aria-img" src="assets/sprite_aria.png" alt="A.R.I.A." class="w-full h-full object-contain holo-glow" />
+    </div>
+
+    <!-- ================= VISUAL NOVEL BOTTOM DIALOGUE BAR ================= -->
+    <div id="dialogue-box-wrap" class="absolute bottom-4 left-4 right-4 sm:left-12 sm:right-12 z-30 flex flex-col gap-2">
+      <div id="vn-box" onclick="onTextboxClick()" class="relative p-5 sm:p-6 rounded-2xl bg-black/90 border border-slate-700/80 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.8)] cursor-pointer transition-all hover:border-slate-500">
+        
+        <!-- Character Nameplate & Tags -->
+        <div class="flex items-center justify-between mb-2">
+          <div id="nameplate" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-cyan-500/50 text-cyan-300 font-code font-bold text-xs uppercase tracking-wider">
+            FACILITY 07 MONITOR
+          </div>
+          <div class="text-[11px] font-code text-slate-400 flex items-center gap-1.5">
+            <span class="hidden sm:inline">CLICK OR PRESS SPACE TO ADVANCE</span>
+            <i class="fa-solid fa-play text-[9px] text-cyan-400 animate-bounce"></i>
           </div>
         </div>
-        <p class="text-xs text-slate-300 font-sans">
-          "He's knocked out asleep... but if the alarm sirens trigger, he'll seal the whole sector!"
+
+        <!-- Dialogue Text Body -->
+        <p id="vn-text" class="text-slate-100 text-sm sm:text-base leading-relaxed min-h-[48px] font-medium"></p>
+
+        <!-- Dynamic Choice Buttons Container -->
+        <div id="vn-choices-container" class="mt-4 flex flex-wrap gap-2.5"></div>
+      </div>
+    </div>
+
+    <!-- ================= HERO SELECTION SCREEN ================= -->
+    <div id="character-select-screen" class="absolute inset-0 z-50 flex flex-col items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-xl">
+      <div class="text-center max-w-2xl mb-8">
+        <div class="inline-block px-3.5 py-1 rounded-full bg-red-950/70 border border-red-500/50 text-red-400 font-code text-xs font-bold uppercase tracking-widest mb-3">
+          PROTOCOL INITIATION
+        </div>
+        <h2 class="font-title text-2xl sm:text-4xl font-extrabold text-white tracking-wider mb-2">CHOOSE YOUR PROTAGONIST</h2>
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+          Subject 04 Chapter 1 features two unique perspectives. Each character possesses distinct physical resistance, psychological attributes, and strategic escape capabilities.
         </p>
-        <button onclick="closeGuardModal()" class="w-full py-2.5 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs uppercase tracking-wider">
-          Return to Chamber (WASD to Move)
-        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+        <!-- Hero 1: Maya Carter -->
+        <div onclick="selectHero('maya')" class="group relative p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-red-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-xl overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-red-600/10 rounded-full blur-2xl group-hover:bg-red-600/25 transition-all"></div>
+          <div class="flex items-start gap-4">
+            <div class="w-20 h-28 rounded-xl bg-slate-800 border border-slate-700 overflow-hidden flex-shrink-0">
+              <img src="assets/sprite_maya.png" alt="Maya Carter" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-code font-bold text-red-400 uppercase tracking-wider">ATHLETIC RUNNER</span>
+                <span class="text-[10px] font-code px-2 py-0.5 rounded bg-red-950/60 text-red-300 border border-red-800/40">HIGH RESISTANCE</span>
+              </div>
+              <h3 class="font-title text-xl font-bold text-white mt-1">MAYA CARTER</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Aggressive and defiant. Relies on explosive physical momentum, sprint speed, and pain tolerance to force structural levers and kick objects.
+              </p>
+              <div class="mt-4 flex items-center gap-3 text-[11px] font-code text-slate-400">
+                <span>Speed: <strong class="text-white">★★★★★</strong></span>
+                <span>Strength: <strong class="text-white">★★★★☆</strong></span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full mt-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all">
+            DEPLOY AS MAYA
+          </button>
+        </div>
+
+        <!-- Hero 2: Chloe Vance -->
+        <div onclick="selectHero('chloe')" class="group relative p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border-2 border-slate-800 hover:border-cyan-500 cursor-pointer transition-all duration-300 hover:scale-[1.02] shadow-xl overflow-hidden">
+          <div class="absolute -right-6 -bottom-6 w-36 h-36 bg-cyan-600/10 rounded-full blur-2xl group-hover:bg-cyan-600/25 transition-all"></div>
+          <div class="flex items-start gap-4">
+            <div class="w-20 h-28 rounded-xl bg-slate-800 border border-slate-700 overflow-hidden flex-shrink-0">
+              <img src="assets/sprite_chloe.png" alt="Chloe Vance" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-code font-bold text-cyan-400 uppercase tracking-wider">STEM RESEARCHER</span>
+                <span class="text-[10px] font-code px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-300 border border-cyan-800/40">HIGH IQ</span>
+              </div>
+              <h3 class="font-title text-xl font-bold text-white mt-1">CHLOE VANCE</h3>
+              <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                Methodical and calculating. Dissects system telemetry, pinpoints camera blind spots, and calculates exact pendulum swing vectors to escape.
+              </p>
+              <div class="mt-4 flex items-center gap-3 text-[11px] font-code text-slate-400">
+                <span>Logic: <strong class="text-white">★★★★★</strong></span>
+                <span>Precision: <strong class="text-white">★★★★★</strong></span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full mt-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all">
+            DEPLOY AS CHLOE
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Modal 4: Digital Keypad -->
-    <div id="keypad-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div class="p-6 rounded-3xl bg-slate-950 border-2 border-cyan-500/80 max-w-sm w-full space-y-4 font-code text-center shadow-[0_0_50px_rgba(6,182,212,0.4)] crt-grid">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">BLAST DOOR OVERRIDE</span>
+    <!-- ================= MODAL: KEYPAD PUZZLE ================= -->
+    <div id="keypad-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="w-full max-w-sm p-6 rounded-3xl bg-slate-900 border-2 border-slate-700 shadow-2xl relative">
+        <button onclick="closeKeypadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="text-center mb-4">
+          <div class="text-xs font-code font-bold text-rose-400 uppercase tracking-widest mb-1 flex items-center justify-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            SECTOR 07 MAIN BLAST GATE
           </div>
-          <button onclick="closeKeypadModal()" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+          <h3 class="font-title text-lg font-bold text-white">ELECTRONIC SECURITY KEYPAD</h3>
+          <p class="text-[11px] text-slate-400 mt-1">Input 4-digit master bypass code found in Cabinet Memo:</p>
         </div>
 
-        <div class="p-3 bg-black rounded-2xl border-2 border-cyan-500/50 shadow-inner">
-          <div class="flex items-center justify-between text-[10px] text-cyan-500 mb-1 font-mono">
-            <span>SECURITY LEVEL 4</span>
+        <!-- LCD Screen -->
+        <div class="mb-5 p-4 rounded-2xl bg-black border border-cyan-500/50 shadow-inner">
+          <div class="flex items-center justify-between text-[10px] font-code text-cyan-400 uppercase tracking-wider mb-1">
+            <span>INPUT BUFFER</span>
             <span id="keypad-status-badge">AWAITING CODE</span>
           </div>
           <div id="keypad-screen" class="py-2 text-cyan-300 font-sci font-bold text-3xl tracking-[0.4em] text-center select-none">
@@ -479,144 +322,199 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 pt-1">
-          <button type="button" onclick="keypadType('1')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">1</button>
-          <button type="button" onclick="keypadType('2')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">2</button>
-          <button type="button" onclick="keypadType('3')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">3</button>
-
-          <button type="button" onclick="keypadType('4')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">4</button>
-          <button type="button" onclick="keypadType('5')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">5</button>
-          <button type="button" onclick="keypadType('6')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">6</button>
-
-          <button type="button" onclick="keypadType('7')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">7</button>
-          <button type="button" onclick="keypadType('8')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">8</button>
-          <button type="button" onclick="keypadType('9')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95 transition-all">9</button>
-
-          <button type="button" onclick="keypadReset()" class="py-3 rounded-xl bg-rose-950/70 border border-rose-700 text-rose-300 font-code font-bold text-xs uppercase active:scale-95">CLR</button>
-          <button type="button" onclick="keypadType('0')" class="py-3 rounded-xl bg-slate-900 hover:bg-cyan-950 border border-slate-700 text-white font-sci font-bold text-base active:scale-95">0</button>
-          <button type="button" onclick="keypadSubmit()" class="py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-code font-bold text-xs uppercase active:scale-95 shadow-[0_0_15px_rgba(16,185,129,0.5)]">ENTER</button>
+        <!-- Numeric Buttons -->
+        <div class="grid grid-cols-3 gap-2.5 mb-4">
+          <button onclick="keypadType('1')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">1</button>
+          <button onclick="keypadType('2')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">2</button>
+          <button onclick="keypadType('3')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">3</button>
+          <button onclick="keypadType('4')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">4</button>
+          <button onclick="keypadType('5')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">5</button>
+          <button onclick="keypadType('6')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">6</button>
+          <button onclick="keypadType('7')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">7</button>
+          <button onclick="keypadType('8')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">8</button>
+          <button onclick="keypadType('9')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">9</button>
+          <button onclick="keypadReset()" class="py-3.5 rounded-xl bg-rose-950/70 hover:bg-rose-900 border border-rose-800/50 text-rose-300 font-code font-bold text-sm uppercase active:scale-95 transition-all">CLR</button>
+          <button onclick="keypadType('0')" class="py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-lg active:scale-95 transition-all">0</button>
+          <button onclick="keypadSubmit()" class="py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-code font-bold text-sm uppercase shadow-[0_0_15px_rgba(16,185,129,0.4)] active:scale-95 transition-all">ENTER</button>
         </div>
-
-        <p class="text-[10px] text-cyan-400 font-mono">
-          Passcode: <span class="bg-cyan-950 px-1.5 py-0.5 rounded text-white border border-cyan-500/50">4927</span> (Type on PC Keyboard!)
-        </p>
       </div>
     </div>
 
-    <!-- ================= SCREEN 4: CHAPTER 1 COMPLETE ================= -->
-    <section id="screen-ending" class="hidden absolute inset-0 z-30 flex flex-col items-center justify-center p-6 bg-slate-950 bg-cover bg-center text-center select-none" style="background-image: url('assets/bg_observation_chamber.jpg');">
-      <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-md"></div>
-
-      <div class="relative z-10 max-w-xl w-full space-y-5 font-code">
-        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto text-3xl shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-          <i class="fa-solid fa-circle-check"></i>
+    <!-- ================= MODAL: RESEARCH CABINET MEMO ================= -->
+    <div id="cabinet-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-slate-900 border border-amber-500/50 shadow-2xl relative">
+        <button onclick="closeCabinetModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/60 flex items-center justify-center text-amber-400 text-lg">
+            <i class="fa-solid fa-folder-open"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-code text-amber-400 uppercase tracking-widest">FACILITY RECORD MEMORANDUM</span>
+            <h3 class="font-title text-base sm:text-lg font-bold text-white">INTERROGATION DIRECTIVE 07-B</h3>
+          </div>
         </div>
-
-        <div class="inline-block px-3.5 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-bold border border-emerald-500/40 uppercase tracking-widest">
-          CHAPTER 1 INDUCTION COMPLETE
+        <div class="p-4 rounded-2xl bg-black/70 border border-slate-800 font-code text-xs leading-relaxed text-slate-300 space-y-3">
+          <p><strong class="text-amber-400">SUBJECT:</strong> Subject 04 Induction & Escape Containment</p>
+          <p><strong class="text-amber-400">STATUS:</strong> High-risk containment test underway. Restraints tension monitored.</p>
+          <p class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-200">
+            <strong>NOTICE TO ENFORCEMENT:</strong> Primary blast gate code has been updated to <span class="text-amber-400 font-bold text-base px-2 py-0.5 rounded bg-black border border-amber-500/60">[ 4927 ]</span>. Do not leave terminals unattended.
+          </p>
+          <p class="text-slate-400 text-[11px]">
+            *Any subject reaching the outer corridor will be neutralized with aerosol neuro-sedatives and transferred to the Observation Suspension Harness.*
+          </p>
         </div>
-
-        <h2 class="font-title font-black text-3xl sm:text-4xl text-white">
-          CHAPTER 1 DELIVERED
-        </h2>
-
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans max-w-lg mx-auto">
-          Dressed in the skintight Facility 07 testing uniform, you watch as Blast Door 08 grinds open into the vast Primary Testing Grid. A.R.I.A. initiates Phase 2 trials...
-        </p>
-
-        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-left text-xs space-y-2 text-slate-300">
-          <div class="text-emerald-400 font-bold">// Real Character Control Engine Verified:</div>
-          <div>&bull; Real WASD / Arrow Key Physical Character Navigation</div>
-          <div>&bull; Proximity Interactive Stations (Cabinet, Mainframe, Guard, Blast Door)</div>
-          <div>&bull; Physical Walking to Blast Door &amp; Real Door Opening Animation</div>
-          <div>&bull; Observation Suspension Harness Scene with Pendulum Physics</div>
-          <div>&bull; Facility Testing Uniform Sequence &amp; Testing Grid Cliffhanger</div>
-        </div>
-
-        <div class="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
-          <button onclick="location.reload()" class="px-6 py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-colors shadow-lg">
-            Replay Chapter 1
-          </button>
-          <a href="https://naveed-portfolio-kappa.vercel.app/" target="_blank" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-colors flex items-center justify-center gap-1.5">
-            <span>Developer Portfolio</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-          </a>
-        </div>
+        <button onclick="closeCabinetModal()" class="w-full mt-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
+          CLOSE FILE & MEMORIZE CODE (4927)
+        </button>
       </div>
-    </section>
-
-  </main>
-
-  <!-- Client Specs & Log Modals -->
-  <div id="story-doc-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-    <div class="p-6 rounded-2xl bg-slate-900 border border-cyan-500/40 max-w-lg w-full max-h-[85vh] overflow-y-auto space-y-3 font-code text-xs">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-        <span class="font-title font-bold text-cyan-400 text-sm">CLIENT PROJECT SPECIFICATION</span>
-        <button onclick="closeStoryDoc()" class="text-slate-400 hover:text-white text-base">&times;</button>
-      </div>
-      <div class="space-y-3 text-slate-300 text-[11px] leading-relaxed font-sans">
-        <p><strong class="text-white font-code">1. Direct Controls:</strong> Real WASD and Arrow Keys direct movement across the chamber.</p>
-        <p><strong class="text-white font-code">2. Multi-Station Exploration:</strong> Walk to Cabinet (4927), Mainframe, Guard window, and Blast Door.</p>
-        <p><strong class="text-white font-code">3. Suspension Harness:</strong> Swing like a pendulum, bounce against tension straps, or kick table to drop scissors.</p>
-        <p><strong class="text-white font-code">4. Attire Change:</strong> Walk to exam table to equip testing jumpsuit.</p>
-      </div>
-      <button onclick="closeStoryDoc()" class="w-full py-2.5 rounded-xl bg-cyan-600 text-slate-950 font-bold mt-2">
-        Close Specification
-      </button>
     </div>
+
+    <!-- ================= MODAL: TERMINAL LOGS ================= -->
+    <div id="terminal-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-slate-900 border border-cyan-500/50 shadow-2xl relative">
+        <button onclick="closeTerminalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/60 flex items-center justify-center text-cyan-400 text-lg">
+            <i class="fa-solid fa-terminal"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-code text-cyan-400 uppercase tracking-widest">A.R.I.A. CORE TELEMETRY</span>
+            <h3 class="font-title text-base sm:text-lg font-bold text-white">MAINFRAME TERMINAL LOGS</h3>
+          </div>
+        </div>
+        <div class="p-4 rounded-2xl bg-black/80 border border-cyan-900/50 font-code text-xs text-cyan-300 space-y-2 max-h-60 overflow-y-auto">
+          <p class="text-slate-400">[02:14:09] RESTRAINT HYDRAULIC PRESSURE: 420 PSI</p>
+          <p class="text-slate-400">[02:14:30] NEURO-SEDATIVE CONCENTRATION: 0.04%</p>
+          <p class="text-rose-400">[02:15:02] ALERT: TENSION SPIKE DETECTED ON RESTRAINT STRAPS</p>
+          <p class="text-amber-400">[02:15:15] ENFORCEMENT AGENT J. VANCE IN POSITION (UNRESPONSIVE - SLEEP CYCLE)</p>
+          <p class="text-cyan-400 font-bold">[02:15:45] PROTOCOL 04: OBSERVATION SUSPENSION RIG ARMED IN CHAMBER 08</p>
+        </div>
+        <button onclick="closeTerminalModal()" class="w-full mt-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
+          CLOSE TERMINAL
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: SLEEPING GUARD ================= -->
+    <div id="guard-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+      <div class="w-full max-w-md p-6 sm:p-8 rounded-3xl bg-slate-900 border border-purple-500/50 shadow-2xl relative">
+        <button onclick="closeGuardModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-purple-950/80 border border-purple-500/60 flex items-center justify-center text-purple-400 text-lg">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-code text-purple-400 uppercase tracking-widest">SECURITY OBSERVATION</span>
+            <h3 class="font-title text-base sm:text-lg font-bold text-white">SLEEPING ENFORCEMENT AGENT</h3>
+          </div>
+        </div>
+        <div class="w-full h-44 rounded-2xl bg-black border border-slate-700 overflow-hidden mb-4 relative">
+          <img src="assets/bg_guard_station.jpg" alt="Sleeping Guard" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-purple-950/20"></div>
+          <div class="absolute bottom-2 left-2 px-2.5 py-1 rounded-md bg-black/80 text-[10px] font-code text-purple-300 border border-purple-500/40">
+            STATUS: ASLEEP (NO MOVEMENT DETECTED)
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 font-medium leading-relaxed">
+          The armored guard is slumped over the console, exhausted from double shifts. His radio is crackling with static. You must stay quiet while moving past to avoid triggering his proximity visor!
+        </p>
+        <button onclick="closeGuardModal()" class="w-full mt-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
+          STEP AWAY CAREFULLY
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: STORY BIBLE & OUTLINE ================= -->
+    <div id="story-doc-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="w-full max-w-2xl max-h-[85vh] p-6 sm:p-8 rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl flex flex-col relative">
+        <button onclick="closeStoryDoc()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-950/80 border border-amber-500/50 flex items-center justify-center text-amber-400">
+            <i class="fa-solid fa-file-lines text-lg"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-code text-amber-400 uppercase tracking-widest">CHAPTER 1 DESIGN SPECIFICATION</span>
+            <h3 class="font-title text-lg font-bold text-white">SUBJECT 04 : FULL GAME OVERVIEW</h3>
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto pr-2 space-y-4 text-xs font-sans text-slate-300 leading-relaxed">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <h4 class="font-bold text-white text-sm mb-1 text-cyan-400">Game Architecture</h4>
+            <p>Adult psychological sci-fi visual novel & 3D real-time controllable exploration built on Ren'Py 8.x for Windows PC / Steam, with full WebGL 3D browser prototype integration.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <h4 class="font-bold text-white text-sm mb-1 text-amber-400">Chapter 1 Scope & Milestones</h4>
+            <ul class="list-disc pl-5 space-y-1.5 text-slate-300">
+              <li><strong>Scene 1:</strong> First-person awakening in Interrogation Chamber 07, restraint struggle.</li>
+              <li><strong>Scene 2:</strong> 3D controllable movement with WASD, searching filing cabinet, reading terminal, inspecting sleeping guard.</li>
+              <li><strong>Scene 3:</strong> 60-Second lockdown timer, entering keypad code 4927, blast doors sliding open, corridor breach.</li>
+              <li><strong>Scene 4:</strong> Observation Chamber suspension harness sequence with real pendulum physics, violent bouncing, and momentum scissor kicking.</li>
+              <li><strong>Scene 5:</strong> Civilian clothing incineration and high-tech facility uniform equipment sequence.</li>
+            </ul>
+          </div>
+        </div>
+        <button onclick="closeStoryDoc()" class="mt-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-code font-bold text-xs uppercase tracking-wider transition-all">
+          CLOSE STORY SPEC
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: DIALOGUE LOG ================= -->
+    <div id="log-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+      <div class="w-full max-w-xl max-h-[80vh] p-6 rounded-3xl bg-slate-900 border border-slate-700 shadow-2xl flex flex-col relative">
+        <button onclick="closeLogModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 class="font-title text-base font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> DIALOGUE HISTORY
+        </h3>
+        <div id="log-content-box" class="flex-1 overflow-y-auto space-y-3 font-code text-xs text-slate-300 pr-2"></div>
+      </div>
+    </div>
+
   </div>
 
-  <div id="log-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-700 max-w-lg w-full max-h-[80vh] flex flex-col font-code text-xs">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
-        <span class="font-bold text-cyan-400 text-sm">DIALOGUE HISTORY LOG</span>
-        <button onclick="closeLogModal()" class="text-slate-400 hover:text-white text-base">&times;</button>
-      </div>
-      <div id="log-content" class="flex-1 overflow-y-auto space-y-2.5 pr-2 text-slate-300 font-sans text-xs"></div>
-      <button onclick="closeLogModal()" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold mt-3">
-        Close History
-      </button>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT ACTION-ADVENTURE GAME ENGINE -->
+  <!-- ================= JAVASCRIPT GAME LOGIC & THREE.JS 3D ENGINE ================= -->
   <script>
-    // Audio Synthesizer
+    // --- State Variables ---
+    let hero = 'maya'; // 'maya' or 'chloe'
+    let currentPhase = 'selection'; // 'selection', 'awakening', 'movement', 'suspension', 'complete'
+    let audioEnabled = true;
     let audioCtx = null;
-    let sfxOn = true;
-    let ambientOsc = null;
-    let ambientGain = null;
+    let enteredCode = '';
+    let countdownVal = 60;
+    let countdownTimer = null;
+    let dialogueHistory = [];
+    let keysPressed = {};
+    let isMoving = false;
 
+    // --- Audio Synthesis via Web Audio API ---
     function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        startAmbientDrone();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
       }
     }
 
-    function startAmbientDrone() {
-      if (!audioCtx || ambientOsc) return;
-      try {
-        ambientOsc = audioCtx.createOscillator();
-        ambientGain = audioCtx.createGain();
-        ambientOsc.type = 'sine';
-        ambientOsc.frequency.setValueAtTime(55, audioCtx.currentTime);
-        ambientGain.gain.setValueAtTime(0.025, audioCtx.currentTime);
-        ambientOsc.connect(ambientGain);
-        ambientGain.connect(audioCtx.destination);
-        ambientOsc.start();
-      } catch (e) {}
-    }
-
     function playBeep(freq, type = 'sine', duration = 0.1, gainVal = 0.08) {
-      if (!sfxOn || !audioCtx) return;
+      if (!audioEnabled || !audioCtx) return;
       try {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = type;
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
         gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start();
@@ -624,29 +522,19 @@
       } catch (e) {}
     }
 
+    let lastStepSoundTime = 0;
     function playFootstep() {
-      if (!sfxOn || !audioCtx) return;
-      try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(110 + Math.random() * 25, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.06);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.06);
-      } catch (e) {}
+      const now = performance.now();
+      if (now - lastStepSoundTime > 260) {
+        lastStepSoundTime = now;
+        playBeep(90 + Math.random() * 30, 'square', 0.06, 0.04);
+      }
     }
 
     function toggleAudio() {
-      initAudio();
-      sfxOn = !sfxOn;
-      document.getElementById('audio-icon').className = sfxOn ? 'fa-solid fa-volume-high text-cyan-400' : 'fa-solid fa-volume-xmark text-slate-500';
-      document.getElementById('audio-text').textContent = sfxOn ? 'AUDIO ON' : 'AUDIO OFF';
-      if (ambientGain) ambientGain.gain.setValueAtTime(sfxOn ? 0.025 : 0, audioCtx.currentTime);
-      if (sfxOn) playBeep(600, 'sine', 0.15);
+      audioEnabled = !audioEnabled;
+      document.getElementById('audio-icon').className = audioEnabled ? 'fa-solid fa-volume-high text-cyan-400' : 'fa-solid fa-volume-xmark text-rose-500';
+      document.getElementById('btn-audio').querySelector('span').textContent = audioEnabled ? 'SFX: ON' : 'SFX: OFF';
     }
 
     function toggleFullScreen() {
@@ -657,200 +545,619 @@
       }
     }
 
-    // Story & Gameplay States
-    let hero = 'maya';
-    let currentPhase = 'intro'; // 'intro', 'movement', 'suspension', 'attire', 'ending'
-    let storyIndex = 0;
-    let countdownVal = 59;
-    let countdownTimer = null;
-    let enteredCode = '';
-    let typewriterTimer = null;
-    let isTyping = false;
-    let currentFullText = '';
-    const dialogueHistory = [];
-
-    // Player Movement Coordinates (% of viewport)
-    let playerX = 20; // 5% to 85%
-    let playerY = 14; // 10% to 22%
-    let playerFacing = 1; // 1 = right, -1 = left
-    let isMoving = false;
-    let lastStepTime = 0;
-    const keysPressed = {};
-
-    const dialogueIntroMaya = [
-      { speaker: "???", nameColor: "text-slate-400", text: "Ugh... my skull is throbbing... where the hell am I?" },
-      { speaker: "MAYA", nameColor: "text-red-400", text: "Heavy leather straps locking down my wrists and torso?! I'm strapped to an interrogation chair!" },
-      { speaker: "A.R.I.A.", showAria: true, nameColor: "text-cyan-400", text: "\"Subject recognized: Maya Carter. Muscle tension elevated. Welcome to Testing Chamber 07.\"" },
-      { speaker: "MAYA", nameColor: "text-red-400", text: "\"Who the hell are you?! You've got five seconds to undo these buckles before I break this room to pieces!\"" },
-      { speaker: "A.R.I.A.", showAria: true, nameColor: "text-cyan-400", text: "\"Resistance is statistically futile, Maya. An armored enforcement officer is stationed outside in the security booth. Arrival in 60 seconds.\"" },
-      { 
-        speaker: "MAYA", 
-        nameColor: "text-red-400", 
-        text: "I'm not sitting here like a helpless lab rat! I'm going to snap these buckles and walk out of this cage!",
-        choices: [
-          { text: "💥 Strain with full body weight to snap leather buckles!", action: "breakBinds" }
-        ]
-      }
-    ];
-
-    const dialogueIntroChloe = [
-      { speaker: "???", nameColor: "text-slate-400", text: "O-ow... my glasses... where am I? Everything is spinning..." },
-      { speaker: "CHLOE", nameColor: "text-cyan-400", text: "Heavy leather straps locking down my wrists and waist?! Is this another cruel campus prank?!" },
-      { speaker: "A.R.I.A.", showAria: true, nameColor: "text-cyan-400", text: "\"Subject recognized: Chloe Vance. Cortical resonance within experimental baseline. Welcome to Testing Chamber 07.\"" },
-      { speaker: "CHLOE", nameColor: "text-cyan-400", text: "\"W-who is speaking?! I haven't done anything to anyone! Please unbuckle me!\"" },
-      { speaker: "A.R.I.A.", showAria: true, nameColor: "text-cyan-400", text: "\"Compliance is mandatory, Chloe. An armored enforcement escort is stationed at the outer checkpoint. Arrival in 60 seconds.\"" },
-      { 
-        speaker: "CHLOE", 
-        nameColor: "text-cyan-400", 
-        text: "Deep breaths, Chloe... think! The mechanical latch on the right armrest has an exposed release pin track!",
-        choices: [
-          { text: "🔧 Slide release pin along the mechanical latch track!", action: "breakBinds" }
-        ]
-      }
-    ];
-
     function showStoryDoc() { document.getElementById('story-doc-modal').classList.remove('hidden'); }
     function closeStoryDoc() { document.getElementById('story-doc-modal').classList.add('hidden'); }
-
     function openLogModal() {
-      const box = document.getElementById('log-content');
-      box.innerHTML = dialogueHistory.length === 0 
-        ? '<p class="text-slate-500 italic">No dialogue logged yet.</p>'
-        : dialogueHistory.map(entry => `
-          <div class="p-2 rounded bg-slate-950 border border-slate-800">
-            <span class="font-bold text-cyan-400 text-[11px]">${entry.speaker}:</span>
-            <p class="text-slate-200 mt-0.5">${entry.text}</p>
-          </div>
-        `).join('');
+      const box = document.getElementById('log-content-box');
+      box.innerHTML = '';
+      dialogueHistory.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'p-2.5 rounded-lg bg-black/60 border border-slate-800';
+        div.innerHTML = `<span class="font-bold text-cyan-400">${item.speaker}:</span> <span class="text-slate-200">${item.text}</span>`;
+        box.appendChild(div);
+      });
       document.getElementById('log-modal').classList.remove('hidden');
     }
     function closeLogModal() { document.getElementById('log-modal').classList.add('hidden'); }
 
-    function startCharacterSelection() {
-      initAudio();
-      playBeep(520, 'triangle', 0.2);
-      document.getElementById('screen-title').classList.add('hidden');
-      document.getElementById('screen-char-select').classList.remove('hidden');
+    // ================= THREE.JS 3D ENGINE SETUP =================
+    let scene, camera, renderer;
+    let playerGroup, bodyGroup;
+    let leftShoulder, rightShoulder, leftElbow, rightElbow;
+    let leftHip, rightHip, leftKnee, rightKnee;
+    let leftDoorMesh, rightDoorMesh;
+    let stationPoints = {};
+    let ceilingHarnessGroup, cableMesh;
+    let redAlarmLight;
+    let walkCycle = 0;
+    let targetYaw = 0;
+
+    function init3D() {
+      const container = document.getElementById('canvas-container');
+      const canvas = document.getElementById('webgl-canvas');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // 1. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x020617);
+      scene.fog = new THREE.FogExp2(0x020617, 0.035);
+
+      // 2. Camera (Isometric / Third-Person View)
+      camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+      camera.position.set(0, 10.5, 15);
+      camera.lookAt(0, 1.2, 0);
+
+      // 3. Renderer
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      // 4. Lighting
+      const ambient = new THREE.AmbientLight(0x334155, 1.2);
+      scene.add(ambient);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
+      dirLight.position.set(5, 14, 8);
+      dirLight.castShadow = true;
+      dirLight.shadow.mapSize.width = 1024;
+      dirLight.shadow.mapSize.height = 1024;
+      scene.add(dirLight);
+
+      redAlarmLight = new THREE.PointLight(0xef4444, 0, 25);
+      redAlarmLight.position.set(0, 8, 0);
+      scene.add(redAlarmLight);
+
+      // Cyan terminal glow
+      const cyanGlow = new THREE.PointLight(0x06b6d4, 2, 8);
+      cyanGlow.position.set(-4, 2.5, -2.5);
+      scene.add(cyanGlow);
+
+      // 5. Environment Mesh (Room, Floor, Walls)
+      build3DEnvironment();
+
+      // 6. Interactive 3D Stations
+      build3DStations();
+
+      // 7. Player 3D Articulated Rig
+      build3DPlayer();
+
+      // Handle Resize
+      window.addEventListener('resize', onWindowResize);
     }
 
+    function onWindowResize() {
+      const container = document.getElementById('canvas-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    // Build Sci-Fi Room
+    function build3DEnvironment() {
+      // Floor with grid tiles
+      const floorGeo = new THREE.PlaneGeometry(32, 18);
+      const floorMat = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        roughness: 0.2,
+        metalness: 0.8
+      });
+      const floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // Floor Grid Lines
+      const grid = new THREE.GridHelper(32, 32, 0x06b6d4, 0x1e293b);
+      grid.position.y = 0.01;
+      scene.add(grid);
+
+      // Back Wall
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x090d16, roughness: 0.5, metalness: 0.6 });
+      const backWallGeo = new THREE.BoxGeometry(32, 8, 0.6);
+      const backWall = new THREE.Mesh(backWallGeo, wallMat);
+      backWall.position.set(0, 4, -6);
+      backWall.receiveShadow = true;
+      scene.add(backWall);
+
+      // Neon Wall Stripe
+      const stripeGeo = new THREE.BoxGeometry(32, 0.15, 0.05);
+      const stripeMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+      const stripe = new THREE.Mesh(stripeGeo, stripeMat);
+      stripe.position.set(0, 5, -5.68);
+      scene.add(stripe);
+    }
+
+    // Build 3D Stations in Room
+    function build3DStations() {
+      // Station 1: Research Cabinet (-10, 0, -2)
+      const cabGroup = new THREE.Group();
+      cabGroup.position.set(-10, 0, -2);
+      const cabMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
+      const cabMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 3.5, 1.2), cabMat);
+      cabMesh.position.y = 1.75;
+      cabMesh.castShadow = true;
+      cabGroup.add(cabMesh);
+
+      // Amber Holo Beacon above cabinet
+      const amberBeacon = new THREE.Mesh(
+        new THREE.OctahedronGeometry(0.35),
+        new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true })
+      );
+      amberBeacon.position.y = 4.2;
+      amberBeacon.name = 'amberBeacon';
+      cabGroup.add(amberBeacon);
+      scene.add(cabGroup);
+      stationPoints.cabinet = { pos: new THREE.Vector3(-10, 0, -2), promptEl: 'prompt-cabinet' };
+
+      // Station 2: Mainframe Terminal (-4, 0, -3)
+      const termGroup = new THREE.Group();
+      termGroup.position.set(-4, 0, -3);
+      const deskMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.2 });
+      const desk = new THREE.Mesh(new THREE.BoxGeometry(3, 1.6, 1.4), deskMat);
+      desk.position.y = 0.8;
+      desk.castShadow = true;
+      termGroup.add(desk);
+
+      // Curved Screen
+      const screenMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+      const scrn = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.2, 0.2), screenMat);
+      scrn.position.set(0, 2.2, 0.2);
+      termGroup.add(scrn);
+      scene.add(termGroup);
+      stationPoints.terminal = { pos: new THREE.Vector3(-4, 0, -3), promptEl: 'prompt-terminal' };
+
+      // Station 3: Sleeping Guard Outpost (3, 0, -3)
+      const guardGroup = new THREE.Group();
+      guardGroup.position.set(3, 0, -3);
+      const barDesk = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.8, 1.5), deskMat);
+      barDesk.position.y = 0.9;
+      guardGroup.add(barDesk);
+
+      // 3D Sleeping Guard Figure
+      const guardTorsoMat = new THREE.MeshStandardMaterial({ color: 0x3b0764 });
+      const guardHeadMat = new THREE.MeshStandardMaterial({ color: 0x1e1b4b, metalness: 0.8 });
+      const gTorso = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.4, 0.8), guardTorsoMat);
+      gTorso.position.set(0, 1.6, -0.2);
+      gTorso.rotation.x = 0.45; // Slumped forward sleeping
+      guardGroup.add(gTorso);
+
+      const gHead = new THREE.Mesh(new THREE.SphereGeometry(0.45, 12, 12), guardHeadMat);
+      gHead.position.set(0, 2.3, 0.1);
+      guardGroup.add(gHead);
+      scene.add(guardGroup);
+      stationPoints.guard = { pos: new THREE.Vector3(3, 0, -3), promptEl: 'prompt-guard' };
+
+      // Station 4: Reinforced Blast Door (11, 0, 0)
+      const doorGroup = new THREE.Group();
+      doorGroup.position.set(11, 0, 0);
+
+      // Frame
+      const frameMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.9, roughness: 0.3 });
+      const frameL = new THREE.Mesh(new THREE.BoxGeometry(0.8, 6, 2), frameMat);
+      frameL.position.set(-2.4, 3, 0);
+      doorGroup.add(frameL);
+      const frameR = new THREE.Mesh(new THREE.BoxGeometry(0.8, 6, 2), frameMat);
+      frameR.position.set(2.4, 3, 0);
+      doorGroup.add(frameR);
+      const frameTop = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.8, 2), frameMat);
+      frameTop.position.set(0, 5.6, 0);
+      doorGroup.add(frameTop);
+
+      // Hydraulic Sliding Panels
+      const panelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.2 });
+      leftDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 5.2, 0.4), panelMat);
+      leftDoorMesh.position.set(-1, 2.6, 0);
+      doorGroup.add(leftDoorMesh);
+
+      rightDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(2, 5.2, 0.4), panelMat);
+      rightDoorMesh.position.set(1, 2.6, 0);
+      doorGroup.add(rightDoorMesh);
+
+      // Door LED status light
+      const led = new THREE.Mesh(new THREE.SphereGeometry(0.2, 8, 8), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+      led.position.set(0, 5.2, 1.05);
+      led.name = 'doorLed';
+      doorGroup.add(led);
+
+      scene.add(doorGroup);
+      stationPoints.door = { pos: new THREE.Vector3(10, 0, 0), promptEl: 'prompt-door' };
+
+      // Suspension Chamber Rig (At Center, hidden initially)
+      ceilingHarnessGroup = new THREE.Group();
+      ceilingHarnessGroup.position.set(0, 0, 0);
+      ceilingHarnessGroup.visible = false;
+
+      // Cable from ceiling
+      const cableGeo = new THREE.CylinderGeometry(0.04, 0.04, 4.5);
+      const cableMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.9 });
+      cableMesh = new THREE.Mesh(cableGeo, cableMat);
+      cableMesh.position.y = 5.5;
+      ceilingHarnessGroup.add(cableMesh);
+
+      // Examination table nearby
+      const tableGeo = new THREE.BoxGeometry(3.5, 1.2, 2.0);
+      const tableMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8 });
+      const table = new THREE.Mesh(tableGeo, tableMat);
+      table.position.set(3.5, 0.6, 0.5);
+      ceilingHarnessGroup.add(table);
+      scene.add(ceilingHarnessGroup);
+    }
+
+    // ================= 3D ARTICULATED HUMANOID CHARACTER BUILDER =================
+    function build3DPlayer() {
+      if (playerGroup) scene.remove(playerGroup);
+
+      playerGroup = new THREE.Group();
+      playerGroup.position.set(-8, 0, 1.5);
+
+      bodyGroup = new THREE.Group();
+      playerGroup.add(bodyGroup);
+
+      const isMaya = hero === 'maya';
+      const skinColor = 0xffdfc4;
+      const skinMat = new THREE.MeshStandardMaterial({ color: skinColor, roughness: 0.6 });
+
+      // Outfits
+      const topColor = isMaya ? 0xd9383a : 0x06b6d4; // Red combat tank vs Cyan STEM jacket
+      const pantsColor = isMaya ? 0x18181b : 0x0f172a;
+      const hairColor = isMaya ? 0x271e1b : 0xd4a373; // Dark brunette vs Blonde
+
+      const topMat = new THREE.MeshStandardMaterial({ color: topColor, roughness: 0.4 });
+      const pantsMat = new THREE.MeshStandardMaterial({ color: pantsColor, roughness: 0.5 });
+      const hairMat = new THREE.MeshStandardMaterial({ color: hairColor, roughness: 0.6 });
+      const bootMat = new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.3 });
+
+      // 1. Torso
+      const chestMesh = new THREE.Mesh(new THREE.BoxGeometry(0.85, 1.1, 0.5), topMat);
+      chestMesh.position.y = 1.65;
+      chestMesh.castShadow = true;
+      bodyGroup.add(chestMesh);
+
+      // 2. Head & Hair
+      const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), skinMat);
+      headMesh.position.y = 2.45;
+      headMesh.castShadow = true;
+      bodyGroup.add(headMesh);
+
+      // Hair Mesh
+      const hairGeo = new THREE.BoxGeometry(0.8, 0.45, 0.75);
+      const hair = new THREE.Mesh(hairGeo, hairMat);
+      hair.position.set(0, 2.6, -0.05);
+      bodyGroup.add(hair);
+
+      if (isMaya) {
+        // Ponytail
+        const ponytail = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.2, 0.9), hairMat);
+        ponytail.position.set(0, 2.3, -0.45);
+        ponytail.rotation.x = 0.4;
+        bodyGroup.add(ponytail);
+      }
+
+      // 3. Left Arm (Shoulder Pivot)
+      leftShoulder = new THREE.Group();
+      leftShoulder.position.set(-0.58, 2.05, 0);
+      const lArmMesh = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.65, 0.24), topMat);
+      lArmMesh.position.y = -0.32;
+      leftShoulder.add(lArmMesh);
+
+      leftElbow = new THREE.Group();
+      leftElbow.position.set(0, -0.65, 0);
+      const lForearm = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.55, 0.22), skinMat);
+      lForearm.position.y = -0.27;
+      leftElbow.add(lForearm);
+      leftShoulder.add(leftElbow);
+      bodyGroup.add(leftShoulder);
+
+      // 4. Right Arm (Shoulder Pivot)
+      rightShoulder = new THREE.Group();
+      rightShoulder.position.set(0.58, 2.05, 0);
+      const rArmMesh = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.65, 0.24), topMat);
+      rArmMesh.position.y = -0.32;
+      rightShoulder.add(rArmMesh);
+
+      rightElbow = new THREE.Group();
+      rightElbow.position.set(0, -0.65, 0);
+      const rForearm = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.55, 0.22), skinMat);
+      rForearm.position.y = -0.27;
+      rightElbow.add(rForearm);
+      rightShoulder.add(rightElbow);
+      bodyGroup.add(rightShoulder);
+
+      // 5. Left Leg (Hip Pivot)
+      leftHip = new THREE.Group();
+      leftHip.position.set(-0.25, 1.1, 0);
+      const lThigh = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.32), pantsMat);
+      lThigh.position.y = -0.32;
+      leftHip.add(lThigh);
+
+      leftKnee = new THREE.Group();
+      leftKnee.position.set(0, -0.65, 0);
+      const lCalf = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.55, 0.28), bootMat);
+      lCalf.position.y = -0.27;
+      leftKnee.add(lCalf);
+      leftHip.add(leftKnee);
+      bodyGroup.add(leftHip);
+
+      // 6. Right Leg (Hip Pivot)
+      rightHip = new THREE.Group();
+      rightHip.position.set(0.25, 1.1, 0);
+      const rThigh = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.65, 0.32), pantsMat);
+      rThigh.position.y = -0.32;
+      rightHip.add(rThigh);
+
+      rightKnee = new THREE.Group();
+      rightKnee.position.set(0, -0.65, 0);
+      const rCalf = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.55, 0.28), bootMat);
+      rCalf.position.y = -0.27;
+      rightKnee.add(rCalf);
+      rightHip.add(rightKnee);
+      bodyGroup.add(rightHip);
+
+      // Shadow under character
+      const shadowGeo = new THREE.PlaneGeometry(1.6, 1.6);
+      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.45 });
+      const charShadow = new THREE.Mesh(shadowGeo, shadowMat);
+      charShadow.rotation.x = -Math.PI / 2;
+      charShadow.position.y = 0.02;
+      playerGroup.add(charShadow);
+
+      scene.add(playerGroup);
+    }
+
+    // ================= 3D ANIMATION & RENDER LOOP =================
+    let lastTime = 0;
+    let suspensionAction = null;
+    let suspensionTime = 0;
+
+    function animate3D(timestamp) {
+      requestAnimationFrame(animate3D);
+
+      const delta = Math.min((timestamp - lastTime) / 1000, 0.1);
+      lastTime = timestamp;
+
+      // Rotate decorative beacon
+      const beacon = scene.getObjectByName('amberBeacon');
+      if (beacon) beacon.rotation.y += delta * 1.5;
+
+      // Pulse red alarm if active
+      if (countdownVal <= 20 && currentPhase === 'movement') {
+        redAlarmLight.intensity = Math.abs(Math.sin(timestamp * 0.006)) * 2.5;
+      }
+
+      // --- MOVEMENT PHASE: 3D CHARACTER RUN / WALK CYCLE ---
+      if (currentPhase === 'movement') {
+        let vx = 0;
+        let vz = 0;
+        const speed = hero === 'maya' ? 7.2 : 6.4; // Maya has athletic sprint
+
+        if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) vx -= 1;
+        if (keysPressed['KeyD'] || keysPressed['ArrowRight']) vx += 1;
+        if (keysPressed['KeyW'] || keysPressed['ArrowUp']) vz -= 1;
+        if (keysPressed['KeyS'] || keysPressed['ArrowDown']) vz += 1;
+
+        if (vx !== 0 || vz !== 0) {
+          isMoving = true;
+          // Normalize diagonal movement
+          const len = Math.hypot(vx, vz);
+          vx = (vx / len) * speed * delta;
+          vz = (vz / len) * speed * delta;
+
+          // Apply position with boundary constraints
+          playerGroup.position.x = Math.max(-13, Math.min(12.5, playerGroup.position.x + vx));
+          playerGroup.position.z = Math.max(-4.5, Math.min(4.5, playerGroup.position.z + vz));
+
+          // Calculate Facing Direction Angle
+          targetYaw = Math.atan2(vx, vz);
+          playerGroup.rotation.y = THREE.MathUtils.lerp(playerGroup.rotation.y, targetYaw, 0.22);
+
+          // Animated Walk Cycle Kinematics (Hands and Legs Swing!)
+          walkCycle += delta * (speed * 1.6);
+
+          // Arms Swing in Opposition to Legs
+          leftShoulder.rotation.x = Math.sin(walkCycle) * 0.75;
+          rightShoulder.rotation.x = -Math.sin(walkCycle) * 0.75;
+          leftElbow.rotation.x = Math.max(0, Math.sin(walkCycle) * 0.45) + 0.25;
+          rightElbow.rotation.x = Math.max(0, -Math.sin(walkCycle) * 0.45) + 0.25;
+
+          // Legs Stride & Knees Bend
+          leftHip.rotation.x = -Math.sin(walkCycle) * 0.85;
+          rightHip.rotation.x = Math.sin(walkCycle) * 0.85;
+          leftKnee.rotation.x = Math.max(0, Math.sin(walkCycle - Math.PI / 4) * 0.9);
+          rightKnee.rotation.x = Math.max(0, -Math.sin(walkCycle - Math.PI / 4) * 0.9);
+
+          // Body Bobs up and down with stride
+          bodyGroup.position.y = Math.abs(Math.sin(walkCycle)) * 0.16;
+          bodyGroup.rotation.z = Math.sin(walkCycle) * 0.05;
+
+          playFootstep();
+        } else {
+          isMoving = false;
+          // Smoothly return limbs to idle pose
+          leftShoulder.rotation.x = THREE.MathUtils.lerp(leftShoulder.rotation.x, 0, 0.15);
+          rightShoulder.rotation.x = THREE.MathUtils.lerp(rightShoulder.rotation.x, 0, 0.15);
+          leftElbow.rotation.x = THREE.MathUtils.lerp(leftElbow.rotation.x, 0.1, 0.15);
+          rightElbow.rotation.x = THREE.MathUtils.lerp(rightElbow.rotation.x, 0.1, 0.15);
+          leftHip.rotation.x = THREE.MathUtils.lerp(leftHip.rotation.x, 0, 0.15);
+          rightHip.rotation.x = THREE.MathUtils.lerp(rightHip.rotation.x, 0, 0.15);
+          leftKnee.rotation.x = THREE.MathUtils.lerp(leftKnee.rotation.x, 0, 0.15);
+          rightKnee.rotation.x = THREE.MathUtils.lerp(rightKnee.rotation.x, 0, 0.15);
+
+          // Idle breathing
+          bodyGroup.position.y = Math.sin(timestamp * 0.003) * 0.04;
+          bodyGroup.scale.y = 1 + Math.sin(timestamp * 0.003) * 0.015;
+        }
+
+        // Camera smoothly follows player in X plane
+        camera.position.x = THREE.MathUtils.lerp(camera.position.x, playerGroup.position.x * 0.6, 0.08);
+        camera.lookAt(playerGroup.position.x * 0.6, 1.4, 0);
+
+        // Check 3D Station Proximity
+        check3DProximity();
+
+        // Check if player walked through opened blast door
+        if (playerGroup.position.x >= 10.5 && leftDoorMesh.position.x <= -2.5) {
+          triggerSedativeBlackout(true);
+        }
+      }
+
+      // --- PHASE 4: SUSPENSION RIG PENDULUM INTERACTION ---
+      if (currentPhase === 'suspension' && suspensionAction) {
+        suspensionTime += delta;
+        if (suspensionAction === 'bounce') {
+          // Spring bounce up & down
+          playerGroup.position.y = 3.2 + Math.sin(suspensionTime * 14) * Math.exp(-suspensionTime * 0.9) * 0.9;
+          leftShoulder.rotation.x = Math.sin(suspensionTime * 14) * 0.4;
+          rightShoulder.rotation.x = -Math.sin(suspensionTime * 14) * 0.4;
+        } else if (suspensionAction === 'swing') {
+          // Real Pendulum swing angle
+          const swingAngle = Math.sin(suspensionTime * 5.5) * Math.exp(-suspensionTime * 0.4) * 0.65;
+          playerGroup.rotation.z = swingAngle;
+          playerGroup.position.x = Math.sin(swingAngle) * 3.5;
+          playerGroup.position.y = 3.5 - Math.cos(swingAngle) * 0.4;
+
+          // Leg kicks forward to hit scissors table
+          leftHip.rotation.x = -0.8;
+          leftKnee.rotation.x = 1.1;
+        }
+      }
+
+      // Update 2D Floating Station Badges over 3D coordinates
+      updatePromptPositions();
+
+      renderer.render(scene, camera);
+    }
+
+    // Convert 3D world coordinates to 2D screen positions for floating buttons
+    function updatePromptPositions() {
+      const container = document.getElementById('canvas-container');
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+
+      for (const key in stationPoints) {
+        const item = stationPoints[key];
+        const el = document.getElementById(item.promptEl);
+        if (!el || el.classList.contains('hidden')) continue;
+
+        const p3d = item.pos.clone();
+        p3d.y += 2.8; // Float above object
+        p3d.project(camera);
+
+        const x = (p3d.x * 0.5 + 0.5) * w;
+        const y = (-p3d.y * 0.5 + 0.5) * h;
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+      }
+    }
+
+    function check3DProximity() {
+      const p = playerGroup.position;
+      for (const key in stationPoints) {
+        const item = stationPoints[key];
+        const dist = p.distanceTo(item.pos);
+        const el = document.getElementById(item.promptEl);
+        if (el) {
+          el.classList.toggle('hidden', dist > 3.2);
+        }
+      }
+    }
+
+    // ================= HERO SELECTION & AWAKENING =================
     function selectHero(chosen) {
       initAudio();
-      playBeep(700, 'sine', 0.2);
       hero = chosen;
+      playBeep(440, 'triangle', 0.2);
 
-      const avatar = document.getElementById('avatar-sprite');
-      avatar.src = chosen === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
-
-      document.getElementById('screen-char-select').classList.add('hidden');
-      document.getElementById('screen-game').classList.remove('hidden');
+      document.getElementById('character-select-screen').classList.add('hidden');
+      build3DPlayer(); // Rebuild 3D model with hero skin/outfit/hair
 
       startAwakeningSequence();
     }
 
     function startAwakeningSequence() {
+      currentPhase = 'awakening';
+      playBeep(120, 'sine', 1.5, 0.15);
+
       const top = document.getElementById('eyelid-top');
       const bottom = document.getElementById('eyelid-bottom');
       top.classList.add('anim-eyelid-top');
       bottom.classList.add('anim-eyelid-bottom');
 
-      playBeep(140, 'sawtooth', 1.8, 0.2);
+      const nameplate = document.getElementById('nameplate');
+      const textEl = document.getElementById('vn-text');
+
+      nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
+      nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
+
+      const wakingSpeech = hero === 'maya'
+        ? '"Ugh... blinding fluorescent light. Steel interrogation chair... heavy hydraulic wrist restraints bolted down. I need to force leverage and break these clamps!"'
+        : '"Mmph... my head is pounding. Restraint collar locked, biometric feedback sensors pulsing. A research facility? I have to calculate the mechanical release trigger!"';
+
+      typeWriterEffect(textEl, wakingSpeech, 18);
 
       setTimeout(() => {
-        top.classList.remove('anim-eyelid-top');
-        bottom.classList.remove('anim-eyelid-bottom');
-        top.style.height = '0%';
-        bottom.style.height = '0%';
+        const choicesBox = document.getElementById('vn-choices-container');
+        choicesBox.innerHTML = '';
 
-        currentPhase = 'intro';
-        storyIndex = 0;
-        renderDialogue();
-      }, 3100);
+        const struggleBtn = document.createElement('button');
+        struggleBtn.className = 'w-full sm:w-auto py-3 px-6 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-lg transition-all transform hover:scale-102';
+        struggleBtn.innerHTML = hero === 'maya'
+          ? '💥 Explode with Full Athletic Leverage (Break Restraints!)'
+          : '⚡ Overload Pressure Circuit with Heel Kick (Shatter Lock!)';
+
+        struggleBtn.onclick = (e) => {
+          e.stopPropagation();
+          startFreeMovementMode();
+        };
+        choicesBox.appendChild(struggleBtn);
+      }, 3500);
     }
 
-    function typeWriterEffect(targetEl, text, speed = 18) {
-      if (typewriterTimer) clearInterval(typewriterTimer);
-      isTyping = true;
-      currentFullText = text;
-      targetEl.textContent = '';
-      let i = 0;
+    // ================= TYPEWRITER EFFECT =================
+    let typeTimer = null;
+    let fullTypingText = '';
+    let currentTypeEl = null;
 
-      typewriterTimer = setInterval(() => {
+    function typeWriterEffect(targetEl, text, speed = 18) {
+      if (typeTimer) clearInterval(typeTimer);
+      targetEl.textContent = '';
+      fullTypingText = text;
+      currentTypeEl = targetEl;
+
+      const speaker = document.getElementById('nameplate').textContent;
+      dialogueHistory.push({ speaker, text });
+
+      let i = 0;
+      typeTimer = setInterval(() => {
         if (i < text.length) {
           targetEl.textContent += text.charAt(i);
-          if (i % 3 === 0) {
-            playBeep(580 + (i % 5) * 20, 'sine', 0.04, 0.02);
-          }
+          if (i % 3 === 0) playBeep(280 + Math.random() * 40, 'sine', 0.02, 0.02);
           i++;
         } else {
-          clearInterval(typewriterTimer);
-          isTyping = false;
+          clearInterval(typeTimer);
+          typeTimer = null;
         }
       }, speed);
     }
 
     function completeTypingNow() {
-      if (isTyping) {
-        clearInterval(typewriterTimer);
-        document.getElementById('vn-text').textContent = currentFullText;
-        isTyping = false;
-        return true;
-      }
-      return false;
-    }
-
-    function renderDialogue() {
-      const script = hero === 'maya' ? dialogueIntroMaya : dialogueIntroChloe;
-      if (storyIndex >= script.length) return;
-
-      const line = script[storyIndex];
-      const nameplate = document.getElementById('nameplate');
-      const textEl = document.getElementById('vn-text');
-      const choicesBox = document.getElementById('vn-choices-container');
-      const ariaBox = document.getElementById('aria-container');
-
-      nameplate.textContent = line.speaker;
-      nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${line.nameColor} font-code font-bold text-xs uppercase tracking-wider shadow-sm`;
-
-      if (line.showAria) {
-        ariaBox.classList.remove('hidden');
-        setTimeout(() => ariaBox.classList.remove('opacity-0'), 50);
-      } else {
-        ariaBox.classList.add('opacity-0');
-        setTimeout(() => ariaBox.classList.add('hidden'), 500);
-      }
-
-      dialogueHistory.push({ speaker: line.speaker, text: line.text });
-      typeWriterEffect(textEl, line.text);
-
-      choicesBox.innerHTML = '';
-      if (line.choices) {
-        line.choices.forEach(ch => {
-          const btn = document.createElement('button');
-          btn.className = 'w-full sm:w-auto py-3 px-6 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all transform hover:scale-102 active:scale-98';
-          btn.innerHTML = ch.text;
-          btn.onclick = (e) => {
-            e.stopPropagation();
-            if (ch.action === 'breakBinds') startFreeMovementMode();
-          };
-          choicesBox.appendChild(btn);
-        });
+      if (typeTimer && currentTypeEl) {
+        clearInterval(typeTimer);
+        typeTimer = null;
+        currentTypeEl.textContent = fullTypingText;
       }
     }
 
     function onTextboxClick() {
-      if (currentPhase === 'movement') return;
-      if (completeTypingNow()) return;
-
-      const script = hero === 'maya' ? dialogueIntroMaya : dialogueIntroChloe;
-      if (script[storyIndex] && script[storyIndex].choices) return;
-
-      if (storyIndex < script.length - 1) {
-        storyIndex++;
-        renderDialogue();
-      }
+      if (typeTimer) completeTypingNow();
     }
 
-    // ================= REAL-TIME CHARACTER CONTROLLER =================
+    // ================= FREE 3D MOVEMENT MODE =================
     function startFreeMovementMode() {
       initAudio();
       document.getElementById('game-stage').classList.add('shake');
@@ -868,14 +1175,13 @@
       nameplate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
-      const moveHelp = '"*SNAP!* Restraints broken! Use WASD or ARROW KEYS to walk around! Walk to the Research Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and walk to the Blast Door!"';
+      const moveHelp = '"*SNAP!* Restraints broken! Use WASD or ARROW KEYS to physically walk around the 3D room! Approach the Research Cabinet for the door passcode, check the Terminal, observe the Sleeping Guard, and unlock the Blast Door!"';
       typeWriterEffect(textEl, moveHelp, 16);
 
       document.getElementById('hud-timer-wrap').classList.remove('hidden');
-      document.getElementById('control-hint-badge').textContent = 'CONTROLLABLE: WASD/Arrows to Move | E: Interact';
+      document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-person-walking text-cyan-400"></i> CONTROLLABLE: WASD/Arrows to Walk | E: Interact';
 
       startLockdownCountdown();
-      requestAnimationFrame(gameLoop);
     }
 
     function startLockdownCountdown() {
@@ -896,65 +1202,6 @@
           triggerSedativeBlackout(false); // Timeout
         }
       }, 1000);
-    }
-
-    // Main Game Loop for Character Movement & Proximity Prompts
-    function gameLoop(timestamp) {
-      if (currentPhase !== 'movement') return;
-
-      let dx = 0;
-      let dy = 0;
-      const speed = hero === 'maya' ? 0.38 : 0.34; // Maya has faster sprint
-
-      if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) { dx -= speed; playerFacing = -1; }
-      if (keysPressed['KeyD'] || keysPressed['ArrowRight']) { dx += speed; playerFacing = 1; }
-      if (keysPressed['KeyW'] || keysPressed['ArrowUp']) { dy += speed * 0.6; }
-      if (keysPressed['KeyS'] || keysPressed['ArrowDown']) { dy -= speed * 0.6; }
-
-      if (dx !== 0 || dy !== 0) {
-        playerX = Math.max(5, Math.min(84, playerX + dx));
-        playerY = Math.max(10, Math.min(22, playerY + dy));
-        isMoving = true;
-
-        if (timestamp - lastStepTime > 260) {
-          playFootstep();
-          lastStepTime = timestamp;
-        }
-      } else {
-        isMoving = false;
-      }
-
-      // Update Player Avatar Position in DOM
-      const avatarBox = document.getElementById('player-avatar');
-      avatarBox.style.left = `${playerX}%`;
-      avatarBox.style.bottom = `${playerY}%`;
-      avatarBox.style.transform = `scaleX(${playerFacing})`;
-
-      if (isMoving) avatarBox.classList.add('char-walking');
-      else avatarBox.classList.remove('char-walking');
-
-      // Check Proximity to 4 Interactive Stations
-      checkProximity();
-
-      requestAnimationFrame(gameLoop);
-    }
-
-    function checkProximity() {
-      // 1. Cabinet at ~8%
-      const nearCabinet = Math.abs(playerX - 10) < 6 && Math.abs(playerY - 20) < 8;
-      document.getElementById('prompt-cabinet').classList.toggle('hidden', !nearCabinet);
-
-      // 2. Terminal at ~30%
-      const nearTerminal = Math.abs(playerX - 32) < 6 && Math.abs(playerY - 22) < 8;
-      document.getElementById('prompt-terminal').classList.toggle('hidden', !nearTerminal);
-
-      // 3. Guard at ~54%
-      const nearGuard = Math.abs(playerX - 54) < 6 && Math.abs(playerY - 22) < 8;
-      document.getElementById('prompt-guard').classList.toggle('hidden', !nearGuard);
-
-      // 4. Blast Door at ~80%
-      const nearDoor = Math.abs(playerX - 78) < 8 && Math.abs(playerY - 16) < 8;
-      document.getElementById('prompt-door').classList.toggle('hidden', !nearDoor);
     }
 
     // Keyboard Event Listener for WASD Movement & E Key
@@ -1007,15 +1254,15 @@
     });
 
     function handleVirtualMove(dir) {
-      if (dir === 'left') { playerX = Math.max(5, playerX - 4); playerFacing = -1; }
-      if (dir === 'right') { playerX = Math.min(84, playerX + 4); playerFacing = 1; }
-      if (dir === 'up') { playerY = Math.min(22, playerY + 2); }
-      if (dir === 'down') { playerY = Math.max(10, playerY - 2); }
+      if (currentPhase !== 'movement') return;
+      if (dir === 'left') playerGroup.position.x = Math.max(-13, playerGroup.position.x - 1.2);
+      if (dir === 'right') playerGroup.position.x = Math.min(12.5, playerGroup.position.x + 1.2);
+      if (dir === 'up') playerGroup.position.z = Math.max(-4.5, playerGroup.position.z - 0.8);
+      if (dir === 'down') playerGroup.position.z = Math.min(4.5, playerGroup.position.z + 0.8);
       playFootstep();
-      checkProximity();
     }
 
-    // Interactive Object Handlers
+    // ================= INTERACTIVE STATION HANDLERS =================
     function clickCabinet() {
       initAudio();
       playBeep(420, 'triangle', 0.15);
@@ -1091,7 +1338,6 @@
 
         setTimeout(() => {
           closeKeypadModal();
-          // Physically open the blast door!
           openBlastDoorPhysically();
         }, 700);
       } else {
@@ -1105,34 +1351,39 @@
       }
     }
 
-    // ================= PHYSICAL BLAST DOOR OPENING & WALKTHROUGH =================
+    // ================= PHYSICAL 3D BLAST DOOR OPENING & WALKTHROUGH =================
     function openBlastDoorPhysically() {
       playBeep(140, 'sine', 1.8, 0.3); // Heavy hydraulic hiss
 
-      // Slide door panels open
-      document.getElementById('door-panel-left').style.transform = 'translateX(-100%)';
-      document.getElementById('door-panel-right').style.transform = 'translateX(100%)';
+      // Slide 3D door slabs apart
+      const startLeft = leftDoorMesh.position.x;
+      const startRight = rightDoorMesh.position.x;
+      const targetLeft = -3.2;
+      const targetRight = 3.2;
 
-      document.getElementById('door-status-led').className = 'w-4 h-4 rounded-full bg-emerald-400 mx-auto mb-2 shadow-[0_0_20px_rgba(52,211,153,1)]';
-      document.getElementById('door-status-text').textContent = 'UNLOCKED';
-      document.getElementById('door-status-text').className = 'text-[9px] font-code text-emerald-400 font-bold uppercase';
+      let doorProgress = 0;
+      const doorInterval = setInterval(() => {
+        doorProgress += 0.05;
+        leftDoorMesh.position.x = THREE.MathUtils.lerp(startLeft, targetLeft, doorProgress);
+        rightDoorMesh.position.x = THREE.MathUtils.lerp(startRight, targetRight, doorProgress);
+
+        if (doorProgress >= 1) {
+          clearInterval(doorInterval);
+        }
+      }, 30);
+
+      // Change Door LED to Emerald
+      const led = scene.getObjectByName('doorLed');
+      if (led) led.material.color.setHex(0x10b981);
 
       const textEl = document.getElementById('vn-text');
       const doorOpenSpeech = hero === 'maya'
-        ? '"*HISSS!* The blast door unlocked and slid open! Walk right through the doorway to escape!"'
-        : '"*CLANG-HISSS!* The pneumatic seal broke! Walk through the doorway before the secondary locks engage!"';
+        ? '"*HISSS!* The hydraulic blast door unsealed and slid open in 3D space! Walk right through the doorway to breach the corridor!"'
+        : '"*CLANG-HISSS!* Pneumatic pressure equalized! Walk your character through the open gateway before the containment shutters engage!"';
       typeWriterEffect(textEl, doorOpenSpeech, 16);
-
-      // Listen for player walking past 80% to trigger corridor breach
-      const checkWalkthrough = setInterval(() => {
-        if (playerX >= 76) {
-          clearInterval(checkWalkthrough);
-          triggerSedativeBlackout(true);
-        }
-      }, 100);
     }
 
-    // ================= BLACKOUT & TRANSITION TO SUSPENSION HARNESS =================
+    // ================= BLACKOUT & TRANSITION TO 3D SUSPENSION HARNESS =================
     function triggerSedativeBlackout(escaped) {
       if (countdownTimer) clearInterval(countdownTimer);
       currentPhase = 'suspension';
@@ -1164,26 +1415,31 @@
         bottom.style.height = '50%';
 
         playBeep(120, 'sine', 2.5, 0.3); // Stretch hum
-        playBeep(180, 'square', 1.5, 0.15); // Creak
 
         setTimeout(() => {
-          // Switch to Observation Chamber
-          document.getElementById('world-viewport').style.backgroundImage = "url('assets/bg_observation_chamber.jpg')";
+          // Switch 3D Scene to Observation Suspension Mode
           document.getElementById('alarm-overlay').classList.remove('alarm-flash');
           document.getElementById('alarm-overlay').style.opacity = '0';
-
-          // Hide lab props, show suspension harness
-          document.getElementById('prop-cabinet').classList.add('hidden');
-          document.getElementById('prop-terminal').classList.add('hidden');
-          document.getElementById('prop-guard').classList.add('hidden');
-          document.getElementById('prop-door').classList.add('hidden');
-          document.getElementById('player-avatar').classList.add('hidden');
           document.getElementById('hud-timer-wrap').classList.add('hidden');
+          document.getElementById('prompt-door').classList.add('hidden');
 
-          document.getElementById('suspension-rig').classList.remove('hidden');
-          document.getElementById('suspended-char-img').src = hero === 'maya' ? 'assets/sprite_maya.png' : 'assets/sprite_chloe.png';
+          // Activate 3D ceiling harness and hoist player character 3 feet into air
+          ceilingHarnessGroup.visible = true;
+          playerGroup.position.set(0, 3.2, 0);
+          playerGroup.rotation.set(0, 0, 0);
 
-          document.getElementById('control-hint-badge').textContent = 'SUSPENSION HARNESS: Pendulum Physics Active';
+          // Padded harness band around waist
+          const harnessBand = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.55, 0.55, 0.3, 16),
+            new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.9 })
+          );
+          harnessBand.position.y = 1.6;
+          playerGroup.add(harnessBand);
+
+          camera.position.set(0, 4.5, 8.5);
+          camera.lookAt(0, 3.2, 0);
+
+          document.getElementById('control-hint-badge').innerHTML = '<i class="fa-solid fa-arrows-up-down text-rose-400"></i> SUSPENSION RIG: Real 3D Pendulum Physics Active';
 
           // Open eyelids into Observation Chamber
           top.style.height = '0%';
@@ -1194,7 +1450,7 @@
       }, 3800);
     }
 
-    // ================= SUSPENSION HARNESS SCENE WITH REAL PENDULUM INTERACTION =================
+    // ================= SUSPENSION HARNESS SCENE WITH REAL 3D PENDULUM INTERACTION =================
     function renderSuspensionDialogue() {
       const nameplate = document.getElementById('nameplate');
       const textEl = document.getElementById('vn-text');
@@ -1204,8 +1460,8 @@
       nameplate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
       const suspSpeech = hero === 'maya'
-        ? '"Ghh... my head... I\'m hanging three feet in the air! This heavy mechanical testing harness is digging into my ribs... and they stripped off my clothes?! Choose your action:"'
-        : '"E-eek! I\'m dangling three feet off the ground from an overhead ceiling track! The padded straps are pulling so high... and my clothes are gone! What do I do?!"';
+        ? '"Ghh... my head... I am hanging three feet in the air! This heavy mechanical testing harness is digging into my ribs... and they stripped off my clothes?! Choose your 3D action:"'
+        : '"E-eek! I am dangling three feet off the ground from an overhead ceiling track! The padded straps are pulling so high... and my clothes are gone! What do I do?!"';
 
       typeWriterEffect(textEl, suspSpeech, 18);
 
@@ -1213,7 +1469,7 @@
       [
         { text: "🧘 Hang Still: Study ceiling track & camera blind spots", action: "still" },
         { text: "⚡ Violent Bounce: Test harness motor tensile limits!", action: "bounce" },
-        { text: "✂ Physical Swing: Build momentum to kick table scissors!", action: "swing" }
+        { text: "✂ Physical Swing: Build pendulum momentum to kick scissors!", action: "swing" }
       ].forEach(ch => {
         const btn = document.createElement('button');
         btn.className = 'w-full sm:w-auto py-3 px-5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-code font-bold text-xs uppercase tracking-wider shadow-lg transition-all transform hover:scale-102';
@@ -1230,14 +1486,15 @@
       initAudio();
       const textEl = document.getElementById('vn-text');
       const choicesBox = document.getElementById('vn-choices-container');
-      const suspBox = document.getElementById('suspended-char-box');
 
       choicesBox.innerHTML = '';
+      suspensionAction = action;
+      suspensionTime = 0;
 
       if (action === 'still') {
         playBeep(450, 'sine', 0.2);
         const txt = hero === 'maya'
-          ? '"I stop thrashing and force my breathing to slow down. Scanning the room... there is an angle behind the structural column that the ceiling camera cannot cover. I memorize the coordinates."'
+          ? '"I force my breathing to steady. Scanning the overhead 3D track... there is an 8-degree camera blind spot directly behind the structural pillar. I memorize the coordinates."'
           : '"I hold completely still. Calculating the angle of the ceiling pulley track, the camera has an 8-degree blind spot near the examination table. Good to know..."';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4000);
@@ -1245,15 +1502,11 @@
         playBeep(1200, 'sine', 0.2, 0.3);
         playBeep(900, 'sine', 0.3, 0.3);
 
-        suspBox.classList.add('harness-bouncing');
         document.getElementById('game-stage').classList.add('shake');
-        setTimeout(() => {
-          suspBox.classList.remove('harness-bouncing');
-          document.getElementById('game-stage').classList.remove('shake');
-        }, 2200);
+        setTimeout(() => document.getElementById('game-stage').classList.remove('shake'), 2200);
 
         const txt = hero === 'maya'
-          ? '"*GROAN!* I kick and bounce with all my athletic weight! The suspension straps screech against the overhead pulley! An audible warning chime beeps from the ceiling sensors—I almost overloaded the motor!"'
+          ? '"*GROAN!* I kick and bounce with all my athletic weight in 3D space! The suspension straps screech against the overhead pulley! An audible warning chime beeps from the ceiling sensors—I almost overloaded the motor!"'
           : '"*CREAK!* I struggle desperately, bouncing in mid-air! The harness pulls tighter and the tension monitors squeal an alarm before stabilizing!"';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4500);
@@ -1261,18 +1514,15 @@
         playBeep(320, 'triangle', 0.4, 0.2);
         setTimeout(() => playBeep(2400, 'sine', 0.15, 0.25), 900); // Clang
 
-        suspBox.classList.add('pendulum-swinging');
-        setTimeout(() => suspBox.classList.remove('pendulum-swinging'), 3600);
-
         const txt = hero === 'maya'
-          ? '"*SWOOSH!* I kick my legs in rhythm, building swinging momentum! At maximum apex, the tip of my foot clips the metal table leg—*CLANG!* The surgical scissors slide closer to the edge!"'
-          : '"*SWING!* Using physics and momentum, I sway side to side! My foot strikes the table corner—*CLATTER!* The metal tray shifts, knocking the cutting tool closer for later!"';
+          ? '"*SWOOSH!* I kick my legs in rhythm, building 3D pendulum swing momentum! At maximum apex, the tip of my foot clips the metal table—*CLANG!* The surgical scissors slide closer to the edge!"'
+          : '"*SWING!* Using physics and momentum, I sway side to side in 3D! My foot strikes the table corner—*CLATTER!* The metal tray shifts, knocking the cutting tool closer for later!"';
         typeWriterEffect(textEl, txt, 18);
         setTimeout(() => triggerAttireSequence(), 4800);
       }
     }
 
-    // ================= NEW ATTIRE CHANGE & OUTRO =================
+    // ================= 3D ATTIRE SEQUENCE & OUTRO =================
     function triggerAttireSequence() {
       const nameplate = document.getElementById('nameplate');
       const textEl = document.getElementById('vn-text');
@@ -1290,28 +1540,53 @@
       setTimeout(() => {
         playBeep(180, 'sine', 1.8, 0.2); // Lowering sound
 
-        // Lower harness down to platform
-        document.getElementById('suspension-rig').style.transform = 'translateY(120px)';
-        document.getElementById('suspension-rig').style.transition = 'transform 2.5s ease-in-out';
+        // Mechanically lower 3D player to ground
+        let lowerP = 0;
+        const lowerInterval = setInterval(() => {
+          lowerP += 0.03;
+          playerGroup.position.y = THREE.MathUtils.lerp(3.2, 0, lowerP);
+          cableMesh.scale.y = THREE.MathUtils.lerp(1, 1.8, lowerP);
+          if (lowerP >= 1) clearInterval(lowerInterval);
+        }, 30);
 
         setTimeout(() => {
+          // Dynamic Attire Swap: Swap player materials to white & cyan facility uniform!
+          const uniformMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.3 });
+          bodyGroup.traverse(child => {
+            if (child.isMesh && child.material !== skinMat) {
+              child.material = uniformMat;
+            }
+          });
+
           const heroPlate = document.getElementById('nameplate');
           heroPlate.textContent = hero === 'maya' ? 'MAYA CARTER' : 'CHLOE VANCE';
           heroPlate.className = `inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-black/90 border border-slate-700 ${hero === 'maya' ? 'text-red-400' : 'text-cyan-400'} font-code font-bold text-xs uppercase tracking-wider`;
 
           const dressedText = hero === 'maya'
-            ? '"The harness touches down and releases my waist. I step over to the stainless steel table and pull on the skintight white and gray facility uniform. Suddenly, heavy pneumatic blast doors at the far end of the room grind open into the vast testing grid..."'
+            ? '"The harness touches down and unclips from my waist. I step over to the stainless steel table and pull on the skintight white and gray facility uniform. Suddenly, heavy pneumatic blast doors at the far end of the room grind open into the vast testing grid..."'
             : '"My bare feet touch the cold platform and the straps unclip. Trembling, I pick up the pristine facility jumpsuit from the table and dress quickly. Just as the collar seals, the reinforced airlock door slides back, revealing the testing grid..."';
 
           typeWriterEffect(textEl, dressedText, 18);
 
           setTimeout(() => {
-            document.getElementById('screen-game').classList.add('hidden');
-            document.getElementById('screen-ending').classList.remove('hidden');
-          }, 6500);
-        }, 3000);
+            const choicesBox = document.getElementById('vn-choices-container');
+            choicesBox.innerHTML = '';
+
+            const endBtn = document.createElement('button');
+            endBtn.className = 'w-full sm:w-auto py-3.5 px-8 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-code font-bold text-xs uppercase tracking-widest shadow-2xl transition-all transform hover:scale-105';
+            endBtn.innerHTML = '🎉 CHAPTER 1 COMPLETE : REPLAY WITH OTHER HERO';
+            endBtn.onclick = () => location.reload();
+            choicesBox.appendChild(endBtn);
+          }, 6000);
+        }, 2200);
       }, 4500);
     }
+
+    // Initialize 3D Engine on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      init3D();
+      requestAnimationFrame(animate3D);
+    });
   </script>
 </body>
 </html>
