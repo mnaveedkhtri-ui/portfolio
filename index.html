@@ -1,659 +1,523 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Naveed | Systems Architect & Full-Stack Engineer</title>
+    <title>Muhammad Naveed | System Architect & Full-Stack Engineer</title>
     <meta name="google-site-verification" content="wYFUIXoVNRkPCSeAExJZhbNGbE9pcbuFswY8d8GCIdw" />
     
-    <meta name="description" content="Senior Full-Stack Architect & High-Velocity E-Commerce Engineer. Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
+    <meta name="description" content="System Architect & Full-Stack Engineer. Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Muhammad Naveed | Systems Architect & Full-Stack Engineer">
-    <meta property="og:description" content="Next.js 15, Custom Shopify Liquid, Autonomous Web Systems, and 99+ Core Web Vitals.">
+    <meta property="og:title" content="Muhammad Naveed | System Architect & Full-Stack Engineer">
+    <meta property="og:description" content="Architecting sub-second systems, high-velocity e-commerce platforms, and autonomous web architectures.">
     <meta property="og:image" content="./profile.jpg">
     <meta property="og:url" content="https://naveed-portfolio-kappa.vercel.app/">
-    
-    <!-- Structured Schema (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Muhammad Naveed",
-      "jobTitle": "Systems Architect & Full-Stack Engineer",
-      "image": "https://raw.githubusercontent.com/mnaveedkhtri-ui/portfolio/main/profile.jpg",
-      "description": "Senior Full-Stack Web Developer and Systems Architect specializing in Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and Programmatic Platforms.",
-      "email": "naveedkhtri7@gmail.com",
-      "telephone": "+923323219981",
-      "url": "https://naveed-portfolio-kappa.vercel.app/",
-      "sameAs": [
-        "https://wa.me/923323219981",
-        "https://github.com/mnaveedkhtri-ui"
-      ]
-    }
-    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Feather Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <!-- GSAP for Smooth Choreography -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Canvas Confetti for Interactive Celebrations -->
+    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-    <!-- Premium Typography -->
+    <!-- Google Fonts: Space Grotesk, Caveat (Script), JetBrains Mono, Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { 
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace']
-                    },
-                    colors: {
-                        void: '#030305',
-                        surface: '#0a0a0f',
-                        surfaceSubtle: '#12121a',
-                        borderSubtle: 'rgba(255, 255, 255, 0.08)',
-                        neonCyan: '#00f2fe',
-                        neonBlue: '#38bdf8',
-                        neonEmerald: '#10b981',
-                        neonPurple: '#8b5cf6'
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
             box-sizing: border-box;
             cursor: default;
         }
-        body { 
-            background-color: #030305; 
-            color: #f8fafc; 
-            overflow-x: hidden; 
+        body {
+            background-color: #050507;
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* Ambient Cyber Grid Background */
-        .ambient-grid {
-            background-size: 48px 48px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%);
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .font-script {
+            font-family: 'Caveat', cursive;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Glassmorphism Classes */
-        .glass-panel {
-            background: rgba(10, 10, 15, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+        /* 1. Giant Outlined PORTFOLIO Typography from Reel */
+        .outline-portfolio-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 11.5vw, 9.5rem);
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            color: transparent;
+            -webkit-text-stroke: 1.8px #ff3344;
+            text-shadow: 0 0 35px rgba(255, 51, 68, 0.25);
+            user-select: none;
         }
 
-        .glass-pill {
-            background: rgba(18, 18, 26, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Red Accent Block */
+        .badge-red {
+            background: #ff2a3a;
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            box-shadow: 0 0 25px rgba(255, 42, 58, 0.45);
         }
 
-        /* Spotlight 3D Card Hover Effect */
-        .spotlight-card {
-            position: relative;
-            background: rgba(12, 12, 18, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 1.25rem;
-            overflow: hidden;
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-        .spotlight-card::before {
-            content: '';
+        /* 2. Thin Red Laser Guide Line */
+        .laser-guide {
             position: absolute;
-            top: var(--mouse-y, -1000px);
-            left: var(--mouse-x, -1000px);
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
+            top: 0;
+            bottom: 0;
+            left: 28px;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(255, 42, 58, 0.6) 0%, rgba(255, 42, 58, 0.2) 50%, rgba(255, 42, 58, 0.5) 100%);
+            box-shadow: 0 0 8px rgba(255, 42, 58, 0.5);
             pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
+            z-index: 10;
         }
-        .spotlight-card:hover::before {
-            opacity: 1;
-        }
-        .spotlight-card:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 16px 40px -10px rgba(0, 242, 254, 0.12);
+        @media (max-width: 640px) {
+            .laser-guide { left: 14px; }
         }
 
-        /* Kinetic Text Gradients */
-        .text-glow {
-            background: linear-gradient(180deg, #ffffff 15%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .text-cyber {
-            background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Crosshair Coordinate Marks */
+        .crosshair {
+            position: absolute;
+            color: #ff2a3a;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 11;
         }
 
-        /* Custom Interactive Fluid Cursor */
-        #cursor-glow {
-            position: fixed;
-            top: 0; left: 0;
-            width: 320px; height: 320px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 70%);
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9990;
+        /* 3. Figma-Style Blue Selection Bounding Box from Reel */
+        .figma-box {
+            position: relative;
+            outline: 1.5px solid #2f80ed;
+            outline-offset: 4px;
         }
-        #cursor-dot {
-            position: fixed;
-            top: 0; left: 0;
-            width: 8px; height: 8px;
-            background: #00f2fe;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px #00f2fe;
-            transition: transform 0.08s ease, width 0.2s, height 0.2s;
+        .figma-handle {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: #ffffff;
+            border: 1.5px solid #2f80ed;
+            border-radius: 1px;
+            z-index: 20;
         }
-        .cursor-hover #cursor-dot {
-            width: 30px;
-            height: 30px;
-            background: rgba(0, 242, 254, 0.2);
-            border: 1px solid #00f2fe;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        .figma-tag {
+            position: absolute;
+            top: -24px;
+            left: -4px;
+            background: #2f80ed;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            font-weight: 600;
+            padding: 1px 6px;
+            border-radius: 2px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 20;
+            pointer-events: none;
         }
 
-        /* Chat scrollbar */
-        .chat-scroll::-webkit-scrollbar {
-            width: 4px;
+        /* 4. Live Multiplayer Agent Cursors */
+        .agent-cursor {
+            position: absolute;
+            pointer-events: none;
+            z-index: 999;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
         }
-        .chat-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+        .cursor-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
             border-radius: 4px;
+            color: #050507;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
-        /* Button Glows */
-        .btn-glow {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            color: #030305;
-            box-shadow: 0 0 30px -5px rgba(255, 255, 255, 0.3);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-glow:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 40px 0 rgba(255, 255, 255, 0.5);
+        /* Subtle Dark Grid */
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
 
-        /* Profile Glow Frame */
-        .profile-frame {
-            position: relative;
+        /* Buttons */
+        .btn-dispatch {
+            background: #ffffff;
+            color: #050507;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            transition: all 0.2s ease;
         }
-        .profile-frame::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, rgba(0, 242, 254, 0.4), rgba(168, 85, 247, 0.4));
-            z-index: -1;
-            filter: blur(12px);
-            opacity: 0.7;
-            transition: opacity 0.3s;
+        .btn-dispatch:hover {
+            background: #ff2a3a;
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 42, 58, 0.5);
+            transform: translateY(-2px);
         }
-        .profile-frame:hover::after {
-            opacity: 1;
-            filter: blur(18px);
+
+        .btn-ghost-arch {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-ghost-arch:hover {
+            border-color: #2f80ed;
+            background: rgba(47, 128, 237, 0.1);
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+
+        /* Interactive Card */
+        .card-arch {
+            background: #09090d;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 8px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .card-arch:hover {
+            border-color: #ff2a3a;
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="selection:bg-cyan-500 selection:text-black">
+<body class="cyber-grid relative min-h-screen">
 
-    <!-- Interactive Mouse Glow -->
-    <div id="cursor-glow"></div>
-    <div id="cursor-dot" class="hidden md:block"></div>
+    <!-- Red Laser Guide Line -->
+    <div class="laser-guide"></div>
+    <div class="crosshair" style="top: 140px; left: 28px;">+</div>
+    <div class="crosshair" style="top: 500px; left: 28px;">+</div>
+    <div class="crosshair" style="top: 980px; left: 28px;">+</div>
+    <div class="crosshair" style="top: 1600px; left: 28px;">+</div>
 
-    <!-- Ambient Grid & Canvas Layer -->
-    <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-    <div class="fixed inset-0 ambient-grid pointer-events-none z-0"></div>
+    <!-- Live Multiplayer Agent Cursors Floating (From Reel) -->
+    <div id="cursor-agent-1" class="agent-cursor" style="top: 220px; left: 62%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#00f2fe"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+        <span class="cursor-tag bg-cyan-400">Hermes Agent</span>
+    </div>
+    <div id="cursor-agent-2" class="agent-cursor" style="top: 380px; left: 78%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#10b981"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+        <span class="cursor-tag bg-emerald-400">Touring</span>
+    </div>
+    <div id="cursor-agent-3" class="agent-cursor hidden lg:flex" style="top: 650px; left: 45%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffbd2e"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+        <span class="cursor-tag bg-amber-400">Claude Code</span>
+    </div>
+    <div id="cursor-agent-4" class="agent-cursor hidden sm:flex" style="top: 140px; left: 42%;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#a855f7"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+        <span class="cursor-tag bg-purple-400">Visitor #518</span>
+    </div>
 
-    <!-- Ultra-Sleek Floating Island Navigation -->
-    <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
-        <nav class="glass-pill px-4 sm:px-6 py-3 rounded-full flex items-center justify-between gap-4 sm:gap-8 max-w-5xl w-full border border-white/10 shadow-2xl">
-            <!-- Brand / Identity -->
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="./profile.jpg" alt="Muhammad Naveed" class="w-8 h-8 rounded-full object-cover border border-cyan-400/50 shadow group-hover:scale-105 transition-transform">
-                <div class="flex flex-col">
-                    <span class="text-xs font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">MUHAMMAD NAVEED</span>
-                    <span class="text-[10px] font-mono text-slate-400 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> SYSTEM: ONLINE
-                    </span>
-                </div>
-            </a>
+    <!-- TOP MINIMAL NAVIGATION -->
+    <header class="w-full pl-12 sm:pl-16 pr-6 py-5 flex items-center justify-between border-b border-white/5 relative z-30">
+        <div class="flex items-center gap-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+            <span class="text-xs font-mono text-white font-bold tracking-wider">NAVEED.SYS // V2.6</span>
+            <span class="text-[10px] font-mono text-slate-500 hidden sm:inline">AUTONOMOUS DISPATCH ENGINE</span>
+        </div>
 
-            <!-- Quick Links -->
-            <div class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
-                <a href="#about" class="hover:text-cyan-400 transition-colors">Profile</a>
-                <a href="#agent" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span> AI Agent
-                </a>
-                <a href="#projects" class="hover:text-cyan-400 transition-colors">Flagship Architecture</a>
-                <a href="#metrics" class="hover:text-cyan-400 transition-colors">Speed Proof</a>
-                <a href="#services" class="hover:text-cyan-400 transition-colors">Capabilities</a>
-            </div>
-
-            <!-- Audio FX Toggle & CTA -->
-            <div class="flex items-center gap-2.5">
-                <button id="sound-toggle" class="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-400 hover:text-cyan-400 transition-all text-xs flex items-center gap-1.5" title="Toggle Sound FX">
-                    <span id="sound-icon">🔇</span>
-                    <span class="hidden sm:inline text-[10px] font-mono">SFX</span>
-                </button>
-
-                <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20interactive%20portfolio%20and%20want%20to%20hire%20you" target="_blank" class="px-4 py-2 rounded-full btn-glow text-xs font-bold tracking-tight flex items-center gap-1.5">
-                    <i data-feather="message-circle" class="w-3.5 h-3.5"></i>
-                    <span>Let's Talk</span>
-                </a>
-            </div>
-        </nav>
+        <div class="flex items-center gap-6 text-xs font-mono">
+            <a href="#flagships" class="text-slate-400 hover:text-white transition-colors">Flagships</a>
+            <a href="#capabilities" class="text-slate-400 hover:text-white transition-colors">Capabilities</a>
+            <a href="#contact" class="text-red-400 hover:text-red-300 font-bold transition-colors">DISPATCH →</a>
+        </div>
     </header>
 
     <!-- MAIN WRAPPER -->
-    <main class="relative z-10 pt-28 sm:pt-36 pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <main class="pl-10 sm:pl-16 pr-4 sm:pr-8 py-8 sm:py-14 max-w-7xl mx-auto relative z-20">
 
-        <!-- ================= HERO SECTION WITH REAL PHOTO & IDENTITY ================= -->
-        <section id="about" class="py-8 sm:py-16 relative">
-            <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        <!-- ================= 1. THE REEL HERO CANVAS ================= -->
+        <section class="relative mb-20 sm:mb-28">
+
+            <!-- Giant Outlined "PORTFOLIO" Text From Reel -->
+            <div class="outline-portfolio-text mb-4 sm:mb-6">
+                PORTFOLIO
+            </div>
+
+            <!-- Two-Column Hero Grid: Left Bio & Identity, Right Authentic Photo Frame -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 
-                <!-- Left Column: Pitch & Headline -->
-                <div class="flex-1 text-center lg:text-left">
-                    <!-- Availability Pill -->
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 shadow-inner">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>AVAILABLE FOR HIGH-VELOCITY PRODUCTION CONTRACTS</span>
-                    </div>
-
-                    <!-- Main Kinetic Title -->
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                        <span class="text-glow block">Architecting Sub-Second</span>
-                        <span class="text-cyber block font-mono" id="scramble-title">Autonomous Systems.</span>
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                        Hi, I'm <strong class="text-white font-semibold">Muhammad Naveed</strong>, a 17-year-old Systems & Full-Stack Web Engineer from Pakistan. I engineer 
-                        <span class="text-cyan-300 font-medium">Next.js 15 platforms</span>, custom 
-                        <span class="text-purple-300 font-medium">Shopify Liquid 2.0 architectures</span>, and autonomous programmatic engines delivering 
-                        <span class="text-emerald-400 font-medium">99+ Core Web Vitals</span> with sub-second global response.
-                    </p>
-
-                    <!-- CTAs -->
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
-                        <a href="#agent" class="px-6 py-3.5 rounded-xl btn-glow text-xs sm:text-sm font-bold flex items-center gap-2">
-                            <span>🤖 Talk to My AI Agent</span>
-                            <i data-feather="corner-down-right" class="w-4 h-4"></i>
-                        </a>
-                        <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20have%20a%20project%20for%20you" target="_blank" onclick="triggerConfetti()" class="px-6 py-3.5 rounded-xl glass-pill hover:bg-white/10 text-xs sm:text-sm font-semibold text-slate-200 border border-white/15 flex items-center gap-2 transition-all">
-                            <i data-feather="message-circle" class="w-4 h-4 text-emerald-400"></i>
-                            <span>Direct WhatsApp</span>
-                        </a>
-                    </div>
-
-                    <!-- Telemetry Chips -->
-                    <div class="flex flex-wrap justify-center lg:justify-start items-center gap-4 sm:gap-6 text-xs font-mono text-slate-500 border-t border-white/5 pt-4">
-                        <div class="flex items-center gap-1.5">
-                            <i data-feather="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
-                            <span>Karachi / Hyderabad, PK</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <i data-feather="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            <span><span id="live-clock">--:--:-- PKT</span></span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <i data-feather="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
-                            <span>EDGE LATENCY: <span class="text-emerald-400 font-bold">&lt; 38ms</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Authentic Profile Frame with Floating Badges -->
-                <div class="w-72 sm:w-80 lg:w-96 shrink-0 relative profile-frame group">
-                    <div class="w-full h-96 sm:h-[440px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative bg-surface">
-                        <img src="./profile.jpg" alt="Muhammad Naveed - Systems & Full-Stack Architect" class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        
-                        <!-- Nameplate Overlay -->
-                        <div class="absolute bottom-4 inset-x-4 p-3.5 rounded-xl glass-panel border border-white/10">
-                            <div class="text-xs font-bold text-white tracking-wide">Muhammad Naveed</div>
-                            <div class="text-[11px] font-mono text-cyan-400">Full-Stack & Shopify Architect</div>
-                        </div>
-                    </div>
-
-                    <!-- Floating Performance Badge -->
-                    <div class="absolute -top-4 -left-6 z-20 glass-panel px-3.5 py-2.5 rounded-xl flex items-center gap-2.5 shadow-xl border border-emerald-500/30">
-                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                        <div class="text-[11px] font-mono">
-                            <div class="text-emerald-400 font-bold">99/100 Mobile</div>
-                            <div class="text-slate-400 text-[10px]">Core Web Vitals</div>
-                        </div>
-                    </div>
-
-                    <!-- Floating Stack Badge -->
-                    <div class="absolute -bottom-4 -right-4 z-20 glass-panel px-3.5 py-2.5 rounded-xl flex items-center gap-2 shadow-xl border border-cyan-500/30">
-                        <i data-feather="layers" class="w-4 h-4 text-cyan-400"></i>
-                        <div class="text-[11px] font-mono">
-                            <div class="text-white font-bold">Next.js 15 + Liquid</div>
-                            <div class="text-slate-400 text-[10px]">Zero App Bloat</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- ================= AGENTIC BUILD: TALK TO NAVEED'S AUTONOMOUS AI AGENT ================= -->
-        <section id="agent" class="mb-24 scroll-mt-24">
-            <div class="spotlight-card p-1 sm:p-2 border-cyan-500/30 shadow-2xl">
-                <!-- Agent Header -->
-                <div class="px-5 py-3.5 bg-black/80 border-b border-white/10 rounded-t-xl flex items-center justify-between flex-wrap gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
-                        <div class="flex flex-col">
-                            <span class="text-xs font-mono font-bold text-white tracking-wider flex items-center gap-2">
-                                <span>NAVEED_AI (AGENTIC COMPANION)</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-400 border border-cyan-500/40">autonomous · online</span>
-                            </span>
-                            <span class="text-[10px] font-mono text-slate-400">Instant technical Q&A, stack verification & automated contract dispatch</span>
-                        </div>
-                    </div>
-                    <div class="text-[11px] font-mono text-slate-400 flex items-center gap-2">
-                        <span class="hidden sm:inline">Engine: Neural Router v2.4</span>
-                        <span class="text-cyan-400">⚡ 0.04s Latency</span>
-                    </div>
-                </div>
-
-                <!-- Agent Chat Body -->
-                <div class="p-4 sm:p-6 bg-black/90 font-mono text-xs sm:text-sm text-slate-300 rounded-b-xl min-h-[380px] flex flex-col justify-between">
+                <!-- Left Details (7 Cols) -->
+                <div class="lg:col-span-8 space-y-6">
                     
-                    <!-- Chat Messages Stream -->
-                    <div id="chat-messages" class="space-y-4 overflow-y-auto max-h-[350px] chat-scroll pr-2">
-                        <!-- Welcome Message from Agent -->
-                        <div class="flex items-start gap-3">
-                            <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">
-                                AI
-                            </div>
-                            <div class="flex-1 bg-white/[0.04] border border-white/10 p-3.5 rounded-xl rounded-tl-none leading-relaxed text-slate-200">
-                                <div class="text-cyan-400 text-xs font-bold mb-1">NAVEED_AGENT:</div>
-                                👋 Welcome! I am Naveed's autonomous AI representative. I can explain Naveed's architecture, verify his technical capabilities, show live project benchmarks, or help you book him for a production sprint.
-                                <div class="text-slate-400 text-xs mt-2">Pick a prompt below or type any question:</div>
-                            </div>
+                    <!-- Script "Hello, I'm" + Red Badge "NAVEED." -->
+                    <div class="flex items-baseline gap-3">
+                        <span class="font-script text-2xl sm:text-3xl text-slate-300 italic">Hello, I'm</span>
+                        <div class="badge-red px-3 sm:px-4 py-1 rounded text-2xl sm:text-4xl uppercase tracking-tight font-display">
+                            NAVEED.
                         </div>
                     </div>
 
-                    <!-- Prompt Suggestion Chips -->
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <div class="text-[10px] font-mono text-slate-500 mb-2">QUICK AGENT PROMPTS:</div>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <button onclick="askAgent('What is Naveed\'s tech stack and core skills?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
-                                <span>⚡ Tech Stack</span>
-                            </button>
-                            <button onclick="askAgent('Can Naveed build custom Shopify stores without heavy apps?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 text-purple-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
-                                <span>🛍️ Shopify Architecture</span>
-                            </button>
-                            <button onclick="askAgent('How does SmartRateCalcs work and why is it Source [1] on Google?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
-                                <span>🚀 SmartRateCalcs Case Study</span>
-                            </button>
-                            <button onclick="askAgent('What are Naveed\'s freelance rates and turnaround times?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-amber-500/20 text-amber-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
-                                <span>💰 Rates & Pricing</span>
-                            </button>
-                            <button onclick="askAgent('I want to hire Naveed right now. How do we start?')" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-emerald-500/30 transition-colors flex items-center gap-1.5">
-                                <span>🔥 Hire Naveed</span>
-                            </button>
+                    <!-- Figma Selection Box: Role (From Reel) -->
+                    <div class="inline-block relative">
+                        <div class="figma-box px-3.5 py-1.5 bg-[#09090d] border border-white/10 rounded">
+                            <span class="figma-tag">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+                                242 x 28
+                            </span>
+                            <span class="text-xs sm:text-sm font-mono text-cyan-400 font-semibold tracking-wide flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                SYSTEM ARCHITECT & FULL-STACK ENGINEER
+                            </span>
+                            <!-- Handles -->
+                            <span class="figma-handle" style="top: -4px; left: -4px;"></span>
+                            <span class="figma-handle" style="top: -4px; right: -4px;"></span>
+                            <span class="figma-handle" style="bottom: -4px; left: -4px;"></span>
+                            <span class="figma-handle" style="bottom: -4px; right: -4px;"></span>
                         </div>
+                    </div>
 
-                        <!-- Chat Input Box -->
-                        <form id="agent-form" onsubmit="handleAgentSubmit(event)" class="flex items-center gap-2">
-                            <input id="agent-input" type="text" autocomplete="off" placeholder="Ask anything about Naveed's architecture, Shopify, Next.js, or availability..." class="flex-1 bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs sm:text-sm font-mono placeholder:text-slate-500 transition-colors">
-                            <button type="submit" class="px-5 py-2.5 bg-cyan-500 text-black font-bold rounded-xl text-xs sm:text-sm hover:bg-cyan-400 font-mono transition-colors flex items-center gap-1.5 shadow-lg shadow-cyan-500/20">
-                                <span>Send</span>
-                                <i data-feather="send" class="w-3.5 h-3.5"></i>
-                            </button>
-                        </form>
+                    <!-- Exact Bio Wording Inspired By Reel -->
+                    <p class="text-sm sm:text-base text-slate-300 font-light leading-relaxed max-w-2xl">
+                        Architecting sub-second production systems, high-velocity programmatic web architectures, and custom Shopify Liquid 2.0 storefronts from first principles — zero framework bloat, total performance.
+                    </p>
+
+                    <!-- Quote Block -->
+                    <div class="p-3.5 border-l-2 border-red-500 bg-red-950/10 text-xs font-mono text-slate-300 leading-relaxed max-w-2xl">
+                        "I engineer autonomous web systems running 24/7 with zero latency, automated programmatic Google indexing, and sub-second Core Web Vitals."
+                    </div>
+
+                    <!-- Action Buttons From Reel -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20architectural%20portfolio%20and%20want%20to%20hire%20you" target="_blank" onclick="triggerConfetti()" class="px-5 py-3 rounded btn-dispatch text-xs uppercase tracking-wider flex items-center gap-2">
+                            <span>INITIATE DISPATCH</span>
+                            <span>→</span>
+                        </a>
+
+                        <a href="#flagships" class="px-5 py-3 rounded btn-ghost-arch text-xs uppercase tracking-wider flex items-center gap-2">
+                            <span>EXPLORE ARCHITECTURE</span>
+                            <i data-feather="chevron-down" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                    <!-- Core Metrics Row (From Reel Footer) -->
+                    <div class="flex flex-wrap items-center gap-6 sm:gap-10 pt-4 text-xs font-mono border-t border-white/5">
+                        <div>
+                            <span class="text-red-500 font-bold text-sm sm:text-base">73+</span>
+                            <span class="text-slate-400 ml-1">Live Corridors</span>
+                        </div>
+                        <div>
+                            <span class="text-white font-bold text-sm sm:text-base">99/100</span>
+                            <span class="text-slate-400 ml-1">Core Web Vitals</span>
+                        </div>
+                        <div>
+                            <span class="text-cyan-400 font-bold text-sm sm:text-base">&lt; 38ms</span>
+                            <span class="text-slate-400 ml-1">Edge Latency</span>
+                        </div>
+                        <div>
+                            <span class="text-emerald-400 font-bold text-sm sm:text-base">100/100</span>
+                            <span class="text-slate-400 ml-1">Ahrefs Health</span>
+                        </div>
                     </div>
 
                 </div>
+
+                <!-- Right Identity Frame: Naveed's Authentic Picture With Figma Selection Box -->
+                <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                    <div class="relative w-64 sm:w-72">
+                        <!-- Figma Selection Wireframe Around Profile Photo -->
+                        <div class="figma-box p-1.5 bg-[#09090d] rounded-lg">
+                            <span class="figma-tag">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+                                280 x 360 · Muhammad Naveed
+                            </span>
+
+                            <div class="w-full h-80 sm:h-96 rounded overflow-hidden relative bg-black">
+                                <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover object-top filter contrast-105 hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-3 left-3 right-3 text-xs font-mono">
+                                    <div class="text-white font-bold">Muhammad Naveed</div>
+                                    <div class="text-red-400 text-[11px]">System Architect · Karachi/Hyd, PK</div>
+                                </div>
+                            </div>
+
+                            <!-- Figma Bounding Handles -->
+                            <span class="figma-handle" style="top: -4px; left: -4px;"></span>
+                            <span class="figma-handle" style="top: -4px; right: -4px;"></span>
+                            <span class="figma-handle" style="bottom: -4px; left: -4px;"></span>
+                            <span class="figma-handle" style="bottom: -4px; right: -4px;"></span>
+                        </div>
+
+                        <!-- Floating Micro Tag -->
+                        <div class="absolute -bottom-3 -left-4 bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 font-mono text-[10px] px-2.5 py-1 rounded shadow-xl flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>Google Source [1] Cited</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
 
-        <!-- ================= LIVE BENCHMARK HUD ================= -->
-        <section id="metrics" class="mb-24">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <!-- Metric 1 -->
-                <div class="spotlight-card p-6 text-center">
-                    <div class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 mb-1">99/100</div>
-                    <div class="text-xs font-semibold text-white tracking-wide uppercase">Core Web Vitals</div>
-                    <div class="text-[11px] text-slate-500 font-mono mt-1">Lighthouse Mobile 2026</div>
-                </div>
-
-                <!-- Metric 2 -->
-                <div class="spotlight-card p-6 text-center">
-                    <div class="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-400 mb-1">&lt; 0.6s</div>
-                    <div class="text-xs font-semibold text-white tracking-wide uppercase">LCP Load Time</div>
-                    <div class="text-[11px] text-slate-500 font-mono mt-1">Sub-second Paint Speed</div>
-                </div>
-
-                <!-- Metric 3 -->
-                <div class="spotlight-card p-6 text-center">
-                    <div class="text-3xl sm:text-4xl font-extrabold font-mono text-purple-400 mb-1">100/100</div>
-                    <div class="text-xs font-semibold text-white tracking-wide uppercase">Ahrefs Health</div>
-                    <div class="text-[11px] text-slate-500 font-mono mt-1">Zero Technical SEO Errors</div>
-                </div>
-
-                <!-- Metric 4 -->
-                <div class="spotlight-card p-6 text-center">
-                    <div class="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 mb-1">73+</div>
-                    <div class="text-xs font-semibold text-white tracking-wide uppercase">Live Corridors</div>
-                    <div class="text-[11px] text-slate-500 font-mono mt-1">Programmatic Dynamic SSR</div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ================= BENTO GRID FLAGSHIP ARCHITECTURE ================= -->
-        <section id="projects" class="mb-28">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-                <div>
-                    <span class="text-xs font-mono uppercase tracking-widest text-cyan-400">Engineered Deliverables</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Production Platforms & Case Studies</h2>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-400 max-w-md mt-2 md:mt-0 font-light">
-                    Every project is battle-tested in live production with real users, automated Google indexation, and sub-second edge response.
+        <!-- ================= 2. ARCHITECTURAL SHOWCASE: FLAGSHIP DEPLOYMENTS ================= -->
+        <section id="flagships" class="mb-24 scroll-mt-20">
+            <!-- Eyebrow & Title (From Reel) -->
+            <div class="mb-10">
+                <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase block mb-1">ARCHITECTURAL SHOWCASE</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display">Flagship Deployments</h2>
+                <p class="text-xs sm:text-sm text-slate-400 font-mono mt-1">
+                    Production-grade systems running 24/7 across high-velocity edge networks and commercial endpoints.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Bento Deployments Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <!-- FLAGSHIP 1: SmartRateCalcs (Full Span 2 Columns) -->
-                <div class="spotlight-card md:col-span-2 p-8 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold tracking-wider uppercase">Live Production Engine</span>
-                            </div>
-                            <span class="text-xs font-mono text-slate-500">Google Source [1] Cited</span>
+                <!-- DEPLOYMENT 1: SmartRateCalcs.com -->
+                <div class="card-arch p-6 sm:p-8 relative group">
+                    <div class="flex items-center justify-between mb-4 text-xs font-mono">
+                        <span class="text-red-500 font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            DEFI // CROSS-BORDER ENGINE
+                        </span>
+                        <span class="text-slate-500">PROD #01</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 font-display">SmartRateCalcs.com</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                        Independent cross-border financial payout engine. Programmatically renders 73+ currency corridors (SadaBiz, Payoneer, Wise, Revolut) with zero-latency Server-Side Rendering, instant IndexNow API, and Google Source [1] citation.
+                    </p>
+
+                    <div class="bg-black/60 border border-white/10 p-3.5 rounded mb-6 font-mono text-xs">
+                        <div class="text-slate-400 flex justify-between mb-1">
+                            <span>CORRIDOR ENGINE:</span>
+                            <span class="text-cyan-400">USD/PKR 282.50</span>
                         </div>
-
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">SmartRateCalcs.com</h3>
-                        <p class="text-sm text-slate-300 font-light leading-relaxed mb-6">
-                            Independent cross-border financial payout engine. Programmatically renders 73+ currency corridors (SadaBiz, Payoneer, Wise, Remitly, Revolut) with zero-latency Server-Side Rendering, dynamic IndexNow submission, and 100/100 Technical SEO Health.
-                        </p>
-
-                        <!-- Interactive Mini Currency Calculator Simulator Embedded in Card -->
-                        <div class="glass-pill p-4 rounded-xl border border-white/10 mb-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[11px] font-mono text-slate-400">INTERACTIVE CORRIDOR ENGINE:</span>
-                                <span class="text-xs font-mono text-cyan-400 font-bold" id="sim-rate">USD to PKR: 282.50</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <input id="sim-slider" type="range" min="100" max="5000" step="50" value="1000" oninput="updateSimulator(this.value)" class="flex-1 accent-cyan-400 cursor-pointer">
-                                <span class="text-sm font-mono font-bold text-white min-w-[70px] text-right" id="sim-amount">$1,000</span>
-                            </div>
-                            <div class="mt-2.5 pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                                <span class="text-slate-400">SmartRate Estimated Payout:</span>
-                                <span class="text-emerald-400 font-bold" id="sim-payout">282,500 PKR</span>
-                            </div>
-                        </div>
-
-                        <!-- Tech Badges -->
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 text-cyan-300 border border-white/10">Next.js 15 App Router</span>
-                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 text-purple-300 border border-white/10">Edge SSR</span>
-                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 text-emerald-300 border border-white/10">Instant IndexNow API</span>
-                            <span class="text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">Structured Schema</span>
+                        <div class="text-emerald-400 font-bold flex justify-between">
+                            <span>SSR BENCHMARK:</span>
+                            <span>&lt; 38ms Edge TTFB</span>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <a href="https://www.smartratecalcs.com" target="_blank" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-                            <span>Open Live Platform (smartratecalcs.com)</span>
-                            <i data-feather="external-link" class="w-4 h-4"></i>
-                        </a>
-                        <a href="https://github.com/mnaveedkhtri-ui/smartratecalcs" target="_blank" class="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
-                            <i data-feather="github" class="w-3.5 h-3.5"></i> Source
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 font-mono text-xs">
+                        <span class="text-slate-500">Next.js 15 · TypeScript · IndexNow</span>
+                        <a href="https://www.smartratecalcs.com" target="_blank" class="text-red-400 hover:text-red-300 font-bold flex items-center gap-1">
+                            LIVE SYSTEM ↗
                         </a>
                     </div>
                 </div>
 
-                <!-- FLAGSHIP 2: SAYA Luxury Haute Couture (Span 1 Column) -->
-                <div class="spotlight-card p-8 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-purple-400 font-semibold tracking-wider uppercase">Luxury E-Commerce</span>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950/50 text-purple-300 border border-purple-800/40">Shopify Architecture</span>
+                <!-- DEPLOYMENT 2: SAYA Luxury Pret -->
+                <div class="card-arch p-6 sm:p-8 relative group">
+                    <div class="flex items-center justify-between mb-4 text-xs font-mono">
+                        <span class="text-purple-400 font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+                            E-COMMERCE // LUXURY STOREFRONT
+                        </span>
+                        <span class="text-slate-500">PROD #02</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 font-display">SAYA Luxury Pret</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                        High-velocity luxury fashion storefront. Custom Liquid 2.0 templating, 50+ accessible shade swatches, 0.08s sliding bag drawer, and zero third-party app bloat.
+                    </p>
+
+                    <div class="bg-black/60 border border-white/10 p-3.5 rounded mb-6 font-mono text-xs">
+                        <div class="text-slate-400 flex justify-between mb-1">
+                            <span>CART DRAWER LATENCY:</span>
+                            <span class="text-purple-400">0.08s Instant</span>
                         </div>
-
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">SAYA Luxury Pret</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
-                            High-velocity luxury storefront with sub-second variant switching, custom AJAX sliding drawer, and zero-app Liquid templating for maximum mobile conversion.
-                        </p>
-
-                        <!-- Swatch Mini Interaction -->
-                        <div class="glass-pill p-3.5 rounded-xl border border-white/10 mb-6">
-                            <div class="text-[10px] font-mono text-slate-400 mb-2">INTERACTIVE SHADE / FABRIC SELECTOR:</div>
-                            <div class="flex items-center gap-2">
-                                <button onclick="selectSwatch('Antique Gold', '#8c734b')" class="w-6 h-6 rounded-full border-2 border-white/80 shadow" style="background:#8c734b;" title="Antique Gold"></button>
-                                <button onclick="selectSwatch('Midnight Silk', '#0f172a')" class="w-6 h-6 rounded-full border border-white/20 hover:scale-110 transition-transform" style="background:#0f172a;" title="Midnight Silk"></button>
-                                <button onclick="selectSwatch('Emerald Velvet', '#064e3b')" class="w-6 h-6 rounded-full border border-white/20 hover:scale-110 transition-transform" style="background:#064e3b;" title="Emerald Velvet"></button>
-                                <span class="text-xs font-mono text-slate-300 ml-2" id="swatch-label">Antique Gold (Ready)</span>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-purple-300 border border-white/10">Shopify Plus</span>
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-cyan-300 border border-white/10">Liquid 2.0</span>
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-emerald-300 border border-white/10">0.08s Bag Drawer</span>
+                        <div class="text-emerald-400 font-bold flex justify-between">
+                            <span>MOBILE LIGHTHOUSE:</span>
+                            <span>99/100 Mobile</span>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors">
-                            <span>Inspect Catalog</span>
-                            <i data-feather="external-link" class="w-3.5 h-3.5"></i>
-                        </a>
-                        <a href="https://saya.pk" target="_blank" class="text-[11px] font-mono text-slate-400 hover:text-white transition-colors">
-                            Live Brand ↗
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 font-mono text-xs">
+                        <span class="text-slate-500">Shopify Plus · Liquid · AJAX</span>
+                        <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="text-purple-400 hover:text-purple-300 font-bold flex items-center gap-1">
+                            INSPECT CATALOG ↗
                         </a>
                     </div>
                 </div>
 
-                <!-- FLAGSHIP 3: ModernTrendsNow (Span 1 Column) -->
-                <div class="spotlight-card p-8 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-cyan-400 font-semibold tracking-wider uppercase">Publication Engine</span>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/50 text-cyan-300 border border-cyan-800/40">Next.js Edge</span>
+                <!-- DEPLOYMENT 3: ModernTrendsNow -->
+                <div class="card-arch p-6 sm:p-8 relative group">
+                    <div class="flex items-center justify-between mb-4 text-xs font-mono">
+                        <span class="text-cyan-400 font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                            PUBLICATION // EDGE CACHING
+                        </span>
+                        <span class="text-slate-500">PROD #03</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 font-display">ModernTrendsNow</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                        High-traffic digital publication platform engineered with automated programmatic sitemaps, serverless database pooling, and instant edge cache warming.
+                    </p>
+
+                    <div class="bg-black/60 border border-white/10 p-3.5 rounded mb-6 font-mono text-xs">
+                        <div class="text-slate-400 flex justify-between mb-1">
+                            <span>EDGE REVALIDATION:</span>
+                            <span class="text-cyan-400">Dynamic ISR</span>
                         </div>
-
-                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">ModernTrendsNow</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
-                            High-velocity digital publication platform engineered with edge cache warming, automated programmatic sitemaps, and serverless pool balancing.
-                        </p>
-
-                        <!-- Live Edge Ping Interactive Display -->
-                        <div class="glass-pill p-3.5 rounded-xl border border-white/10 mb-6">
-                            <div class="flex items-center justify-between text-[10px] font-mono text-slate-400 mb-1">
-                                <span>LIVE EDGE REVALIDATION:</span>
-                                <span class="text-emerald-400 font-bold" id="edge-ping">ACTIVE (24ms)</span>
-                            </div>
-                            <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
-                                <div class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-1.5 rounded-full w-full animate-pulse"></div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-cyan-300 border border-white/10">Edge Caching</span>
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">Dynamic ISR</span>
-                            <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 text-emerald-300 border border-white/10">98 Mobile</span>
+                        <div class="text-emerald-400 font-bold flex justify-between">
+                            <span>PERFORMANCE INDEX:</span>
+                            <span>98+ Mobile Score</span>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-white/10">
-                        <a href="https://www.moderntrendsnow.org" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-                            <span>Explore ModernTrendsNow</span>
-                            <i data-feather="external-link" class="w-3.5 h-3.5"></i>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 font-mono text-xs">
+                        <span class="text-slate-500">Next.js · Serverless · Edge ISR</span>
+                        <a href="https://www.moderntrendsnow.org" target="_blank" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1">
+                            LIVE PLATFORM ↗
                         </a>
                     </div>
                 </div>
 
-                <!-- FLAGSHIP 4: Canvas Interactive Simulation Engine (Span 2 Columns) -->
-                <div class="spotlight-card md:col-span-2 p-8 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-amber-400 font-semibold tracking-wider uppercase">Interactive 2.5D Experience</span>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/50 text-amber-300 border border-amber-800/40">Canvas WebGL Engine</span>
+                <!-- DEPLOYMENT 4: Escape Experiment -->
+                <div class="card-arch p-6 sm:p-8 relative group">
+                    <div class="flex items-center justify-between mb-4 text-xs font-mono">
+                        <span class="text-amber-400 font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                            SIMULATION // 2.5D CANVAS ENGINE
+                        </span>
+                        <span class="text-slate-500">PROD #04</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 font-display">Escape Experiment (Subject 04)</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                        Procedural 2.5D interactive canvas engine. Built with zero heavy frameworks, featuring localized audio synthesis, raycast collision, and 60 FPS isometric physics.
+                    </p>
+
+                    <div class="bg-black/60 border border-white/10 p-3.5 rounded mb-6 font-mono text-xs">
+                        <div class="text-slate-400 flex justify-between mb-1">
+                            <span>RENDER CYCLE:</span>
+                            <span class="text-amber-400">60 FPS Native Canvas</span>
                         </div>
-
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Escape Experiment (Subject 04)</h3>
-                        <p class="text-sm text-slate-300 font-light leading-relaxed mb-6">
-                            A custom procedural 2.5D interactive canvas engine built with zero heavy frameworks. Features real-time particle physics, localized dynamic audio synthesis, isometric spatial lighting, and interactive puzzle triggers running smoothly at 60 frames per second.
-                        </p>
-
-                        <!-- Live Mini Interactive Game Demo Trigger -->
-                        <div class="glass-pill p-4 rounded-xl border border-white/10 mb-6 flex items-center justify-between flex-wrap gap-4">
-                            <div>
-                                <div class="text-xs font-mono text-amber-400 font-bold mb-0.5">PHYSICS ENGINE: 60 FPS CANVAS</div>
-                                <div class="text-[11px] text-slate-400">Synthesized audio cues, raycast collision, and puzzle state machines.</div>
-                            </div>
-                            <a href="./escape-experiment/" target="_blank" class="px-4 py-2 rounded-lg bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/30 text-xs font-mono font-bold transition-all flex items-center gap-1.5">
-                                <i data-feather="play" class="w-3.5 h-3.5"></i> Launch Simulation
-                            </a>
+                        <div class="text-emerald-400 font-bold flex justify-between">
+                            <span>DEPENDENCIES:</span>
+                            <span>Zero Frameworks (Vanilla)</span>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-                        <span class="text-xs font-mono text-slate-500">Pure Vanilla JavaScript + Canvas API</span>
-                        <a href="./escape-experiment/" target="_blank" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-amber-400 hover:text-amber-300 transition-colors">
-                            <span>Open Experience</span>
-                            <i data-feather="external-link" class="w-4 h-4"></i>
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5 font-mono text-xs">
+                        <span class="text-slate-500">HTML5 Canvas · Web Audio API</span>
+                        <a href="./escape-experiment/" target="_blank" class="text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1">
+                            LAUNCH ENGINE ↗
                         </a>
                     </div>
                 </div>
@@ -662,125 +526,132 @@
         </section>
 
 
-        <!-- ================= SERVICES & CORE CAPABILITIES ================= -->
-        <section id="services" class="mb-28">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-xs font-mono uppercase tracking-widest text-cyan-400">Technical Mastery</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Specialized Engineering Services</h2>
-                <p class="text-xs sm:text-sm text-slate-400 mt-2 font-light">
-                    Focused exclusively on high-performance web development where milliseconds directly dictate revenue.
-                </p>
+        <!-- ================= 3. SYSTEM CAPABILITIES ================= -->
+        <section id="capabilities" class="mb-24 scroll-mt-20">
+            <div class="mb-10">
+                <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase block mb-1">SYSTEM CAPABILITIES</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-display">Technical Execution Matrix</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Service 1 -->
-                <div class="spotlight-card p-8">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-800/40 flex items-center justify-center text-cyan-400 mb-6">
-                        <i data-feather="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Next.js 15 & Full-Stack Apps</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Architecting App Router platforms with React Server Components, Server Actions, edge caching, and serverless database pooling for sub-second responses.
-                    </p>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Dynamic Edge Route Handlers</li>
-                        <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Serverless Postgres / Supabase</li>
-                        <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Zero-Layout-Shift Hydration</li>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+                <div class="p-6 bg-[#09090d] border border-white/10 rounded">
+                    <div class="text-red-500 font-bold mb-3">01 // NEXT.JS FULL-STACK</div>
+                    <ul class="space-y-2 text-slate-400 leading-relaxed">
+                        <li>▹ App Router & Server Actions</li>
+                        <li>▹ Dynamic Edge Route Handlers</li>
+                        <li>▹ Serverless Postgres / Supabase</li>
+                        <li>▹ Zero-Layout-Shift Hydration</li>
                     </ul>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="spotlight-card p-8">
-                    <div class="w-12 h-12 rounded-xl bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 mb-6">
-                        <i data-feather="shopping-bag" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Shopify & E-Commerce</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Bespoke Liquid 2.0 theme development, accessible variant color swatches, 1-click cart drawers, and eliminating expensive monthly app bloat.
-                    </p>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-center gap-2"><span class="text-purple-400">▹</span> 50+ Accessible Shade Swatches</li>
-                        <li class="flex items-center gap-2"><span class="text-purple-400">▹</span> Native Shopify Product Schema</li>
-                        <li class="flex items-center gap-2"><span class="text-purple-400">▹</span> Afterpay / Multi-currency Setup</li>
+                <div class="p-6 bg-[#09090d] border border-white/10 rounded">
+                    <div class="text-purple-400 font-bold mb-3">02 // SHOPIFY ARCHITECTURE</div>
+                    <ul class="space-y-2 text-slate-400 leading-relaxed">
+                        <li>▹ Custom Liquid 2.0 Themes</li>
+                        <li>▹ 50+ Accessible Color Swatches</li>
+                        <li>▹ Native Product Schema (JSON-LD)</li>
+                        <li>▹ Zero App Bloat Elimination</li>
                     </ul>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="spotlight-card p-8">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-950/60 border border-emerald-800/40 flex items-center justify-center text-emerald-400 mb-6">
-                        <i data-feather="trending-up" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Technical SEO & Web Speed</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Diagnosing and resolving Google crawl bottlenecks, slashing First Contentful Paint, implementing JSON-LD Rich Snippets, and automated indexing.
-                    </p>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-center gap-2"><span class="text-emerald-400">▹</span> 100/100 Ahrefs Health Audits</li>
-                        <li class="flex items-center gap-2"><span class="text-emerald-400">▹</span> Programmatic IndexNow Pipeline</li>
-                        <li class="flex items-center gap-2"><span class="text-emerald-400">▹</span> Sub-150KB Initial HTML Payloads</li>
+                <div class="p-6 bg-[#09090d] border border-white/10 rounded">
+                    <div class="text-emerald-400 font-bold mb-3">03 // SPEED & TECHNICAL SEO</div>
+                    <ul class="space-y-2 text-slate-400 leading-relaxed">
+                        <li>▹ 99+ Core Web Vitals (Mobile)</li>
+                        <li>▹ Sub-second LCP Remediation</li>
+                        <li>▹ Programmatic IndexNow Pipelines</li>
+                        <li>▹ 100/100 Ahrefs Technical Health</li>
                     </ul>
                 </div>
             </div>
         </section>
 
 
-        <!-- ================= CONTACT & CALL TO ACTION ================= -->
-        <section id="contact" class="spotlight-card p-8 sm:p-14 text-center border-white/10 relative overflow-hidden">
-            <div class="relative z-10 max-w-2xl mx-auto">
-                <span class="text-xs font-mono uppercase tracking-widest text-cyan-400">Ready to Ship?</span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">
-                    Let's Build Something High-Velocity Together.
+        <!-- ================= 4. LET'S ARCHITECT SOMETHING EXTRAORDINARY (FROM REEL FRAME 24) ================= -->
+        <section id="contact" class="card-arch p-8 sm:p-14 text-center relative overflow-hidden mb-16">
+            <div class="max-w-2xl mx-auto space-y-6">
+                
+                <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase">DIRECT CONNECT // DISPATCH</span>
+                
+                <!-- Exact Heading from Reel Frame 24 -->
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-display">
+                    Let's Architect Something Extraordinary.
                 </h2>
-                <p class="text-sm sm:text-base text-slate-400 font-light mb-10 leading-relaxed">
-                    Whether you need a custom Shopify storefront, a high-performance Next.js web application, or an urgent Core Web Vitals speed remediation, I'm ready to start.
-                </p>
 
-                <!-- Actions -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20have%20a%20project%20for%20you" target="_blank" onclick="triggerConfetti()" class="w-full sm:w-auto px-8 py-4 rounded-xl btn-glow text-sm font-bold flex items-center justify-center gap-2">
+                <!-- Selection Box Around Subtitle (From Reel) -->
+                <div class="inline-block relative">
+                    <div class="figma-box px-4 py-2 bg-black/60 border border-white/10 rounded">
+                        <span class="figma-tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
+                            Selection · Available
+                        </span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-mono">
+                            Available for production autonomous web design, high-velocity e-commerce architectures, and technical advisory.
+                        </p>
+                        <!-- Handles -->
+                        <span class="figma-handle" style="top: -4px; left: -4px;"></span>
+                        <span class="figma-handle" style="top: -4px; right: -4px;"></span>
+                        <span class="figma-handle" style="bottom: -4px; left: -4px;"></span>
+                        <span class="figma-handle" style="bottom: -4px; right: -4px;"></span>
+                    </div>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20have%20a%20project%20for%20you" target="_blank" onclick="triggerConfetti()" class="w-full sm:w-auto px-8 py-3.5 rounded btn-dispatch text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                         <i data-feather="message-circle" class="w-4 h-4"></i>
                         <span>WhatsApp (+92 332 3219981)</span>
                     </a>
-                    
-                    <button onclick="copyEmail(this)" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-pill hover:bg-white/10 text-sm font-semibold text-white border border-white/15 flex items-center justify-center gap-2 transition-all">
+
+                    <button onclick="copyEmail(this)" class="w-full sm:w-auto px-8 py-3.5 rounded btn-ghost-arch text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                         <i data-feather="copy" class="w-4 h-4 text-cyan-400"></i>
-                        <span id="copy-text">Copy Email (naveedkhtri7@gmail.com)</span>
+                        <span id="copy-text">Copy naveedkhtri7@gmail.com</span>
                     </button>
                 </div>
 
-                <div class="mt-8 text-xs font-mono text-slate-500">
-                    Average response time: <span class="text-emerald-400 font-semibold">&lt; 15 minutes</span> (Direct Developer Access)
+                <div class="text-[11px] font-mono text-slate-500 pt-2">
+                    Average response time: <span class="text-emerald-400 font-bold">&lt; 15 minutes</span> · Direct Engineer Access
                 </div>
+
             </div>
         </section>
 
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="border-t border-white/10 py-8 px-4 text-center text-xs font-mono text-slate-500">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-                © 2026 Muhammad Naveed. Handcrafted with zero bloat.
+    <!-- ================= FLOATING MULTIPLAYER DOCK (FROM REEL BOTTOM BAR) ================= -->
+    <div class="fixed bottom-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+        <div class="pointer-events-auto bg-[#09090d]/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-2xl flex items-center gap-4 text-xs font-mono text-slate-400">
+            <!-- Agent Count -->
+            <div class="flex items-center gap-1.5">
+                <span class="flex -space-x-1">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block border border-black"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block border border-black"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block border border-black"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-purple-400 inline-block border border-black"></span>
+                </span>
+                <span class="text-white font-bold ml-1">18 agents</span>
+                <span class="text-slate-500 hidden sm:inline">93 / 252 layers</span>
             </div>
-            <div class="flex items-center gap-6">
-                <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
-                    <i data-feather="github" class="w-3.5 h-3.5"></i> GitHub
-                </a>
-                <a href="https://wa.me/923323219981" target="_blank" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
-                    <i data-feather="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
-                </a>
-                <a href="mailto:naveedkhtri7@gmail.com" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
-                    <i data-feather="mail" class="w-3.5 h-3.5"></i> Email
-                </a>
+
+            <div class="h-3 w-px bg-white/10"></div>
+
+            <!-- Active Selection Tool Pill -->
+            <div class="flex items-center gap-1 text-[11px] text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded">
+                <span>[V]</span>
+                <span class="hidden sm:inline">Select Mode</span>
+            </div>
+
+            <!-- Local Time -->
+            <div class="text-slate-300 hidden md:block">
+                <span id="dock-time">--:--:-- PKT</span>
             </div>
         </div>
-    </footer>
+    </div>
 
 
-    <!-- ================= JAVASCRIPT ENGINE & INTERACTIONS ================= -->
+    <!-- ================= SCRIPT ENGINE ================= -->
     <script>
-        // Feather Icons Initialization
         feather.replace();
 
         // 1. Live Karachi Time Clock
@@ -788,261 +659,43 @@
             const now = new Date();
             const options = { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
             const timeStr = now.toLocaleTimeString('en-US', options);
-            const clockEl = document.getElementById('live-clock');
-            if (clockEl) clockEl.innerText = timeStr + ' PKT';
+            const dockEl = document.getElementById('dock-time');
+            if (dockEl) dockEl.innerText = timeStr + ' PKT';
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Synthesized Web Audio API FX
-        let audioCtx = null;
-        let soundEnabled = false;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
-        function playBeep(freq = 600, type = 'sine', duration = 0.05) {
-            if (!soundEnabled || !audioCtx) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
-        }
-
-        const soundToggle = document.getElementById('sound-toggle');
-        const soundIcon = document.getElementById('sound-icon');
-        soundToggle.addEventListener('click', () => {
-            initAudio();
-            soundEnabled = !soundEnabled;
-            soundIcon.innerText = soundEnabled ? '🔊' : '🔇';
-            if (soundEnabled) {
-                playBeep(880, 'triangle', 0.1);
-            }
-        });
-
-        // 3. Fluid Interactive Cursor & Spotlight Cards
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorGlow = document.getElementById('cursor-glow');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            if (cursorDot) {
-                cursorDot.style.left = `${mouseX}px`;
-                cursorDot.style.top = `${mouseY}px`;
-            }
-            if (cursorGlow) {
-                cursorGlow.style.left = `${mouseX}px`;
-                cursorGlow.style.top = `${mouseY}px`;
-            }
-
-            // Spotlight card coordinates
-            document.querySelectorAll('.spotlight-card').forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // Add cursor hover state to buttons and links
-        document.querySelectorAll('a, button, input').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.body.classList.add('cursor-hover');
-                playBeep(900, 'sine', 0.03);
-            });
-            el.addEventListener('mouseleave', () => {
-                document.body.classList.remove('cursor-hover');
-            });
-        });
-
-        // 4. Kinetic Text Scramble Effect
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$&*";
-        const scrambleEl = document.getElementById('scramble-title');
-        if (scrambleEl) {
-            scrambleEl.addEventListener('mouseenter', () => {
-                let iteration = 0;
-                const originalText = scrambleEl.dataset.value || scrambleEl.innerText;
-                scrambleEl.dataset.value = originalText;
-                
-                const interval = setInterval(() => {
-                    scrambleEl.innerText = originalText
-                        .split("")
-                        .map((letter, index) => {
-                            if (index < iteration) {
-                                return originalText[index];
-                            }
-                            return letters[Math.floor(Math.random() * letters.length)];
-                        })
-                        .join("");
-                    
-                    if (iteration >= originalText.length) {
-                        clearInterval(interval);
-                    }
-                    iteration += 1 / 2;
-                }, 30);
-            });
-        }
-
-        // 5. Interactive Currency Simulator (SmartRateCalcs Widget)
-        function updateSimulator(val) {
-            playBeep(400 + val / 10, 'sine', 0.02);
-            const amountEl = document.getElementById('sim-amount');
-            const payoutEl = document.getElementById('sim-payout');
-            const rate = 282.50;
-            const payout = (val * rate).toLocaleString();
-            
-            if (amountEl) amountEl.innerText = `$${Number(val).toLocaleString()}`;
-            if (payoutEl) payoutEl.innerText = `${payout} PKR`;
-        }
-
-        // 6. Interactive Swatch Selector (SAYA Luxury Widget)
-        function selectSwatch(name, color) {
-            playBeep(750, 'triangle', 0.05);
-            const label = document.getElementById('swatch-label');
-            if (label) label.innerText = `${name} (Active)`;
-        }
-
-        // ================= 7. AUTONOMOUS AI AGENT CONVERSATION ENGINE =================
-        const chatMessages = document.getElementById('chat-messages');
-        const agentInput = document.getElementById('agent-input');
-
-        const AGENT_KNOWLEDGE_BASE = [
-            {
-                keywords: ['stack', 'tech', 'skills', 'tools', 'languages', 'nextjs', 'react'],
-                response: `🚀 <strong>Naveed's Core Tech Stack:</strong><br><br>
-• <strong>Frontend & Frameworks:</strong> Next.js 15 (App Router, Server Actions), React 19, Tailwind CSS, TypeScript.<br>
-• <strong>E-Commerce:</strong> Shopify Liquid 2.0, Theme App Extensions, Metafields, WooCommerce, Custom 0.08s AJAX Cart Drawers.<br>
-• <strong>Systems & Speed:</strong> Core Web Vitals (99+ score), sub-second LCP, programmatic SEO (IndexNow API), and zero third-party app bloat.`
-            },
-            {
-                keywords: ['shopify', 'store', 'e-commerce', 'ecommerce', 'dropshipping', 'app bloat'],
-                response: `🛍️ <strong>Shopify Architecture Expertise:</strong><br><br>
-Naveed builds ultra-lean, high-converting Shopify storefronts. Instead of installing 15+ slow apps that charge monthly fees, he codes features <em>natively in Liquid</em>:<br>
-• 50+ Accessible Color/Shade Swatches<br>
-• Sub-second AJAX sliding cart drawer with live free-shipping bar<br>
-• Native Product Schema (JSON-LD) for Google Rich Snippets<br>
-• Afterpay, Klarna, & Multi-currency geolocators.`
-            },
-            {
-                keywords: ['smartrate', 'smartratecalcs', 'source 1', 'corridor', 'calculator'],
-                response: `⚡ <strong>SmartRateCalcs Case Study:</strong><br><br>
-SmartRateCalcs.com is Naveed's production financial payout engine. Key achievements:<br>
-• <strong>Google Citation:</strong> Cited as <em>Source [1]</em> on Google Search for cross-border fintech queries.<br>
-• <strong>Programmatic Scale:</strong> 73+ currency corridors dynamically generated with zero-latency Server-Side Rendering.<br>
-• <strong>SEO Health:</strong> 100/100 Ahrefs technical audit with instant IndexNow protocol dispatch.`
-            },
-            {
-                keywords: ['rate', 'pricing', 'cost', 'charge', 'budget', 'timeline', 'turnaround'],
-                response: `💰 <strong>Rates & Sprint Availability:</strong><br><br>
-• <strong>Custom Shopify Store:</strong> 40,000 to 55,000 PKR ($180 - $220 USD) | Turnaround: 3 to 4 days.<br>
-• <strong>Next.js Web Applications:</strong> 50,000 to 80,000 PKR ($200 - $300 USD) depending on complexity.<br>
-• <strong>Technical SEO & Speed Sprints:</strong> 35,000 PKR / month.<br>
-• <strong>Payment Terms:</strong> 50% upfront to start, 50% upon final live testing & ownership transfer.`
-            },
-            {
-                keywords: ['hire', 'start', 'contact', 'whatsapp', 'call', 'deal'],
-                response: `🔥 <strong>Ready to Engage Naveed?</strong><br><br>
-Naveed is currently available for production sprints! You can connect with him directly on WhatsApp right now for immediate kickoff:<br><br>
-👉 <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20chatted%20with%20your%20AI%20agent%20and%20want%20to%20hire%20you" target="_blank" class="text-cyan-400 font-bold underline">Launch Direct WhatsApp (+92 332 3219981)</a><br>
-Average response time: <strong>&lt; 15 minutes</strong>.`
-            }
+        // 2. Animated Collaborative Multiplayer Cursors (From Reel)
+        const cursors = [
+            { el: document.getElementById('cursor-agent-1'), x: 62, y: 220, vx: 0.15, vy: 0.1 },
+            { el: document.getElementById('cursor-agent-2'), x: 78, y: 380, vx: -0.12, vy: 0.14 },
+            { el: document.getElementById('cursor-agent-3'), x: 45, y: 650, vx: 0.08, vy: -0.1 },
+            { el: document.getElementById('cursor-agent-4'), x: 42, y: 140, vx: -0.1, vy: 0.08 }
         ];
 
-        function askAgent(questionText) {
-            playBeep(900, 'sine', 0.05);
-            addChatMessage(questionText, 'user');
+        function animateCursors() {
+            cursors.forEach(c => {
+                if (!c.el) return;
+                c.x += c.vx;
+                c.y += c.vy;
 
-            // Agent typing simulation
-            const typingEl = document.createElement('div');
-            typingEl.className = 'flex items-start gap-3 agent-typing';
-            typingEl.innerHTML = `
-                <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">AI</div>
-                <div class="bg-white/[0.04] border border-white/10 p-3 rounded-xl rounded-tl-none text-slate-400 text-xs flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                    <span>Naveed AI is analyzing...</span>
-                </div>
-            `;
-            chatMessages.appendChild(typingEl);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+                if (c.x < 25 || c.x > 85) c.vx *= -1;
+                if (c.y < 80 || c.y > 800) c.vy *= -1;
 
-            setTimeout(() => {
-                typingEl.remove();
-                respondToQuery(questionText);
-            }, 650);
+                c.el.style.left = `${c.x}%`;
+                c.el.style.top = `${c.y}px`;
+            });
+            requestAnimationFrame(animateCursors);
         }
+        animateCursors();
 
-        function respondToQuery(query) {
-            playBeep(1100, 'triangle', 0.08);
-            const lower = query.toLowerCase();
-            let matched = AGENT_KNOWLEDGE_BASE.find(item => item.keywords.some(k => lower.includes(k)));
-
-            let replyText = matched ? matched.response : `I understand your interest! For customized architectural requirements or direct discussions, you can message Naveed directly on WhatsApp at <a href="https://wa.me/923323219981" target="_blank" class="text-cyan-400 underline font-bold">+92 332 3219981</a> or email <a href="mailto:naveedkhtri7@gmail.com" class="text-emerald-400 underline">naveedkhtri7@gmail.com</a>. He replies within 15 minutes!`;
-
-            if (lower.includes('hire') || lower.includes('deal') || lower.includes('whatsapp')) {
-                triggerConfetti();
-            }
-
-            addChatMessage(replyText, 'agent');
-        }
-
-        function addChatMessage(content, sender) {
-            const msgEl = document.createElement('div');
-            msgEl.className = 'flex items-start gap-3';
-            
-            if (sender === 'user') {
-                msgEl.innerHTML = `
-                    <div class="flex-1"></div>
-                    <div class="bg-cyan-500/15 border border-cyan-500/30 text-white p-3.5 rounded-xl rounded-tr-none max-w-md text-right text-xs sm:text-sm">
-                        ${content}
-                    </div>
-                    <div class="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[10px] font-bold text-white shrink-0 mt-0.5">YOU</div>
-                `;
-            } else {
-                msgEl.innerHTML = `
-                    <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">AI</div>
-                    <div class="flex-1 bg-white/[0.04] border border-white/10 p-3.5 rounded-xl rounded-tl-none leading-relaxed text-slate-200 text-xs sm:text-sm">
-                        <div class="text-cyan-400 text-xs font-bold mb-1">NAVEED_AGENT:</div>
-                        ${content}
-                    </div>
-                `;
-            }
-
-            chatMessages.appendChild(msgEl);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function handleAgentSubmit(e) {
-            e.preventDefault();
-            const val = agentInput.value.trim();
-            if (!val) return;
-            agentInput.value = '';
-            askAgent(val);
-        }
-
-        // 8. Copy Email with Feedback
+        // 3. Copy Email
         function copyEmail(btn) {
-            playBeep(1000, 'sine', 0.08);
             navigator.clipboard.writeText('naveedkhtri7@gmail.com');
             const copyText = document.getElementById('copy-text');
             if (copyText) {
                 const original = copyText.innerText;
-                copyText.innerText = 'Copied to Clipboard! ✓';
+                copyText.innerText = 'COPIED TO CLIPBOARD! ✓';
                 triggerConfetti();
                 setTimeout(() => {
                     copyText.innerText = original;
@@ -1050,76 +703,16 @@ Average response time: <strong>&lt; 15 minutes</strong>.`
             }
         }
 
-        // 9. Interactive Confetti Celebration
+        // 4. Confetti Trigger
         function triggerConfetti() {
-            playBeep(800, 'triangle', 0.15);
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 90,
-                    spread: 75,
-                    origin: { y: 0.7 },
-                    colors: ['#00f2fe', '#38bdf8', '#10b981', '#f59e0b', '#8b5cf6']
+                    particleCount: 100,
+                    spread: 80,
+                    origin: { y: 0.75 },
+                    colors: ['#ff2a3a', '#00f2fe', '#10b981', '#ffbd2e', '#a855f7']
                 });
             }
-        }
-
-        // 10. Ambient Canvas Particle Mesh (60 FPS Background)
-        const canvas = document.getElementById('ambient-canvas');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            });
-
-            const particles = [];
-            const particleCount = Math.min(width > 768 ? 60 : 25, 60);
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    radius: Math.random() * 1.5 + 0.5
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
-                ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
-
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0 || p.x > width) p.vx *= -1;
-                    if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    // Connect nearby particles
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const p2 = particles[j];
-                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                        if (dist < 130) {
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(p2.x, p2.y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
         }
     </script>
 </body>
