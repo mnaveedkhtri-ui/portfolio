@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Naveed | Systems & Full-Stack Web Architect</title>
+    <title>Muhammad Naveed | Systems Architect & Full-Stack Engineer</title>
     <meta name="google-site-verification" content="wYFUIXoVNRkPCSeAExJZhbNGbE9pcbuFswY8d8GCIdw" />
     
-    <meta name="description" content="Senior Full-Stack Architect & High-Velocity E-Commerce Engineer. Specializing in Next.js 15, Custom Shopify Liquid, Sub-Second Latency, and 99+ Core Web Vitals.">
+    <meta name="description" content="Senior Full-Stack Architect & High-Velocity E-Commerce Engineer. Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Muhammad Naveed | Systems & Full-Stack Web Architect">
-    <meta property="og:description" content="Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
-    <meta property="og:image" content="./workspace.jpg">
+    <meta property="og:title" content="Muhammad Naveed | Systems Architect & Full-Stack Engineer">
+    <meta property="og:description" content="Next.js 15, Custom Shopify Liquid, Autonomous Web Systems, and 99+ Core Web Vitals.">
+    <meta property="og:image" content="./profile.jpg">
     <meta property="og:url" content="https://naveed-portfolio-kappa.vercel.app/">
     
     <!-- Structured Schema (JSON-LD) -->
@@ -19,7 +19,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Muhammad Naveed",
-      "jobTitle": "Senior Full-Stack & Systems Web Engineer",
+      "jobTitle": "Systems Architect & Full-Stack Engineer",
       "image": "https://raw.githubusercontent.com/mnaveedkhtri-ui/portfolio/main/profile.jpg",
       "description": "Senior Full-Stack Web Developer and Systems Architect specializing in Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and Programmatic Platforms.",
       "email": "naveedkhtri7@gmail.com",
@@ -39,10 +39,10 @@
     <!-- GSAP for Smooth Choreography -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Canvas Confetti for Interactive Win States -->
+    <!-- Canvas Confetti for Interactive Celebrations -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-    <!-- Modern Typography -->
+    <!-- Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -61,7 +61,6 @@
                         surface: '#0a0a0f',
                         surfaceSubtle: '#12121a',
                         borderSubtle: 'rgba(255, 255, 255, 0.08)',
-                        borderHover: 'rgba(56, 189, 248, 0.35)',
                         neonCyan: '#00f2fe',
                         neonBlue: '#38bdf8',
                         neonEmerald: '#10b981',
@@ -73,9 +72,6 @@
     </script>
 
     <style>
-        :root {
-            --glow-color: rgba(56, 189, 248, 0.15);
-        }
         * {
             box-sizing: border-box;
             cursor: default;
@@ -89,17 +85,17 @@
 
         /* Ambient Cyber Grid Background */
         .ambient-grid {
-            background-size: 50px 50px;
+            background-size: 48px 48px;
             background-image: 
                 linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            mask-image: radial-gradient(ellipse at 50% 20%, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at 50% 20%, black 40%, transparent 80%);
+            mask-image: radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%);
         }
 
         /* Glassmorphism Classes */
         .glass-panel {
-            background: rgba(10, 10, 15, 0.7);
+            background: rgba(10, 10, 15, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -107,7 +103,7 @@
         }
 
         .glass-pill {
-            background: rgba(18, 18, 26, 0.65);
+            background: rgba(18, 18, 26, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -121,15 +117,14 @@
             border-radius: 1.25rem;
             overflow: hidden;
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
-            transform-style: preserve-3d;
         }
         .spotlight-card::before {
             content: '';
             position: absolute;
             top: var(--mouse-y, -1000px);
             left: var(--mouse-x, -1000px);
-            width: 500px;
-            height: 500px;
+            width: 450px;
+            height: 450px;
             background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
             transform: translate(-50%, -50%);
             pointer-events: none;
@@ -147,17 +142,12 @@
 
         /* Kinetic Text Gradients */
         .text-glow {
-            background: linear-gradient(180deg, #ffffff 10%, #94a3b8 100%);
+            background: linear-gradient(180deg, #ffffff 15%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .text-cyber {
-            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .text-emerald-glow {
-            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -167,12 +157,11 @@
             position: fixed;
             top: 0; left: 0;
             width: 320px; height: 320px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.07), transparent 70%);
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 70%);
             transform: translate(-50%, -50%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9990;
-            transition: width 0.3s, height 0.3s, opacity 0.3s;
         }
         #cursor-dot {
             position: fixed;
@@ -183,29 +172,29 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, width 0.2s, height 0.2s, background-color 0.2s;
             box-shadow: 0 0 15px #00f2fe;
+            transition: transform 0.08s ease, width 0.2s, height 0.2s;
         }
         .cursor-hover #cursor-dot {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: rgba(0, 242, 254, 0.2);
             border: 1px solid #00f2fe;
             box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
         }
 
-        /* Interactive Terminal Styling */
-        .terminal-scroll::-webkit-scrollbar {
+        /* Chat scrollbar */
+        .chat-scroll::-webkit-scrollbar {
             width: 4px;
         }
-        .terminal-scroll::-webkit-scrollbar-thumb {
+        .chat-scroll::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
 
         /* Button Glows */
         .btn-glow {
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             color: #030305;
             box-shadow: 0 0 30px -5px rgba(255, 255, 255, 0.3);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -213,6 +202,26 @@
         .btn-glow:hover {
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 0 40px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* Profile Glow Frame */
+        .profile-frame {
+            position: relative;
+        }
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.4), rgba(168, 85, 247, 0.4));
+            z-index: -1;
+            filter: blur(12px);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .profile-frame:hover::after {
+            opacity: 1;
+            filter: blur(18px);
         }
     </style>
 </head>
@@ -228,12 +237,10 @@
 
     <!-- Ultra-Sleek Floating Island Navigation -->
     <header class="fixed top-5 inset-x-0 z-50 flex justify-center px-4">
-        <nav class="glass-pill px-4 sm:px-6 py-3 rounded-full flex items-center justify-between gap-4 sm:gap-8 max-w-4xl w-full border border-white/10 shadow-2xl">
+        <nav class="glass-pill px-4 sm:px-6 py-3 rounded-full flex items-center justify-between gap-4 sm:gap-8 max-w-5xl w-full border border-white/10 shadow-2xl">
             <!-- Brand / Identity -->
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-xs font-black text-black shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-                    MN
-                </div>
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="./profile.jpg" alt="Muhammad Naveed" class="w-8 h-8 rounded-full object-cover border border-cyan-400/50 shadow group-hover:scale-105 transition-transform">
                 <div class="flex flex-col">
                     <span class="text-xs font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">MUHAMMAD NAVEED</span>
                     <span class="text-[10px] font-mono text-slate-400 flex items-center gap-1">
@@ -244,15 +251,18 @@
 
             <!-- Quick Links -->
             <div class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">Profile</a>
+                <a href="#agent" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span> AI Agent
+                </a>
                 <a href="#projects" class="hover:text-cyan-400 transition-colors">Flagship Architecture</a>
-                <a href="#terminal" class="hover:text-cyan-400 transition-colors">Interactive CLI</a>
                 <a href="#metrics" class="hover:text-cyan-400 transition-colors">Speed Proof</a>
                 <a href="#services" class="hover:text-cyan-400 transition-colors">Capabilities</a>
             </div>
 
             <!-- Audio FX Toggle & CTA -->
             <div class="flex items-center gap-2.5">
-                <button id="sound-toggle" class="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-400 hover:text-cyan-400 transition-all text-xs flex items-center gap-1.5" title="Toggle Futuristic Audio FX">
+                <button id="sound-toggle" class="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-400 hover:text-cyan-400 transition-all text-xs flex items-center gap-1.5" title="Toggle Sound FX">
                     <span id="sound-icon">🔇</span>
                     <span class="hidden sm:inline text-[10px] font-mono">SFX</span>
                 </button>
@@ -266,54 +276,168 @@
     </header>
 
     <!-- MAIN WRAPPER -->
-    <main class="relative z-10 pt-32 pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <main class="relative z-10 pt-28 sm:pt-36 pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
 
-        <!-- ================= HERO SECTION ================= -->
-        <section class="py-12 md:py-20 text-center relative">
-            <!-- Availability Pill -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border-cyan-500/30 text-xs font-mono text-cyan-300 mb-8 shadow-inner">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span>OPEN FOR HIGH-IMPACT CONTRACTS & PRODUCTION SPRINTS</span>
-            </div>
+        <!-- ================= HERO SECTION WITH REAL PHOTO & IDENTITY ================= -->
+        <section id="about" class="py-8 sm:py-16 relative">
+            <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
+                
+                <!-- Left Column: Pitch & Headline -->
+                <div class="flex-1 text-center lg:text-left">
+                    <!-- Availability Pill -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>AVAILABLE FOR HIGH-VELOCITY PRODUCTION CONTRACTS</span>
+                    </div>
 
-            <!-- Kinetic Scramble Title -->
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                <span class="text-glow block">Architecting Sub-Second</span>
-                <span class="text-cyber block font-mono" id="scramble-title">Full-Stack Systems.</span>
-            </h1>
+                    <!-- Main Kinetic Title -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                        <span class="text-glow block">Architecting Sub-Second</span>
+                        <span class="text-cyber block font-mono" id="scramble-title">Autonomous Systems.</span>
+                    </h1>
 
-            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 font-light leading-relaxed mb-10">
-                Hi, I'm <strong class="text-white font-semibold">Muhammad Naveed</strong>. I engineer ultra-fast 
-                <span class="text-cyan-300 font-medium">Next.js 15 platforms</span>, custom 
-                <span class="text-purple-300 font-medium">Shopify Liquid architectures</span>, and programmatic web engines delivering 
-                <span class="text-emerald-400 font-medium">99+ Core Web Vitals</span> and zero-latency user experiences.
-            </p>
+                    <p class="text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                        Hi, I'm <strong class="text-white font-semibold">Muhammad Naveed</strong>, a 17-year-old Systems & Full-Stack Web Engineer from Pakistan. I engineer 
+                        <span class="text-cyan-300 font-medium">Next.js 15 platforms</span>, custom 
+                        <span class="text-purple-300 font-medium">Shopify Liquid 2.0 architectures</span>, and autonomous programmatic engines delivering 
+                        <span class="text-emerald-400 font-medium">99+ Core Web Vitals</span> with sub-second global response.
+                    </p>
 
-            <!-- Quick Action Buttons -->
-            <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
-                <a href="#projects" class="px-6 py-3.5 rounded-xl btn-glow text-xs sm:text-sm font-bold flex items-center gap-2">
-                    <span>Inspect Live Projects</span>
-                    <i data-feather="arrow-down" class="w-4 h-4"></i>
-                </a>
-                <button onclick="triggerConfetti()" class="px-6 py-3.5 rounded-xl glass-pill hover:bg-white/10 text-xs sm:text-sm font-semibold text-slate-200 border border-white/15 flex items-center gap-2 transition-all">
-                    <span>⚡ Quick Payout Engine</span>
-                    <i data-feather="zap" class="w-4 h-4 text-amber-400"></i>
-                </button>
-            </div>
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+                        <a href="#agent" class="px-6 py-3.5 rounded-xl btn-glow text-xs sm:text-sm font-bold flex items-center gap-2">
+                            <span>🤖 Talk to My AI Agent</span>
+                            <i data-feather="corner-down-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20have%20a%20project%20for%20you" target="_blank" onclick="triggerConfetti()" class="px-6 py-3.5 rounded-xl glass-pill hover:bg-white/10 text-xs sm:text-sm font-semibold text-slate-200 border border-white/15 flex items-center gap-2 transition-all">
+                            <i data-feather="message-circle" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Direct WhatsApp</span>
+                        </a>
+                    </div>
 
-            <!-- Local Time / System Telemetry Bar -->
-            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-xs font-mono text-slate-500 border-t border-white/5 pt-6 max-w-3xl mx-auto">
-                <div class="flex items-center gap-1.5">
-                    <i data-feather="globe" class="w-3.5 h-3.5 text-cyan-400"></i>
-                    <span>REGION: PK (UTC+5)</span>
+                    <!-- Telemetry Chips -->
+                    <div class="flex flex-wrap justify-center lg:justify-start items-center gap-4 sm:gap-6 text-xs font-mono text-slate-500 border-t border-white/5 pt-4">
+                        <div class="flex items-center gap-1.5">
+                            <i data-feather="map-pin" class="w-3.5 h-3.5 text-cyan-400"></i>
+                            <span>Karachi / Hyderabad, PK</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i data-feather="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span><span id="live-clock">--:--:-- PKT</span></span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i data-feather="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
+                            <span>EDGE LATENCY: <span class="text-emerald-400 font-bold">&lt; 38ms</span></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <i data-feather="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
-                    <span>LOCAL TIME: <span id="live-clock" class="text-slate-300">--:--:--</span></span>
+
+                <!-- Right Column: Authentic Profile Frame with Floating Badges -->
+                <div class="w-72 sm:w-80 lg:w-96 shrink-0 relative profile-frame group">
+                    <div class="w-full h-96 sm:h-[440px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative bg-surface">
+                        <img src="./profile.jpg" alt="Muhammad Naveed - Systems & Full-Stack Architect" class="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        
+                        <!-- Nameplate Overlay -->
+                        <div class="absolute bottom-4 inset-x-4 p-3.5 rounded-xl glass-panel border border-white/10">
+                            <div class="text-xs font-bold text-white tracking-wide">Muhammad Naveed</div>
+                            <div class="text-[11px] font-mono text-cyan-400">Full-Stack & Shopify Architect</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Performance Badge -->
+                    <div class="absolute -top-4 -left-6 z-20 glass-panel px-3.5 py-2.5 rounded-xl flex items-center gap-2.5 shadow-xl border border-emerald-500/30">
+                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                        <div class="text-[11px] font-mono">
+                            <div class="text-emerald-400 font-bold">99/100 Mobile</div>
+                            <div class="text-slate-400 text-[10px]">Core Web Vitals</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Stack Badge -->
+                    <div class="absolute -bottom-4 -right-4 z-20 glass-panel px-3.5 py-2.5 rounded-xl flex items-center gap-2 shadow-xl border border-cyan-500/30">
+                        <i data-feather="layers" class="w-4 h-4 text-cyan-400"></i>
+                        <div class="text-[11px] font-mono">
+                            <div class="text-white font-bold">Next.js 15 + Liquid</div>
+                            <div class="text-slate-400 text-[10px]">Zero App Bloat</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <i data-feather="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
-                    <span>EDGE LATENCY: <span class="text-emerald-400 font-bold">&lt; 38ms</span></span>
+
+            </div>
+        </section>
+
+
+        <!-- ================= AGENTIC BUILD: TALK TO NAVEED'S AUTONOMOUS AI AGENT ================= -->
+        <section id="agent" class="mb-24 scroll-mt-24">
+            <div class="spotlight-card p-1 sm:p-2 border-cyan-500/30 shadow-2xl">
+                <!-- Agent Header -->
+                <div class="px-5 py-3.5 bg-black/80 border-b border-white/10 rounded-t-xl flex items-center justify-between flex-wrap gap-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                        <div class="flex flex-col">
+                            <span class="text-xs font-mono font-bold text-white tracking-wider flex items-center gap-2">
+                                <span>NAVEED_AI (AGENTIC COMPANION)</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-400 border border-cyan-500/40">autonomous · online</span>
+                            </span>
+                            <span class="text-[10px] font-mono text-slate-400">Instant technical Q&A, stack verification & automated contract dispatch</span>
+                        </div>
+                    </div>
+                    <div class="text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                        <span class="hidden sm:inline">Engine: Neural Router v2.4</span>
+                        <span class="text-cyan-400">⚡ 0.04s Latency</span>
+                    </div>
+                </div>
+
+                <!-- Agent Chat Body -->
+                <div class="p-4 sm:p-6 bg-black/90 font-mono text-xs sm:text-sm text-slate-300 rounded-b-xl min-h-[380px] flex flex-col justify-between">
+                    
+                    <!-- Chat Messages Stream -->
+                    <div id="chat-messages" class="space-y-4 overflow-y-auto max-h-[350px] chat-scroll pr-2">
+                        <!-- Welcome Message from Agent -->
+                        <div class="flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">
+                                AI
+                            </div>
+                            <div class="flex-1 bg-white/[0.04] border border-white/10 p-3.5 rounded-xl rounded-tl-none leading-relaxed text-slate-200">
+                                <div class="text-cyan-400 text-xs font-bold mb-1">NAVEED_AGENT:</div>
+                                👋 Welcome! I am Naveed's autonomous AI representative. I can explain Naveed's architecture, verify his technical capabilities, show live project benchmarks, or help you book him for a production sprint.
+                                <div class="text-slate-400 text-xs mt-2">Pick a prompt below or type any question:</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Suggestion Chips -->
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <div class="text-[10px] font-mono text-slate-500 mb-2">QUICK AGENT PROMPTS:</div>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <button onclick="askAgent('What is Naveed\'s tech stack and core skills?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
+                                <span>⚡ Tech Stack</span>
+                            </button>
+                            <button onclick="askAgent('Can Naveed build custom Shopify stores without heavy apps?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/20 text-purple-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
+                                <span>🛍️ Shopify Architecture</span>
+                            </button>
+                            <button onclick="askAgent('How does SmartRateCalcs work and why is it Source [1] on Google?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
+                                <span>🚀 SmartRateCalcs Case Study</span>
+                            </button>
+                            <button onclick="askAgent('What are Naveed\'s freelance rates and turnaround times?')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-amber-500/20 text-amber-300 text-xs font-mono border border-white/10 transition-colors flex items-center gap-1.5">
+                                <span>💰 Rates & Pricing</span>
+                            </button>
+                            <button onclick="askAgent('I want to hire Naveed right now. How do we start?')" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-emerald-500/30 transition-colors flex items-center gap-1.5">
+                                <span>🔥 Hire Naveed</span>
+                            </button>
+                        </div>
+
+                        <!-- Chat Input Box -->
+                        <form id="agent-form" onsubmit="handleAgentSubmit(event)" class="flex items-center gap-2">
+                            <input id="agent-input" type="text" autocomplete="off" placeholder="Ask anything about Naveed's architecture, Shopify, Next.js, or availability..." class="flex-1 bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-cyan-400 text-xs sm:text-sm font-mono placeholder:text-slate-500 transition-colors">
+                            <button type="submit" class="px-5 py-2.5 bg-cyan-500 text-black font-bold rounded-xl text-xs sm:text-sm hover:bg-cyan-400 font-mono transition-colors flex items-center gap-1.5 shadow-lg shadow-cyan-500/20">
+                                <span>Send</span>
+                                <i data-feather="send" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -348,53 +472,6 @@
                     <div class="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 mb-1">73+</div>
                     <div class="text-xs font-semibold text-white tracking-wide uppercase">Live Corridors</div>
                     <div class="text-[11px] text-slate-500 font-mono mt-1">Programmatic Dynamic SSR</div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ================= VIRAL INTERACTIVE CLI TERMINAL ================= -->
-        <section id="terminal" class="mb-28">
-            <div class="spotlight-card p-1 sm:p-2 border-white/10 shadow-2xl">
-                <!-- Mac Terminal Header -->
-                <div class="px-4 py-3 bg-black/60 border-b border-white/10 rounded-t-xl flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                        <span class="text-[11px] font-mono text-slate-400 ml-2">naveed@hypercore-shell ~ (zsh)</span>
-                    </div>
-                    <div class="text-[10px] font-mono text-cyan-400 flex items-center gap-1">
-                        <i data-feather="terminal" class="w-3 h-3"></i> LIVE INTERACTIVE CLI
-                    </div>
-                </div>
-
-                <!-- Terminal Body -->
-                <div class="p-4 sm:p-6 bg-black/90 font-mono text-xs sm:text-sm text-slate-300 rounded-b-xl min-h-[300px] flex flex-col justify-between">
-                    <div id="terminal-output" class="space-y-2.5 overflow-y-auto max-h-[320px] terminal-scroll pr-2">
-                        <div class="text-slate-500">// Welcome to Naveed's Interactive System Core. Type commands or click below.</div>
-                        <div class="text-cyan-400">SYSTEM: HyperEngine initialized. 73 corridors online. Type 'help' for manual.</div>
-                    </div>
-
-                    <!-- Quick Preset Command Chips -->
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <div class="text-[10px] font-mono text-slate-500 mb-2">QUICK COMMANDS:</div>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <button onclick="runCommand('projects')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono border border-white/10 transition-colors">projects</button>
-                            <button onclick="runCommand('skills')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono border border-white/10 transition-colors">skills</button>
-                            <button onclick="runCommand('benchmark')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-cyan-500/20 text-cyan-300 text-xs font-mono border border-white/10 transition-colors">benchmark</button>
-                            <button onclick="runCommand('contact')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-emerald-500/20 text-emerald-300 text-xs font-mono border border-white/10 transition-colors">contact</button>
-                            <button onclick="runCommand('sudo hire')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-amber-500/20 text-amber-300 text-xs font-mono border border-white/10 transition-colors">sudo hire</button>
-                            <button onclick="runCommand('clear')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-rose-500/20 text-rose-300 text-xs font-mono border border-white/10 transition-colors">clear</button>
-                        </div>
-
-                        <!-- Active Input Field -->
-                        <form id="terminal-form" onsubmit="handleTerminalSubmit(event)" class="flex items-center gap-2">
-                            <span class="text-emerald-400 font-bold">naveed@system:~$</span>
-                            <input id="terminal-input" type="text" autocomplete="off" placeholder="type a command (e.g. 'skills', 'projects', 'contact')..." class="flex-1 bg-transparent border-none text-white focus:outline-none text-xs sm:text-sm font-mono placeholder:text-slate-600">
-                            <button type="submit" class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs hover:bg-cyan-500/30 font-mono transition-colors">RUN</button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
@@ -717,7 +794,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Synthesized Web Audio API FX (Zero External Files!)
+        // 2. Synthesized Web Audio API FX
         let audioCtx = null;
         let soundEnabled = false;
 
@@ -841,57 +918,121 @@
             if (label) label.innerText = `${name} (Active)`;
         }
 
-        // 7. Interactive Terminal Logic
-        const terminalOutput = document.getElementById('terminal-output');
-        const terminalInput = document.getElementById('terminal-input');
+        // ================= 7. AUTONOMOUS AI AGENT CONVERSATION ENGINE =================
+        const chatMessages = document.getElementById('chat-messages');
+        const agentInput = document.getElementById('agent-input');
 
-        const COMMANDS = {
-            help: `Available commands:\n  projects   - View flagship production platforms\n  skills     - Inspect full tech stack\n  benchmark  - View live performance & latency metrics\n  contact    - Direct communication channels\n  sudo hire  - Fast-track contractor engagement\n  clear      - Clear the terminal screen`,
-            projects: `🚀 Flagship Production Platforms:\n  1. SmartRateCalcs.com   [Next.js 15, 73 Corridors, SSR, Google Source #1]\n  2. SAYA Luxury Pret     [Shopify Plus, Liquid 2.0, 0.08s Drawer]\n  3. ModernTrendsNow      [Edge Publication Platform, 98 Mobile]\n  4. Escape Experiment    [60fps Canvas 2.5D Interactive Simulation]`,
-            skills: `⚡ Technical Architecture Stack:\n  • Frameworks: Next.js 15 (App Router, Server Actions), React 19, TypeScript\n  • E-Commerce: Shopify Liquid 2.0, Storefront API, Metafields, WooCommerce\n  • Performance: Core Web Vitals (99+), Sub-second LCP, IndexNow API\n  • Backend: Node.js, Express, PostgreSQL, REST/GraphQL APIs`,
-            benchmark: `📊 Telemetry Verification:\n  • Google Lighthouse Mobile: 99 / 100\n  • Edge Time-To-First-Byte:  < 38ms\n  • Ahrefs Technical Health:  100 / 100 (0 errors)\n  • Programmatic Indexed URLs: 73+ Live Corridors`,
-            contact: `📬 Direct Developer Access:\n  • WhatsApp: +92 332 3219981 (Instant response)\n  • Email:    naveedkhtri7@gmail.com\n  • GitHub:   https://github.com/mnaveedkhtri-ui`,
-            'sudo hire': `🎉 EXECUTING CONTRACT PROTOCOL:\n  Status: AVAILABLE FOR SPRINT ENGAGEMENT.\n  Initiating WhatsApp direct tunnel... Click below or message +92 332 3219981!`
-        };
-
-        function runCommand(cmd) {
-            cmd = cmd.trim().toLowerCase();
-            playBeep(1200, 'sine', 0.06);
-
-            // Add user input line
-            const userLine = document.createElement('div');
-            userLine.className = 'text-white flex items-center gap-2';
-            userLine.innerHTML = `<span class="text-emerald-400">naveed@system:~$</span> <span>${cmd}</span>`;
-            terminalOutput.appendChild(userLine);
-
-            if (cmd === 'clear') {
-                terminalOutput.innerHTML = '';
-                return;
+        const AGENT_KNOWLEDGE_BASE = [
+            {
+                keywords: ['stack', 'tech', 'skills', 'tools', 'languages', 'nextjs', 'react'],
+                response: `🚀 <strong>Naveed's Core Tech Stack:</strong><br><br>
+• <strong>Frontend & Frameworks:</strong> Next.js 15 (App Router, Server Actions), React 19, Tailwind CSS, TypeScript.<br>
+• <strong>E-Commerce:</strong> Shopify Liquid 2.0, Theme App Extensions, Metafields, WooCommerce, Custom 0.08s AJAX Cart Drawers.<br>
+• <strong>Systems & Speed:</strong> Core Web Vitals (99+ score), sub-second LCP, programmatic SEO (IndexNow API), and zero third-party app bloat.`
+            },
+            {
+                keywords: ['shopify', 'store', 'e-commerce', 'ecommerce', 'dropshipping', 'app bloat'],
+                response: `🛍️ <strong>Shopify Architecture Expertise:</strong><br><br>
+Naveed builds ultra-lean, high-converting Shopify storefronts. Instead of installing 15+ slow apps that charge monthly fees, he codes features <em>natively in Liquid</em>:<br>
+• 50+ Accessible Color/Shade Swatches<br>
+• Sub-second AJAX sliding cart drawer with live free-shipping bar<br>
+• Native Product Schema (JSON-LD) for Google Rich Snippets<br>
+• Afterpay, Klarna, & Multi-currency geolocators.`
+            },
+            {
+                keywords: ['smartrate', 'smartratecalcs', 'source 1', 'corridor', 'calculator'],
+                response: `⚡ <strong>SmartRateCalcs Case Study:</strong><br><br>
+SmartRateCalcs.com is Naveed's production financial payout engine. Key achievements:<br>
+• <strong>Google Citation:</strong> Cited as <em>Source [1]</em> on Google Search for cross-border fintech queries.<br>
+• <strong>Programmatic Scale:</strong> 73+ currency corridors dynamically generated with zero-latency Server-Side Rendering.<br>
+• <strong>SEO Health:</strong> 100/100 Ahrefs technical audit with instant IndexNow protocol dispatch.`
+            },
+            {
+                keywords: ['rate', 'pricing', 'cost', 'charge', 'budget', 'timeline', 'turnaround'],
+                response: `💰 <strong>Rates & Sprint Availability:</strong><br><br>
+• <strong>Custom Shopify Store:</strong> 40,000 to 55,000 PKR ($180 - $220 USD) | Turnaround: 3 to 4 days.<br>
+• <strong>Next.js Web Applications:</strong> 50,000 to 80,000 PKR ($200 - $300 USD) depending on complexity.<br>
+• <strong>Technical SEO & Speed Sprints:</strong> 35,000 PKR / month.<br>
+• <strong>Payment Terms:</strong> 50% upfront to start, 50% upon final live testing & ownership transfer.`
+            },
+            {
+                keywords: ['hire', 'start', 'contact', 'whatsapp', 'call', 'deal'],
+                response: `🔥 <strong>Ready to Engage Naveed?</strong><br><br>
+Naveed is currently available for production sprints! You can connect with him directly on WhatsApp right now for immediate kickoff:<br><br>
+👉 <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20chatted%20with%20your%20AI%20agent%20and%20want%20to%20hire%20you" target="_blank" class="text-cyan-400 font-bold underline">Launch Direct WhatsApp (+92 332 3219981)</a><br>
+Average response time: <strong>&lt; 15 minutes</strong>.`
             }
+        ];
 
-            const responseLine = document.createElement('div');
-            responseLine.className = 'text-slate-300 whitespace-pre-line pl-4 border-l border-cyan-500/30';
-            
-            if (COMMANDS[cmd]) {
-                responseLine.innerText = COMMANDS[cmd];
-                if (cmd === 'sudo hire') {
-                    triggerConfetti();
-                }
-            } else {
-                responseLine.className = 'text-rose-400 pl-4 border-l border-rose-500/30';
-                responseLine.innerText = `bash: command not found: ${cmd}. Type 'help' for available commands.`;
-            }
+        function askAgent(questionText) {
+            playBeep(900, 'sine', 0.05);
+            addChatMessage(questionText, 'user');
 
-            terminalOutput.appendChild(responseLine);
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            // Agent typing simulation
+            const typingEl = document.createElement('div');
+            typingEl.className = 'flex items-start gap-3 agent-typing';
+            typingEl.innerHTML = `
+                <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">AI</div>
+                <div class="bg-white/[0.04] border border-white/10 p-3 rounded-xl rounded-tl-none text-slate-400 text-xs flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                    <span>Naveed AI is analyzing...</span>
+                </div>
+            `;
+            chatMessages.appendChild(typingEl);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                typingEl.remove();
+                respondToQuery(questionText);
+            }, 650);
         }
 
-        function handleTerminalSubmit(e) {
+        function respondToQuery(query) {
+            playBeep(1100, 'triangle', 0.08);
+            const lower = query.toLowerCase();
+            let matched = AGENT_KNOWLEDGE_BASE.find(item => item.keywords.some(k => lower.includes(k)));
+
+            let replyText = matched ? matched.response : `I understand your interest! For customized architectural requirements or direct discussions, you can message Naveed directly on WhatsApp at <a href="https://wa.me/923323219981" target="_blank" class="text-cyan-400 underline font-bold">+92 332 3219981</a> or email <a href="mailto:naveedkhtri7@gmail.com" class="text-emerald-400 underline">naveedkhtri7@gmail.com</a>. He replies within 15 minutes!`;
+
+            if (lower.includes('hire') || lower.includes('deal') || lower.includes('whatsapp')) {
+                triggerConfetti();
+            }
+
+            addChatMessage(replyText, 'agent');
+        }
+
+        function addChatMessage(content, sender) {
+            const msgEl = document.createElement('div');
+            msgEl.className = 'flex items-start gap-3';
+            
+            if (sender === 'user') {
+                msgEl.innerHTML = `
+                    <div class="flex-1"></div>
+                    <div class="bg-cyan-500/15 border border-cyan-500/30 text-white p-3.5 rounded-xl rounded-tr-none max-w-md text-right text-xs sm:text-sm">
+                        ${content}
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-[10px] font-bold text-white shrink-0 mt-0.5">YOU</div>
+                `;
+            } else {
+                msgEl.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-[10px] font-bold text-black shrink-0 mt-0.5">AI</div>
+                    <div class="flex-1 bg-white/[0.04] border border-white/10 p-3.5 rounded-xl rounded-tl-none leading-relaxed text-slate-200 text-xs sm:text-sm">
+                        <div class="text-cyan-400 text-xs font-bold mb-1">NAVEED_AGENT:</div>
+                        ${content}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(msgEl);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleAgentSubmit(e) {
             e.preventDefault();
-            const val = terminalInput.value;
-            if (!val.trim()) return;
-            runCommand(val);
-            terminalInput.value = '';
+            const val = agentInput.value.trim();
+            if (!val) return;
+            agentInput.value = '';
+            askAgent(val);
         }
 
         // 8. Copy Email with Feedback
@@ -914,9 +1055,9 @@
             playBeep(800, 'triangle', 0.15);
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 80,
-                    spread: 70,
-                    origin: { y: 0.75 },
+                    particleCount: 90,
+                    spread: 75,
+                    origin: { y: 0.7 },
                     colors: ['#00f2fe', '#38bdf8', '#10b981', '#f59e0b', '#8b5cf6']
                 });
             }
