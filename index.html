@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Naveed — System Architect & Full-Stack Engineer</title>
+    <title>Muhammad Naveed — System Architect & Autonomous Operator</title>
     <meta name="google-site-verification" content="wYFUIXoVNRkPCSeAExJZhbNGbE9pcbuFswY8d8GCIdw" />
     
     <meta name="description" content="System Architect & Full-Stack Engineer. Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
@@ -17,6 +17,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Feather Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <!-- GSAP for Smooth Choreography -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
@@ -52,6 +54,7 @@
             -webkit-text-stroke: 1.8px #ff2a3a;
             text-shadow: 0 0 35px rgba(255, 42, 58, 0.25);
             user-select: none;
+            transition: all 0.5s ease;
         }
 
         /* Solid Red Name Block from Reel */
@@ -61,19 +64,21 @@
             font-weight: 900;
             letter-spacing: -0.02em;
             box-shadow: 0 0 25px rgba(255, 42, 58, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* 2. Thin Red Laser Guide Line */
         .laser-guide {
             position: absolute;
             top: 0;
-            bottom: 0;
             left: 28px;
             width: 1px;
-            background: linear-gradient(to bottom, rgba(255, 42, 58, 0.7) 0%, rgba(255, 42, 58, 0.15) 50%, rgba(255, 42, 58, 0.6) 100%);
+            height: 0%;
+            background: linear-gradient(to bottom, rgba(255, 42, 58, 0.8) 0%, rgba(255, 42, 58, 0.2) 50%, rgba(255, 42, 58, 0.7) 100%);
             box-shadow: 0 0 8px rgba(255, 42, 58, 0.4);
             pointer-events: none;
             z-index: 10;
+            transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @media (max-width: 640px) {
             .laser-guide { left: 14px; }
@@ -88,6 +93,8 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 11;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         /* 3. Figma-Style Blue Selection Bounding Box from Reel */
@@ -95,6 +102,7 @@
             position: relative;
             outline: 1.5px solid #2f80ed;
             outline-offset: 3px;
+            transition: outline-color 0.3s ease;
         }
         .figma-handle {
             position: absolute;
@@ -129,10 +137,10 @@
             position: absolute;
             pointer-events: none;
             z-index: 999;
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
             display: flex;
             align-items: flex-start;
             gap: 4px;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
         }
         .cursor-tag {
             font-family: 'JetBrains Mono', monospace;
@@ -200,32 +208,101 @@
         .red-portrait-container {
             background: #ff2a3a;
             box-shadow: 0 0 35px rgba(255, 42, 58, 0.35);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        }
+
+        /* Cursor Typing Bar */
+        .cursor-bar {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: #ff2a3a;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ================= CINEMATIC INTRO BUILD OVERLAY ================= */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: #050507;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #intro-center-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #ffffff;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+        .intro-orbit-cursor {
+            position: absolute;
+            pointer-events: none;
+            transition: transform 0.05s linear;
         }
     </style>
 </head>
 <body class="cyber-grid relative min-h-screen">
 
+    <!-- ================= CINEMATIC INTRO AGENTIC BUILD OVERLAY (FROM REEL FRAME 01 & 03) ================= -->
+    <div id="intro-overlay">
+        <!-- Orbiting Agent Swarm Container -->
+        <div id="orbit-container" class="relative flex items-center justify-center w-80 h-80">
+            <div id="intro-center-badge">MN</div>
+            <!-- Dynamic cursors injected via JS -->
+        </div>
+
+        <!-- Intro Status Dock (From Reel Frame 01) -->
+        <div class="mt-8 px-5 py-2.5 rounded-full bg-black/80 border border-white/10 flex items-center gap-3 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span id="intro-status-text" class="text-slate-300">Scanning page...</span>
+            <span class="text-slate-500">//</span>
+            <span id="intro-layer-counter" class="text-red-400 font-bold">0 / 252 layers</span>
+        </div>
+    </div>
+
+
     <!-- Red Laser Guide Line -->
-    <div class="laser-guide"></div>
+    <div id="laser-line" class="laser-guide"></div>
     <div class="crosshair" style="top: 130px; left: 28px;">+</div>
     <div class="crosshair" style="top: 550px; left: 28px;">+</div>
     <div class="crosshair" style="top: 1100px; left: 28px;">+</div>
     <div class="crosshair" style="top: 1750px; left: 28px;">+</div>
 
     <!-- Live Multiplayer Agent Cursors (From Reel) -->
-    <div id="cursor-agent-1" class="agent-cursor" style="top: 180px; left: 60%;">
+    <div id="cursor-agent-1" class="agent-cursor" style="top: 180px; left: 60%; opacity: 0;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#00f2fe"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
         <span class="cursor-tag bg-cyan-400">Hermes Agent</span>
     </div>
-    <div id="cursor-agent-2" class="agent-cursor" style="top: 360px; left: 78%;">
+    <div id="cursor-agent-2" class="agent-cursor" style="top: 360px; left: 78%; opacity: 0;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#10b981"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
         <span class="cursor-tag bg-emerald-400">Touring</span>
     </div>
-    <div id="cursor-agent-3" class="agent-cursor hidden lg:flex" style="top: 720px; left: 45%;">
+    <div id="cursor-agent-3" class="agent-cursor hidden lg:flex" style="top: 720px; left: 45%; opacity: 0;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffbd2e"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
         <span class="cursor-tag bg-amber-400">Claude Code</span>
     </div>
-    <div id="cursor-agent-4" class="agent-cursor hidden sm:flex" style="top: 140px; left: 38%;">
+    <div id="cursor-agent-4" class="agent-cursor hidden sm:flex" style="top: 140px; left: 38%; opacity: 0;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#a855f7"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
         <span class="cursor-tag bg-purple-400">Visitor #518</span>
     </div>
@@ -248,10 +325,15 @@
         </nav>
 
         <!-- Right Dispatch CTA -->
-        <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20want%20to%20hire%20you" target="_blank" onclick="triggerConfetti()" class="text-xs font-mono text-red-400 hover:text-red-300 font-bold flex items-center gap-1.5 transition-colors">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-            <span>DISPATCH →</span>
-        </a>
+        <div class="flex items-center gap-3">
+            <button onclick="startAgenticBuildSequence()" class="p-1.5 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-[10px] font-mono transition-colors flex items-center gap-1" title="Replay Agentic Build Animation">
+                <span>↺ Replay Build</span>
+            </button>
+            <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20want%20to%20hire%20you" target="_blank" onclick="triggerConfetti()" class="text-xs font-mono text-red-400 hover:text-red-300 font-bold flex items-center gap-1.5 transition-colors">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                <span>DISPATCH →</span>
+            </a>
+        </div>
     </header>
 
     <!-- MAIN CONTAINER -->
@@ -260,9 +342,11 @@
         <!-- ================= 1. THE HERO CANVAS (REEL FRAME 02 & 04) ================= -->
         <section class="relative mb-20 sm:mb-28">
 
-            <!-- Giant Outlined PORTFOLIO Heading from Reel -->
-            <div class="outline-portfolio-text mb-4">
-                PORTFOLIO
+            <!-- Giant Outlined PORTFOLIO Heading from Reel with Dynamic Bounding Box -->
+            <div id="portfolio-container" class="relative inline-block w-full">
+                <div class="outline-portfolio-text mb-4">
+                    PORTFOLIO
+                </div>
             </div>
 
             <!-- Main Hero Grid: Left Content, Center Red Portrait, Right Core Specs -->
@@ -274,7 +358,7 @@
                     <!-- Script "Hello, I'm" + Red Badge "NAVEED." -->
                     <div class="flex items-baseline gap-2.5">
                         <span class="font-script text-2xl sm:text-3xl text-slate-300 italic">Hello, I'm</span>
-                        <div class="badge-red px-3 sm:px-4 py-0.5 rounded text-2xl sm:text-4xl uppercase tracking-tight font-display">
+                        <div id="hero-badge" class="badge-red px-3 sm:px-4 py-0.5 rounded text-2xl sm:text-4xl uppercase tracking-tight font-display">
                             NAVEED.
                         </div>
                     </div>
@@ -297,10 +381,11 @@
                         </div>
                     </div>
 
-                    <!-- Bio from Reel -->
-                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                        Architecting 24/7 autonomous web ecosystems, multi-agent pipelines, and quantitative programmatic engines from first principles — zero frameworks, total autonomy.
-                    </p>
+                    <!-- Live Dynamic Typing Bio from Reel Frame 05 -->
+                    <div class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed min-h-[55px]">
+                        <span id="hero-bio-text"></span>
+                        <span id="hero-typing-cursor" class="cursor-bar"></span>
+                    </div>
 
                     <!-- Buttons from Reel -->
                     <div class="flex flex-wrap items-center gap-3 pt-1">
@@ -336,7 +421,7 @@
                 <div class="lg:col-span-3 flex justify-center">
                     <div class="relative w-56 sm:w-64">
                         <!-- Red Solid Box with Cutout Picture -->
-                        <div class="red-portrait-container p-2 rounded-lg relative overflow-hidden border border-red-500/50">
+                        <div id="portrait-frame" class="red-portrait-container p-2 rounded-lg relative overflow-hidden border border-red-500/50">
                             <div class="w-full h-72 sm:h-80 bg-red-600 rounded overflow-hidden relative flex items-end justify-center">
                                 <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover object-top mix-blend-luminosity filter contrast-125 brightness-95">
                                 <div class="absolute inset-0 bg-red-600/35 mix-blend-color pointer-events-none"></div>
@@ -644,8 +729,8 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block border border-black"></span>
                     <span class="w-2.5 h-2.5 rounded-full bg-purple-400 inline-block border border-black"></span>
                 </span>
-                <span class="text-white font-bold ml-1">18 agents</span>
-                <span class="text-slate-500 hidden sm:inline">93 / 252 layers</span>
+                <span id="dock-agent-count" class="text-white font-bold ml-1">18 agents</span>
+                <span id="dock-layer-text" class="text-slate-500 hidden sm:inline">252 / 252 layers</span>
             </div>
 
             <div class="h-3 w-px bg-white/10"></div>
@@ -664,7 +749,7 @@
     </div>
 
 
-    <!-- ================= SCRIPT ENGINE ================= -->
+    <!-- ================= SCRIPT & AGENTIC BUILD ANIMATION ENGINE ================= -->
     <script>
         feather.replace();
 
@@ -679,7 +764,135 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Animated Collaborative Multiplayer Cursors (From Reel)
+        // 2. Synthesized Web Audio API FX (Zero External Files!)
+        let audioCtx = null;
+        function playSfx(freq = 600, type = 'sine', duration = 0.04) {
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        // ================= 3. THE VIRAL AGENTIC BUILD ANIMATION SEQUENCE =================
+        const fullBioText = "Architecting 24/7 autonomous web ecosystems, multi-agent pipelines, and quantitative programmatic engines from first principles — zero frameworks, total autonomy.";
+        
+        function startAgenticBuildSequence() {
+            const overlay = document.getElementById('intro-overlay');
+            const orbitContainer = document.getElementById('orbit-container');
+            const statusText = document.getElementById('intro-status-text');
+            const layerCounter = document.getElementById('intro-layer-counter');
+            const laserLine = document.getElementById('laser-line');
+            const heroBio = document.getElementById('hero-bio-text');
+            const typingCursor = document.getElementById('hero-typing-cursor');
+
+            // Reset elements
+            overlay.style.visibility = 'visible';
+            overlay.style.opacity = '1';
+            laserLine.style.height = '0%';
+            heroBio.innerText = '';
+            statusText.innerText = 'Scanning page...';
+            layerCounter.innerText = '0 / 252 layers';
+
+            // Create 18 orbiting cursor arrows in circle (From Reel Frame 01)
+            orbitContainer.querySelectorAll('.intro-orbit-cursor').forEach(e => e.remove());
+            const cursorColors = ['#00f2fe', '#10b981', '#ffbd2e', '#ff2a3a', '#a855f7', '#38bdf8'];
+            const orbitCursors = [];
+
+            for (let i = 0; i < 18; i++) {
+                const angle = (i / 18) * Math.PI * 2;
+                const c = document.createElement('div');
+                c.className = 'intro-orbit-cursor';
+                const col = cursorColors[i % cursorColors.length];
+                c.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="${col}"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>`;
+                orbitContainer.appendChild(c);
+                orbitCursors.push({ el: c, baseAngle: angle, radius: 95 });
+            }
+
+            // Animate orbiting in circle (0.0s to 1.3s)
+            let orbitStart = performance.now();
+            function orbitStep(time) {
+                const elapsed = (time - orbitStart) / 1000;
+                orbitCursors.forEach(c => {
+                    const currentAngle = c.baseAngle + elapsed * 3.5;
+                    const x = Math.cos(currentAngle) * c.radius;
+                    const y = Math.sin(currentAngle) * c.radius;
+                    c.el.style.transform = `translate(${x}px, ${y}px) rotate(${currentAngle * 57}deg)`;
+                });
+                if (elapsed < 1.3) {
+                    requestAnimationFrame(orbitStep);
+                }
+            }
+            requestAnimationFrame(orbitStep);
+
+            // Phase 2 (at 1.3s): Swarm Explodes Outwards (From Reel Frame 03)
+            setTimeout(() => {
+                playSfx(900, 'triangle', 0.1);
+                statusText.innerText = 'Agents dispersing...';
+
+                orbitCursors.forEach((c, idx) => {
+                    const angle = c.baseAngle + 1.3 * 3.5;
+                    const targetX = Math.cos(angle) * (window.innerWidth / 2 + 100);
+                    const targetY = Math.sin(angle) * (window.innerHeight / 2 + 100);
+                    c.el.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease';
+                    c.el.style.transform = `translate(${targetX}px, ${targetY}px) scale(0.5)`;
+                    c.el.style.opacity = '0';
+                });
+
+                // Count layers up: 0 -> 252 (From Reel Frame 03 / 05)
+                let layer = 0;
+                const layerInterval = setInterval(() => {
+                    layer += Math.floor(Math.random() * 18) + 12;
+                    if (layer >= 252) {
+                        layer = 252;
+                        clearInterval(layerInterval);
+                    }
+                    layerCounter.innerText = `${layer} / 252 layers`;
+                    document.getElementById('dock-layer-text').innerText = `${layer} / 252 layers`;
+                }, 40);
+            }, 1300);
+
+            // Phase 3 (at 2.0s): Fade Overlay and Reveal Construction (From Reel Frame 05)
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.visibility = 'hidden'; }, 800);
+
+                // Laser line drops down
+                laserLine.style.height = '100%';
+                document.querySelectorAll('.crosshair').forEach(c => c.style.opacity = '1');
+
+                // Reveal multiplayer cursors
+                document.querySelectorAll('.agent-cursor').forEach(c => c.style.opacity = '1');
+
+                // Real-time Typewriter for Bio (From Reel Frame 05)
+                let charIdx = 0;
+                const typeInterval = setInterval(() => {
+                    if (charIdx < fullBioText.length) {
+                        heroBio.innerText += fullBioText[charIdx];
+                        if (charIdx % 4 === 0) playSfx(1200 + Math.random() * 200, 'sine', 0.02);
+                        charIdx++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 24);
+
+            }, 2000);
+        }
+
+        // Start animation immediately on page load
+        window.addEventListener('load', () => {
+            startAgenticBuildSequence();
+        });
+
+        // 4. Animated Collaborative Multiplayer Cursors (From Reel)
         const cursors = [
             { el: document.getElementById('cursor-agent-1'), x: 60, y: 180, vx: 0.12, vy: 0.08 },
             { el: document.getElementById('cursor-agent-2'), x: 78, y: 360, vx: -0.10, vy: 0.12 },
@@ -703,7 +916,7 @@
         }
         animateCursors();
 
-        // 3. Copy Email
+        // 5. Copy Email
         function copyEmail(btn) {
             navigator.clipboard.writeText('naveedkhtri7@gmail.com');
             const copyText = document.getElementById('copy-text');
@@ -717,7 +930,7 @@
             }
         }
 
-        // 4. Confetti Trigger
+        // 6. Confetti Trigger
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
