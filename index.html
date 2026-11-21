@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Naveed — System Architect & Autonomous Operator</title>
+    <title>Muhammad Naveed : Senior System Architect & Lead Full-Stack Engineer</title>
     <meta name="google-site-verification" content="wYFUIXoVNRkPCSeAExJZhbNGbE9pcbuFswY8d8GCIdw" />
     
-    <meta name="description" content="System Architect & Full-Stack Engineer. Next.js 15, Custom Shopify Liquid, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
+    <meta name="description" content="Senior System Architect & Full-Stack Engineer. Next.js 15, TypeScript, Python, High-Volume PostgreSQL, Sub-Second Edge Latency, and 99+ Core Web Vitals.">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Muhammad Naveed — System Architect">
+    <meta property="og:title" content="Muhammad Naveed : Senior System Architect">
     <meta property="og:description" content="Architecting 24/7 autonomous web ecosystems, high-velocity e-commerce platforms, and sub-second systems.">
     <meta property="og:image" content="./profile.jpg">
     <meta property="og:url" content="https://naveed-portfolio-kappa.vercel.app/">
@@ -43,7 +43,33 @@
         .font-script { font-family: 'Caveat', cursive; }
         .font-display { font-family: 'Space Grotesk', sans-serif; }
 
-        /* 1. Giant Outlined PORTFOLIO Typography from Reel */
+        /* Ambient Glow Blobs */
+        .ambient-glow-1 {
+            position: fixed;
+            top: 15%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 42, 58, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(80px);
+        }
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: 20%;
+            right: 15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(90px);
+        }
+
+        /* 1. Giant Outlined PORTFOLIO Typography */
         .outline-portfolio-text {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 900;
@@ -57,7 +83,7 @@
             transition: all 0.5s ease;
         }
 
-        /* Solid Red Name Block from Reel */
+        /* Solid Red Name Block */
         .badge-red {
             background: #ff2a3a;
             color: #ffffff;
@@ -97,7 +123,7 @@
             transition: opacity 0.5s ease;
         }
 
-        /* 3. Figma-Style Blue Selection Bounding Box from Reel */
+        /* 3. Figma-Style Blue Selection Bounding Box */
         .figma-box {
             position: relative;
             outline: 1.5px solid #2f80ed;
@@ -132,7 +158,7 @@
             pointer-events: none;
         }
 
-        /* 4. Live Multiplayer Agent Cursors from Reel */
+        /* 4. Live Multiplayer Agent Cursors */
         .agent-cursor {
             position: absolute;
             pointer-events: none;
@@ -161,7 +187,7 @@
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
 
-        /* Buttons from Reel */
+        /* Buttons */
         .btn-dispatch {
             background: #ffffff;
             color: #050507;
@@ -192,19 +218,33 @@
             transform: translateY(-2px);
         }
 
-        /* Architectural Cards */
+        /* Architectural Cards with Dynamic Spotlight Glow */
         .card-arch {
             background: #09090d;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 6px;
-            transition: border-color 0.25s, transform 0.25s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
         .card-arch:hover {
-            border-color: #ff2a3a;
-            transform: translateY(-2px);
+            border-color: rgba(255, 42, 58, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(255, 42, 58, 0.15);
+        }
+        .card-spotlight {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card-arch:hover .card-spotlight {
+            opacity: 1;
         }
 
-        /* Red Duotone Portrait Frame from Frame 04 */
+        /* Red Duotone Portrait Frame */
         .red-portrait-container {
             background: #ff2a3a;
             box-shadow: 0 0 35px rgba(255, 42, 58, 0.35);
@@ -225,7 +265,7 @@
             50% { opacity: 0; }
         }
 
-        /* ================= CINEMATIC INTRO BUILD OVERLAY ================= */
+        /* Cinematic Intro Build Overlay */
         #intro-overlay {
             position: fixed;
             inset: 0;
@@ -260,19 +300,49 @@
             pointer-events: none;
             transition: transform 0.05s linear;
         }
+
+        /* Infinite Ticker Animation */
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker 25s linear infinite;
+        }
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Command Palette Modal */
+        #cmd-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        #cmd-modal.active { display: flex; }
     </style>
 </head>
 <body class="cyber-grid relative min-h-screen">
 
-    <!-- ================= CINEMATIC INTRO AGENTIC BUILD OVERLAY (FROM REEL FRAME 01 & 03) ================= -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- ================= CINEMATIC INTRO BUILD OVERLAY ================= -->
     <div id="intro-overlay">
         <!-- Orbiting Agent Swarm Container -->
         <div id="orbit-container" class="relative flex items-center justify-center w-80 h-80">
             <div id="intro-center-badge">MN</div>
-            <!-- Dynamic cursors injected via JS -->
         </div>
 
-        <!-- Intro Status Dock (From Reel Frame 01) -->
+        <!-- Intro Status Dock -->
         <div class="mt-8 px-5 py-2.5 rounded-full bg-black/80 border border-white/10 flex items-center gap-3 text-xs font-mono">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
             <span id="intro-status-text" class="text-slate-300">Scanning page...</span>
@@ -281,7 +351,6 @@
         </div>
     </div>
 
-
     <!-- Red Laser Guide Line -->
     <div id="laser-line" class="laser-guide"></div>
     <div class="crosshair" style="top: 130px; left: 28px;">+</div>
@@ -289,7 +358,7 @@
     <div class="crosshair" style="top: 1100px; left: 28px;">+</div>
     <div class="crosshair" style="top: 1750px; left: 28px;">+</div>
 
-    <!-- Live Multiplayer Agent Cursors (From Reel) -->
+    <!-- Live Multiplayer Agent Cursors -->
     <div id="cursor-agent-1" class="agent-cursor" style="top: 180px; left: 60%; opacity: 0;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#00f2fe"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
         <span class="cursor-tag bg-cyan-400">Hermes Agent</span>
@@ -307,7 +376,7 @@
         <span class="cursor-tag bg-purple-400">Visitor #518</span>
     </div>
 
-    <!-- TOP CENTERED NAVIGATION (FROM REEL FRAME 04 / 12) -->
+    <!-- TOP CENTERED NAVIGATION -->
     <header class="w-full pl-12 sm:pl-16 pr-6 py-4 flex items-center justify-between border-b border-white/5 relative z-30">
         <div class="flex items-center gap-3">
             <div class="badge-red px-2 py-0.5 rounded text-[11px] font-mono font-black">
@@ -320,15 +389,22 @@
         <nav class="flex items-center gap-4 sm:gap-6 text-xs font-mono">
             <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
             <a href="#flagships" class="text-slate-400 hover:text-white transition-colors">Flagships</a>
-            <a href="#matrix" class="text-slate-400 hover:text-white transition-colors">Matrix</a>
+            <a href="#interactive-lab" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+                <span>Lab</span>
+                <span class="px-1.5 py-0.2 bg-red-500/20 text-red-400 text-[9px] rounded font-bold">LIVE</span>
+            </a>
             <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
         </nav>
 
-        <!-- Right Dispatch CTA -->
+        <!-- Right Quick Actions -->
         <div class="flex items-center gap-3">
-            <button onclick="startAgenticBuildSequence()" class="p-1.5 rounded bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-[10px] font-mono transition-colors flex items-center gap-1" title="Replay Agentic Build Animation">
-                <span>↺ Replay Build</span>
+            <button onclick="toggleCmdModal()" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] font-mono border border-white/10 flex items-center gap-1.5 transition-colors">
+                <span class="text-cyan-400">⌘K</span>
+                <span class="hidden md:inline">Command HUD</span>
             </button>
+            <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="p-1.5 rounded bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors" title="GitHub Profile">
+                <i data-feather="github" class="w-3.5 h-3.5"></i>
+            </a>
             <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20want%20to%20hire%20you" target="_blank" onclick="triggerConfetti()" class="text-xs font-mono text-red-400 hover:text-red-300 font-bold flex items-center gap-1.5 transition-colors">
                 <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
                 <span>DISPATCH →</span>
@@ -336,13 +412,42 @@
         </div>
     </header>
 
+    <!-- LIVE METRICS TICKER -->
+    <div class="w-full bg-[#0a0a0f] border-b border-white/5 py-2 overflow-hidden text-[11px] font-mono text-slate-400 select-none relative z-20">
+        <div class="ticker-track flex items-center gap-8">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 107+ PROGRAMMATIC CORRIDORS LIVE</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-cyan-400 font-bold">SMARTRATECALCS.COM : GOOGLE SOURCE #1 CITATION</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-purple-400 font-bold">MODERNTRENDSNOW.STORE : VIRAL COMMERCE ENGINE</span>
+            <span class="text-slate-600">//</span>
+            <span>NEXT.js 15 APP ROUTER : SUB-38MS EDGE TTFB</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-emerald-400 font-bold">AVAILABLE FOR CONTRACTS & ARCHITECTURAL CONSULTING</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-red-400 font-bold">STRICT FIRST-PRINCIPLES ZERO-BLOAT CODE</span>
+            <span class="text-slate-600">//</span>
+            <!-- Repeated for seamless loop -->
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 107+ PROGRAMMATIC CORRIDORS LIVE</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-cyan-400 font-bold">SMARTRATECALCS.COM : GOOGLE SOURCE #1 CITATION</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-purple-400 font-bold">MODERNTRENDSNOW.STORE : VIRAL COMMERCE ENGINE</span>
+            <span class="text-slate-600">//</span>
+            <span>NEXT.js 15 APP ROUTER : SUB-38MS EDGE TTFB</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-emerald-400 font-bold">AVAILABLE FOR CONTRACTS & ARCHITECTURAL CONSULTING</span>
+            <span class="text-slate-600">//</span>
+            <span class="text-red-400 font-bold">STRICT FIRST-PRINCIPLES ZERO-BLOAT CODE</span>
+        </div>
+    </div>
+
     <!-- MAIN CONTAINER -->
     <main class="pl-10 sm:pl-16 pr-4 sm:pr-8 py-8 sm:py-12 max-w-7xl mx-auto relative z-20">
 
-        <!-- ================= 1. THE HERO CANVAS (REEL FRAME 02 & 04) ================= -->
+        <!-- ================= 1. THE HERO CANVAS ================= -->
         <section class="relative mb-20 sm:mb-28">
 
-            <!-- Giant Outlined PORTFOLIO Heading from Reel with Dynamic Bounding Box -->
             <div id="portfolio-container" class="relative inline-block w-full">
                 <div class="outline-portfolio-text mb-4">
                     PORTFOLIO
@@ -355,7 +460,6 @@
                 <!-- Left Column (5 Cols) -->
                 <div class="lg:col-span-5 space-y-5">
                     
-                    <!-- Script "Hello, I'm" + Red Badge "NAVEED." -->
                     <div class="flex items-baseline gap-2.5">
                         <span class="font-script text-2xl sm:text-3xl text-slate-300 italic">Hello, I'm</span>
                         <div id="hero-badge" class="badge-red px-3 sm:px-4 py-0.5 rounded text-2xl sm:text-4xl uppercase tracking-tight font-display">
@@ -363,16 +467,16 @@
                         </div>
                     </div>
 
-                    <!-- Figma Selection Box: Role (From Reel) -->
+                    <!-- Figma Selection Box: Role -->
                     <div class="inline-block relative">
                         <div class="figma-box px-3 py-1 bg-[#09090d] border border-white/10 rounded">
                             <span class="figma-tag">
                                 <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l7 18 3-7 7-3L3 3z"/></svg>
-                                264 x 26
+                                310 x 28
                             </span>
                             <span class="text-xs font-mono text-cyan-400 font-semibold tracking-wide flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                SYSTEM ARCHITECT & AUTONOMOUS OPERATOR
+                                SENIOR SYSTEM ARCHITECT & FULL-STACK ENGINEER
                             </span>
                             <span class="figma-handle" style="top: -3px; left: -3px;"></span>
                             <span class="figma-handle" style="top: -3px; right: -3px;"></span>
@@ -381,13 +485,13 @@
                         </div>
                     </div>
 
-                    <!-- Live Dynamic Typing Bio from Reel Frame 05 -->
+                    <!-- Live Dynamic Typing Bio -->
                     <div class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed min-h-[55px]">
                         <span id="hero-bio-text"></span>
                         <span id="hero-typing-cursor" class="cursor-bar"></span>
                     </div>
 
-                    <!-- Buttons from Reel -->
+                    <!-- Buttons -->
                     <div class="flex flex-wrap items-center gap-3 pt-1">
                         <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20have%20a%20project%20for%20you" target="_blank" onclick="triggerConfetti()" class="px-5 py-2.5 rounded btn-dispatch text-xs uppercase tracking-wider flex items-center gap-2">
                             <span>INITIATE DISPATCH</span>
@@ -397,13 +501,18 @@
                         <a href="#flagships" class="px-4 py-2.5 rounded btn-ghost-arch text-xs uppercase tracking-wider">
                             EXPLORE ARCHITECTURE
                         </a>
+
+                        <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="px-3.5 py-2.5 rounded btn-ghost-arch text-xs flex items-center gap-1.5" title="View GitHub Code">
+                            <i data-feather="github" class="w-3.5 h-3.5"></i>
+                            <span class="text-[11px] font-mono">GITHUB</span>
+                        </a>
                     </div>
 
-                    <!-- Metrics Row (From Reel Frame 04) -->
+                    <!-- Metrics Row -->
                     <div class="flex items-center gap-6 pt-3 text-xs font-mono border-t border-white/5">
                         <div>
-                            <span class="text-red-500 font-bold text-sm sm:text-base">73+</span>
-                            <div class="text-[10px] text-slate-500 uppercase">Live Corridors</div>
+                            <span class="text-red-500 font-bold text-sm sm:text-base">107+</span>
+                            <div class="text-[10px] text-slate-500 uppercase">Live Calculators</div>
                         </div>
                         <div>
                             <span class="text-white font-bold text-sm sm:text-base">99/100</span>
@@ -417,16 +526,14 @@
 
                 </div>
 
-                <!-- Center Column: Solid Red Portrait Frame (From Reel Frame 04) -->
+                <!-- Center Column: Solid Red Portrait Frame -->
                 <div class="lg:col-span-3 flex justify-center">
                     <div class="relative w-56 sm:w-64">
-                        <!-- Red Solid Box with Cutout Picture -->
                         <div id="portrait-frame" class="red-portrait-container p-2 rounded-lg relative overflow-hidden border border-red-500/50">
                             <div class="w-full h-72 sm:h-80 bg-red-600 rounded overflow-hidden relative flex items-end justify-center">
                                 <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover object-top mix-blend-luminosity filter contrast-125 brightness-95">
                                 <div class="absolute inset-0 bg-red-600/35 mix-blend-color pointer-events-none"></div>
                                 
-                                <!-- Sovereign Silicon Active Badge from Reel Frame 04 -->
                                 <div class="absolute bottom-2 inset-x-2 bg-black/95 border border-red-500/50 py-1 text-center rounded">
                                     <span class="text-[10px] font-mono text-red-400 font-bold tracking-wider">
                                         ● SOVEREIGN SILICON ACTIVE
@@ -437,35 +544,38 @@
                     </div>
                 </div>
 
-                <!-- Right Column: 3 Architectural Core Specs (From Reel Frame 04) -->
+                <!-- Right Column: 3 Architectural Core Specs -->
                 <div class="lg:col-span-4 space-y-3 font-mono text-xs">
                     
                     <!-- Spec 01 -->
-                    <div class="p-3.5 bg-[#09090d] border border-white/10 rounded">
+                    <div class="card-arch p-3.5">
+                        <div class="card-spotlight"></div>
                         <div class="flex items-center justify-between text-slate-500 text-[10px] mb-1">
                             <span>01.</span>
                             <span class="text-emerald-400 font-bold">PRODUCTION</span>
                         </div>
                         <div class="text-white font-bold mb-1">SmartRateCalcs Core</div>
                         <div class="text-slate-400 text-[11px] leading-relaxed">
-                            73+ programmatic corridors, dynamic IndexNow protocol, Google Source [1] citation.
+                            107+ programmatic corridors, dynamic IndexNow protocol, Google Source [1] citation.
                         </div>
                     </div>
 
                     <!-- Spec 02 -->
-                    <div class="p-3.5 bg-[#09090d] border border-white/10 rounded">
+                    <div class="card-arch p-3.5">
+                        <div class="card-spotlight"></div>
                         <div class="flex items-center justify-between text-slate-500 text-[10px] mb-1">
                             <span>02.</span>
-                            <span class="text-purple-400 font-bold">E-COMMERCE</span>
+                            <span class="text-purple-400 font-bold">COMMERCE</span>
                         </div>
-                        <div class="text-white font-bold mb-1">SAYA Luxury Storefront</div>
+                        <div class="text-white font-bold mb-1">Modern Trends Now</div>
                         <div class="text-slate-400 text-[11px] leading-relaxed">
-                            Custom Liquid 2.0 theme, 50+ accessible color swatches, 0.08s sliding bag drawer.
+                            Autonomous viral discovery storefront with real-time Amazon syndication & RSS pipelines.
                         </div>
                     </div>
 
                     <!-- Spec 03 -->
-                    <div class="p-3.5 bg-[#09090d] border border-white/10 rounded">
+                    <div class="card-arch p-3.5">
+                        <div class="card-spotlight"></div>
                         <div class="flex items-center justify-between text-slate-500 text-[10px] mb-1">
                             <span>03.</span>
                             <span class="text-cyan-400 font-bold">EXECUTION</span>
@@ -476,13 +586,13 @@
                         </div>
                     </div>
 
-                    <!-- Stack Pills Row (From Reel Frame 04) -->
-                    <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] text-slate-500">
+                    <!-- Stack Pills Row -->
+                    <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] text-slate-400">
                         <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">Next.js 15</span>
-                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">Shopify Plus</span>
-                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">Liquid</span>
                         <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">TypeScript</span>
-                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">Postgres</span>
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">PostgreSQL</span>
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10">AI Pipelines</span>
                     </div>
 
                 </div>
@@ -491,14 +601,12 @@
         </section>
 
 
-        <!-- ================= 2. SECTION 01: BACKGROUND & PHILOSOPHY (REEL FRAME 08) ================= -->
+        <!-- ================= 2. SECTION 01: BACKGROUND & PHILOSOPHY ================= -->
         <section id="about" class="mb-24 scroll-mt-20">
-            <!-- Section Index Monospace from Reel Frame 08 -->
             <div class="text-[11px] font-mono text-slate-500 mb-2">// 01.00 SEC_ABOUT INDEX [01/05]</div>
             
             <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase block mb-1">ENGINEER PROFILE</span>
             
-            <!-- Heading with Blue Selection Box (From Reel Frame 08) -->
             <div class="inline-block relative mb-8">
                 <div class="figma-box px-4 py-2 bg-[#09090d] border border-white/10 rounded">
                     <span class="figma-tag">
@@ -515,38 +623,46 @@
                 </div>
             </div>
 
-            <!-- Two Column Philosophy Layout (From Reel Frame 08) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
                 <!-- Left Narrative (7 Cols) -->
                 <div class="lg:col-span-7 space-y-4 text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                     <p>
-                        I am <strong class="text-white font-semibold">Muhammad Naveed</strong> — an independent system architect and full-stack engineer from Hyderabad/Karachi, Pakistan. Completely self-taught across production terminals, headless architectures, high-volume e-commerce storefronts, and programmatic SEO platforms.
+                        I am <strong class="text-white font-semibold">Muhammad Naveed Khatri</strong> : an independent systems architect and full-stack software engineer based in Latifabad, Hyderabad / Karachi, Pakistan. Specialized across production terminals, headless architectures, programmatic algorithmic platforms, and high-conversion e-commerce engines.
                     </p>
                     <p>
-                        I view web engineering not as framework assembly, but as the rigorous orchestration of sub-second network requests, DOM optimization, and deterministic speed economics.
+                        I treat web engineering not as framework assembly, but as the rigorous orchestration of sub-second network requests, relational database normalization, and deterministic speed economics.
                     </p>
 
-                    <!-- Exact Quote Block (From Reel Frame 08) -->
                     <div class="p-4 border-l-2 border-red-500 bg-red-950/15 text-xs sm:text-sm font-mono text-slate-200 leading-relaxed my-4">
-                        "I design and deploy autonomous web systems that operate 24/7 with zero latency, automated programmatic Google indexing, and sub-second Core Web Vitals — built from first principles, not frameworks."
+                        "I design and deploy autonomous web systems that operate 24/7 with zero latency, automated programmatic Google indexing, and sub-second Core Web Vitals : built from first principles, not frameworks."
                     </div>
                 </div>
 
                 <!-- Right Pillars (5 Cols) -->
                 <div class="lg:col-span-5 space-y-4 font-mono text-xs">
                     
-                    <div class="p-4 bg-[#09090d] border border-white/10 rounded">
+                    <div class="card-arch p-4">
+                        <div class="card-spotlight"></div>
                         <div class="text-red-500 font-bold mb-1">01. First-Principles Architecture</div>
                         <p class="text-slate-400 text-[11px] leading-relaxed">
-                            Every single line of code built with deliberate necessity. Zero slow third-party Shopify apps, zero render-blocking JavaScript dependencies.
+                            Every single line of code built with deliberate necessity. Zero slow third-party bloated libraries, zero render-blocking JavaScript dependencies.
                         </p>
                     </div>
 
-                    <div class="p-4 bg-[#09090d] border border-white/10 rounded">
+                    <div class="card-arch p-4">
+                        <div class="card-spotlight"></div>
                         <div class="text-cyan-400 font-bold mb-1">02. Axiomatic Verification</div>
                         <p class="text-slate-400 text-[11px] leading-relaxed">
                             Autonomous systems must verify actions against deterministic ground truths: 99+ Core Web Vitals, sub-second LCP, and 100/100 Ahrefs health audits.
+                        </p>
+                    </div>
+
+                    <div class="card-arch p-4">
+                        <div class="card-spotlight"></div>
+                        <div class="text-emerald-400 font-bold mb-1">03. Full Commercial Ownership</div>
+                        <p class="text-slate-400 text-[11px] leading-relaxed">
+                            From relational database schemas to automated payment integrations and SEO indexation, we deliver complete turn-key platforms that print business value.
                         </p>
                     </div>
 
@@ -556,7 +672,7 @@
         </section>
 
 
-        <!-- ================= 3. FLAGSHIP DEPLOYMENTS (REEL FRAME 12 & 16) ================= -->
+        <!-- ================= 3. FLAGSHIP DEPLOYMENTS ================= -->
         <section id="flagships" class="mb-24 scroll-mt-20">
             <div class="mb-8">
                 <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase block mb-1">ARCHITECTURAL SHOWCASE</span>
@@ -566,8 +682,9 @@
                 </p>
             </div>
 
-            <!-- CORE PLATFORM HERO CARD (From Reel Frame 12) -->
-            <div class="card-arch p-6 sm:p-8 mb-6 border-red-500/40 relative">
+            <!-- CORE PLATFORM HERO CARD -->
+            <div class="card-arch p-6 sm:p-8 mb-8 border-red-500/40 relative">
+                <div class="card-spotlight"></div>
                 <div class="flex items-center justify-between mb-3 text-xs font-mono">
                     <span class="text-red-500 font-bold flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
@@ -577,17 +694,17 @@
                 </div>
 
                 <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3 font-display">
-                    SmartRateCalcs — Cross-Border Financial Payout Engine
+                    SmartRateCalcs : Global Financial Calculation & Net Payout Engine
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6 max-w-3xl">
-                    An autonomous, programmatic financial intelligence platform operating 24/7 on edge silicon. Features 73+ currency corridors (SadaBiz, Payoneer, Wise, Revolut), instant IndexNow submission protocol, and sub-38ms server-side rendering.
+                    An autonomous, programmatic financial intelligence platform operating 24/7 on edge silicon. Features 107+ global platform calculators (Upwork, Fiverr, Depop, TikTok Shop, Wise, PayPal, Meezan Bank, FBR 154A), instant IndexNow submission protocol, and sub-38ms server-side rendering.
                 </p>
 
-                <!-- Stat Counters in Red (From Reel Frame 12) -->
+                <!-- Stat Counters in Red -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-black/60 border border-white/10 rounded mb-6 font-mono text-center">
                     <div>
-                        <div class="text-2xl font-bold text-red-500">73+</div>
-                        <div class="text-[10px] text-slate-400">Live Corridors</div>
+                        <div class="text-2xl font-bold text-red-500">107+</div>
+                        <div class="text-[10px] text-slate-400">Live Calculators</div>
                     </div>
                     <div>
                         <div class="text-2xl font-bold text-white">&lt; 38ms</div>
@@ -603,7 +720,7 @@
                     </div>
                 </div>
 
-                <!-- 5-Layer Architecture Stack Tabs (From Reel Frame 12) -->
+                <!-- 5-Layer Architecture Stack Tabs -->
                 <div class="text-[11px] font-mono text-slate-400 mb-2 font-bold">5-LAYER CONSTITUTIONAL STACK:</div>
                 <div class="flex flex-wrap gap-2 mb-6">
                     <span class="px-3 py-1 rounded bg-red-950/40 text-red-400 border border-red-500/30 text-[11px] font-mono">L1: Next.js 15 App Router</span>
@@ -613,53 +730,57 @@
                     <span class="px-3 py-1 rounded bg-white/5 text-slate-300 border border-white/10 text-[11px] font-mono">L5: Structured Schema</span>
                 </div>
 
-                <div class="pt-4 border-t border-white/5 flex items-center justify-between font-mono text-xs">
-                    <span class="text-slate-500">Next.js 15 · TypeScript · Edge Workers</span>
-                    <a href="https://www.smartratecalcs.com" target="_blank" class="text-red-400 hover:text-red-300 font-bold flex items-center gap-1">
-                        OPEN LIVE ENGINE (smartratecalcs.com) ↗
+                <div class="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                    <span class="text-slate-500">Next.js 15 · TypeScript · Vercel Edge</span>
+                    <a href="https://www.smartratecalcs.com" target="_blank" class="px-4 py-2 rounded bg-red-600 hover:bg-red-500 text-white font-bold flex items-center gap-2 transition-all">
+                        <span>OPEN LIVE PLATFORM (smartratecalcs.com)</span>
+                        <span>↗</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Supporting Grid Cards (From Reel Frame 16) -->
+            <!-- Supporting Grid Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                <!-- Card 1: SAYA Luxury -->
+                <!-- Card 1: Modern Trends Now -->
                 <div class="card-arch p-6">
-                    <div class="text-[10px] font-mono text-purple-400 font-bold mb-2">DEFI // HIGH-CONVERSION E-COMMERCE</div>
-                    <div class="text-lg font-bold text-white mb-2 font-display">SAYA Luxury Pret</div>
+                    <div class="card-spotlight"></div>
+                    <div class="text-[10px] font-mono text-cyan-400 font-bold mb-2">E-COMMERCE // VIRAL COMMERCE</div>
+                    <div class="text-lg font-bold text-white mb-2 font-display">Modern Trends Now</div>
                     <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Luxury fashion storefront. Custom Liquid 2.0 templating, 50+ accessible color swatches, 0.08s sliding bag drawer, and zero app bloat.
+                        Curated viral lifestyle discovery storefront powered by Amazon Associates (StoreID: moderntren08b-20), automated Pinterest RSS syndication, and programmatic SEO guides.
                     </p>
-                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between">
-                        <span>Shopify Plus · Liquid</span>
-                        <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="text-purple-400 hover:underline">Catalog ↗</a>
+                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between items-center">
+                        <span>Next.js · Vercel</span>
+                        <a href="https://www.moderntrendsnow.store" target="_blank" class="text-cyan-400 hover:underline font-bold">Storefront ↗</a>
                     </div>
                 </div>
 
-                <!-- Card 2: ModernTrendsNow -->
+                <!-- Card 2: SAYA Luxury -->
                 <div class="card-arch p-6">
-                    <div class="text-[10px] font-mono text-cyan-400 font-bold mb-2">PUBLICATION // EDGE CACHING</div>
-                    <div class="text-lg font-bold text-white mb-2 font-display">ModernTrendsNow</div>
+                    <div class="card-spotlight"></div>
+                    <div class="text-[10px] font-mono text-purple-400 font-bold mb-2">LUXURY // HIGH-CONVERSION</div>
+                    <div class="text-lg font-bold text-white mb-2 font-display">SAYA Luxury Pret</div>
                     <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                        Multi-tenant publication engine with dynamic edge routing, serverless database pooling, and automated programmatic SEO indexation.
+                        High-end fashion boutique. Custom Liquid 2.0 templating, 50+ accessible color swatches, 0.08s sliding bag drawer, and zero third-party app bloat.
                     </p>
-                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between">
-                        <span>Next.js · Serverless</span>
-                        <a href="https://www.moderntrendsnow.org" target="_blank" class="text-cyan-400 hover:underline">Platform ↗</a>
+                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between items-center">
+                        <span>Shopify Plus · Liquid</span>
+                        <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="text-purple-400 hover:underline font-bold">Catalog ↗</a>
                     </div>
                 </div>
 
                 <!-- Card 3: Escape Experiment -->
                 <div class="card-arch p-6">
+                    <div class="card-spotlight"></div>
                     <div class="text-[10px] font-mono text-amber-400 font-bold mb-2">INTERACTIVE // 2.5D CANVAS ENGINE</div>
                     <div class="text-lg font-bold text-white mb-2 font-display">Escape Experiment</div>
                     <p class="text-xs text-slate-400 leading-relaxed mb-4">
                         Procedural 2.5D interactive canvas engine with localized audio synthesis, raycast collision, and 60 FPS isometric physics.
                     </p>
-                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between">
+                    <div class="text-[11px] font-mono text-slate-500 pt-3 border-t border-white/5 flex justify-between items-center">
                         <span>HTML5 Canvas · 60fps</span>
-                        <a href="./escape-experiment/" target="_blank" class="text-amber-400 hover:underline">Launch ↗</a>
+                        <a href="./escape-experiment/" target="_blank" class="text-amber-400 hover:underline font-bold">Launch ↗</a>
                     </div>
                 </div>
 
@@ -667,18 +788,111 @@
         </section>
 
 
-        <!-- ================= 4. LET'S ARCHITECT SOMETHING EXTRAORDINARY (REEL FRAME 24) ================= -->
+        <!-- ================= 4. LIVE INTERACTIVE LAB: REAL-TIME FEE SIMULATOR ================= -->
+        <section id="interactive-lab" class="mb-24 scroll-mt-20">
+            <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <span class="text-cyan-400 font-mono text-xs font-bold tracking-widest uppercase block mb-1">INTERACTIVE LAB // TEST ON SITE</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Live Calculator Simulation</h2>
+                </div>
+                <div class="text-xs font-mono text-slate-400 px-3 py-1 bg-white/5 border border-white/10 rounded flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Client Demo Terminal</span>
+                </div>
+            </div>
+
+            <!-- Interactive Terminal Card -->
+            <div class="card-arch p-6 sm:p-8 border-cyan-500/30">
+                <div class="card-spotlight"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Controls -->
+                    <div class="md:col-span-6 space-y-5">
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-2 uppercase">1. Select Target Platform</label>
+                            <div class="grid grid-cols-3 gap-2" id="platform-selector">
+                                <button onclick="setPlatform('upwork', this)" class="px-3 py-2 rounded bg-cyan-950/60 border border-cyan-400 text-cyan-300 font-mono text-xs font-bold transition-all text-center">
+                                    Upwork (10%)
+                                </button>
+                                <button onclick="setPlatform('fiverr', this)" class="px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Fiverr (20%)
+                                </button>
+                                <button onclick="setPlatform('stripe', this)" class="px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Stripe (2.9%)
+                                </button>
+                                <button onclick="setPlatform('paypal', this)" class="px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    PayPal (3.49%)
+                                </button>
+                                <button onclick="setPlatform('tiktok', this)" class="px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    TikTok (5%)
+                                </button>
+                                <button onclick="setPlatform('wise', this)" class="px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Wise ($4.14)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-mono text-slate-400 uppercase">2. Contract / Order Amount</label>
+                                <span class="text-sm font-mono font-bold text-white" id="slider-val-display">$1,500 USD</span>
+                            </div>
+                            <input type="range" id="fee-slider" min="50" max="5000" step="50" value="1500" oninput="calculateLiveFee(this.value)" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+                            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+                                <span>$50</span>
+                                <span>$2,500</span>
+                                <span>$5,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Computed Terminal Output -->
+                    <div class="md:col-span-6 bg-black/80 border border-white/10 rounded-xl p-6 font-mono">
+                        <div class="flex items-center justify-between text-xs text-slate-500 pb-3 border-b border-white/10 mb-4">
+                            <span>TERMINAL // REAL-TIME CALC</span>
+                            <span class="text-emerald-400 font-bold" id="calc-status">ACTIVE [200 OK]</span>
+                        </div>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span>Gross Invoiced:</span>
+                                <span class="text-white font-bold text-base" id="out-gross">$1,500.00</span>
+                            </div>
+
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span id="out-fee-label">Platform Service Cut:</span>
+                                <span class="text-red-400 font-bold" id="out-fee">-$150.00</span>
+                            </div>
+
+                            <div class="pt-3 border-t border-white/10 flex justify-between items-center">
+                                <span class="text-sm font-bold text-cyan-400">Net Take-Home:</span>
+                                <span class="text-xl sm:text-2xl font-black text-emerald-400" id="out-net">$1,350.00</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-3 border-t border-white/5 text-[11px] text-slate-500 flex justify-between items-center">
+                            <span>Powered by SmartRateCalcs Edge Engine</span>
+                            <a href="https://www.smartratecalcs.com" target="_blank" class="text-cyan-400 hover:underline">Explore All 107+ ↗</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= 5. CONTACT & DISPATCH ================= -->
         <section id="contact" class="card-arch p-8 sm:p-14 text-center relative overflow-hidden mb-16">
-            <div class="max-w-2xl mx-auto space-y-6">
+            <div class="card-spotlight"></div>
+            <div class="max-w-2xl mx-auto space-y-6 relative z-10">
                 
                 <span class="text-red-500 font-mono text-xs font-bold tracking-widest uppercase">DIRECT CONNECT // DISPATCH</span>
                 
-                <!-- Exact Heading from Reel Frame 24 -->
                 <h2 class="text-3xl sm:text-5xl font-extrabold text-white font-display">
                     Let's Architect Something Extraordinary.
                 </h2>
 
-                <!-- Selection Box Around Subtitle (From Reel Frame 24) -->
                 <div class="inline-block relative">
                     <div class="figma-box px-4 py-2 bg-black/60 border border-white/10 rounded">
                         <span class="figma-tag">
@@ -686,7 +900,7 @@
                             Selection · Available
                         </span>
                         <p class="text-xs sm:text-sm text-slate-300 font-mono">
-                            Available for production autonomous web design, high-velocity e-commerce architectures, and technical advisory.
+                            Available for high-scale web platforms, e-commerce architectures, relational database engineering, and technical advisory.
                         </p>
                         <span class="figma-handle" style="top: -3px; left: -3px;"></span>
                         <span class="figma-handle" style="top: -3px; right: -3px;"></span>
@@ -704,12 +918,16 @@
 
                     <button onclick="copyEmail(this)" class="w-full sm:w-auto px-8 py-3.5 rounded btn-ghost-arch text-xs uppercase tracking-wider flex items-center justify-center gap-2">
                         <i data-feather="copy" class="w-4 h-4 text-cyan-400"></i>
-                        <span id="copy-text">Copy naveedkhtri7@gmail.com</span>
+                        <span id="copy-text">Copy m.naveedkhtri@gmail.com</span>
                     </button>
                 </div>
 
-                <div class="text-[11px] font-mono text-slate-500 pt-2">
-                    Average response time: <span class="text-emerald-400 font-bold">&lt; 15 minutes</span> · Direct Engineer Access
+                <div class="text-[11px] font-mono text-slate-500 pt-2 flex flex-wrap items-center justify-center gap-4">
+                    <span>Average response time: <strong class="text-emerald-400">&lt; 15 minutes</strong></span>
+                    <span>•</span>
+                    <a href="mailto:naveed@smartratecalcs.com" class="text-slate-400 hover:text-white underline">Enterprise: naveed@smartratecalcs.com</a>
+                    <span>•</span>
+                    <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="text-cyan-400 hover:underline">GitHub: @mnaveedkhtri-ui</a>
                 </div>
 
             </div>
@@ -718,7 +936,68 @@
     </main>
 
 
-    <!-- ================= FLOATING MULTIPLAYER DOCK (FROM REEL BOTTOM BAR) ================= -->
+    <!-- ================= COMMAND PALETTE HUD MODAL (Ctrl+K) ================= -->
+    <div id="cmd-modal" onclick="closeCmdModalOnBackdrop(event)">
+        <div class="bg-[#0e0e14] border border-white/20 rounded-2xl w-full max-w-lg p-5 font-mono shadow-2xl relative">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <div class="flex items-center gap-2 text-xs text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span>DEVELOPER HUD // COMMAND PALETTE</span>
+                </div>
+                <button onclick="toggleCmdModal()" class="text-slate-500 hover:text-white text-xs px-2 py-0.5 rounded bg-white/5">ESC</button>
+            </div>
+
+            <div class="space-y-2 text-xs">
+                <a href="https://www.smartratecalcs.com" target="_blank" class="p-3 rounded-lg bg-white/5 hover:bg-red-500/10 border border-white/5 hover:border-red-500/40 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                    <span class="flex items-center gap-2.5">
+                        <span>🧮</span>
+                        <span>Launch SmartRateCalcs.com</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500">107+ Tools</span>
+                </a>
+
+                <a href="https://www.moderntrendsnow.store" target="_blank" class="p-3 rounded-lg bg-white/5 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/40 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                    <span class="flex items-center gap-2.5">
+                        <span>🛍️</span>
+                        <span>Launch ModernTrendsNow.store</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500">Commerce</span>
+                </a>
+
+                <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="p-3 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/40 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                    <span class="flex items-center gap-2.5">
+                        <span>💻</span>
+                        <span>Explore GitHub Profile (@mnaveedkhtri-ui)</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500">Codebase</span>
+                </a>
+
+                <button onclick="copyEmail(this); toggleCmdModal();" class="w-full p-3 rounded-lg bg-white/5 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/40 flex items-center justify-between text-slate-300 hover:text-white transition-all text-left">
+                    <span class="flex items-center gap-2.5">
+                        <span>📋</span>
+                        <span>Copy Email (m.naveedkhtri@gmail.com)</span>
+                    </span>
+                    <span class="text-[10px] text-emerald-400">Instant</span>
+                </button>
+
+                <a href="https://wa.me/923323219981" target="_blank" class="p-3 rounded-lg bg-white/5 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/40 flex items-center justify-between text-slate-300 hover:text-white transition-all">
+                    <span class="flex items-center gap-2.5">
+                        <span>💬</span>
+                        <span>Direct WhatsApp Dispatch (+92 332 3219981)</span>
+                    </span>
+                    <span class="text-[10px] text-slate-500">&lt; 15 min</span>
+                </a>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] text-slate-500 flex justify-between">
+                <span>Tip: Press ESC to close</span>
+                <span>Press Ctrl+K anytime</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= FLOATING MULTIPLAYER DOCK ================= -->
     <div class="fixed bottom-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
         <div class="pointer-events-auto bg-[#09090d]/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-2xl flex items-center gap-4 text-xs font-mono text-slate-400">
             <!-- Agent Count -->
@@ -736,10 +1015,10 @@
             <div class="h-3 w-px bg-white/10"></div>
 
             <!-- Active Selection Tool Pill -->
-            <div class="flex items-center gap-1 text-[11px] text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded">
-                <span>[V]</span>
-                <span class="hidden sm:inline">Select Mode</span>
-            </div>
+            <button onclick="toggleCmdModal()" class="flex items-center gap-1 text-[11px] text-cyan-400 bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded hover:bg-cyan-900/60 transition-colors pointer-events-auto">
+                <span>[⌘K]</span>
+                <span class="hidden sm:inline">Terminal HUD</span>
+            </button>
 
             <!-- Local Time -->
             <div class="text-slate-300 hidden md:block">
@@ -749,7 +1028,7 @@
     </div>
 
 
-    <!-- ================= SCRIPT & AGENTIC BUILD ANIMATION ENGINE ================= -->
+    <!-- ================= SCRIPT ENGINE ================= -->
     <script>
         feather.replace();
 
@@ -764,7 +1043,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Synthesized Web Audio API FX (Zero External Files!)
+        // 2. Synthesized Web Audio API FX
         let audioCtx = null;
         function playSfx(freq = 600, type = 'sine', duration = 0.04) {
             try {
@@ -782,8 +1061,80 @@
             } catch(e) {}
         }
 
-        // ================= 3. THE VIRAL AGENTIC BUILD ANIMATION SEQUENCE =================
-        const fullBioText = "Architecting 24/7 autonomous web ecosystems, multi-agent pipelines, and quantitative programmatic engines from first principles — zero frameworks, total autonomy.";
+        // 3. Dynamic Card Spotlight Cursor Tracker
+        document.querySelectorAll('.card-arch').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 4. Live Terminal Calculator Simulator
+        let currentPlatform = 'upwork';
+        const platformRates = {
+            upwork: { rate: 0.10, fixed: 0, label: 'Upwork 10% Service Fee' },
+            fiverr: { rate: 0.20, fixed: 0, label: 'Fiverr 20% Freelancer Fee' },
+            stripe: { rate: 0.029, fixed: 0.30, label: 'Stripe 2.9% + $0.30 Processing' },
+            paypal: { rate: 0.0349, fixed: 0.49, label: 'PayPal 3.49% + $0.49 Fee' },
+            tiktok: { rate: 0.05, fixed: 0, label: 'TikTok Shop 5% Merchant Cut' },
+            wise: { rate: 0.00, fixed: 4.14, label: 'Wise Wire Fixed Flat Fee ($4.14)' }
+        };
+
+        function setPlatform(platform, btn) {
+            currentPlatform = platform;
+            document.querySelectorAll('#platform-selector button').forEach(b => {
+                b.className = 'px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30';
+            });
+            btn.className = 'px-3 py-2 rounded bg-cyan-950/60 border border-cyan-400 text-cyan-300 font-mono text-xs font-bold transition-all text-center shadow-lg shadow-cyan-950/50';
+            playSfx(750, 'sine', 0.05);
+            calculateLiveFee(document.getElementById('fee-slider').value);
+        }
+
+        function calculateLiveFee(val) {
+            const amount = parseFloat(val);
+            document.getElementById('slider-val-display').innerText = `$${amount.toLocaleString('en-US')} USD`;
+            document.getElementById('out-gross').innerText = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            const cfg = platformRates[currentPlatform];
+            const fee = (amount * cfg.rate) + cfg.fixed;
+            const net = amount - fee;
+
+            document.getElementById('out-fee-label').innerText = cfg.label + ':';
+            document.getElementById('out-fee').innerText = `-$${fee.toFixed(2)}`;
+            document.getElementById('out-net').innerText = `$${net.toFixed(2)}`;
+        }
+
+        // 5. Command Palette (HUD) Toggle
+        function toggleCmdModal() {
+            const modal = document.getElementById('cmd-modal');
+            const isActive = modal.classList.contains('active');
+            if (isActive) {
+                modal.classList.remove('active');
+            } else {
+                modal.classList.add('active');
+                playSfx(880, 'triangle', 0.06);
+            }
+        }
+
+        function closeCmdModalOnBackdrop(e) {
+            if (e.target.id === 'cmd-modal') toggleCmdModal();
+        }
+
+        window.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCmdModal();
+            } else if (e.key === 'Escape') {
+                const modal = document.getElementById('cmd-modal');
+                if (modal.classList.contains('active')) modal.classList.remove('active');
+            }
+        });
+
+        // 6. The Cinematic Agentic Intro Build Sequence
+        const fullBioText = "Architecting 24/7 autonomous web ecosystems, multi-agent pipelines, and quantitative programmatic engines from first principles : zero frameworks, total autonomy.";
         
         function startAgenticBuildSequence() {
             const overlay = document.getElementById('intro-overlay');
@@ -794,7 +1145,6 @@
             const heroBio = document.getElementById('hero-bio-text');
             const typingCursor = document.getElementById('hero-typing-cursor');
 
-            // Reset elements
             overlay.style.visibility = 'visible';
             overlay.style.opacity = '1';
             laserLine.style.height = '0%';
@@ -802,7 +1152,6 @@
             statusText.innerText = 'Scanning page...';
             layerCounter.innerText = '0 / 252 layers';
 
-            // Create 18 orbiting cursor arrows in circle (From Reel Frame 01)
             orbitContainer.querySelectorAll('.intro-orbit-cursor').forEach(e => e.remove());
             const cursorColors = ['#00f2fe', '#10b981', '#ffbd2e', '#ff2a3a', '#a855f7', '#38bdf8'];
             const orbitCursors = [];
@@ -817,7 +1166,6 @@
                 orbitCursors.push({ el: c, baseAngle: angle, radius: 95 });
             }
 
-            // Animate orbiting in circle (0.0s to 1.3s)
             let orbitStart = performance.now();
             function orbitStep(time) {
                 const elapsed = (time - orbitStart) / 1000;
@@ -833,7 +1181,6 @@
             }
             requestAnimationFrame(orbitStep);
 
-            // Phase 2 (at 1.3s): Swarm Explodes Outwards (From Reel Frame 03)
             setTimeout(() => {
                 playSfx(900, 'triangle', 0.1);
                 statusText.innerText = 'Agents dispersing...';
@@ -847,7 +1194,6 @@
                     c.el.style.opacity = '0';
                 });
 
-                // Count layers up: 0 -> 252 (From Reel Frame 03 / 05)
                 let layer = 0;
                 const layerInterval = setInterval(() => {
                     layer += Math.floor(Math.random() * 18) + 12;
@@ -860,19 +1206,14 @@
                 }, 40);
             }, 1300);
 
-            // Phase 3 (at 2.0s): Fade Overlay and Reveal Construction (From Reel Frame 05)
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 setTimeout(() => { overlay.style.visibility = 'hidden'; }, 800);
 
-                // Laser line drops down
                 laserLine.style.height = '100%';
                 document.querySelectorAll('.crosshair').forEach(c => c.style.opacity = '1');
-
-                // Reveal multiplayer cursors
                 document.querySelectorAll('.agent-cursor').forEach(c => c.style.opacity = '1');
 
-                // Real-time Typewriter for Bio (From Reel Frame 05)
                 let charIdx = 0;
                 const typeInterval = setInterval(() => {
                     if (charIdx < fullBioText.length) {
@@ -887,12 +1228,12 @@
             }, 2000);
         }
 
-        // Start animation immediately on page load
         window.addEventListener('load', () => {
             startAgenticBuildSequence();
+            calculateLiveFee(1500);
         });
 
-        // 4. Animated Collaborative Multiplayer Cursors (From Reel)
+        // 7. Animated Collaborative Multiplayer Cursors
         const cursors = [
             { el: document.getElementById('cursor-agent-1'), x: 60, y: 180, vx: 0.12, vy: 0.08 },
             { el: document.getElementById('cursor-agent-2'), x: 78, y: 360, vx: -0.10, vy: 0.12 },
@@ -916,21 +1257,22 @@
         }
         animateCursors();
 
-        // 5. Copy Email
+        // 8. Copy Email
         function copyEmail(btn) {
-            navigator.clipboard.writeText('naveedkhtri7@gmail.com');
+            navigator.clipboard.writeText('m.naveedkhtri@gmail.com');
             const copyText = document.getElementById('copy-text');
             if (copyText) {
                 const original = copyText.innerText;
                 copyText.innerText = 'COPIED TO CLIPBOARD! ✓';
                 triggerConfetti();
+                playSfx(950, 'sine', 0.1);
                 setTimeout(() => {
                     copyText.innerText = original;
                 }, 2500);
             }
         }
 
-        // 6. Confetti Trigger
+        // 9. Confetti Trigger
         function triggerConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
