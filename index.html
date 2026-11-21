@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Naveed : Full-Stack Engineer & Digital Craftsman</title>
+    <title>Muhammad Naveed : Senior Full-Stack Engineer & Systems Architect</title>
     <meta name="google-site-verification" content="wYFUIXoVNRkPCSeAExJZhbNGbE9pcbuFswY8d8GCIdw" />
-    <meta name="description" content="Muhammad Naveed is a senior full-stack engineer and digital craftsman based in Pakistan. Specializing in Next.js, high-throughput web architectures, custom e-commerce engines, and high-performance databases.">
+    <meta name="description" content="Senior Full-Stack Engineer & Systems Architect. Creator of SmartRateCalcs (107+ Live Tools, Google Source [1] Citation) & Modern Trends Now. Specializing in Next.js 15, TypeScript, PostgreSQL, and sub-second edge runtimes.">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Muhammad Naveed : Full-Stack Engineer">
-    <meta property="og:description" content="Designing thoughtful web systems, financial software, and digital experiences that scale.">
+    <meta property="og:title" content="Muhammad Naveed : Senior Full-Stack Engineer">
+    <meta property="og:description" content="Architecting high-scale web platforms, sub-second edge runtimes, and viral e-commerce engines.">
     <meta property="og:image" content="./profile.jpg">
     <meta property="og:url" content="https://naveed-portfolio-kappa.vercel.app/">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide / Feather Icons -->
+    <!-- Feather Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 
-    <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans, JetBrains Mono -->
+    <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -30,68 +30,126 @@
         }
         ::selection {
             background-color: #f59e0b;
-            color: #08090c;
+            color: #04060a;
         }
         body {
-            background-color: #08090c;
+            background-color: #04060a;
             color: #f3f4f6;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        .font-serif {
-            font-family: 'Instrument Serif', Georgia, serif;
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
         }
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Subtle warm atmospheric glow */
-        .ambient-glow {
+        /* Subtle Ambient Glowing Orbs */
+        .ambient-aurora-1 {
             position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 480px;
-            background: radial-gradient(ellipse at top, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+            top: -10%;
+            left: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 65%);
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .ambient-aurora-2 {
+            position: fixed;
+            top: 40%;
+            right: 10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+            filter: blur(140px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .ambient-aurora-3 {
+            position: fixed;
+            bottom: 5%;
+            left: 15%;
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+            filter: blur(130px);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Elegant card styling */
-        .craft-card {
-            background: #0e1017;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .craft-card:hover {
-            border-color: rgba(245, 158, 11, 0.35);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.04);
+        /* Architectural Micro Grid */
+        .subtle-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
         }
 
-        /* Smooth custom scrollbar */
+        /* Luxury Bento Card */
+        .luxury-card {
+            background: rgba(14, 18, 28, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .luxury-card:hover {
+            border-color: rgba(245, 158, 11, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.08);
+        }
+
+        /* Interactive Dynamic Spotlight */
+        .card-spotlight {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(450px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.07), transparent 45%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .luxury-card:hover .card-spotlight {
+            opacity: 1;
+        }
+
+        /* Gradient Text Accents */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .silver-gradient-text {
+            background: linear-gradient(135deg, #ffffff 20%, #cbd5e1 70%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #08090c;
+            background: #04060a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1f2330;
+            background: #1e2538;
             border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
+            background: #334155;
         }
 
-        /* Toast message styling */
+        /* Toast Feedback */
         #copy-toast {
             opacity: 0;
-            transform: translateY(12px);
+            transform: translateY(16px);
             pointer-events: none;
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -101,55 +159,59 @@
         }
     </style>
 </head>
-<body class="relative min-h-screen text-slate-100 selection:bg-amber-400 selection:text-slate-950">
+<body class="subtle-grid relative min-h-screen text-slate-100">
 
-    <!-- Ambient Subtle Warm Light -->
-    <div class="ambient-glow"></div>
+    <!-- Ambient Aurora Blobs -->
+    <div class="ambient-aurora-1"></div>
+    <div class="ambient-aurora-2"></div>
+    <div class="ambient-aurora-3"></div>
 
-    <!-- Notification Toast for Copying Email -->
-    <div id="copy-toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-xl bg-amber-400 text-slate-950 px-4 py-3 text-xs font-bold shadow-2xl">
-        <i data-feather="check" class="w-4 h-4 text-slate-950"></i>
+    <!-- Copy Toast Feedback -->
+    <div id="copy-toast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl bg-amber-400 text-slate-950 px-5 py-3.5 text-xs font-black shadow-2xl">
+        <i data-feather="check-circle" class="w-4 h-4 text-slate-950"></i>
         <span id="toast-text">Email copied to clipboard: m.naveedkhtri@gmail.com</span>
     </div>
 
-    <!-- ================= STICKY MINIMAL HEADER ================= -->
-    <header class="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#08090c]/90 backdrop-blur-md px-4 sm:px-8 py-3.5 transition-all">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <!-- ================= STICKY GLASS HEADER ================= -->
+    <header class="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-[#04060a]/90 backdrop-blur-xl px-4 sm:px-8 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
             
-            <!-- Brand / Human Monogram -->
+            <!-- Brand / Logo Lockup -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-serif text-amber-400 font-normal text-lg group-hover:border-amber-400/40 transition-colors">
-                    N
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-display font-black text-slate-950 text-sm shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                    NK
                 </div>
                 <div class="text-left">
-                    <span class="block text-xs sm:text-sm font-semibold tracking-tight text-white group-hover:text-amber-300 transition-colors">
-                        Muhammad Naveed
-                    </span>
-                    <span class="block text-[10px] font-mono text-slate-400">
-                        Full-Stack Engineer
-                    </span>
+                    <div class="text-xs sm:text-sm font-bold tracking-tight text-white flex items-center gap-2">
+                        <span>Muhammad Naveed</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse hidden sm:inline-block"></span>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-400 hidden sm:block">Senior Full-Stack Engineer</div>
                 </div>
             </a>
 
             <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-xs font-medium text-slate-300">
-                <a href="#work" class="hover:text-white transition-colors">Selected Work</a>
-                <a href="#craft" class="hover:text-white transition-colors">Philosophy</a>
-                <a href="#stack" class="hover:text-white transition-colors">Tooling</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-300">
+                <a href="#flagships" class="hover:text-amber-400 transition-colors">Flagship SaaS</a>
+                <a href="#interactive-lab" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <span>Live Simulator</span>
+                    <span class="px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 text-[9px] font-mono font-bold">107+</span>
+                </a>
+                <a href="#philosophy" class="hover:text-amber-400 transition-colors">Engineering Craft</a>
+                <a href="#about" class="hover:text-amber-400 transition-colors">Story & Workshop</a>
+                <a href="#contact" class="hover:text-amber-400 transition-colors">Contact</a>
             </nav>
 
-            <!-- Quick Action: Resume & Get In Touch -->
+            <!-- Quick Action Buttons -->
             <div class="flex items-center gap-2.5">
-                <a href="./Naveed_Khatri_Resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all" title="View Resume">
+                <a href="./Naveed_Khatri_Resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all" title="View Full Resume">
                     <i data-feather="file-text" class="w-3.5 h-3.5 text-amber-400"></i>
                     <span>Resume (PDF)</span>
                 </a>
 
-                <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-bold font-mono transition-all flex items-center gap-1.5 shadow-sm active:scale-95">
+                <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 text-xs font-black font-mono transition-all flex items-center gap-1.5 shadow-lg shadow-amber-500/20 active:scale-95">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-950 animate-pulse"></span>
-                    <span>Let's Talk</span>
+                    <span>Let's Talk →</span>
                 </a>
             </div>
 
@@ -158,88 +220,121 @@
 
 
     <!-- ================= MAIN CONTAINER ================= -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-8 pt-12 sm:pt-20 pb-24 relative z-10">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 pt-8 sm:pt-14 pb-24 relative z-10">
 
-        <!-- ================= HERO SECTION (WARM, HUMAN, COMPELLING) ================= -->
+        <!-- ================= HERO SECTION (HIGH-OCTANE EXECUTIVE SPLIT) ================= -->
         <section class="mb-20 sm:mb-28">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
-                <!-- Left Narrative Column -->
-                <div class="flex-1 space-y-6 text-left">
+                <!-- Left Narrative Column (7 Cols) -->
+                <div class="lg:col-span-7 space-y-6 text-left">
                     
-                    <!-- Availability Badge -->
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-400/25 bg-emerald-400/5 text-emerald-400 font-mono text-xs">
+                    <!-- Top Availability Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 text-xs font-mono shadow-lg shadow-emerald-500/5">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Available for select engineering contracts & consulting</span>
+                        <span class="font-bold">Available for High-Impact Projects & Consulting</span>
+                        <span class="text-emerald-500/60 hidden sm:inline">•</span>
+                        <span class="text-emerald-200/80 hidden sm:inline">2026 Season</span>
                     </div>
 
-                    <!-- Editorial Headline -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-[56px] font-normal tracking-tight font-serif text-white leading-[1.15]">
-                        Designing thoughtful web systems, financial software, and digital experiences <span class="italic text-amber-300">that scale gracefully.</span>
+                    <!-- Main Impact Headline -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-display text-white leading-[1.12]">
+                        <span class="silver-gradient-text">Architecting High-Scale Systems,</span><br>
+                        <span class="gold-gradient-text">Engineered for Sub-Second Precision.</span>
                     </h1>
 
-                    <!-- Warm, Natural Personal Bio -->
+                    <!-- Compelling Bio -->
                     <p class="text-sm sm:text-base text-slate-300 font-light leading-relaxed max-w-2xl">
-                        Hi, I'm <strong>Muhammad Naveed</strong>, a senior full-stack software engineer and digital craftsman based in Sindh, Pakistan. I spend my time building reliable, sub-second web platforms: from autonomous financial calculation engines to high-conversion custom e-commerce systems. I care deeply about latency, clean abstractions, and making software that feels effortless to use.
+                        I'm <strong>Muhammad Naveed</strong>, a Senior Full-Stack Engineer and Systems Architect based in Sindh, Pakistan. Creator of <strong>SmartRateCalcs.com</strong> (107+ production calculation tools, Google Source [1] Citation) and <strong>Modern Trends Now</strong>. I bridge complex database queries, sub-38ms edge runtimes, and high-conversion product design to build platforms that scale effortlessly.
                     </p>
 
-                    <!-- CTAs & Direct Contacts -->
+                    <!-- CTAs & Direct Outreach -->
                     <div class="flex flex-wrap items-center gap-3 pt-2">
-                        <a href="#work" class="px-5 py-3 rounded-xl bg-white text-slate-950 hover:bg-amber-400 text-xs sm:text-sm font-bold font-mono transition-all flex items-center gap-2">
-                            <span>Explore Selected Work</span>
-                            <i data-feather="arrow-down" class="w-3.5 h-3.5"></i>
+                        <a href="#flagships" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold font-mono text-xs sm:text-sm transition-all flex items-center gap-2 shadow-xl shadow-amber-500/20 active:scale-95">
+                            <span>EXPLORE FLAGSHIPS</span>
+                            <i data-feather="arrow-down" class="w-4 h-4"></i>
                         </a>
 
-                        <button onclick="copyEmailToClipboard()" class="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-mono text-slate-200 transition-all flex items-center gap-2">
-                            <i data-feather="copy" class="w-3.5 h-3.5 text-amber-400"></i>
+                        <button onclick="copyEmailToClipboard()" class="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-mono text-slate-200 transition-all flex items-center gap-2 active:scale-95">
+                            <i data-feather="copy" class="w-4 h-4 text-amber-400"></i>
                             <span>m.naveedkhtri@gmail.com</span>
                         </button>
 
-                        <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors" title="GitHub Profile">
+                        <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="p-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors" title="GitHub Profile">
                             <i data-feather="github" class="w-4 h-4"></i>
                         </a>
                     </div>
 
-                    <!-- Genuine Highlights -->
-                    <div class="pt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-x-8 gap-y-3 text-xs font-mono text-slate-400">
-                        <div class="flex items-center gap-2">
-                            <span class="text-white font-bold text-sm">107+</span>
-                            <span>Live Calculators</span>
+                    <!-- Hard Production Metrics Bar -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/[0.08] font-mono">
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="text-2xl font-black text-amber-400">107+</div>
+                            <div class="text-[10px] text-slate-400 uppercase mt-0.5">Calculators Live</div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-amber-400 font-bold text-sm">&lt;38ms</span>
-                            <span>Edge TTFB</span>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="text-2xl font-black text-emerald-400">&lt;38ms</div>
+                            <div class="text-[10px] text-slate-400 uppercase mt-0.5">Edge TTFB Latency</div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-emerald-400 font-bold text-sm">100/100</span>
-                            <span>Ahrefs Health</span>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="text-2xl font-black text-cyan-400">100/100</div>
+                            <div class="text-[10px] text-slate-400 uppercase mt-0.5">Ahrefs Health</div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-white font-bold text-sm">Google #1</span>
-                            <span>Source Citation</span>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="text-2xl font-black text-white">Google #1</div>
+                            <div class="text-[10px] text-slate-400 uppercase mt-0.5">Source Cited</div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Right Profile Portrait Column -->
-                <div class="w-full md:w-auto shrink-0 flex justify-center">
-                    <div class="relative group">
-                        <!-- Subtle Frame Accent -->
-                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-b from-amber-400/20 to-transparent blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
-                        
-                        <div class="relative w-44 h-52 sm:w-56 sm:h-64 rounded-2xl overflow-hidden border border-white/15 bg-slate-900 shadow-2xl">
-                            <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover object-top filter grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500">
+                <!-- Right Executive Portrait Bento Box (5 Cols) -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md luxury-card p-6 border-amber-400/25 relative group">
+                        <div class="card-spotlight"></div>
+
+                        <!-- Card Header -->
+                        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5 text-left">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="font-mono text-xs font-bold text-white uppercase tracking-wider">Lead Systems Architect</span>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-md bg-amber-400/10 border border-amber-400/30 text-amber-300 font-mono text-[10px] font-bold">
+                                VERIFIED
+                            </span>
+                        </div>
+
+                        <!-- High-Resolution Executive Portrait Container -->
+                        <div class="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/15 mb-5 shadow-2xl">
+                            <img src="./profile.jpg" alt="Muhammad Naveed" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                             
-                            <!-- Bottom Location Pill -->
-                            <div class="absolute bottom-2.5 inset-x-2.5 p-2 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 text-center font-mono text-[10px] text-slate-300 flex items-center justify-between">
-                                <span class="flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                                    <span>Sindh, Pakistan</span>
-                                </span>
-                                <span id="header-time-pill" class="text-amber-300 font-bold">--:-- PKT</span>
+                            <!-- Bottom Overlay Pill -->
+                            <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 text-left flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-sm font-bold text-white font-display">Muhammad Naveed</h3>
+                                    <p class="text-[10px] font-mono text-amber-300">Latifabad, Sindh, Pakistan</p>
+                                </div>
+                                <div class="text-right font-mono text-[11px] text-emerald-400 font-bold" id="live-hero-clock">
+                                    --:--:-- PKT
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Fast Telemetry Specs -->
+                        <div class="space-y-2 font-mono text-xs text-left">
+                            <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 flex justify-between items-center">
+                                <span class="text-slate-400">Core Ecosystem:</span>
+                                <span class="text-amber-300 font-bold">Next.js 15, TypeScript, Python</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 flex justify-between items-center">
+                                <span class="text-slate-400">Database Engine:</span>
+                                <span class="text-emerald-400 font-bold">PostgreSQL, Redis, Supabase</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 flex justify-between items-center">
+                                <span class="text-slate-400">Global Response:</span>
+                                <span class="text-cyan-400 font-bold">Sub-15 Min Direct Turnaround</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -247,259 +342,326 @@
         </section>
 
 
-        <!-- ================= 2. SELECTED WORKS & CASE STUDIES ================= -->
-        <section id="work" class="mb-24 scroll-mt-20">
+        <!-- ================= 2. BENTO GRID ARCHITECTURE (FLAGSHIP PRODUCTION SYSTEMS) ================= -->
+        <section id="flagships" class="mb-24 scroll-mt-24">
             
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-white/[0.08] text-left">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b border-white/[0.08] text-left">
                 <div>
-                    <span class="text-amber-400 font-mono text-[11px] font-bold tracking-widest uppercase block mb-1">
-                        Curated Deployments
+                    <span class="text-amber-400 font-mono text-xs font-bold tracking-widest uppercase block mb-1">
+                        PROVEN PRODUCTION ARCHITECTURE
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-normal font-serif text-white tracking-tight">
-                        Selected Works & Architecture
+                    <h2 class="text-3xl sm:text-4xl font-black text-white font-display">
+                        Flagship Live Deployments
                     </h2>
                 </div>
                 <p class="text-xs sm:text-sm font-light text-slate-400 max-w-md">
-                    Production platforms serving genuine users, processing real transactions, and architected for long-term maintainability.
+                    High-volume web systems processing real-world commercial traffic, automated search engine crawling, and e-commerce revenue 24/7.
                 </p>
             </div>
 
-            <!-- Case Studies Stack -->
-            <div class="space-y-8 text-left">
+            <!-- Bento Container Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 text-left">
 
-                <!-- 1. Flagship: SmartRateCalcs.com -->
-                <article class="craft-card p-6 sm:p-10 relative overflow-hidden group">
-                    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start justify-between">
-                        
-                        <!-- Narrative & Details -->
-                        <div class="flex-1 space-y-4">
-                            <div class="flex flex-wrap items-center gap-3 font-mono text-xs">
-                                <span class="px-2.5 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20 font-bold">
-                                    Flagship Financial Platform
-                                </span>
-                                <span class="text-emerald-400 font-bold flex items-center gap-1">
-                                    <i data-feather="check-circle" class="w-3.5 h-3.5"></i>
-                                    <span>Google Source [1] Citation</span>
-                                </span>
-                            </div>
-
-                            <h3 class="text-2xl sm:text-3xl font-serif text-white font-normal leading-snug group-hover:text-amber-300 transition-colors">
-                                SmartRateCalcs : Global Financial Calculation & Net Payout Architecture
-                            </h3>
-
-                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                                Cross-border freelancers and global merchants routinely lose 10% to 25% of their gross revenue to opaque platform fees, tier brackets, and foreign exchange spreads. I engineered SmartRateCalcs to make payout economics completely transparent with <strong>107+ production calculation tools</strong> covering Upwork, Fiverr, Stripe, PayPal, Wise, TikTok Shop, and regional tax frameworks.
-                            </p>
-
-                            <!-- Architectural Highlights -->
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs">
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Engine Performance</div>
-                                    <div class="text-white font-bold mt-0.5">&lt;38ms Edge TTFB</div>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Programmatic Index</div>
-                                    <div class="text-white font-bold mt-0.5">107+ Live Corridors</div>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Search Discovery</div>
-                                    <div class="text-emerald-400 font-bold mt-0.5">Automated IndexNow</div>
-                                </div>
-                            </div>
-
-                            <!-- Tech Stack & Live Link -->
-                            <div class="pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-                                <div class="flex flex-wrap gap-1.5 text-slate-400 text-[11px]">
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Next.js 15 App Router</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">TypeScript</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Tailwind CSS</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Vercel Edge</span>
-                                </div>
-
-                                <a href="https://www.smartratecalcs.com" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-bold hover:bg-amber-300 transition-all shadow-md active:scale-95">
-                                    <span>Launch smartratecalcs.com</span>
-                                    <i data-feather="external-link" class="w-3.5 h-3.5"></i>
-                                </a>
-                            </div>
-
+                <!-- 1. Hero Bento Card: SmartRateCalcs.com (8 Cols) -->
+                <div class="md:col-span-8 luxury-card p-6 sm:p-8 border-amber-400/40 flex flex-col justify-between group">
+                    <div class="card-spotlight"></div>
+                    
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between text-xs font-mono mb-4 gap-2">
+                            <span class="px-3 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/30 font-bold flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                                FLAGSHIP FINTECH SAAS PLATFORM
+                            </span>
+                            <span class="text-emerald-400 font-bold flex items-center gap-1">
+                                <i data-feather="check-circle" class="w-3.5 h-3.5"></i>
+                                <span>Google Source [1] Citation Verified</span>
+                            </span>
                         </div>
 
-                        <!-- Live Mini Simulation Box (Natural & Contextual) -->
-                        <div class="w-full lg:w-80 shrink-0 p-5 rounded-xl bg-black/60 border border-white/10 font-mono text-xs space-y-3.5 self-center">
-                            <div class="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
-                                <span class="text-amber-400 font-bold">Live Logic Preview</span>
-                                <span class="text-emerald-400">● 200 OK</span>
-                            </div>
+                        <h3 class="text-2xl sm:text-3xl font-black text-white font-display mb-3 group-hover:text-amber-300 transition-colors">
+                            SmartRateCalcs.com : Global Financial Calculation & Net Payout Architecture
+                        </h3>
 
+                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                            Autonomous financial calculation ecosystem featuring <strong>107+ production calculation tools</strong> covering Upwork, Fiverr, Stripe, PayPal, Wise, TikTok Shop, Meezan Bank, and Pakistani FBR tax brackets. Built on Next.js 15 App Router with automated IndexNow submission, zero-latency server components, and sub-38ms edge delivery.
+                        </p>
+
+                        <!-- Live Metrics Box -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-black/60 border border-white/10 mb-6 font-mono text-center">
                             <div>
-                                <label class="text-[10px] text-slate-400 uppercase block mb-1">Contract Invoiced</label>
-                                <div class="flex items-center justify-between text-white font-bold text-base bg-white/5 p-2 rounded-lg border border-white/5">
-                                    <span id="demo-amount-display">$1,500.00</span>
-                                    <span class="text-[10px] text-slate-500 font-normal">USD</span>
-                                </div>
-                                <input type="range" min="100" max="5000" step="100" value="1500" id="demo-slider" oninput="updateDemoFee(this.value)" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400 mt-2">
+                                <div class="text-xl sm:text-2xl font-black text-amber-400">107+</div>
+                                <div class="text-[10px] text-slate-400 uppercase mt-0.5">Calculators Live</div>
                             </div>
-
-                            <div class="space-y-1.5 text-[11px] pt-1">
-                                <div class="flex justify-between text-slate-400">
-                                    <span>Upwork Cut (10%):</span>
-                                    <span class="text-red-400" id="demo-fee">-$150.00</span>
-                                </div>
-                                <div class="flex justify-between text-slate-300 pt-2 border-t border-white/10 font-bold">
-                                    <span class="text-amber-400">Net Take-Home:</span>
-                                    <span class="text-emerald-400 text-sm" id="demo-net">$1,350.00</span>
-                                </div>
+                            <div>
+                                <div class="text-xl sm:text-2xl font-black text-white">&lt;38ms</div>
+                                <div class="text-[10px] text-slate-400 uppercase mt-0.5">Edge TTFB</div>
                             </div>
-
-                            <a href="https://www.smartratecalcs.com" target="_blank" class="block text-center text-[10px] text-slate-400 hover:text-white pt-1 underline">
-                                Explore all 107+ fee corridors on SmartRateCalcs →
-                            </a>
+                            <div>
+                                <div class="text-xl sm:text-2xl font-black text-emerald-400">100/100</div>
+                                <div class="text-[10px] text-slate-400 uppercase mt-0.5">Ahrefs Health</div>
+                            </div>
+                            <div>
+                                <div class="text-xl sm:text-2xl font-black text-cyan-400">IndexNow</div>
+                                <div class="text-[10px] text-slate-400 uppercase mt-0.5">Auto-Crawl</div>
+                            </div>
                         </div>
-
                     </div>
-                </article>
 
-
-                <!-- 2. Modern Trends Now -->
-                <article class="craft-card p-6 sm:p-10 relative overflow-hidden group">
-                    <div class="flex flex-col lg:flex-row gap-8 items-start justify-between">
-                        
-                        <div class="flex-1 space-y-4">
-                            <div class="flex flex-wrap items-center gap-3 font-mono text-xs">
-                                <span class="px-2.5 py-1 rounded-md bg-white/5 text-slate-300 border border-white/10 font-bold">
-                                    Curated E-Commerce Discovery
-                                </span>
-                                <span class="text-amber-400 font-bold">
-                                    Amazon Associates Partner
-                                </span>
-                            </div>
-
-                            <h3 class="text-2xl sm:text-3xl font-serif text-white font-normal leading-snug group-hover:text-amber-300 transition-colors">
-                                Modern Trends Now : Curated Spatial Architecture & Minimalist Desk Objects
-                            </h3>
-
-                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                                Most viral gadget storefronts suffer from cheap dropshipping plastics, fake reviews, and slow shipping. Modern Trends Now curates tested, tactile desk essentials, acoustic lighting, and spatial hardware. Integrated with real-time catalog search, verified reviewer telemetry, and direct domestic 2-day Amazon Prime fulfillment (Affiliate Tag: <code class="text-amber-300 font-mono text-xs">moderntren08b-20</code>).
-                            </p>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs">
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Curated Catalog</div>
-                                    <div class="text-white font-bold mt-0.5">22 Physical Objects</div>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Search Latency</div>
-                                    <div class="text-white font-bold mt-0.5">0ms Client-Side Instant</div>
-                                </div>
-                                <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                                    <div class="text-slate-400 text-[10px] uppercase">Automated Syndication</div>
-                                    <div class="text-emerald-400 font-bold mt-0.5">Pinterest RSS Pipeline</div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-                                <div class="flex flex-wrap gap-1.5 text-slate-400 text-[11px]">
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Next.js 14</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Tailwind CSS</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">RSS 2.0 Feed</span>
-                                    <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Amazon API</span>
-                                </div>
-
-                                <a href="https://www.moderntrendsnow.store" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition-all border border-white/10">
-                                    <span>Visit moderntrendsnow.store</span>
-                                    <i data-feather="external-link" class="w-3.5 h-3.5 text-amber-400"></i>
-                                </a>
-                            </div>
+                    <!-- Card Footer Actions -->
+                    <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+                        <div class="flex flex-wrap gap-1.5 text-slate-400 text-[11px]">
+                            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Next.js 15</span>
+                            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">TypeScript</span>
+                            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Vercel Edge</span>
+                            <span class="px-2 py-0.5 rounded bg-white/5 border border-white/5">Tailwind</span>
                         </div>
 
+                        <a href="https://www.smartratecalcs.com" target="_blank" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs font-mono flex items-center gap-1.5 shadow-lg shadow-amber-500/20 active:scale-95 transition-all">
+                            <span>LAUNCH LIVE SAAS</span>
+                            <i data-feather="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
                     </div>
-                </article>
+                </div>
 
+                <!-- 2. Bento Card: Modern Trends Now (4 Cols) -->
+                <div class="md:col-span-4 luxury-card p-6 sm:p-8 border-white/15 flex flex-col justify-between group">
+                    <div class="card-spotlight"></div>
+                    
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono mb-4">
+                            <span class="px-2.5 py-1 rounded bg-white/5 text-amber-300 border border-amber-400/30 font-bold">
+                                VIRAL COMMERCE
+                            </span>
+                            <span class="text-emerald-400 font-bold">Amazon Partner</span>
+                        </div>
 
-                <!-- Two-Column Grid for Boutique & Creative Works -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <h3 class="text-xl sm:text-2xl font-black text-white font-display mb-2 group-hover:text-amber-300 transition-colors">
+                            Modern Trends Now
+                        </h3>
 
-                    <!-- 3. SAYA Luxury Pret -->
-                    <article class="craft-card p-6 sm:p-8 flex flex-col justify-between group">
-                        <div class="space-y-3.5">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-amber-400 font-bold">Shopify Plus // Liquid 2.0</span>
-                                <span class="text-slate-500">Luxury Pret</span>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+                            Curated e-commerce storefront for spatial workspace architecture and minimalist technology. Features real-time catalog search, domestic Amazon Prime fulfillment (Tag: <code class="text-amber-300">moderntren08b-20</code>), and automated Pinterest RSS syndication.
+                        </p>
+
+                        <div class="space-y-2 font-mono text-xs mb-6">
+                            <div class="flex justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+                                <span class="text-slate-400">Catalog Depth:</span>
+                                <span class="text-white font-bold">22 Physical Objects</span>
                             </div>
-
-                            <h4 class="text-xl sm:text-2xl font-serif text-white group-hover:text-amber-300 transition-colors">
-                                SAYA Luxury Pret Theme
-                            </h4>
-
-                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                                Bespoke Shopify Plus theme for luxury fashion apparel. Designed with zero third-party app bloat, featuring 50+ accessible color swatches, sub-100ms drawer cart transitions, and responsive mobile checkout styling.
-                            </p>
-                        </div>
-
-                        <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between font-mono text-xs">
-                            <span class="text-slate-400 text-[11px]">Custom Liquid · Tailwind</span>
-                            <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">
-                                <span>View Theme</span>
-                                <i data-feather="arrow-up-right" class="w-3.5 h-3.5"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- 4. Escape Experiment -->
-                    <article class="craft-card p-6 sm:p-8 flex flex-col justify-between group">
-                        <div class="space-y-3.5">
-                            <div class="flex items-center justify-between text-xs font-mono">
-                                <span class="text-emerald-400 font-bold">Creative Canvas // 60 FPS</span>
-                                <span class="text-slate-500">WebGL Physics</span>
+                            <div class="flex justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+                                <span class="text-slate-400">Search Engine:</span>
+                                <span class="text-emerald-400 font-bold">Zero-Latency Instant</span>
                             </div>
-
-                            <h4 class="text-xl sm:text-2xl font-serif text-white group-hover:text-emerald-300 transition-colors">
-                                Escape Experiment 2.5D Engine
-                            </h4>
-
-                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-                                Procedural 2.5D interactive canvas engine with real-time raycast collision, localized Web Audio API sound synthesis, and smooth isometric camera tracking built purely with vanilla JavaScript and Canvas API.
-                            </p>
+                            <div class="flex justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+                                <span class="text-slate-400">Syndication:</span>
+                                <span class="text-amber-300 font-bold">Automated RSS 2.0</span>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between font-mono text-xs">
-                            <span class="text-slate-400 text-[11px]">HTML5 Canvas · Web Audio</span>
-                            <a href="https://naveed-portfolio-kappa.vercel.app/escape-experiment/" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center gap-1">
-                                <span>Launch Engine</span>
-                                <i data-feather="arrow-up-right" class="w-3.5 h-3.5"></i>
-                            </a>
-                        </div>
-                    </article>
+                    <div class="pt-4 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+                        <span class="text-slate-500">moderntrendsnow.store</span>
+                        <a href="https://www.moderntrendsnow.store" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">
+                            <span>Visit Store</span>
+                            <i data-feather="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
 
+                <!-- 3. Bento Card: SAYA Luxury Pret (4 Cols) -->
+                <div class="md:col-span-4 luxury-card p-6 flex flex-col justify-between group">
+                    <div class="card-spotlight"></div>
+                    <div>
+                        <div class="text-[11px] font-mono text-amber-400 font-bold mb-2">CUSTOM LIQUID 2.0 // SHOPIFY PLUS</div>
+                        <h4 class="text-lg font-bold text-white font-display mb-2 group-hover:text-amber-300 transition-colors">
+                            SAYA Luxury Pret
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            High-end fashion boutique. Custom Liquid 2.0 templating, 50+ accessible color swatches, sub-100ms sliding bag drawer, and zero third-party app bloat.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+                        <span class="text-slate-500">Liquid · Shopify</span>
+                        <a href="https://naveed-portfolio-kappa.vercel.app/saya-luxury/" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">
+                            <span>View Showcase</span>
+                            <i data-feather="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Bento Card: Escape Experiment 2.5D Canvas (4 Cols) -->
+                <div class="md:col-span-4 luxury-card p-6 flex flex-col justify-between group">
+                    <div class="card-spotlight"></div>
+                    <div>
+                        <div class="text-[11px] font-mono text-emerald-400 font-bold mb-2">INTERACTIVE ENGINE // 60 FPS</div>
+                        <h4 class="text-lg font-bold text-white font-display mb-2 group-hover:text-emerald-300 transition-colors">
+                            Escape Experiment 2.5D
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            Procedural 2.5D interactive canvas engine with localized audio synthesis, raycast collision, and 60 FPS isometric physics running on pure WebGL/Canvas.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+                        <span class="text-slate-500">HTML5 Canvas · AudioAPI</span>
+                        <a href="https://naveed-portfolio-kappa.vercel.app/escape-experiment/" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center gap-1">
+                            <span>Launch Engine</span>
+                            <i data-feather="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Bento Card: GitHub Codebase Hub (4 Cols) -->
+                <div class="md:col-span-4 luxury-card p-6 flex flex-col justify-between group">
+                    <div class="card-spotlight"></div>
+                    <div>
+                        <div class="text-[11px] font-mono text-cyan-400 font-bold mb-2">OPEN SOURCE // GITHUB</div>
+                        <h4 class="text-lg font-bold text-white font-display mb-2 group-hover:text-cyan-300 transition-colors">
+                            @mnaveedkhtri-ui
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                            22+ public repositories, clean Git commits, verified Next.js 15 codebases, automated scrapers, and open-source architecture setups.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+                        <span class="text-slate-500">GitHub Profile</span>
+                        <a href="https://github.com/mnaveedkhtri-ui" target="_blank" class="text-cyan-400 font-bold hover:underline flex items-center gap-1">
+                            <span>Inspect Code</span>
+                            <i data-feather="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
                 </div>
 
             </div>
         </section>
 
 
-        <!-- ================= 3. ENGINEERING PRINCIPLES (HOW I THINK) ================= -->
-        <section id="craft" class="mb-24 scroll-mt-20">
+        <!-- ================= 3. LIVE INTERACTIVE SIMULATOR (SMARTRATECALCS CORE) ================= -->
+        <section id="interactive-lab" class="mb-24 scroll-mt-24">
+            
+            <div class="mb-6 flex flex-wrap items-end justify-between gap-4 text-left">
+                <div>
+                    <span class="text-amber-400 font-mono text-xs font-bold tracking-widest uppercase block mb-1">
+                        LIVE INTERACTIVE DEMO // TEST ON SITE
+                    </span>
+                    <h2 class="text-3xl font-black text-white font-display">
+                        Real-Time Fee Calculation Lab
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 font-mono mt-1">
+                        Interact directly with SmartRateCalcs computational logic right here in real time.
+                    </p>
+                </div>
+                <div class="text-xs font-mono text-slate-400 px-3.5 py-1.5 bg-white/5 border border-white/10 rounded-xl flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Client Test Terminal</span>
+                </div>
+            </div>
+
+            <!-- Terminal Card -->
+            <div class="luxury-card p-6 sm:p-10 border-amber-400/30 text-left">
+                <div class="card-spotlight"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Left: Interactive Platform Controls (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-2.5 uppercase font-bold">1. Select Target Platform</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="platform-selector">
+                                <button onclick="setPlatform('upwork', this)" class="px-3 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-mono text-xs font-bold transition-all text-center shadow-lg shadow-amber-500/20">
+                                    Upwork (10%)
+                                </button>
+                                <button onclick="setPlatform('fiverr', this)" class="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Fiverr (20%)
+                                </button>
+                                <button onclick="setPlatform('stripe', this)" class="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Stripe (2.9%)
+                                </button>
+                                <button onclick="setPlatform('paypal', this)" class="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    PayPal (3.49%)
+                                </button>
+                                <button onclick="setPlatform('tiktok', this)" class="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    TikTok (5%)
+                                </button>
+                                <button onclick="setPlatform('wise', this)" class="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30">
+                                    Wise ($4.14)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2.5">
+                                <label class="text-xs font-mono text-slate-400 uppercase font-bold">2. Contract / Invoiced Amount</label>
+                                <span class="text-base font-mono font-bold text-white bg-white/5 px-3 py-1 rounded-lg border border-white/10" id="slider-val-display">$1,500 USD</span>
+                            </div>
+                            <input type="range" id="fee-slider" min="50" max="5000" step="50" value="1500" oninput="calculateLiveFee(this.value)" class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400">
+                            <div class="flex justify-between text-[11px] font-mono text-slate-500 mt-1.5">
+                                <span>$50</span>
+                                <span>$2,500</span>
+                                <span>$5,000</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Live Output (5 Cols) -->
+                    <div class="lg:col-span-5 bg-black/80 border border-white/15 rounded-2xl p-6 sm:p-7 font-mono shadow-2xl">
+                        <div class="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-white/10 mb-4">
+                            <span>NET PAYOUT COMPUTATION</span>
+                            <span class="text-emerald-400 font-bold" id="calc-status">● 200 OK</span>
+                        </div>
+
+                        <div class="space-y-4 text-xs">
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span>Gross Invoiced:</span>
+                                <span class="text-white font-bold text-base" id="out-gross">$1,500.00</span>
+                            </div>
+
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span id="out-fee-label">Upwork 10% Service Fee:</span>
+                                <span class="text-red-400 font-bold text-base" id="out-fee">-$150.00</span>
+                            </div>
+
+                            <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                <span class="text-sm font-bold text-amber-300">Net Take-Home:</span>
+                                <span class="text-2xl sm:text-3xl font-black text-emerald-400" id="out-net">$1,350.00</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-500 flex justify-between items-center">
+                            <span>Powered by Edge Worker</span>
+                            <a href="https://www.smartratecalcs.com" target="_blank" class="text-amber-400 hover:underline font-bold">Explore All 107+ ↗</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= 4. ENGINEERING PHILOSOPHY & WORKSHOP ================= -->
+        <section id="philosophy" class="mb-24 scroll-mt-24">
             <div class="mb-10 text-left">
-                <span class="text-amber-400 font-mono text-[11px] font-bold tracking-widest uppercase block mb-1">
-                    Philosophy & Work Ethic
+                <span class="text-amber-400 font-mono text-xs font-bold tracking-widest uppercase block mb-1">
+                    HOW I BUILD SOFTWARE
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-normal font-serif text-white tracking-tight">
-                    How I Approach Software Engineering
+                <h2 class="text-3xl sm:text-4xl font-black text-white font-display">
+                    Engineering Principles & Craft
                 </h2>
                 <p class="text-xs sm:text-sm font-light text-slate-400 max-w-xl mt-1">
-                    Principles distilled from building production applications that real humans depend upon every day.
+                    Disciplines forged from building production systems that real businesses rely upon.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                 
                 <!-- Principle 1 -->
-                <div class="craft-card p-6 sm:p-7 space-y-3">
-                    <div class="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center font-mono font-bold text-xs">
+                <div class="luxury-card p-6 sm:p-7 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">
                         01
                     </div>
-                    <h3 class="text-lg font-serif text-white font-normal">
-                        Speed Is a Feature, Not an Afterthought
+                    <h3 class="text-lg font-bold text-white font-display">
+                        Speed Is a Feature
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                         A tool that responds in 40 milliseconds feels like thought itself. I obsess over minimizing JavaScript bundle weight, utilizing edge-cached server components, and eliminating cumulative layout shifts before writing complex client code.
@@ -507,12 +669,12 @@
                 </div>
 
                 <!-- Principle 2 -->
-                <div class="craft-card p-6 sm:p-7 space-y-3">
-                    <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 text-slate-300 flex items-center justify-center font-mono font-bold text-xs">
+                <div class="luxury-card p-6 sm:p-7 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-slate-300 flex items-center justify-center font-mono font-bold text-sm">
                         02
                     </div>
-                    <h3 class="text-lg font-serif text-white font-normal">
-                        Simplicity Over Clever Abstractions
+                    <h3 class="text-lg font-bold text-white font-display">
+                        Simplicity Over Cleverness
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                         The best code is the code that another engineer can easily read and debug at 2 AM. I avoid gratuitous npm package bloat, favor standard web primitives, and keep architecture straightforward and predictable.
@@ -520,12 +682,12 @@
                 </div>
 
                 <!-- Principle 3 -->
-                <div class="craft-card p-6 sm:p-7 space-y-3">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 flex items-center justify-center font-mono font-bold text-xs">
+                <div class="luxury-card p-6 sm:p-7 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">
                         03
                     </div>
-                    <h3 class="text-lg font-serif text-white font-normal">
-                        End-to-End Craft & Ownership
+                    <h3 class="text-lg font-bold text-white font-display">
+                        End-to-End Ownership
                     </h3>
                     <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
                         I bridge the entire product lifecycle: from relational database schemas and indexed SQL queries, to elegant design tokens, accessible touch ergonomics, and rock-solid deployment pipelines.
@@ -536,138 +698,18 @@
         </section>
 
 
-        <!-- ================= 4. TECHNICAL TOOLING & STACK ================= -->
-        <section id="stack" class="mb-24 scroll-mt-20">
-            <div class="mb-10 text-left">
-                <span class="text-amber-400 font-mono text-[11px] font-bold tracking-widest uppercase block mb-1">
-                    Tooling & Capabilities
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-normal font-serif text-white tracking-tight">
-                    Technologies I Work With Daily
-                </h2>
-                <p class="text-xs sm:text-sm font-light text-slate-400 max-w-xl mt-1">
-                    Battle-tested technologies selected for production reliability, velocity, and longevity.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
-                
-                <!-- Col 1: Frontend -->
-                <div class="craft-card p-5 space-y-3">
-                    <div class="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider flex items-center gap-2">
-                        <span>●</span> Frontend Systems
-                    </div>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Next.js (App Router)</span>
-                            <span class="text-amber-400">Core</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>React (RSC/SSR)</span>
-                            <span class="text-slate-400">v18/v19</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>TypeScript</span>
-                            <span class="text-emerald-400">Strict</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Tailwind CSS</span>
-                            <span class="text-slate-400">Styling</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Col 2: Backend -->
-                <div class="craft-card p-5 space-y-3">
-                    <div class="text-xs font-mono font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
-                        <span>●</span> Backend & APIs
-                    </div>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Node.js / Express</span>
-                            <span class="text-emerald-400">Fast</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Python (FastAPI/Django)</span>
-                            <span class="text-amber-400">Async</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>REST & Edge Endpoints</span>
-                            <span class="text-slate-400">JSON</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Shopify Liquid 2.0</span>
-                            <span class="text-slate-400">Themes</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Data & Storage -->
-                <div class="craft-card p-5 space-y-3">
-                    <div class="text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-2">
-                        <span>●</span> Databases & State
-                    </div>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>PostgreSQL</span>
-                            <span class="text-emerald-400">ACID</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Supabase / Firebase</span>
-                            <span class="text-slate-400">BaaS</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Redis Cache</span>
-                            <span class="text-amber-400">In-Mem</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>SQL Query Indexing</span>
-                            <span class="text-slate-400">Tuning</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: DevOps & Platform -->
-                <div class="craft-card p-5 space-y-3">
-                    <div class="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-                        <span>●</span> DevOps & Cloud
-                    </div>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Vercel Edge</span>
-                            <span class="text-white">Global</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Git & GitHub Actions</span>
-                            <span class="text-emerald-400">CI/CD</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Docker Containers</span>
-                            <span class="text-slate-400">Deploy</span>
-                        </li>
-                        <li class="p-2 rounded-lg bg-white/[0.03] border border-white/5 flex justify-between">
-                            <span>Linux Environment</span>
-                            <span class="text-slate-400">CLI</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- ================= 5. ABOUT MUHAMMAD NAVEED (AUTHENTIC STORY & ATMOSPHERE) ================= -->
-        <section id="about" class="mb-24 scroll-mt-20">
-            <div class="craft-card p-6 sm:p-12 text-left relative overflow-hidden">
+        <!-- ================= 5. ABOUT MUHAMMAD NAVEED & THE WORKSHOP ================= -->
+        <section id="about" class="mb-24 scroll-mt-24">
+            <div class="luxury-card p-6 sm:p-12 text-left relative overflow-hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
                     <!-- Bio Narrative (7 Cols) -->
                     <div class="lg:col-span-7 space-y-4">
-                        <span class="text-amber-400 font-mono text-[11px] font-bold tracking-widest uppercase block">
-                            Behind the Code
+                        <span class="text-amber-400 font-mono text-xs font-bold tracking-widest uppercase block">
+                            BEHIND THE CODE
                         </span>
 
-                        <h2 class="text-2xl sm:text-4xl font-serif text-white font-normal tracking-tight">
+                        <h2 class="text-2xl sm:text-4xl font-black text-white font-display tracking-tight">
                             A craftsman obsessed with detail, architecture, and quiet execution.
                         </h2>
 
@@ -686,14 +728,14 @@
                             </span>
                             <span class="flex items-center gap-1.5 text-slate-300">
                                 <i data-feather="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
-                                <span>Fast Async & Realtime Turnaround</span>
+                                <span>Fast Async & Real-time Turnaround</span>
                             </span>
                         </div>
                     </div>
 
                     <!-- Workspace Photo / Atmosphere (5 Cols) -->
                     <div class="lg:col-span-5">
-                        <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl group">
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
                             <img src="./workspace.jpg" alt="Muhammad Naveed Workspace" class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                             <div class="absolute bottom-3 left-3 right-3 text-left">
@@ -713,15 +755,16 @@
 
 
         <!-- ================= 6. CONTACT & CONNECT (WARM & RECEPTIVE) ================= -->
-        <section id="contact" class="craft-card p-8 sm:p-14 text-center relative overflow-hidden mb-16 border-amber-400/30">
-            <div class="max-w-2xl mx-auto space-y-6">
+        <section id="contact" class="luxury-card p-8 sm:p-14 text-center relative overflow-hidden mb-16 border-amber-400/40">
+            <div class="card-spotlight"></div>
+            <div class="max-w-2xl mx-auto space-y-6 relative z-10">
                 
-                <span class="text-amber-400 font-mono text-[11px] font-bold tracking-widest uppercase block">
-                    Get in Touch
+                <span class="text-amber-400 font-mono text-xs font-bold tracking-widest uppercase block">
+                    LET'S CONNECT
                 </span>
 
-                <h2 class="text-3xl sm:text-5xl font-serif text-white font-normal tracking-tight">
-                    Let's Build Something Meaningful Together.
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">
+                    Let's Build Something Extraordinary.
                 </h2>
 
                 <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-xl mx-auto">
@@ -730,12 +773,12 @@
 
                 <!-- Action Links -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
-                    <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold font-mono text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10 active:scale-95">
+                    <a href="https://wa.me/923323219981?text=Hi%20Naveed,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold font-mono text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95">
                         <i data-feather="message-circle" class="w-4 h-4"></i>
                         <span>WhatsApp (+92 332 3219981)</span>
                     </a>
 
-                    <button onclick="copyEmailToClipboard()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-mono text-slate-200 transition-all flex items-center justify-center gap-2">
+                    <button onclick="copyEmailToClipboard()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-mono text-slate-200 transition-all flex items-center justify-center gap-2 active:scale-95">
                         <i data-feather="copy" class="w-4 h-4 text-amber-400"></i>
                         <span>Copy Email (m.naveedkhtri@gmail.com)</span>
                     </button>
@@ -757,9 +800,9 @@
     </main>
 
 
-    <!-- ================= QUIET, ELEGANT FOOTER ================= -->
-    <footer class="border-t border-white/[0.08] bg-[#06070a] py-8 text-xs font-mono text-slate-500">
-        <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- ================= QUIET ELEGANT FOOTER ================= -->
+    <footer class="border-t border-white/[0.08] bg-[#030508] py-8 text-xs font-mono text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
                 © 2026 Muhammad Naveed. Handcrafted with care from Sindh, Pakistan.
             </div>
@@ -776,19 +819,19 @@
     </footer>
 
 
-    <!-- ================= JAVASCRIPT ENGINE (CLEAN & SUBTLE) ================= -->
+    <!-- ================= SCRIPT ENGINE ================= -->
     <script>
         feather.replace();
 
-        // 1. Live Karachi Time Clock (Human & unobtrusive)
+        // 1. Live Karachi Time Clock
         function updateClock() {
             try {
                 const now = new Date();
-                const options = { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: true };
+                const options = { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
                 const timeStr = now.toLocaleTimeString('en-US', options);
                 
-                const pill = document.getElementById('header-time-pill');
-                if (pill) pill.innerText = timeStr + ' PKT';
+                const heroClock = document.getElementById('live-hero-clock');
+                if (heroClock) heroClock.innerText = timeStr + ' PKT';
 
                 const footerClock = document.getElementById('footer-clock');
                 if (footerClock) footerClock.innerText = timeStr + ' PKT';
@@ -797,22 +840,52 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // 2. Contextual Demo Calculator Slider
-        function updateDemoFee(val) {
-            const amount = parseFloat(val);
-            const fee = amount * 0.10;
-            const net = amount - fee;
+        // 2. Interactive Spotlight Tracker
+        document.querySelectorAll('.luxury-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
 
-            const dispAmount = document.getElementById('demo-amount-display');
-            const dispFee = document.getElementById('demo-fee');
-            const dispNet = document.getElementById('demo-net');
+        // 3. Live Terminal Calculator Simulator
+        let currentPlatform = 'upwork';
+        const platformRates = {
+            upwork: { rate: 0.10, fixed: 0, label: 'Upwork 10% Service Fee' },
+            fiverr: { rate: 0.20, fixed: 0, label: 'Fiverr 20% Freelancer Fee' },
+            stripe: { rate: 0.029, fixed: 0.30, label: 'Stripe 2.9% + $0.30 Processing' },
+            paypal: { rate: 0.0349, fixed: 0.49, label: 'PayPal 3.49% + $0.49 Fee' },
+            tiktok: { rate: 0.05, fixed: 0, label: 'TikTok Shop 5% Merchant Cut' },
+            wise: { rate: 0.00, fixed: 4.14, label: 'Wise Wire Fixed Flat Fee ($4.14)' }
+        };
 
-            if (dispAmount) dispAmount.innerText = '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            if (dispFee) dispFee.innerText = '-$' + fee.toFixed(2);
-            if (dispNet) dispNet.innerText = '$' + net.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        function setPlatform(platform, btn) {
+            currentPlatform = platform;
+            document.querySelectorAll('#platform-selector button').forEach(b => {
+                b.className = 'px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 font-mono text-xs transition-all text-center hover:border-white/30';
+            });
+            btn.className = 'px-3 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-mono text-xs font-bold transition-all text-center shadow-lg shadow-amber-500/20';
+            calculateLiveFee(document.getElementById('fee-slider').value);
         }
 
-        // 3. Smooth Copy Email Toast
+        function calculateLiveFee(val) {
+            const amount = parseFloat(val);
+            document.getElementById('slider-val-display').innerText = `$${amount.toLocaleString('en-US')} USD`;
+            document.getElementById('out-gross').innerText = `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+            const cfg = platformRates[currentPlatform];
+            const fee = (amount * cfg.rate) + cfg.fixed;
+            const net = amount - fee;
+
+            document.getElementById('out-fee-label').innerText = cfg.label + ':';
+            document.getElementById('out-fee').innerText = `-$${fee.toFixed(2)}`;
+            document.getElementById('out-net').innerText = `$${net.toFixed(2)}`;
+        }
+
+        // 4. Smooth Copy Email Toast
         function copyEmailToClipboard() {
             navigator.clipboard.writeText('m.naveedkhtri@gmail.com').then(() => {
                 const toast = document.getElementById('copy-toast');
@@ -826,6 +899,10 @@
                 window.location.href = 'mailto:m.naveedkhtri@gmail.com';
             });
         }
+
+        window.addEventListener('load', () => {
+            calculateLiveFee(1500);
+        });
     </script>
 </body>
 </html>
